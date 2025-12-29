@@ -1,0 +1,230 @@
+import { supabase } from '../lib/supabase';
+import { Product } from '../types';
+
+export interface Favorite {
+  id: string;
+  user_id: string;
+  product_id: string;
+  created_at: string;
+  updated_at: string;
+  product?: Product;
+}
+
+export interface FavoriteServiceResult {
+  success: boolean;
+  error?: string;
+}
+
+export interface FavoriteProduct extends Product {
+  favorite_id: string;
+  favorited_at: string;
+}
+
+class FavoriteService {
+  /**
+   * Récupérer tous les favoris d'un utilisateur avec les détails des produits
+   */
+  async getUserFavorites(userId: string): Promise<{ success: boolean; favorites?: FavoriteProduct[]; error?: string }> {
+    try {
+      const { data, error } = await supabase
+        .from('favorites')
+        .select(`
+          id,
+          created_at,
+          product:products (
+            id,
+            name,
+            brand:brands(name),
+            category:categories(name),
+            sale_price,
+            purchase_price,
+            images,
+            main_image_index,
+            condition,
+            description,
+            status,
+            created_at,
+            updated_at
+          )
+        `)
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Erreur lors de la récupération des favoris:', error);
+        return { success: false, error: error.message };
+      }
+
+      // Transformer les données pour correspondre à l'interface FavoriteProduct
+      const favorites: FavoriteProduct[] = (data || []).map(item => {
+        const images = item.product.images || [];
+        const mainImageIndex = item.product.main_image_index || 0;
+        const mainImage = images[mainImageIndex] || (images.length > 0 ? images[0] : '');
+        
+        // Convertir les conditions de la DB vers l'interface Product
+        const conditionMap: Record<string, 'Excellent' | 'Very Good' | 'Good' | 'Fair' | 'New'> = {
+          'neuf': 'New',
+          'excellent': 'Excellent',
+          'very-good': 'Very Good',
+          'good': 'Good',
+          'fair': 'Fair'
+        };
+        
+        return {
+          id: item.product.id,
+          name: item.product.name,
+          brand: item.product.brand?.name || 'Marque inconnue',
+          category: item.product.category?.name || 'Catégorie inconnue',
+          price: item.product.sale_price,
+          originalPrice: undefined, // Ne pas afficher le prix d'achat
+          image: mainImage,
+          condition: conditionMap[item.product.condition] || 'Good',
+          description: item.product.description || '',
+          inStock: item.product.status === 'for-sale-online',
+          favorite_id: item.id,
+          favorited_at: item.created_at
+        };
+      });
+
+      return { success: true, favorites };
+    } catch (error) {
+      console.error('Erreur dans getUserFavorites:', error);
+      return { success: false, error: 'Erreur lors de la récupération des favoris' };
+    }
+  }
+
+  /**
+   * Ajouter un produit aux favoris
+   */
+  async addToFavorites(userId: string, productId: string): Promise<FavoriteServiceResult> {
+    try {
+      const { error } = await supabase
+        .from('favorites')
+        .insert({
+          user_id: userId,
+          product_id: productId
+        });
+
+      if (error) {
+        // Si erreur de contrainte d'unicité, le produit est déjà en favori
+        if (error.code === '23505') {
+          return { success: false, error: 'Ce produit est déjà dans vos favoris' };
+        }
+        console.error('Erreur lors de l\'ajout aux favoris:', error);
+        return { success: false, error: error.message };
+      }
+
+      return { success: true };
+    } catch (error) {
+      console.error('Erreur dans addToFavorites:', error);
+      return { success: false, error: 'Erreur lors de l\'ajout aux favoris' };
+    }
+  }
+
+  /**
+   * Retirer un produit des favoris
+   */
+  async removeFromFavorites(userId: string, productId: string): Promise<FavoriteServiceResult> {
+    try {
+      const { error } = await supabase
+        .from('favorites')
+        .delete()
+        .eq('user_id', userId)
+        .eq('product_id', productId);
+
+      if (error) {
+        console.error('Erreur lors de la suppression des favoris:', error);
+        return { success: false, error: error.message };
+      }
+
+      return { success: true };
+    } catch (error) {
+      console.error('Erreur dans removeFromFavorites:', error);
+      return { success: false, error: 'Erreur lors de la suppression des favoris' };
+    }
+  }
+
+  /**
+   * Vérifier si un produit est dans les favoris d'un utilisateur
+   */
+  async isFavorite(userId: string, productId: string): Promise<{ success: boolean; isFavorite?: boolean; error?: string }> {
+    try {
+      const { data, error } = await supabase
+        .from('favorites')
+        .select('id')
+        .eq('user_id', userId)
+        .eq('product_id', productId)
+        .limit(1);
+
+      if (error) {
+        console.error('Erreur lors de la vérification des favoris:', error);
+        return { success: false, error: error.message };
+      }
+
+      return { success: true, isFavorite: (data && data.length > 0) };
+    } catch (error) {
+      console.error('Erreur dans isFavorite:', error);
+      return { success: false, error: 'Erreur lors de la vérification des favoris' };
+    }
+  }
+
+  /**
+   * Basculer l'état favori d'un produit (ajouter ou retirer)
+   */
+  async toggleFavorite(userId: string, productId: string): Promise<{ success: boolean; action?: 'added' | 'removed'; error?: string }> {
+    try {
+      // Vérifier d'abord si le produit est déjà en favori
+      const { success: checkSuccess, isFavorite, error: checkError } = await this.isFavorite(userId, productId);
+      
+      if (!checkSuccess) {
+        return { success: false, error: checkError };
+      }
+
+      if (isFavorite) {
+        // Retirer des favoris
+        const result = await this.removeFromFavorites(userId, productId);
+        return { 
+          success: result.success, 
+          action: result.success ? 'removed' : undefined, 
+          error: result.error 
+        };
+      } else {
+        // Ajouter aux favoris
+        const result = await this.addToFavorites(userId, productId);
+        return { 
+          success: result.success, 
+          action: result.success ? 'added' : undefined, 
+          error: result.error 
+        };
+      }
+    } catch (error) {
+      console.error('Erreur dans toggleFavorite:', error);
+      return { success: false, error: 'Erreur lors de la modification des favoris' };
+    }
+  }
+
+  /**
+   * Récupérer le nombre de favoris d'un utilisateur
+   */
+  async getFavoriteCount(userId: string): Promise<{ success: boolean; count?: number; error?: string }> {
+    try {
+      const { count, error } = await supabase
+        .from('favorites')
+        .select('id', { count: 'exact', head: true })
+        .eq('user_id', userId);
+
+      if (error) {
+        console.error('Erreur lors du comptage des favoris:', error);
+        return { success: false, error: error.message };
+      }
+
+      return { success: true, count: count || 0 };
+    } catch (error) {
+      console.error('Erreur dans getFavoriteCount:', error);
+      return { success: false, error: 'Erreur lors du comptage des favoris' };
+    }
+  }
+}
+
+// Export d'une instance singleton
+export const favoriteService = new FavoriteService();

@@ -1,0 +1,15 @@
+# Robots.txt pour Ligne Blanche
+# https://www.ligne-blanche.fr
+
+# Autoriser tous les robots à indexer le site
+User-agent: *
+Allow: /
+
+# Bloquer l'accès aux pages privées et d'authentification
+Disallow: /login
+Disallow: /register
+Disallow: /profil
+Disallow: /welcome
+
+# Sitemap
+Sitemap: https://www.ligne-blanche.fr/sitemap.xml

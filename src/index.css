@@ -1,0 +1,37 @@
+/* Import des animations personnalisées pour le checkout */
+@import url('./styles/checkout-animations.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Styles personnalisés pour améliorer l'UX */
+.animate-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.slide-in-from-right-4 {
+  animation: slideInFromRight 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
