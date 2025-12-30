@@ -7,9 +7,6 @@ const FooterMobile: React.FC = () => {
   
   const handleNavigation = (page: string) => {
     switch (page) {
-      case 'home':
-        navigate('/');
-        break;
       case 'boutique':
         navigate('/boutique');
         break;
