@@ -100,12 +100,6 @@ const FooterMobile: React.FC = () => {
               onClick={() => handleNavigation('home')} 
               className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-1"
             >
-              Accueil
-            </button>
-            <button 
-              onClick={() => handleNavigation('boutique')} 
-              className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-1"
-            >
               Boutique
             </button>
             <button 
