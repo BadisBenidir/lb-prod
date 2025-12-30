@@ -232,7 +232,7 @@ export default function SelectionPage() {
               <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 text-green-600 rounded-full mb-6">
                 <Crown size={32} />
               </div>
-              <h3 className="text-2xl font-light mb-4 text-green-700">
+              <h3 className="text-2xl font-light mb-4 text-blue-700">
                 Excellent
               </h3>
             </div>
@@ -240,7 +240,7 @@ export default function SelectionPage() {
               <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 text-blue-600 rounded-full mb-6">
                 <Award size={32} />
               </div>
-              <h3 className="text-2xl font-light mb-4 text-blue-700">
+              <h3 className="text-2xl font-light mb-4 text-green-700">
                 Très Bon
               </h3>
             </div>

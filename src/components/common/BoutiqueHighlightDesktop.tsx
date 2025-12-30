@@ -32,7 +32,7 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
             </div>
             
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight mb-6">
-              Des pièces d'exception
+              Des pièces d'exceptions
               <span className="block font-bold text-black">soigneusement sélectionnées</span>
             </h2>
             
