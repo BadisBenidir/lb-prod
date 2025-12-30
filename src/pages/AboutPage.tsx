@@ -117,10 +117,13 @@ export default function AboutPage() {
                 <p className="text-sm sm:text-base">
                   Le luxe a toujours eu cette capacité rare : traverser le temps. Mais trop souvent, des pièces d'exception dorment dans des placards, oubliées, alors qu'elles portent encore l'élégance et le savoir-faire des grandes maisons.
                 </p>
-                <p className="text-sm sm:text-base">
+                <p className="hidden sm:block sm:text-base">
                   Ligne Blanche est née de cette conviction : offrir une nouvelle vie à ces icônes, et les rendre accessibles à une nouvelle génération de passionnés. Chaque pièce que nous sélectionnons est choisie pour son authenticité, sa qualité et son intemporalité, afin qu'elle retrouve la place qu'elle mérite : la vôtre.
                 </p>
-                <p className="text-sm sm:text-base">
+                <p className="block sm:hidden text-sm">
+                 Le luxe traverse le temps, mais trop souvent, des pièces d'exception restent à l'écart, oubliées. Ligne Blanche est née de la volonté de leur offir une seconde vie, en les rendan accessibles à une nouvelle génération, tout en préservant leur histoire, leur valeur et leur authenticité.
+                </p>
+                <p className="hidden sm:block sm:text-base">
                   Nous croyons que le luxe ne doit pas être un monde fermé, réservé à quelques initiés. Il peut être transparent, exigeant, et surtout accessible. En proposant des articles vérifiés et certifiés, à des prix bien en dessous du marché, nous démocratisons l'accès aux grandes maisons sans jamais en trahir l'esprit.
                 </p>
                 <p className="text-sm sm:text-base">
@@ -211,10 +214,19 @@ export default function AboutPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-light text-gray-900 mb-4">
+            <h2 className="hidden sm:block text-4xl font-light text-gray-900 mb-4">
               Ce qui Nous Définit
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+
+            <h2 className="block sm:hiden text-3xl font-light text-gray-1000 mb-6">
+              Ce qui Nous Définit
+            </h2>
+
+            <p className="block sm:hidden text-s text-gray-600 max-w-3xs mx-auto">
+              Pas de beaux discours marketing. Juste ce qui fait notre différence, au quotidien.
+            </p>
+
+            <p className="hidden sm:block text-xl text-gray-600 max-w-3xl mx-auto">
               Pas de beaux discours marketing. Juste ce qui fait notre différence, au quotidien.
             </p>
           </div>
@@ -239,10 +251,19 @@ export default function AboutPage() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-light text-gray-900 mb-4">
+            <h2 className="block sm:hidden text-3xl font-light text-gray-1000 mb-6">
               L'Héritage Continue
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+
+            <h2 className="hidden sm:block text-4xl font-light text-gray-900 mb-4">
+              L'Héritage Continue
+            </h2>
+
+            <p className="block sm:hidden text-s text-gray-600 max-w-3xl mx-auto">
+              Aujourd'hui, Ligne Blanche conjugue exigence traditionnelle et innovation digitale. Une vision commune réinventée pour l'époque moderne.
+            </p>
+
+            <p className="hidden sm:block text-xl text-gray-600 max-w-3xl mx-auto">
               Aujourd'hui, Ligne Blanche conjugue exigence traditionnelle et innovation digitale. Une vision commune réinventée pour l'époque moderne.
             </p>
           </div>
@@ -271,7 +292,11 @@ export default function AboutPage() {
 
           <div className="mt-16 text-center bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Notre Promesse</h3>
-            <p className="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto">
+            <p className="block sm:hidden text-ls text-gray-600 leading-relaxed max-w-4xl mx-auto">
+              Chaque pièce est validée par une double exigence : authenticité et pertinence. C'est notre signature sur chaque vente.
+            </p>
+
+            <p className="hidden sm:block text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto">
               Chaque pièce est validée par une double exigence : authenticité et pertinence. C'est notre garantie qualité, notre signature sur chaque vente.
             </p>
           </div>

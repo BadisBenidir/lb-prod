@@ -58,7 +58,7 @@ const FooterMobile: React.FC = () => {
           {/* Social media - Mobile */}
           <div className="flex items-center justify-center space-x-2 mb-9">
             <span className="text-gray-400 text-sm">
-              Suivez-nous :
+              Nous suivre :
             </span>
             <a
               href="https://www.instagram.com/ligne.blanche_?igsh=M3c0Y3JzOGxlMXFk"
@@ -99,7 +99,7 @@ const FooterMobile: React.FC = () => {
         {/* Navigation - Mobile compacte */}
         <div className="mb-6">
           <h4 className="font-semibold mb-4 text-sm text-white text-center">Navigation</h4>
-          <div className="grid grid-cols-1 gap-1 text-center">
+          <div className="flex flex-row items-center justify-center gap-4">
             <button 
               onClick={() => handleNavigation('home')} 
               className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-1"
@@ -108,18 +108,18 @@ const FooterMobile: React.FC = () => {
             </button>
             <button 
               onClick={() => handleNavigation('about')} 
-              className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-"
-            >
-              Sélection
-            </button>
-            <button 
-              onClick={() => handleNavigation('sell')} 
               className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-1"
             >
               Notre Histoire
             </button>
             <button 
               onClick={() => handleNavigation('selection')} 
+              className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-1"
+            >
+              Sélection
+            </button>
+            <button 
+              onClick={() => handleNavigation('sell')} 
               className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-1"
             >
               Vendre vos Pièces
