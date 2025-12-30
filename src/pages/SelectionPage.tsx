@@ -178,8 +178,7 @@ export default function SelectionPage() {
             {steps.map((step, index) => (
               <div
                 key={step.title}
-                className={`flex flex-col lg:flex-row items-center gap-12 ${
-                }`}
+                className="flex flex-col lg:flex-row items-center gap-12" 
               >
                 <div className="lg:w-1/3 text-center">
                   <div className="inline-flex items-center justify-center w-24 h-24 bg-gray-100 text-gray-800 rounded-full mb-6">
