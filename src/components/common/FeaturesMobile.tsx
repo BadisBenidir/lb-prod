@@ -67,7 +67,7 @@ const FeaturesMobile: React.FC<FeaturesMobileProps> = ({ onNavigate }) => {
         
         <div className="px-4 relative">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-light text-gray-900 mb-3">
+            <h2 className="text-3xl font-light text-gray-900 mb-5">
               Notre Approche
             </h2>
             <p className="text-base text-gray-600 leading-relaxed">
@@ -123,8 +123,8 @@ const FeaturesMobile: React.FC<FeaturesMobileProps> = ({ onNavigate }) => {
         
         <div className="px-4 relative">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-light text-gray-900 mb-3">
-              Nos engagements
+            <h2 className="text-3xl font-light text-gray-1000 mb-5">
+              Notre engagement
             </h2>
             <p className="text-base text-gray-600 leading-relaxed max-w-sm mx-auto">
               Offrir une expérience de confiance, à la hauteur des standards du luxe.
