@@ -45,18 +45,21 @@ const FooterMobile: React.FC = () => {
         <div className="text-center mb-6">
           <div className="mb-3">
             <h3 className="text-lg font-light tracking-wider">
-              LIGNE<span className="font-bold text-white ml-1">BLANCHE</span>
+              <span className="font-bold text-white ml-1">LIGNE BLANCHE</span>
             </h3>
           </div>
           
-          <p className="text-gray-300 text-sm leading-relaxed mb-3">
-            Un héritage au service de votre passion. Chaque pièce est sélectionnée selon les critères les plus exigeants : authenticité, état irréprochable et histoire préservée.
+          <p className="text-gray-300 text-sm leading-relaxed mb-7">
+            Un héritage au service d'une sélection irréprochable.
+            Luxe. Sélection. Authenticité.
           </p>
           
           
           {/* Social media - Mobile */}
-          <div className="flex items-center justify-center space-x-4 mb-6">
-            <span className="text-xs text-gray-400">Suivez-nous :</span>
+          <div className="flex items-center justify-center space-x-2 mb-9">
+            <span className="text-gray-400 text-sm">
+              Suivez-nous :
+            </span>
             <a
               href="https://www.instagram.com/ligne.blanche_?igsh=M3c0Y3JzOGxlMXFk"
               target="_blank"
@@ -66,6 +69,7 @@ const FooterMobile: React.FC = () => {
             >
               <Instagram className="h-5 w-5" />
             </a>
+
             <a
               href="https://www.vinted.fr/member/237668841"
               target="_blank"
@@ -94,8 +98,8 @@ const FooterMobile: React.FC = () => {
 
         {/* Navigation - Mobile compacte */}
         <div className="mb-6">
-          <h4 className="font-semibold mb-3 text-sm text-white text-center">Navigation</h4>
-          <div className="grid grid-cols-2 gap-2 text-center">
+          <h4 className="font-semibold mb-4 text-sm text-white text-center">Navigation</h4>
+          <div className="grid grid-cols-2 gap-1 text-center">
             <button 
               onClick={() => handleNavigation('home')} 
               className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-1"
@@ -104,7 +108,7 @@ const FooterMobile: React.FC = () => {
             </button>
             <button 
               onClick={() => handleNavigation('about')} 
-              className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-1"
+              className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-"
             >
               Sélection
             </button>
@@ -120,36 +124,6 @@ const FooterMobile: React.FC = () => {
             >
               Vendre vos Pièces
             </button>
-          </div>
-        </div>
-
-        {/* Expertise section - Mobile compacte */}
-        <div className="mb-6">
-          <h4 className="font-semibold mb-3 text-sm text-white text-center">Notre expertise</h4>
-          <div className="space-y-2">
-            <div className="flex flex-col items-center text-center gap-2">
-              <Eye className="h-3 w-3 text-white mr-2 flex-shrink-0" />
-              <div className="text-center">
-                <p className="text-xs text-gray-300 font-medium">Authentification Certifié</p>
-                <p className="text-xs text-gray-400">Garantie par des méthodes rigoureuses</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center justify-center">
-              <Heart className="h-3 w-3 text-white mr-2 flex-shrink-0" />
-              <div className="text-center">
-                <p className="text-xs text-gray-300 font-medium">Sélection passionnée</p>
-                <p className="text-xs text-gray-400">Moins de 3% des pièces évaluées</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center justify-center">
-              <Sparkles className="h-3 w-3 text-white mr-2 flex-shrink-0" />
-              <div className="text-center">
-                <p className="text-xs text-gray-300 font-medium">Innovation respectueuse</p>
-                <p className="text-xs text-gray-400">Héritage + codes modernes</p>
-              </div>
-            </div>
           </div>
         </div>
 
