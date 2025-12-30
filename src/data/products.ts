@@ -8,7 +8,7 @@ export const products: Product[] = [
     category: 'Handbags',
     price: 15000,
     originalPrice: 18000,
-    image: 'https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://drive.google.com/file/d/1P7GV0sv0gh8m3ZtxxKht02tNSLhWNYbF/view?usp=sharing',
     condition: 'Excellent',
     description: 'Iconic Birkin bag in pristine condition with original dust bag and authenticity card.',
     inStock: true
