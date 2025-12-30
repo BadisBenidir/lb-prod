@@ -99,7 +99,7 @@ const FooterMobile: React.FC = () => {
         {/* Navigation - Mobile compacte */}
         <div className="mb-6">
           <h4 className="font-semibold mb-4 text-sm text-white text-center">Navigation</h4>
-          <div className="grid grid-cols-2 gap-1 text-center">
+          <div className="grid grid-cols-1 gap-1 text-center">
             <button 
               onClick={() => handleNavigation('home')} 
               className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-1"
