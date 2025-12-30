@@ -179,7 +179,6 @@ export default function SelectionPage() {
               <div
                 key={step.title}
                 className={`flex flex-col lg:flex-row items-center gap-12 ${
-                  index % 2 !== 0 ? 'lg:flex-row-reverse' : ''
                 }`}
               >
                 <div className="lg:w-1/3 text-center">
