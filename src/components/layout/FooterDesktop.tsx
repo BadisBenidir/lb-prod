@@ -57,7 +57,7 @@ const FooterDesktop: React.FC = () => {
           <div className="md:col-span-1">
             <div className="mb-6">
               <h3 className="text-2xl font-light tracking-wider">
-                LIGNE<span className="font-bold text-white ml-1">BLANCHE</span>
+                LIGNE BLANCHE<span className="font-bold text-white ml-1"></span>
               </h3>
             </div>
             
