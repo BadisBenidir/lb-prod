@@ -129,7 +129,7 @@ export default function AboutPage() {
               </div>
             </div>
             
-            <div className="relative order-1 lg:order-2">
+            <div className="w-full h-64 sm:h-80 md:h-96 rounded-2x1 overflow-hidden bg-black/5 shadow-2xl flex items-center justify-center">
               <img
                 src="/photos-site/sac-balenciaga.jpg"
                 alt="Maroquinerie de luxe"
