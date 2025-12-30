@@ -131,7 +131,7 @@ export default function AboutPage() {
             
             <div className="relative order-1 lg:order-2">
               <img
-                src="/photos-site/sac_balenciaga.jpg"
+                src="/photos-site/sac-balenciaga.jpg"
                 alt="Maroquinerie de luxe"
                 className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-2xl shadow-2xl"
               />
