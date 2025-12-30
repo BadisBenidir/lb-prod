@@ -229,7 +229,7 @@ export default function SelectionPage() {
               </h3>
             </div>
             <div className="text-center bg-white p-8 rounded-lg shadow-sm">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 text-green-600 rounded-full mb-6">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 text-blue-600 rounded-full mb-6">
                 <Crown size={32} />
               </div>
               <h3 className="text-2xl font-light mb-4 text-blue-700">
@@ -237,7 +237,7 @@ export default function SelectionPage() {
               </h3>
             </div>
             <div className="text-center bg-white p-8 rounded-lg shadow-sm">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 text-blue-600 rounded-full mb-6">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 text-green-600 rounded-full mb-6">
                 <Award size={32} />
               </div>
               <h3 className="text-2xl font-light mb-4 text-green-700">
