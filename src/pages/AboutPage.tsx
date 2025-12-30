@@ -133,7 +133,7 @@ export default function AboutPage() {
               <img
                 src="/photos-site/sac-balenciaga.jpg"
                 alt="Maroquinerie de luxe"
-                className="w-full h-64 sm:h-80 md:h-96 object-contain bg-white/5 rounded-2xl shadow-2xl"
+                className="max-h-full max-w-full object-contain"
               />
             </div>
           </div>
