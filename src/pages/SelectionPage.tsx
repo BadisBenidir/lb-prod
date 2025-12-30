@@ -32,7 +32,7 @@ export default function SelectionPage() {
     {
       icon: <Shield size={40} />,
       title: 'La Validation d\'Authenticité',
-      description: 'En collaboration avec notre réseau d\'authentificateurs partenaires, notamment « Le Petit Fermoir », chaque article est soumis à un contrôle strict afin de confirmer son authenticité selon des critères reconnus.',
+      description: 'En collaboration avec notre réseau d\'authentificateurs partenaires, notamment «Le Petit Fermoir», chaque article est soumis à un contrôle strict afin de confirmer son authenticité.',
       details: [
         'Contrôle rigoureux des codes de fabrication',
         'Classification selon des standards éprouvés',
