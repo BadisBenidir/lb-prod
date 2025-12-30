@@ -106,16 +106,16 @@ const FooterMobile: React.FC = () => {
               onClick={() => handleNavigation('about')} 
               className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-1"
             >
-              Notre Histoire
-            </button>
-            <button 
-              onClick={() => handleNavigation('selection')} 
-              className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-1"
-            >
               Sélection
             </button>
             <button 
               onClick={() => handleNavigation('sell')} 
+              className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-1"
+            >
+              Notre Histoire
+            </button>
+            <button 
+              onClick={() => handleNavigation('selection')} 
               className="text-gray-300 hover:text-white transition-colors duration-300 text-xs py-1"
             >
               Vendre vos Pièces
