@@ -127,7 +127,7 @@ const FooterMobile: React.FC = () => {
         <div className="mb-6">
           <h4 className="font-semibold mb-3 text-sm text-white text-center">Notre expertise</h4>
           <div className="space-y-2">
-            <div className="flex flex-col items-center text-center gap-4">
+            <div className="flex flex-col items-center text-center gap-2">
               <Eye className="h-3 w-3 text-white mr-2 flex-shrink-0" />
               <div className="text-center">
                 <p className="text-xs text-gray-300 font-medium">Authentification Certifié</p>
