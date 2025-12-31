@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Search, Eye, Shield, Sparkles, CheckCircle, Users, Crown, Award } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
 
@@ -358,7 +358,7 @@ export default function SelectionPage() {
                       <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-orange-100 text-orange-700">
                         <Shield size={18} />
                       </span>
-                      <span className="text-base font-medium text-gray-900">Correct</span>
+                      <span className="font-sans font-medium text-gray-900">Correct</span>
                     </div>
                     <ChevronDown
                       size={18}
@@ -374,45 +374,15 @@ export default function SelectionPage() {
             </div>
           </section>
 
-      {/* Criteria Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-light text-center mb-16 text-gray-900">
-            Nos Critères d'Excellence
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {criteria.map((criterion) => (
-              <div
-                key={criterion.title}
-                className="text-center p-8 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
-              >
-                <div className="text-gray-800 mb-6 flex justify-center">
-                  {criterion.icon}
-                </div>
-                <div className="text-3xl font-light text-gray-900 mb-2">
-                  {criterion.percentage}
-                </div>
-                <h3 className="text-lg font-medium mb-4 text-gray-900">
-                  {criterion.title}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {criterion.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Expertise Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-light text-gray-900 mb-4">
+            <h2 className="text-3xl font-light text-gray-900 mb-6">
               Notre Approche Héritée
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-l text-gray-600 max-w-3xl mx-auto">
               Une méthode fondée sur l'exigence traditionnelle et adaptée aux codes modernes. Entre rigueur et innovation, c'est l'équilibre qui définit Ligne Blanche.
             </p>
           </div>
@@ -434,9 +404,52 @@ export default function SelectionPage() {
           <div className="mt-16 text-center bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Notre Signature</h3>
             <p className="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto">
-              Chaque pièce de la collection répond à un double standard : authenticité et état irréprochable, selon une méthode stricte et une présentation adaptée aux codes actuels. C'est notre promesse de qualité et notre engagement au service de votre confiance.
+              Chaque pièce de la collection répond à un double standard : authenticité et état irréprochable, selon une méthode stricte. C'est notre promesse de qualité et notre engagement au service de votre confiance
             </p>
           </div>
+        </div>
+      </section>
+
+{/* Critères de Sélection */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <details className='group rounded-2xl bg-white border border-gray-200 shadow-sm overflow-hidden'>
+            <summary className='cursor-pointer list-none px-6 pb-5 flex flex-col items-center gap-3'>
+              <span className="text-3xl font-light text-center text-gray-900">
+                Nos critères d'excellence
+              </span>
+
+              {/* Flèche */}
+              <span className='text-gray-900 transition-transform duration-300 group-open:rotate-180'>
+                ⌵
+              </span>
+            </summary>
+      
+            <div className='px-6 pb-6'>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {criteria.map((criterion) => (
+              <div
+                key={criterion.title}
+                className="text-center p-8 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+              >
+                <div className="text-gray-800 mb-6 flex justify-center">
+                  {criterion.icon}
+                </div>
+                <div className="text-3xl font-light text-gray-900 mb-2">
+                  {criterion.percentage}
+                </div>
+                <h3 className="text-lg font-medium mb-4 text-gray-900">
+                  {criterion.title}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {criterion.description}
+                </p>
+              </div>
+                 ))}
+              </div>
+            </div>
+          </details>
         </div>
       </section>
 
@@ -487,10 +500,10 @@ export default function SelectionPage() {
       {/* CTA Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-light mb-6 text-gray-900">
+          <h2 className="text-3xl font-light mb-6 text-gray-900">
             Découvrez Notre Sélection Héritée
           </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-l text-gray-600 mb-8 max-w-3xl mx-auto">
             Chaque pièce de la collection répond à des standards stricts : authenticité contrôlée, état irréprochable, sélection exigeante. Découvrez des articles de maroquinerie et prêt-à-porter de luxe de seconde main, sélectionnés avec la plus grande rigueur.
           </p>
           <a
