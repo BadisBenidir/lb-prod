@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Search, Eye, Shield, Sparkles, CheckCircle, Users, Crown, Award } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 export default function SelectionPage() {
   useEffect(() => {
@@ -113,12 +114,12 @@ export default function SelectionPage() {
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-light mb-8 leading-tight">
-            L'œil hérité :
-            <span className="block font-bold text-white">Une sélection absolue</span>
+          <h1 className="text-4xl md:text-5xl font-light mb-8 leading-tight">
+              L'ŒIL HÉRITÉ :
+            <span className="block font-bold text-white">UNE SÉLECTION ABSOLUE</span>
           </h1>
 
-          <div className="max-w-3xl">
+          <div className="max-w-2xl">
             <p className="text-xl md:text-2xl font-light leading-relaxed mb-6">
               <em>« La maroquinerie ne ment jamais. Chaque détail révèle son authenticité. »</em>
             </p>
@@ -134,12 +135,12 @@ export default function SelectionPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-4xl font-light text-gray-900 mb-6">
+              <h2 className="text-4xl font-light text-gray-1000 mb-6">
                 Une Méthode Patiente
               </h2>
-              <div className="space-y-6 text-gray-600 leading-relaxed">
-                <p className="text-lg">
-                  La sélection d'une pièce de luxe n'est jamais le fruit du hasard. Elle repose sur une méthode patiente où chaque détail compte : la souplesse d'un cuir, la précision d'une couture, la profondeur d'une patine.
+              <div className="space-y-6 text-gray-800 leading-relaxed text-lg">
+                <p>
+                  La sélection d'une pièce de luxe n'est jamais le fruit du hasard. Elle repose sur une méthode patiente où chaque détail compte : la souplesse d'un cuir, la précision d'une couture, la profondeur d'une patine...
                 </p>
                 <p>
                   Observer, comparer, éliminer, recommencer — c'est ce processus qui forge une exigence sans concession.
@@ -210,8 +211,8 @@ export default function SelectionPage() {
         </div>
       </section>
 
-      {/* Classification Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Classification Section PC*/}
+      <section className="hidden md:block py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-light text-center mb-16 text-gray-900">
             Classification par État
@@ -261,6 +262,117 @@ export default function SelectionPage() {
           </div>
         </div>
       </section>
+
+      {/* Classification MOBILE */}
+      <section className="md:hidden py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+              <h2 className="font-sans text-2xl font-light text-center mb-14 text-gray-1000">
+                <strong>Classification par état</strong>
+              </h2>
+
+              <div className="space-y-3">
+                {/* NEUF */}
+                <details className="group rounded-xl bg-white shadow-sm border border-gray-100 overflow-hidden">
+                  <summary className="cursor-pointer list-none px-4 py-4 flex items-center justify-between w-full hover:bg-gray-50 transition-colors duration-200">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-purple-100 text-purple-700">
+                        <Sparkles size={18} />
+                      </span>
+                      <span className="font-sans font-medium text-gray-700">Neuf</span>
+                    </div>
+                    <ChevronDown
+                      size={18}
+                      className='ml-auto text-grey-400 transition-transform duration-300 ease-out group-open:rotate-180'
+                    /> 
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
+                                  max-h-0 opacity-0 group-open:max-h-40 group-open:opacity-100"> 
+                    Pièce neuve ou jamais portée, sans défaut, avec une présentation impeccable.
+                  </div>
+                </details>
+
+                {/* EXCELLENT */}
+                <details className="group rounded-xl bg-white shadow-sm border border-gray-100 overflow-hidden">
+                  <summary className="cursor-pointer list-none px-4 py-4 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-blue-100 text-blue-700">
+                        <Crown size={18} />
+                      </span>
+                      <span className="font-sans font-medium text-gray-700">Excellent</span>
+                    </div>
+                    <ChevronDown
+                      size={18}
+                      className='ml-auto text-grey-400 transition-transform duration-300 ease-out group-open:rotate-180'
+                    /> 
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
+                                  max-h-0 opacity-0 group-open:max-h-40 group-open:opacity-100">
+                    Très léger(s) signe(s) d’usage, quasi imperceptible(s). Aspect global premium.
+                  </div>
+                </details>
+
+                {/* TRÈS BON */}
+                <details className="group rounded-xl bg-white shadow-sm border border-gray-100 overflow-hidden">
+                  <summary className="cursor-pointer list-none px-4 py-4 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-green-100 text-green-700">
+                        <Award size={18} />
+                      </span>
+                      <span className="font-sans font-medium text-gray-700">Très bon</span>
+                    </div>
+                    <ChevronDown
+                      size={18}
+                      className='ml-auto text-grey-400 transition-transform duration-300 ease-out group-open:rotate-180'
+                    /> 
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
+                                  max-h-0 opacity-0 group-open:max-h-40 group-open:opacity-100">
+                    Signes d’usage légers et cohérents. La pièce reste très belle et bien tenue.
+                  </div>
+                </details>
+
+                {/* BON */}
+                <details className="group rounded-xl bg-white shadow-sm border border-gray-100 overflow-hidden">
+                  <summary className="cursor-pointer list-none px-4 py-4 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-yellow-100 text-yellow-700">
+                        <CheckCircle size={18} />
+                      </span>
+                      <span className="font-sans font-medium text-gray-700">Bon</span>
+                    </div>
+                    <ChevronDown
+                      size={18}
+                      className='ml-auto text-grey-400 transition-transform duration-300 ease-out group-open:rotate-180'
+                    /> 
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
+                                  max-h-0 opacity-0 group-open:max-h-40 group-open:opacity-100">
+                    Usure visible mais maîtrisée. Défauts décrits et photographiés, pièce encore très portable.
+                  </div>
+                </details>
+
+                {/* CORRECT */}
+                <details className="group rounded-xl bg-white shadow-sm border border-gray-100 overflow-hidden">
+                  <summary className="cursor-pointer list-none px-4 py-4 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-orange-100 text-orange-700">
+                        <Shield size={18} />
+                      </span>
+                      <span className="text-base font-medium text-gray-900">Correct</span>
+                    </div>
+                    <ChevronDown
+                      size={18}
+                      className='ml-auto text-grey-400 transition-transform duration-300 ease-out group-open:rotate-180'
+                    /> 
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
+                                  max-h-0 opacity-0 group-open:max-h-40 group-open:opacity-100">
+                    Usure marquée (patine/coins/intérieur). La pièce reste fonctionnelle, défauts clairement indiqués.
+                  </div>
+                </details>
+              </div>
+            </div>
+          </section>
 
       {/* Criteria Section */}
       <section className="py-16">

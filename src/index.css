@@ -5,6 +5,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    @apply font-sans;
+  }
+
+  /* Définition des polices globales */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+  body {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+  }
+}
+
 /* Styles personnalisés pour améliorer l'UX */
 .animate-in {
   animation: fadeIn 0.3s ease-out forwards;
@@ -34,4 +51,15 @@
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+:root {
+  font-family: 'Cormorant Garamond', serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+html, body {
+  front-family: "Cormorant Garamond", serif;
 }

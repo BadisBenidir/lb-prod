@@ -129,32 +129,32 @@ const FooterMobile: React.FC = () => {
 
         {/* Bottom section - Mobile */}
         <div className="border-t border-gray-800 pt-4 space-y-3">
-          <div className="text-center text-gray-400 text-xs">
+          <div className="font-sans text-center text-gray-400 text-xs">
             © 2024 LIGNE BLANCHE. Tous droits réservés.
           </div>
           
           <div className="flex flex-wrap justify-center gap-3">
             <button 
               onClick={() => handleNavigation('legal')}
-              className="text-gray-400 hover:text-white text-xs transition-colors duration-300"
+              className="font-sans text-gray-400 hover:text-white text-xs transition-colors duration-300"
             >
               Mentions Légales
             </button>
             <button 
               onClick={() => handleNavigation('privacy')}
-              className="text-gray-400 hover:text-white text-xs transition-colors duration-300"
+              className="font-sans text-gray-400 hover:text-white text-xs transition-colors duration-300"
             >
               Confidentialité
             </button>
             <button 
               onClick={() => handleNavigation('terms')}
-              className="text-gray-400 hover:text-white text-xs transition-colors duration-300"
+              className="font-sans text-gray-400 hover:text-white text-xs transition-colors duration-300"
             >
               Conditions
             </button>
             <button 
               onClick={() => handleNavigation('cookies')}
-              className="text-gray-400 hover:text-white text-xs transition-colors duration-300"
+              className="font-sans text-gray-400 hover:text-white text-xs transition-colors duration-300"
             >
               Cookies
             </button>

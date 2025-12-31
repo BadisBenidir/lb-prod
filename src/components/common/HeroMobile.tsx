@@ -48,7 +48,9 @@ const HeroMobile: React.FC<HeroMobileProps> = ({ onNavigate }) => {
         <div className="text-center mb-8 animate-fade-in delay-400">
           <div className="bg-black/30 backdrop-blur-sm rounded-lg p-4 mx-2 border border-white/20">
             <p className="text-base text-gray-100 leading-relaxed">
-              Découvrez une sélection exclusive de pièces de luxe de seconde main.
+              Découvrez une sélection exclusive de pièces
+              <br className='block sm:hidden'/>
+              de luxe de seconde main.
             </p>
           </div>
         </div>

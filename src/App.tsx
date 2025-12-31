@@ -14,3 +14,7 @@ function App() {
 }
 
 export default App;
+
+<div className='font-serif'>
+  {children}
+</div>
