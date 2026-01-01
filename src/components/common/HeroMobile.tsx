@@ -98,7 +98,7 @@ const HeroMobile: React.FC<HeroMobileProps> = ({ onNavigate }) => {
       </div>
 
       {/* Custom animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes fade-in {
           from { opacity: 0; }
           to { opacity: 1; }

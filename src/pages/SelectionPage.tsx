@@ -1,8 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Search, Eye, Shield, Sparkles, CheckCircle, Users, Crown, Award } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
 
 export default function SelectionPage() {
+
+const [criteriaOpen, setCriteriaOpen] = useState(false);
+const [criteriaH, setCriteriaH] = useState(0);
+
+const criteriaContentRef = useRef<HTMLDivElement | null>(null);
+useEffect(() => {
+  const el = criteriaContentRef.current;
+  if (!el) return;
+  
+  const ro = new ResizeObserver(() => {
+    setCriteriaH(el.scrollHeight);
+  });
+
+  ro.observe(el);
+  setCriteriaH(el.scrollHeight);
+
+  return () => ro.disconnect();
+}, []);
+
   useEffect(() => {
     document.title = 'L\'Œil hérité : Une sélection absolue | Ligne Blanche';
   }, []);
@@ -285,7 +304,7 @@ export default function SelectionPage() {
                       className='ml-auto text-grey-400 transition-transform duration-300 ease-out group-open:rotate-180'
                     /> 
                   </summary>
-                  <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
+                  <div className="px-4 pb-4 text-l text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
                                   max-h-0 opacity-0 group-open:max-h-40 group-open:opacity-100"> 
                     Pièce neuve ou jamais portée, sans défaut, avec une présentation impeccable.
                   </div>
@@ -305,7 +324,7 @@ export default function SelectionPage() {
                       className='ml-auto text-grey-400 transition-transform duration-300 ease-out group-open:rotate-180'
                     /> 
                   </summary>
-                  <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
+                  <div className="px-4 pb-4 text-l text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
                                   max-h-0 opacity-0 group-open:max-h-40 group-open:opacity-100">
                     Très léger(s) signe(s) d’usage, quasi imperceptible(s). Aspect global premium.
                   </div>
@@ -325,7 +344,7 @@ export default function SelectionPage() {
                       className='ml-auto text-grey-400 transition-transform duration-300 ease-out group-open:rotate-180'
                     /> 
                   </summary>
-                  <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
+                  <div className="px-4 pb-4 text-l text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
                                   max-h-0 opacity-0 group-open:max-h-40 group-open:opacity-100">
                     Signes d’usage légers et cohérents. La pièce reste très belle et bien tenue.
                   </div>
@@ -345,7 +364,7 @@ export default function SelectionPage() {
                       className='ml-auto text-grey-400 transition-transform duration-300 ease-out group-open:rotate-180'
                     /> 
                   </summary>
-                  <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
+                  <div className="px-4 pb-4 text-l text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
                                   max-h-0 opacity-0 group-open:max-h-40 group-open:opacity-100">
                     Usure visible mais maîtrisée. Défauts décrits et photographiés, pièce encore très portable.
                   </div>
@@ -365,7 +384,7 @@ export default function SelectionPage() {
                       className='ml-auto text-grey-400 transition-transform duration-300 ease-out group-open:rotate-180'
                     /> 
                   </summary>
-                  <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
+                  <div className="px-4 pb-4 text-l text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-out 
                                   max-h-0 opacity-0 group-open:max-h-40 group-open:opacity-100">
                     Usure marquée (patine/coins/intérieur). La pièce reste fonctionnelle, défauts clairement indiqués.
                   </div>
@@ -410,48 +429,66 @@ export default function SelectionPage() {
         </div>
       </section>
 
-{/* Critères de Sélection */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Critères de Sélection */}
+    <section className="py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <details className='group rounded-2xl bg-white border border-gray-200 shadow-sm overflow-hidden'>
-            <summary className='cursor-pointer list-none px-6 pb-5 flex flex-col items-center gap-3'>
-              <span className="text-3xl font-light text-center text-gray-900">
-                Nos critères d'excellence
-              </span>
+          {/* Bouton (titre) */}
+          <button
+            type="button"
+            onClick={() => setCriteriaOpen(v => !v)}
+            className='w-full text center'
+          >
+            <span className='text-3xl font-light text-gray-900'>
+              Nos Critères d'Excellence
+            </span>
+          </button>
 
-              {/* Flèche */}
-              <span className='text-gray-900 transition-transform duration-300 group-open:rotate-180'>
-                ⌵
-              </span>
-            </summary>
-      
-            <div className='px-6 pb-6'>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {criteria.map((criterion) => (
-              <div
-                key={criterion.title}
-                className="text-center p-8 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
-              >
-                <div className="text-gray-800 mb-6 flex justify-center">
-                  {criterion.icon}
-                </div>
-                <div className="text-3xl font-light text-gray-900 mb-2">
-                  {criterion.percentage}
-                </div>
-                <h3 className="text-lg font-medium mb-4 text-gray-900">
-                  {criterion.title}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {criterion.description}
-                </p>
+          {/* Contenu déroulant */}            <div 
+            className='overflow-hidden transition-[max-height] duration-500 ease-in-out'
+            style={{ maxHeight: criteriaOpen ? `${criteriaH}px` : '0px' }}
+          >
+            <div ref={criteriaContentRef} className='pt-8'>
+              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+                {criteria.map((criterion) => (
+                  <div
+                    key={criterion.title}
+                    className='text-center p-8 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300'
+                  >
+                    <div className='text-gray-800 mb-6 flex justify-center'>
+                      {criterion.icon}
+                    </div>
+                    <div className='text-3xl font-light text-gray-900 mb-2'>
+                      {criterion.percentage}
+                    </div>
+                    <h3 className='text-lg font-medium mb-4 text-gray-900'>
+                      {criterion.title}
+                    </h3>
+                    <p className='text-sm text-gray-600 leading-relaxed'>
+                      {criterion.description}
+                    </p>
+                  </div>
+                ))}
               </div>
-                 ))}
+
+              {/* Flèche de déroulement */}
+              <div className='flex justify-center pt-8'>
+                <span 
+                  className={'transition-all duration-700 ease-in-out text-gray-900 text-2xl ${ criteriaOpen ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}'}>
+                  ⯆
+                </span>
               </div>
+            
             </div>
-          </details>
+      </div>
         </div>
       </section>
+      
+
+
+
+                
+
 
       {/* Stats Section */}
       <section className="py-20 bg-gray-900 text-white">
