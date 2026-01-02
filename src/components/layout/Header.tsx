@@ -11,7 +11,7 @@ interface HeaderProps {
   onLogout?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, currentPage, user, onLogout }) => {
+const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLogout }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -72,7 +72,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, currentPag
         <div className="flex items-center h-16 lg:h-20">
           {/* Mobile menu button */}
           <button 
-            className="md:hidden p-2 -ml-2"
+            className="lg:hidden p-2 -ml-2"
             onClick={() => setIsMobileMenuOpen(true)}
           >
             <Menu className="h-6 w-6" />
@@ -179,10 +179,10 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, currentPag
       {isMobileMenuOpen && (
         <>
           <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
             onClick={() => setIsMobileMenuOpen(false)}
           />
-          <div className="fixed top-0 left-0 w-80 h-full bg-white z-[60] md:hidden transform transition-transform duration-300">
+          <div className="fixed top-0 left-0 w-80 h-full bg-white z-[60] lg:hidden transform transition-transform duration-300">
             <div className="p-6">
               <div className="flex items-center justify-between mb-8">
                 <h2 className="text-xl font-bold">LIGNE BLANCHE</h2>
