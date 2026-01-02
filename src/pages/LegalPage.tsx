@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Building, User, Mail, MapPin, FileText, Globe } from 'lucide-react';
 
 export default function LegalPage() {
@@ -14,14 +14,14 @@ export default function LegalPage() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex items-center justify-center mb-6">
             <FileText className="h-8 w-8 text-yellow-500 mr-3" />
-            <span className="text-yellow-500 text-sm font-medium uppercase tracking-wider">
+            <span className="font-sans text-yellow-500 text-sm font-medium uppercase tracking-wider">
               Informations Légales
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-light mb-6 text-gray-900">
+          <h1 className="font-sans text-4xl md:text-5xl font-light mb-6 text-gray-900">
             Mentions Légales
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="font-sans text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Informations légales concernant Ligne Blanche et son site web.
           </p>
         </div>
@@ -33,7 +33,7 @@ export default function LegalPage() {
           <div className="prose prose-lg max-w-none">
 
             {/* Éditeur */}
-            <div className="mb-12">
+            <div className="font-sans mb-12">
               <h2 className="text-2xl font-medium mb-6 text-gray-900 flex items-center">
                 <Building className="h-6 w-6 text-yellow-500 mr-3" />
                 Éditeur du site
@@ -51,7 +51,7 @@ export default function LegalPage() {
             </div>
 
             {/* Directeur de publication */}
-            <div className="mb-12">
+            <div className="font-sans mb-12">
               <h2 className="text-2xl font-medium mb-6 text-gray-900 flex items-center">
                 <User className="h-6 w-6 text-yellow-500 mr-3" />
                 Directeur de publication
@@ -65,7 +65,7 @@ export default function LegalPage() {
             </div>
 
             {/* Hébergement */}
-            <div className="mb-12">
+            <div className="font-sans mb-12">
               <h2 className="text-2xl font-medium mb-6 text-gray-900 flex items-center">
                 <Globe className="h-6 w-6 text-yellow-500 mr-3" />
                 Hébergement du site
@@ -80,7 +80,7 @@ export default function LegalPage() {
             </div>
 
             {/* Propriété intellectuelle */}
-            <div className="mb-12">
+            <div className="font-sans mb-12">
               <h2 className="text-2xl font-medium mb-6 text-gray-900">
                 Propriété intellectuelle
               </h2>
@@ -105,7 +105,7 @@ export default function LegalPage() {
             </div>
 
             {/* Responsabilité */}
-            <div className="mb-12">
+            <div className="font-sans mb-12">
               <h2 className="text-2xl font-medium mb-6 text-gray-900">
                 Responsabilité
               </h2>
@@ -130,7 +130,7 @@ export default function LegalPage() {
             </div>
 
             {/* Liens hypertextes */}
-            <div className="mb-12">
+            <div className="font-sans mb-12">
               <h2 className="text-2xl font-medium mb-6 text-gray-900">
                 Liens hypertextes
               </h2>
@@ -148,7 +148,7 @@ export default function LegalPage() {
             </div>
 
             {/* Cookies */}
-            <div className="mb-12">
+            <div className="font-sans mb-12">
               <h2 className="text-2xl font-medium mb-6 text-gray-900">
                 Cookies
               </h2>
@@ -170,7 +170,7 @@ export default function LegalPage() {
             </div>
 
             {/* Droit applicable */}
-            <div className="mb-12">
+            <div className="font-sans mb-12">
               <h2 className="text-2xl font-medium mb-6 text-gray-900">
                 Droit applicable
               </h2>
@@ -186,7 +186,7 @@ export default function LegalPage() {
             </div>
 
             {/* Contact */}
-            <div className="mb-12">
+            <div className="font-sans mb-12">
               <h2 className="text-2xl font-medium mb-6 text-gray-900 flex items-center">
                 <Mail className="h-6 w-6 text-yellow-500 mr-3" />
                 Contact
@@ -212,7 +212,7 @@ export default function LegalPage() {
               </div>
             </div>
 
-            <div className="text-center mt-16">
+            <div className="font-sans text-center mt-16">
               <p className="text-sm text-gray-500">
                 Dernière mise à jour : 01/12/2025
               </p>

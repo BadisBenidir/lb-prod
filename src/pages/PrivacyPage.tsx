@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Shield, Eye, Lock, Database, Cookie, UserCheck } from 'lucide-react';
 
 export default function PrivacyPage() {
@@ -7,7 +7,7 @@ export default function PrivacyPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="font-sans min-h-screen bg-white">
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">

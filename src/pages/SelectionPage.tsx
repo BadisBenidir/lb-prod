@@ -1,26 +1,28 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Search, Eye, Shield, Sparkles, CheckCircle, Users, Crown, Award } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
 
 export default function SelectionPage() {
+  const [criteriaOpen, setCriteriaOpen] = useState(false);
+  const [criteriaH, setCriteriaH] = useState(0);
 
-const [criteriaOpen, setCriteriaOpen] = useState(false);
-const [criteriaH, setCriteriaH] = useState(0);
+  const ARROW_H = 48; 
 
-const criteriaContentRef = useRef<HTMLDivElement | null>(null);
-useEffect(() => {
-  const el = criteriaContentRef.current;
-  if (!el) return;
+  const criteriaContentRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const el = criteriaContentRef.current;
+    if (!el) return;
   
-  const ro = new ResizeObserver(() => {
+    const ro = new ResizeObserver(() => {
+      setCriteriaH(el.scrollHeight);
+    });
+
+    ro.observe(el);
     setCriteriaH(el.scrollHeight);
-  });
 
-  ro.observe(el);
-  setCriteriaH(el.scrollHeight);
-
-  return () => ro.disconnect();
-}, []);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     document.title = 'L\'Œil hérité : Une sélection absolue | Ligne Blanche';
@@ -429,6 +431,8 @@ useEffect(() => {
         </div>
       </section>
 
+
+
       {/* Critères de Sélection */}
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -437,18 +441,73 @@ useEffect(() => {
           <button
             type="button"
             onClick={() => setCriteriaOpen(v => !v)}
-            className='w-full text center'
+            className="
+              relative overflow-hidden
+              w-full flex flex-col items-center text-center cursor-pointer select-none py-6
+
+              bg-white 
+              border border-gray-200
+              
+              shadow-[inset_0_1px_0_rgba(255,255,255,0.8),inset_0_-1px_0_rgba(0,0,0,0.08)]
+              hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(0,0,0,0.1),0_10px_30px_rgba(0,0,0,0.06)]
+              
+              transition-shadow duration-300
+
+              before:content-['']
+              before:absolute before:inset-0
+              before:pointed-events-none
+              before:bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.08)_1px,transparent_0)]
+              before:bg-[length:6px_6px]
+              before:opacity-[0.08]
+
+              + rounded-2xl
+              "
           >
             <span className='text-3xl font-light text-gray-900'>
               Nos Critères d'Excellence
             </span>
+
+            <span className={`mt-2 text-xs tracking-wide text-gray-500 transition-opacity duration-300 ${criteriaOpen ? 'opacity-0' : 'opacity-100'}
+              ${criteriaOpen ? "opacity-0" : "opacity-100"}`}
+            >
+              Cliquez pour dérouler
+            </span>
+
+            
+
+            <div
+             className={`mx-auto mt-2 h-px bg-gray-300 transition-all duration-500 
+              ${criteriaOpen ? "w-24 opacity-100" : "w-8 opacity-50"}
+              `}
+            />
+
+          {!criteriaOpen && ( 
+            <svg 
+              className={`mt-5 h-10 w-10 text-gray-700 transition-transform duration-500 ${
+                criteriaOpen ? "rotate-180" : "rotate-0"
+              }`}
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth='2'
+            >
+              <path d='M6 9l6 6 6-6' />
+            </svg>
+          )}
+
           </button>
 
-          {/* Contenu déroulant */}            <div 
-            className='overflow-hidden transition-[max-height] duration-500 ease-in-out'
-            style={{ maxHeight: criteriaOpen ? `${criteriaH}px` : '0px' }}
+          {/* Contenu déroulant */}            
+          <div
+            className='overflow-hidden transition-[max-height] duration-700 ease-in-out'
+            style={{ maxHeight: criteriaOpen ? criteriaH + ARROW_H : ARROW_H }}
           >
-            <div ref={criteriaContentRef} className='pt-8'>
+            <div 
+              ref={criteriaContentRef}
+              className={`px-0 pb-6 transition-all duration-700 ease-in-out ${
+                criteriaOpen ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-4"
+              }`}
+            >
               <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
                 {criteria.map((criterion) => (
                   <div
@@ -472,13 +531,25 @@ useEffect(() => {
               </div>
 
               {/* Flèche de déroulement */}
-              <div className='flex justify-center pt-8'>
-                <span 
-                  className={'transition-all duration-700 ease-in-out text-gray-900 text-2xl ${ criteriaOpen ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}'}>
-                  ⯆
-                </span>
-              </div>
-            
+              <button 
+                type="button"
+                onClick={() => setCriteriaOpen(false)}
+                className='mt-8 flex w-full justify-center'
+              >
+                <svg 
+                  className={`h-9 w-9 text-gray-900 transition-transform duration-700 ease-in-out ${
+                    criteriaOpen ? "rotate-180" : "rotate-0"
+                  }`}
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  stroke='currentColor'
+                  strokeWidth='2'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                >
+                  <path d='M6 9l6 6 6-6' />
+                </svg>
+              </button>
             </div>
       </div>
         </div>

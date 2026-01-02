@@ -61,7 +61,7 @@ const FooterDesktop: React.FC = () => {
               </h3>
             </div>
             
-            <p className="text-gray-300 mb-6 leading-relaxed text-base">
+            <p className="font-sans text-gray-300 mb-6 leading-relaxed text-base">
               Un héritage au service de votre passion. Chaque pièce est sélectionnée selon les critères
               les plus exigeants : authenticité, état irréprochable et histoire préservée.
             </p>
@@ -69,7 +69,7 @@ const FooterDesktop: React.FC = () => {
             
             {/* Social media */}
             <div className="flex items-center space-x-6">
-              <span className="text-sm text-gray-400">Suivez-nous :</span>
+              <span className="font-sans text-sm text-gray-400">Suivez-nous :</span>
               <a
                 href="https://www.instagram.com/ligne.blanche_?igsh=M3c0Y3JzOGxlMXFk"
                 target="_blank"
@@ -107,12 +107,12 @@ const FooterDesktop: React.FC = () => {
 
           {/* Navigation */}
           <div>
-            <h4 className="font-semibold mb-6 text-lg text-white">Navigation</h4>
+            <h4 className="font-sans font-semibold mb-6 text-lg text-white">Navigation</h4>
             <ul className="space-y-3">
               <li>
                 <button 
                   onClick={() => handleNavigation('home')} 
-                  className="text-gray-300 hover:text-white transition-colors duration-300 text-sm text-left block"
+                  className="font-sanstext-gray-300 hover:text-white transition-colors duration-300 text-sm text-left block"
                 >
                   Accueil
                 </button>
@@ -120,7 +120,7 @@ const FooterDesktop: React.FC = () => {
               <li>
                 <button 
                   onClick={() => handleNavigation('boutique')} 
-                  className="text-gray-300 hover:text-white transition-colors duration-300 text-sm text-left block"
+                  className="font-sans text-gray-300 hover:text-white transition-colors duration-300 text-sm text-left block"
                 >
                   Boutique
                 </button>
@@ -128,7 +128,7 @@ const FooterDesktop: React.FC = () => {
               <li>
                 <button 
                   onClick={() => handleNavigation('about')} 
-                  className="text-gray-300 hover:text-white transition-colors duration-300 text-sm text-left block"
+                  className="font-sans text-gray-300 hover:text-white transition-colors duration-300 text-sm text-left block"
                 >
                   Notre Histoire
                 </button>
@@ -136,7 +136,7 @@ const FooterDesktop: React.FC = () => {
               <li>
                 <button 
                   onClick={() => handleNavigation('selection')} 
-                  className="text-gray-300 hover:text-white transition-colors duration-300 text-sm text-left block"
+                  className="font-sans text-gray-300 hover:text-white transition-colors duration-300 text-sm text-left block"
                 >
                   Sélection
                 </button>
@@ -144,7 +144,7 @@ const FooterDesktop: React.FC = () => {
               <li>
                 <button 
                   onClick={() => handleNavigation('sell')} 
-                  className="text-gray-300 hover:text-white transition-colors duration-300 text-sm text-left block"
+                  className="font-sans text-gray-300 hover:text-white transition-colors duration-300 text-sm text-left block"
                 >
                   Vendre vos Pièces
                 </button>
@@ -154,29 +154,29 @@ const FooterDesktop: React.FC = () => {
 
           {/* Expertise section */}
           <div>
-            <h4 className="font-semibold mb-6 text-lg text-white">Notre expertise</h4>
+            <h4 className="font-sans font-semibold mb-6 text-lg text-white">Notre expertise</h4>
             <div className="space-y-4">
               <div className="flex items-start">
                 <Eye className="h-4 w-4 text-white mr-3 mt-1 flex-shrink-0" />
                 <div>
-                  <p className="text-sm text-gray-300 font-medium">Authentification Certifié</p>
-                  <p className="text-xs text-gray-400">Garantie par des méthodes rigoureuses</p>
+                  <p className="font-sans text-sm text-gray-300 font-medium">Authentification Certifié</p>
+                  <p className="font-sans text-xs text-gray-400">Garantie par des méthodes rigoureuses</p>
                 </div>
               </div>
               
               <div className="flex items-start">
                 <Heart className="h-4 w-4 text-white mr-3 mt-1 flex-shrink-0" />
                 <div>
-                  <p className="text-sm text-gray-300 font-medium">Sélection passionnée</p>
-                  <p className="text-xs text-gray-400">Moins de 3% des pièces évaluées</p>
+                  <p className="font-sans text-sm text-gray-300 font-medium">Sélection passionnée</p>
+                  <p className="font-sans text-xs text-gray-400">Moins de 3% des pièces évaluées</p>
                 </div>
               </div>
               
               <div className="flex items-start">
                 <Sparkles className="h-4 w-4 text-white mr-3 mt-1 flex-shrink-0" />
                 <div>
-                  <p className="text-sm text-gray-300 font-medium">Innovation respectueuse</p>
-                  <p className="text-xs text-gray-400">Héritage + codes modernes</p>
+                  <p className="font-sans text-sm text-gray-300 font-medium">Innovation respectueuse</p>
+                  <p className="font-sans text-xs text-gray-400">Héritage + codes modernes</p>
                 </div>
               </div>
             </div>
@@ -185,32 +185,32 @@ const FooterDesktop: React.FC = () => {
 
         {/* Bottom section */}
         <div className="border-t border-gray-800 pt-8 flex flex-col lg:flex-row justify-between items-center gap-6">
-          <div className="text-gray-400 text-sm">
+          <div className="font-sans text-gray-400 text-sm">
             © 2024 LIGNE BLANCHE. Tous droits réservés.
           </div>
           
           <div className="flex flex-wrap justify-center lg:justify-end gap-6">
             <button 
               onClick={() => handleNavigation('legal')}
-              className="text-gray-400 hover:text-white text-xs transition-colors duration-300"
+              className="font-sans text-gray-400 hover:text-white text-xs transition-colors duration-300"
             >
               Mentions Légales
             </button>
             <button 
               onClick={() => handleNavigation('privacy')}
-              className="text-gray-400 hover:text-white text-xs transition-colors duration-300"
+              className="font-sans text-gray-400 hover:text-white text-xs transition-colors duration-300"
             >
               Confidentialité
             </button>
             <button 
               onClick={() => handleNavigation('terms')}
-              className="text-gray-400 hover:text-white text-xs transition-colors duration-300"
+              className="font-sans text-gray-400 hover:text-white text-xs transition-colors duration-300"
             >
               Conditions
             </button>
             <button 
               onClick={() => handleNavigation('cookies')}
-              className="text-gray-400 hover:text-white text-xs transition-colors duration-300"
+              className="font-sans text-gray-400 hover:text-white text-xs transition-colors duration-300"
             >
               Cookies
             </button>

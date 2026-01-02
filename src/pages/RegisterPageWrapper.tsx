@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 const RegisterPageWrapper: React.FC = () => {
   const navigate = useNavigate();
-  const { register, isLoading } = useAuth();
+  const { register } = useAuth();
 
   const handleRegister = async (userData: { email: string; password: string; firstName: string; lastName: string }) => {
     return await register({
@@ -34,7 +34,7 @@ const RegisterPageWrapper: React.FC = () => {
       onNavigateToLogin={handleNavigateToLogin}
       onClose={handleClose}
       onNavigateToWelcome={handleNavigateToWelcome}
-      isLoading={isLoading}
+      isLoading={false}
     />
   );
 };
