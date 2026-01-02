@@ -217,7 +217,7 @@ function AppRouter() {
             element={
               <Layout currentPage="home">
                 <Helmet>
-                  <title>Ligne Blanche - L'Œil Hérité</title>
+                  <title>Ligne Blanche - Maison de Luxe de Seconde Main</title>
                   <meta name="description" content="Découvrez ma collection de maroquinerie et prêt-à-porter de luxe de seconde main. Chaque pièce sélectionnée selon l'expertise familiale héritée." />
                 </Helmet>
                 <HomePage />
