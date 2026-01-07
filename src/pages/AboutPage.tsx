@@ -121,7 +121,7 @@ export default function AboutPage() {
                   Ligne Blanche est née de cette conviction : offrir une nouvelle vie à ces icônes, et les rendre accessibles à une nouvelle génération de passionnés. Chaque pièce que nous sélectionnons est choisie pour son authenticité, sa qualité et son intemporalité, afin qu'elle retrouve la place qu'elle mérite : la vôtre.
                 </p>
                 <p className="block sm:hidden text-sm">
-                 Le luxe traverse le temps, mais trop souvent, des pièces d'exception restent à l'écart, oubliées. Ligne Blanche est née de la volonté de leur offir une seconde vie, en les rendan accessibles à une nouvelle génération, tout en préservant leur histoire, leur valeur et leur authenticité.
+                 Le luxe traverse le temps, mais trop souvent, des pièces d'exception restent à l'écart, oubliées. Ligne Blanche est née de la volonté de leur offir une seconde vie, en les rendant accessibles à une nouvelle génération, tout en préservant leur histoire, leur valeur et leur authenticité.
                 </p>
                 <p className="hidden sm:block sm:text-base">
                   Nous croyons que le luxe ne doit pas être un monde fermé, réservé à quelques initiés. Il peut être transparent, exigeant, et surtout accessible. En proposant des articles vérifiés et certifiés, à des prix bien en dessous du marché, nous démocratisons l'accès aux grandes maisons sans jamais en trahir l'esprit.
