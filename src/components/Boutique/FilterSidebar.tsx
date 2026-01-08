@@ -305,7 +305,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                 <input
                   type="range"
                   min="0"
-                  max="20000"
+                  max="2000"
                   step="100"
                   value={filters.priceRange[1]}
                   onChange={(e) => onUpdateFilter('priceRange', [filters.priceRange[0], Number(e.target.value)])}
