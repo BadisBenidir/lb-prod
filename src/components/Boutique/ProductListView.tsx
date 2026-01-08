@@ -27,7 +27,7 @@ const ProductListView: React.FC<ProductListViewProps> = ({ product, onProductCli
         />
         {product.isSoldDisplay && (
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-            <span className="bg-white text-black text-xs font-semibold px-3 py-1 tracking-wider">VENDU</span>
+            <span className="bg-white text-black rounded-md px-4 py-2 text-xs font-semibold px-3 py-1 tracking-wider">VENDU</span>
           </div>
         )}
         {!product.inStock && !product.isSoldDisplay && (
