@@ -140,7 +140,7 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
         >
           <span className="font-semibold text-gray-900">Prix</span>
           <div className="flex items-center">
-            {(minPrice > 0 || maxPrice < 2000) && (
+            {(minPrice > 0 || maxPrice < 1000) && (
               <span className="bg-black text-white text-xs px-2 py-1 rounded-full font-semibold mr-2">
                 •
               </span>
@@ -173,9 +173,9 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
                   <input
                     type="number"
                     value={maxPrice}
-                    onChange={(e) => onUpdateFilter('priceRange', [minPrice, parseInt(e.target.value) || 2000])}
+                    onChange={(e) => onUpdateFilter('priceRange', [minPrice, parseInt(e.target.value) || 1000])}
                     className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black text-sm"
-                    placeholder="2000"
+                    placeholder="1000"
                   />
                 </div>
               </div>
