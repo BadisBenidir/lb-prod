@@ -46,7 +46,7 @@ const ProductListView: React.FC<ProductListViewProps> = ({ product, onProductCli
         <div>
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 gap-2">
             <div>
-              <h3 className="font-semibold text-base md:text-lg">{product.name}</h3>
+              <h3 className="font-semibold text-base md:text-lg line-clamp-2 min-h-[3rem]">{product.name}</h3>
               <p className="text-gray-600 text-sm md:text-base">{product.brand}</p>
             </div>
             <div className="text-left sm:text-right">
