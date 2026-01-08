@@ -42,7 +42,7 @@ const ProductListView: React.FC<ProductListViewProps> = ({ product, onProductCli
         )}
       </div>
       
-      <div className="flex-1 flex flex-col justify-between">
+      <div className="flex-1 flex flex-col h-full">
         <div>
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 gap-2">
             <div>
