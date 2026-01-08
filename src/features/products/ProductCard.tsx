@@ -65,11 +65,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
           </div>
         </div>
         
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 h-full">
           <button
             onClick={() => onAddToCart(product)}
             disabled={!product.inStock || product.isSoldDisplay}
-            className={`flex-1 py-2 md:py-3 text-xs md:text-sm font-medium transition-colors ${
+            className={`mt-auto flex-1 py-2 md:py-3 text-xs md:text-sm font-medium transition-colors ${
               product.inStock && !product.isSoldDisplay
                 ? 'bg-black text-white hover:bg-gray-800'
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
