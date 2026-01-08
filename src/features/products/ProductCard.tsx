@@ -65,7 +65,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
           </div>
         </div>
         
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2">
           <button
             onClick={() => onAddToCart(product)}
             disabled={!product.inStock || product.isSoldDisplay}
