@@ -83,7 +83,7 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
                         className="w-full h-full object-cover object-top "
                       />
                     </div>
-                    <h4 className="text-sm font-medium text-gray-900 mb-1 truncate">
+                    <h4 className="text-sm font-medium text-gray-900 mb-1 line-clamp-2 min-h-[2.5rem]">
                       {product.name}
                     </h4>
                     <p className="text-xs text-gray-600 mb-2">{product.brand || product.brand_name || 'Marque'}</p>
