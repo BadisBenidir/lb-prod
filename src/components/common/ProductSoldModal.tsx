@@ -88,7 +88,7 @@ const ProductSoldModal: React.FC<ProductSoldModalProps> = ({ isOpen, onClose, so
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">
+                  <p className="text-sm font-medium text-gray-900 mb-1 line-clamp-2 min-h-[2.5rem]">
                     {product.name}
                   </p>
                   <p className="text-sm text-gray-500">
