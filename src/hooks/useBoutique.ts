@@ -14,7 +14,7 @@ export const useBoutique = () => {
   const [filters, setFilters] = useState<FilterOptions>({
     categories: [],
     brands: [],
-    priceRange: [0, 20000],
+    priceRange: [0, 2000],
     conditions: [],
     colors: [],
     materials: [],
@@ -83,7 +83,7 @@ export const useBoutique = () => {
     setFilters({
       categories: [],
       brands: [],
-      priceRange: [0, 20000],
+      priceRange: [0, 2000],
       conditions: [],
       colors: [],
       materials: [],
