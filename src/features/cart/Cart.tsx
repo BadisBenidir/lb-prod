@@ -82,7 +82,7 @@ const Cart: React.FC<CartProps> = ({
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-16 md:w-20 h-16 md:h-20 object-cover bg-gray-100 flex-shrink-0"
+                      className="w-16 md:w-20 h-16 md:h-20 object-contain bg-gray-100 flex-shrink-0"
                     />
                     <div className="flex-1">
                       <h3 className="font-medium text-sm md:text-base">{item.name}</h3>

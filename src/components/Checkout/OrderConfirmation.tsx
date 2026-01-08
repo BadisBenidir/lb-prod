@@ -44,7 +44,7 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = ({
               <img
                 src={item.image}
                 alt={item.name}
-                className="w-16 h-16 object-cover bg-gray-100"
+                className="w-16 h-16 object-contain bg-gray-100"
               />
               <div className="flex-1">
                 <h3 className="font-medium">{item.name}</h3>

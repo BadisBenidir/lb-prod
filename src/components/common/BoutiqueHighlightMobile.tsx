@@ -84,11 +84,11 @@ const BoutiqueHighlightMobile: React.FC<BoutiqueHighlightMobileProps> = ({
                   className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-[1.02] overflow-hidden"
                   onClick={onNavigateToBoutique}
                 >
-                  <div className="aspect-square bg-gray-100 overflow-hidden">
+                  <div className="aspect-[3/4] bg-gray-100 overflow-hidden">
                     <img
                       src={product.images && product.images[0] ? product.images[0] : product.image || 'https://via.placeholder.com/200x200?text=No+Image'}
                       alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                      className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
                     />
                   </div>
                   <div className="p-3">

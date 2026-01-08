@@ -206,7 +206,7 @@ const BoutiqueMobile: React.FC<BoutiqueMobileProps> = ({ onAddToCart, onProductC
                         <img
                           src={product.images && product.images[0] ? product.images[0] : 'https://via.placeholder.com/200x200?text=No+Image'}
                           alt={product.name}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                         />
                       </div>
                       <div className="flex-1 min-w-0">

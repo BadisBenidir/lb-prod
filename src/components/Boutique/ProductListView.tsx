@@ -23,7 +23,7 @@ const ProductListView: React.FC<ProductListViewProps> = ({ product, onProductCli
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
         />
         {product.isSoldDisplay && (
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">

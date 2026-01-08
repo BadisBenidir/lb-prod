@@ -99,7 +99,7 @@ const OrderDetailView: React.FC<OrderDetailViewProps> = ({ order, onBack }) => {
                         <img 
                           src={mainImage} 
                           alt={snapshot.name}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">

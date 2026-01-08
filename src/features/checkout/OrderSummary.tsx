@@ -26,7 +26,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
               <img
                 src={item.image}
                 alt={item.name}
-                className="w-12 h-12 object-cover rounded-lg bg-gray-100 flex-shrink-0"
+                className="w-12 h-12 object-contain rounded-lg bg-gray-100 flex-shrink-0"
               />
               <div className="absolute -top-2 -right-2 w-5 h-5 bg-black text-white rounded-full flex items-center justify-center text-xs font-medium">
                 1

@@ -69,7 +69,7 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
                 <img
                   src="/hero-main.webp"
                   alt="Expertise en maroquinerie de luxe"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
                 {/* Overlay subtil optionnel */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-50"></div>

@@ -60,7 +60,7 @@ const StoryPreviewDesktop: React.FC<StoryPreviewDesktopProps> = ({ onNavigateToA
               <img
                 src="/story-gucci-bag.webp"
                 alt="Expertise en maroquinerie de luxe"
-                className="w-full h-96 object-cover rounded-2xl shadow-2xl"
+                className="w-full h-96 object-contain rounded-2xl shadow-2xl"
               />
               
               {/* Overlay card */}

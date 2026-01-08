@@ -141,7 +141,7 @@ const OrderDetailMobile: React.FC<OrderDetailMobileProps> = ({ order, onBack }) 
                       <img 
                         src={mainImage} 
                         alt={snapshot.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gray-100">
@@ -298,7 +298,7 @@ const UserOrdersMobile: React.FC<UserOrdersMobileProps> = ({ userId, email }) =>
                     <img 
                       src={mainImage} 
                       alt={snapshot?.name || 'Produit'}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">

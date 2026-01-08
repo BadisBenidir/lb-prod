@@ -23,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-64 md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-64 md:h-80 object-contain group-hover:scale-105 transition-transform duration-500"
         />
         {product.isSoldDisplay && (
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">

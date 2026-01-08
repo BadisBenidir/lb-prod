@@ -69,7 +69,7 @@ const CheckoutSummary: React.FC<CheckoutSummaryProps> = ({
             <img
               src={item.image}
               alt={item.name}
-              className="w-16 h-16 object-cover bg-gray-100"
+              className="w-16 h-16 object-contain bg-gray-100"
             />
             <div className="flex-1">
               <h4 className="font-medium text-sm">{item.name}</h4>

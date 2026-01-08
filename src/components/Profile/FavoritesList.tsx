@@ -101,7 +101,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ userId, onProductClick })
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
               />
               
               {/* Badge condition */}

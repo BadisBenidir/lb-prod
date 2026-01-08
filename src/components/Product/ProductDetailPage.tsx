@@ -119,7 +119,7 @@ const ProductDetailPage: React.FC = () => {
                 <img
                   src={images[selectedImageIndex]}
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
                 {/* Badge VENDU pour les produits sold-display */}
                 {product.isSoldDisplay && (
@@ -175,7 +175,7 @@ const ProductDetailPage: React.FC = () => {
                       <img
                         src={image}
                         alt={`${product.name} ${index + 1}`}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                       />
                     </button>
                   ))}
@@ -192,7 +192,7 @@ const ProductDetailPage: React.FC = () => {
                   <img
                     src={defectImages[selectedDefectImageIndex]}
                     alt={`Défaut ${selectedDefectImageIndex + 1}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                   {defectImages.length > 1 && (
                     <>
@@ -240,7 +240,7 @@ const ProductDetailPage: React.FC = () => {
                         <img
                           src={image}
                           alt={`Défaut ${index + 1}`}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                         />
                       </button>
                     ))}

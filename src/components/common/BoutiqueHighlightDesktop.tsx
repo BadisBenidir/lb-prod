@@ -76,11 +76,11 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
                     className="bg-white/80 backdrop-blur-sm rounded-lg p-4 hover:bg-white transition-colors duration-300 cursor-pointer border border-gray-200 shadow-sm"
                     onClick={onNavigateToBoutique}
                   >
-                    <div className="aspect-square bg-gray-200 rounded-md mb-3 overflow-hidden">
+                    <div className="aspect-[3/4] bg-gray-200 rounded-md mb-3 overflow-hidden">
                       <img
                         src={product.images && product.images[0] ? product.images[0] : product.image || 'https://via.placeholder.com/200x200?text=No+Image'}
                         alt={product.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                       />
                     </div>
                     <h4 className="text-sm font-medium text-gray-900 mb-1 truncate">

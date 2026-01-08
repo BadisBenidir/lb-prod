@@ -83,7 +83,7 @@ const ProductSoldModal: React.FC<ProductSoldModalProps> = ({ isOpen, onClose, so
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                   )}
                 </div>

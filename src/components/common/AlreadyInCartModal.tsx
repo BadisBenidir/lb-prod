@@ -51,7 +51,7 @@ const AlreadyInCartModal: React.FC<AlreadyInCartModalProps> = ({
               <img
                 src={product.image || product.images?.[0] || '/placeholder-image.jpg'}
                 alt={product.name}
-                className="w-16 h-16 object-cover bg-gray-100 rounded flex-shrink-0"
+                className="w-16 h-16 object-contain bg-gray-100 rounded flex-shrink-0"
               />
               <div className="flex-1">
                 <h4 className="font-medium text-gray-900">{product.name}</h4>
