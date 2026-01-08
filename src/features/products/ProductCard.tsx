@@ -27,7 +27,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
         />
         {product.isSoldDisplay && (
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-            <span className="bg-white text-black font-semibold text-sm md:text-base px-4 py-2 tracking-wider">VENDU</span>
+            <span className="bg-white text-black rounded-md px-4 py-2 font-semibold text-sm md:text-base px-4 py-2 tracking-wider">VENDU</span>
           </div>
         )}
         {!product.inStock && !product.isSoldDisplay && (
