@@ -15,9 +15,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
     : 0;
 
   return (
-    <div className="group cursor-pointer">
+    <div className="group cursor-pointer h-full flex flex-col">
       <div 
-        className="relative overflow-hidden bg-gray-100 mb-3 md:mb-4"
+        className="relative overflow-hidden bg-gray-100 mb-3 md:mb-4 shrink-0"
         onClick={() => onProductClick?.(product.id)}
       >
         <img
@@ -51,7 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
         </div>
       </div>
       
-      <div className="space-y-2 px-1">
+      <div className="space-y-2 px-1 flex flex-col h-full">
         <div className="flex justify-between items-start">
           <div>
             <h3 className="font-medium text-gray-900 text-sm md:text-base">{product.name}</h3>
@@ -65,7 +65,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
           </div>
         </div>
         
-        <div className="flex flex-col gap-2 h-full">
+        <div className="flex flex-col gap-2 mt-auto">
           <button
             onClick={() => onAddToCart(product)}
             disabled={!product.inStock || product.isSoldDisplay}
