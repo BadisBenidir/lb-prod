@@ -124,7 +124,7 @@ const ProductDetailPage: React.FC = () => {
                 {/* Badge VENDU pour les produits sold-display */}
                 {product.isSoldDisplay && (
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                    <span className="bg-white text-black font-bold text-xl px-8 py-3 tracking-widest shadow-lg">
+                    <span className="bg-white text-black rounded-md font-bold text-xl px-8 py-3 tracking-widest shadow-lg">
                       VENDU
                     </span>
                   </div>
