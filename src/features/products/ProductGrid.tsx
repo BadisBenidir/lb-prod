@@ -34,7 +34,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div className="text-center mb-12">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-light mb-4">Ma Collection Sélectionnée</h2>
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-light mb-4">Notre Collection Sélectionnée</h2>
         <p className="text-gray-600 max-w-2xl mx-auto text-sm md:text-base px-4">
           Chaque pièce a été authentifiée selon une expertise très précise 
           <br />
