@@ -17,7 +17,7 @@ const ProductListView: React.FC<ProductListViewProps> = ({ product, onProductCli
   return (
     <div className="flex flex-col sm:flex-row gap-4 md:gap-6 p-4 md:p-6 border-b border-gray-200 hover:bg-gray-50 transition-colors">
       <div 
-        className="relative w-full sm:w-24 md:w-32 h-48 sm:h-24 md:h-32 flex-shrink-0 cursor-pointer"
+        className="relative w-full sm:w-24 md:w-32 aspect-[4/5] sm:aspect-square md:aspect-square overflow-hidden flex-shrink-0 cursor-pointer"
         onClick={() => onProductClick?.(product.id)}
       >
         <img
