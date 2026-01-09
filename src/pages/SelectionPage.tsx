@@ -124,7 +124,7 @@ export default function SelectionPage() {
         <img
           src="/selection-hero.webp"
           alt="Expertise en maroquinerie de luxe"
-          className="absolute inset-0 w-full h-full object-contain"
+          className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"></div>
 
