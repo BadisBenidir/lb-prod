@@ -245,7 +245,7 @@ export default function SelectionPage() {
                 <Sparkles size={32} />
               </div>
               <h3 className="text-2xl font-light mb-4 text-purple-700">
-                Neuf
+                New
               </h3>
             </div>
             <div className="text-center bg-white p-8 rounded-lg shadow-sm">
@@ -261,7 +261,7 @@ export default function SelectionPage() {
                 <Award size={32} />
               </div>
               <h3 className="text-2xl font-light mb-4 text-green-700">
-                Très Bon
+                Very Good
               </h3>
             </div>
             <div className="text-center bg-white p-8 rounded-lg shadow-sm">
@@ -269,7 +269,7 @@ export default function SelectionPage() {
                 <CheckCircle size={32} />
               </div>
               <h3 className="text-2xl font-light mb-4 text-yellow-700">
-                Bon
+                Good
               </h3>
             </div>
             <div className="text-center bg-white p-8 rounded-lg shadow-sm">
@@ -277,7 +277,7 @@ export default function SelectionPage() {
                 <Shield size={32} />
               </div>
               <h3 className="text-2xl font-light mb-4 text-orange-700">
-                Correct
+                Fair
               </h3>
             </div>
           </div>

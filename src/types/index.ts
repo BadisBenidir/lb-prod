@@ -27,7 +27,7 @@ export interface DbProduct {
   weight?: number;
   images: string[]; // JSONB transformé en array
   main_image_index: number;
-  condition: 'Neuf' | 'Excellent' | 'Très Bon' | 'Bon' | 'Correct';
+  condition: 'New' | 'Excellent' | 'Very Good' | 'Good' | 'Fair';
   description?: string;
   defects?: string;
   colors: string[]; // JSONB transformé en array
@@ -55,7 +55,7 @@ export interface Product {
   price: number;
   originalPrice?: number;
   image: string;
-  condition: 'Excellent' | 'Très Bon' | 'Bon' | 'Corect' | 'Neuf';
+  condition: 'Excellent' | 'Very Good' | 'Good' | 'Fair' | 'New';
   description: string;
   inStock: boolean;
   isSoldDisplay?: boolean; // Produit vendu mais affiché pour le marketing

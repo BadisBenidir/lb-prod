@@ -10,6 +10,15 @@ const sortOptions: SortOption[] = [
   { value: 'brand', label: 'Marque A-Z' }
 ];
 
+  export type FilterState = {
+    categories: string[],
+    brands: string[],
+    conditions: string[],
+    colors: string[],
+    materials: string[],
+  }
+
+
 export const useBoutique = () => {
   const [filters, setFilters] = useState<FilterOptions>({
     categories: [],
@@ -20,6 +29,7 @@ export const useBoutique = () => {
     materials: [],
     genres: []
   });
+
 
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('name');

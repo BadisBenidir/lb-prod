@@ -73,11 +73,11 @@ const ProductDetailPage: React.FC = () => {
 
   const translateCondition = (condition: string) => {
     const translations: Record<string, string> = {
-      'Neuf': 'Neuf',
+      'New': 'New',
       'Excellent': 'Excellent',
-      'Très Bon': 'Très Bon',
-      'Bon': 'Bon',
-      'Correct': 'Correct'
+      'Very Good': 'Very Good',
+      'Good': 'Good',
+      'Fair': 'Fair'
     };
     return translations[condition] || condition;
   };
@@ -119,12 +119,12 @@ const ProductDetailPage: React.FC = () => {
                 <img
                   src={images[selectedImageIndex]}
                   alt={product.name}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                 />
                 {/* Badge VENDU pour les produits sold-display */}
                 {product.isSoldDisplay && (
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                    <span className="bg-white text-black rounded-md px-4 py-2 font-bold text-xl px-8 py-3 tracking-widest shadow-lg">
+                  <div className="absolute inset-0 bg-black-40 flex items-center justify-center">
+                    <span className="bg-white text-black font-bold text-xl px-8 py-3 tracking-widest shadow-lg">
                       VENDU
                     </span>
                   </div>
@@ -175,7 +175,7 @@ const ProductDetailPage: React.FC = () => {
                       <img
                         src={image}
                         alt={`${product.name} ${index + 1}`}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover"
                       />
                     </button>
                   ))}
@@ -192,7 +192,7 @@ const ProductDetailPage: React.FC = () => {
                   <img
                     src={defectImages[selectedDefectImageIndex]}
                     alt={`Défaut ${selectedDefectImageIndex + 1}`}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover"
                   />
                   {defectImages.length > 1 && (
                     <>
@@ -240,7 +240,7 @@ const ProductDetailPage: React.FC = () => {
                         <img
                           src={image}
                           alt={`Défaut ${index + 1}`}
-                          className="w-full h-full object-contain"
+                          className="w-full h-full object-cover"
                         />
                       </button>
                     ))}

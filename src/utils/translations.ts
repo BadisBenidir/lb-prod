@@ -3,11 +3,11 @@
  */
 export const translateCondition = (condition: string): string => {
   const translations: Record<string, string> = {
-    'Neuf': 'neuf',
-    'Excellent': 'excellent',
-    'Très Bon': 'Très Bon', 
-    'Bon': 'Bon',
-    'Correct': 'Correct'
+    'New': 'Neuf',
+    'Excellent': 'Excellent',
+    'Very Good': 'Très Bon',
+    'Good': 'Bon',
+    'Fair': 'Correct'
   };
 
   return translations[condition] || condition;
@@ -31,15 +31,15 @@ export const translateCategory = (category: string): string => {
  */
 export const getConditionClass = (condition: string): string => {
   switch (condition) {
-    case 'Neuf':
+    case 'New':
       return 'bg-blue-500 text-white';
     case 'Excellent':
       return 'bg-green-500 text-white';
-    case 'Très Bon':
+    case 'Very Good':
       return 'bg-gray-600 text-white';
-    case 'Bon':
+    case 'Good':
       return 'bg-yellow-500 text-white';
-    case 'Correct':
+    case 'Fair':
       return 'bg-orange-500 text-white';
     default:
       return 'bg-gray-500 text-white';

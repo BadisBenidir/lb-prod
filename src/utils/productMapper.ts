@@ -5,11 +5,11 @@ import { DbProductWithRelations, Product } from '../types';
  */
 export const mapConditionToClient = (dbCondition: string): Product['condition'] => {
   const conditionMap: Record<string, Product['condition']> = {
-    'Neuf': 'Neuf',
-    'Excellent': 'Excellent', 
-    'Très Bon': 'Très Bon',
-    'Bon': 'Bon',
-    'Correct': 'Correct'
+    'New': 'New',
+    'Excellent': 'Excellent',
+    'Very Good': 'Very Good',
+    'Good': 'Good',
+    'Fair': 'Fair'
   };
   
   return conditionMap[dbCondition] || 'Good';

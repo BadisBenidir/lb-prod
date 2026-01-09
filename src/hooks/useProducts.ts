@@ -109,11 +109,11 @@ export const useProducts = (options: UseProductsOptions = {}) => {
         // Convertir les conditions client vers DB
         const dbConditions = filters.conditions.map(condition => {
           const conditionMap: Record<string, string> = {
-            'Neuf': 'neuf',
-            'Excellent': 'excellent',
-            'Très Bon': 'Très Bon', 
-            'Bon': 'Bon',
-            'Correct': 'Correct'
+            'New': 'New',
+            'Excellent': 'Excellent',
+            'Very Good': 'Very Good',
+            'Good': 'Good',
+            'Fair': 'Fair'
           };
           return conditionMap[condition] || condition.toLowerCase();
         });

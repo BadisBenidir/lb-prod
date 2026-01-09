@@ -61,11 +61,11 @@ export const useAvailableFilters = () => {
             if (product.condition) {
               // Convertir condition DB vers format client
               const conditionMap: Record<string, string> = {
-                'Neuf': 'Neuf',
+                'New': 'New',
                 'Excellent': 'Excellent',
-                'Très Bon': 'Très Bon',
-                'Bon': 'Bon',
-                'Correct': 'Correct'
+                'Very Good': 'Very Good',
+                'Good': 'Good',
+                'Fair': 'Fair'
               };
               const clientCondition = conditionMap[product.condition] || product.condition;
               allConditions.add(clientCondition);
