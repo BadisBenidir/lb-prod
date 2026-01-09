@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, ArrowLeft, CreditCard, Shield, Clock } from 'lucide-react';
+import { VoidApiResponse } from 'karrio';
 
 interface CheckoutCancelPageProps {
   onReturnToCart: () => void;

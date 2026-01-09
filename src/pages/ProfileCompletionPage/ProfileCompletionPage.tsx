@@ -12,12 +12,17 @@ interface ProfileCompletionData {
 }
 
 interface ProfileCompletionPageProps {
-  onComplete: (data: ProfileCompletionData) => Promise<{ success: boolean; error?: string }>;
-  onSkip: () => void;
-  isLoading: boolean;
+  onComplete?: (data: ProfileCompletionData) => Promise<{ success: boolean; error?: string }>;
+  onSkip?: () => void;
+  isLoading?: boolean;
 }
 
-const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({ onComplete, onSkip, isLoading }) => {
+const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
+    onComplete = async (data: ProfileCompletionData) => ({ success: true, error: undefined }),
+    onSkip = () => {},
+    isLoading = false,
+}) => {
+
   const [formData, setFormData] = useState<ProfileCompletionData>({
     phone: '',
     birthDate: '',
@@ -26,7 +31,7 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({ onComplet
     city: '',
     postalCode: '',
     country: 'France'
-  });
+});
   const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {

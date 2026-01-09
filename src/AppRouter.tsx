@@ -77,7 +77,7 @@ const CheckoutCancelPageWrapper: React.FC = () => {
 
   return (
     <CheckoutCancelPage 
-      onRetryCheckout={handleRetryCheckout}
+      onReturnToCart={handleRetryCheckout}
       onContinueShopping={handleContinueShopping}
     />
   );
