@@ -26,9 +26,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
           className="w-full h-64 md:h-80 object-contain group-hover:scale-105 transition-transform duration-500"
         />
         {product.isSoldDisplay && (
-          <div className="absolute inset-0 bg-black bg-opacity-50 top-10 left-10 z-10">
-            <span className="bg-red-100 text-red-700 text-m font-semibold px-2 py-1 rounded-md uppercase tracking-wide">VENDU</span>
-          </div>
+            <div className="absolute top-2 left-2 z-10">
+              <div className='absolute inset-0 bg-black bg-opaciy-50'
+              <span className="bg-red-100 text-red-700 text-m font-semibold px-2 py-1 rounded-md uppercase tracking-wide">VENDU</span>
+            </div>
         )}
         {!product.inStock && !product.isSoldDisplay && (
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
