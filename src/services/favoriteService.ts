@@ -63,11 +63,11 @@ class FavoriteService {
         
         // Convertir les conditions de la DB vers l'interface Product
         const conditionMap: Record<string, 'Excellent' | 'Very Good' | 'Good' | 'Fair' | 'New'> = {
-          'neuf': 'New',
-          'excellent': 'Excellent',
-          'very-good': 'Very Good',
-          'good': 'Good',
-          'fair': 'Fair'
+          'Neuf': 'neuf',
+          'Excellent': 'excellent',
+          'Très Bon': 'Très Bon', 
+          'Bon': 'Bon',
+          'Correct': 'Correct'
         };
         
         return {

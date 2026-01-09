@@ -55,7 +55,7 @@ export interface Product {
   price: number;
   originalPrice?: number;
   image: string;
-  condition: 'Excellent' | 'Very Good' | 'Good' | 'Fair' | 'New';
+  condition: 'Excellent' | 'Très Bon' | 'Bon' | 'Corect' | 'Neuf';
   description: string;
   inStock: boolean;
   isSoldDisplay?: boolean; // Produit vendu mais affiché pour le marketing
