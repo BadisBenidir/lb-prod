@@ -112,7 +112,7 @@ const FooterDesktop: React.FC = () => {
               <li>
                 <button 
                   onClick={() => handleNavigation('home')} 
-                  className="font-sanstext-gray-300 hover:text-white transition-colors duration-300 text-sm text-left block"
+                  className="font-sans text-gray-300 hover:text-white transition-colors duration-300 text-sm text-left block"
                 >
                   Accueil
                 </button>
