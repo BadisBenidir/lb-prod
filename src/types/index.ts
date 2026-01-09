@@ -27,7 +27,7 @@ export interface DbProduct {
   weight?: number;
   images: string[]; // JSONB transformé en array
   main_image_index: number;
-  condition: 'neuf' | 'excellent' | 'very-good' | 'good' | 'fair';
+  condition: 'Neuf' | 'Excellent' | 'Très Bon' | 'Bon' | 'Correct';
   description?: string;
   defects?: string;
   colors: string[]; // JSONB transformé en array
