@@ -62,7 +62,7 @@ class FavoriteService {
         const mainImage = images[mainImageIndex] || (images.length > 0 ? images[0] : '');
         
         // Convertir les conditions de la DB vers l'interface Product
-        const conditionMap: Record<string, 'Excellent' | 'Very Good' | 'Good' | 'Fair' | 'New'> = {
+        const conditionMap: Record<string, 'Excellent' | 'Très Bon' | 'Bon' | 'Correct' | 'Neuf'> = {
           'Neuf': 'neuf',
           'Excellent': 'excellent',
           'Très Bon': 'Très Bon', 
