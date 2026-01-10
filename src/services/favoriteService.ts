@@ -56,35 +56,52 @@ class FavoriteService {
       }
 
       // Transformer les données pour correspondre à l'interface FavoriteProduct
-      const favorites: FavoriteProduct[] = (data || []).map(item => {
-        const images = item.product.images || [];
-        const mainImageIndex = item.product.main_image_index || 0;
-        const mainImage = images[mainImageIndex] || (images.length > 0 ? images[0] : '');
+      const favoritesRaw = (data || []).map((item): FavoriteProduct | null => {
+          const product = Array.isArray(item.product) ? item.product[0] : item.product;
+          if (!product) return null;
+
+          const images = product.images || [];
+          const mainImageIndex = product.main_image_index || 0;
+          const mainImage = images[mainImageIndex] || (images.length > 0 ? images[0] : '');
         
-        // Convertir les conditions de la DB vers l'interface Product
-        const conditionMap: Record<string, 'New' | 'Excellent' | 'Very Good' | 'Good' | 'Fair'> = {
-          'New': 'New',
-          'Excellent': 'Excellent',
-          'Very Good': 'Very Good', 
-          'Good': 'Good',
-          'Fair': 'Fair'
-        };
+          // Convertir les conditions de la DB vers l'interface Product
+          const conditionMap: Record<
+            string,
+            'Excellent' | 'Very Good' | 'Good' | 'Fair' | 'New'
+          > = {
+            'neuf': 'New',
+            'excellent': 'Excellent',
+            'very-good': 'Very Good',
+            'good': 'Good',
+            'fair': 'Fair',
+          };
         
-        return {
-          id: item.product.id,
-          name: item.product.name,
-          brand: item.product.brand?.name || 'Marque inconnue',
-          category: item.product.category?.name || 'Catégorie inconnue',
-          price: item.product.sale_price,
-          originalPrice: undefined, // Ne pas afficher le prix d'achat
-          image: mainImage,
-          condition: conditionMap[item.product.condition] || 'Good',
-          description: item.product.description || '',
-          inStock: item.product.status === 'for-sale-online',
-          favorite_id: item.id,
-          favorited_at: item.created_at
+          return {
+            id: product.id,
+            name: product.name,
+            brand: 
+              (Array.isArray(product.brand) 
+                ? (product.brand as any[])[0]?.name 
+                : (product.brand as any)?.name) || "Marque inconnue",
+            category: 
+              (Array.isArray(product.category) 
+                ? (product.category as any[])[0]?.name 
+                : (product.category as any)?.name) || "Catégorie inconnue",
+            price: product.sale_price,
+            originalPrice: undefined, // Ne pas afficher le prix d'achat
+            image: mainImage,
+            condition: conditionMap[product.condition] || 'Good',
+            description: product.description,
+            inStock: product.status === 'for-sale-online',
+            favorite_id: item.id,
+            favorited_at: item.created_at,
         };
       });
+
+      const favorites: FavoriteProduct[] = favoritesRaw.filter(
+        (x): x is FavoriteProduct => x !== null
+      );
+
 
       return { success: true, favorites };
     } catch (error) {
