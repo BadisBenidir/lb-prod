@@ -102,7 +102,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
     const translations: Record<string, string> = {
       'new': 'Neuf',
       'excellent': 'Excellent',
-      'very good': 'Très Bon', 
+      'very_good': 'Très Bon', 
       'good': 'Bon',
       'fair': 'Correct'
     };

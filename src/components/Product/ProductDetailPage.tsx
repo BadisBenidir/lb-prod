@@ -75,7 +75,7 @@ const ProductDetailPage: React.FC = () => {
     const translations: Record<string, string> = {
       'new': 'New',
       'excellent': 'Excellent',
-      'very good': 'Very Good',
+      'very_good': 'Very Good',
       'good': 'Good',
       'fair': 'Fair'
     };
