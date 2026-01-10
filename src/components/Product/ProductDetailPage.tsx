@@ -74,6 +74,7 @@ const ProductDetailPage: React.FC = () => {
   const translateCondition = (condition: string) => {
     const translations: Record<string, string> = {
       'new': 'New',
+      'neuf': 'Neuf',
       'excellent': 'Excellent',
       'very good': 'Very Good',
       'good': 'Good',
