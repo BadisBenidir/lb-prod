@@ -30,6 +30,21 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
   isOpen,
   onClose
 }) => {
+
+  const CONDITION_ORDER = [
+    'new',
+    'excellent',
+    'very-good',
+    'good',
+    'fair',
+  ];
+
+  const sortedConditions = [...availableConditions].sort((a, b) => {
+    const ia = CONDITION_ORDER.indexOf(a);
+    const ib = CONDITION_ORDER.indexOf(b);
+    return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+  });
+
   const [expandedSections, setExpandedSections] = React.useState({
     categories: true,
     brands: true,
@@ -327,7 +342,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </button>
             {expandedSections.condition && (
               <div className="space-y-2">
-                {availableConditions.map(condition => (
+                {sortedConditions.map(condition => (
                   <label key={condition} className="flex items-center">
                     <input
                       type="checkbox"
