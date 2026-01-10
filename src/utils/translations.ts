@@ -9,6 +9,7 @@ export const translateCondition = (condition: string): string => {
 
   const translations: Record<string, string> = {
     'new': 'Neuf',
+    'neuf': 'Neuf',
     'excellent': 'Excellent',
     'very-good': 'Très Bon',
     'good': 'Bon',
