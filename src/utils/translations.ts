@@ -2,6 +2,8 @@
  * Fonction utilitaire pour traduire les conditions de produits en français
  */
 export const translateCondition = (condition: string): string => {
+  const key = (condition || "").trim().toLowerCase();
+
   const translations: Record<string, string> = {
     'New': 'Neuf',
     'Excellent': 'Excellent',
@@ -10,7 +12,7 @@ export const translateCondition = (condition: string): string => {
     'Fair': 'Correct'
   };
 
-  return translations[condition] || condition;
+  return translations[key] || condition;
 };
 
 /**
