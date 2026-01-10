@@ -39,6 +39,14 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
     'fair',
   ];
 
+  const normalizeCondition = (c: string) =>
+  (c || '')
+    .trim()
+    .toLowerCase()
+    .replace(/_/g, '-')
+    .replace(/\s+/g, '-')
+    .replace('tres-bon', 'very-good');
+
   const sortedConditions = [...availableConditions].sort((a, b) => {
     const ia = CONDITION_ORDER.indexOf(a);
     const ib = CONDITION_ORDER.indexOf(b);
