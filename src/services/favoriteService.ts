@@ -69,7 +69,7 @@ class FavoriteService {
             string,
             'New' | 'Excellent' | 'Very Good' | 'Good' | 'Fair'
           > = {
-            'neuf': 'New',
+            'new': 'New',
             'excellent': 'Excellent',
             'very-good': 'Very Good',
             'good': 'Good',
