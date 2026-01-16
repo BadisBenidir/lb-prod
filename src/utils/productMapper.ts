@@ -8,18 +8,31 @@ export const mapConditionToClient = (dbCondition: string): Product['condition'] 
     (s ?? '')
       .toLowerCase()
       .trim()
-      .replace(/_/g, ' ')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[_-]/g, ' ')
       .replace(/\s+/g, ' ');
   
   const key = normalize(dbCondition);
-  
+
   const conditionMap: Record<string, Product['condition']> = {
     'new': 'New',
+    'brand new': 'New',
+    'neuf': 'New',
+
     'excellent': 'Excellent',
+
     'very good': 'Very Good',
+    'tres bon': 'Very Good',
+    'tres bonne': 'Very Good',
+
     'good': 'Good',
+    'bon': 'Good',
+    
     'fair': 'Fair'
   };
+
+  console.log('[COND] raw=', dbCondition);
   
   return conditionMap[dbCondition] || 'Good';
 };

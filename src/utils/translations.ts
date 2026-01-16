@@ -5,11 +5,10 @@ export const translateCondition = (condition: string): string => {
   const key = (condition || "")
     .trim() 
     .toLowerCase()
-    .replace (/[-_]/g, " ");
+    .replace (/[-_]/g, ' ');
 
   const translations: Record<string, string> = {
     'new': 'Neuf',
-    'neuf': 'Neuf',
     'excellent': 'Excellent',
     'very-good': 'Très Bon',
     'good': 'Bon',
