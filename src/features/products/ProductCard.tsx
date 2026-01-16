@@ -55,7 +55,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
         </div>
       </div>
       
-      <div className="flex flex-col h-full min-h-[50px]">
+      <div className="flex flex-col h-full min-h-[100px]">
         <div className="flex justify-between items-start flex-1">
           <div>
             <h3 className="font-medium text-gray-900 text-sm md:text-base">{product.name}</h3>
