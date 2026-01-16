@@ -70,10 +70,6 @@ const ProductCardMobile: React.FC<ProductCardMobileProps> = ({ product, onAddToC
               product.condition === 'Fair' ? 'bg-orange-100 text-orange-800' :
             'bg-orange-500 text-white'
           }`}>
-            {product.condition === 'New' ? 'New' : 
-             product.condition === 'Excellent' ? 'Excellent' : 
-             product.condition === 'Very Good' ? 'Very Good' : 
-             product.condition}
           </span>
         </div>
 
