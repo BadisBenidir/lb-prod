@@ -70,7 +70,7 @@ const StoryPreviewDesktop: React.FC<StoryPreviewDesktopProps> = ({ onNavigateToA
                   <span className="text-sm font-medium text-gray-900">Authenticité Renforcée</span>
                 </div>
                 <p className="text-xs text-gray-600 leading-relaxed">
-                  Les pièces les plus prestigieuses bénéficient d'une expertise externe pour vous fournir un certificat !
+                  Les pièces les plus prestigieuses bénéficient jjd'une expertise externe pour vous fournir un certificat !
                 </p>
               </div>
               
