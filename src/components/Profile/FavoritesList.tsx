@@ -107,8 +107,11 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ userId, onProductClick })
               {/* Badge condition */}
               <div className="absolute top-2 left-2">
                 <span className={`px-2 py-1 text-xs font-medium rounded ${
-                  product.condition === 'Excellent' ? 'bg-green-100 text-green-800' :
-                  product.condition === 'Very Good' ? 'bg-yellow-100 text-yellow-800' :
+                  product.condition === 'New' ? 'bg-purple-100 text-purple-800' :
+                  product.condition === 'Excellent' ? 'bg-blue-100 text-blue-800' :
+                  product.condition === 'Very Good' ? 'bg-green-100 text-green-800' :
+                  product.condition === 'Good' ? 'bg-yellow-100 text-yellow-800' :
+                  product.condition === 'Fair' ? 'bg-orange-100 text-orange-800' :
                   'bg-orange-100 text-orange-800'
                 }`}>
                   {product.condition}

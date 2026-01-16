@@ -290,7 +290,9 @@ const ProductDetailPage: React.FC = () => {
               <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                 product.condition === 'New' ? 'bg-purple-100 text-purple-800' :
                 product.condition === 'Excellent' ? 'bg-blue-100 text-blue-800' :
-                product.condition === 'Very Good' ? 'bg-yellow-100 text-yellow-800' :
+                product.condition === 'Very Good' ? 'bg-green-100 text-geen-800' :
+                product.condition === 'Good' ? 'bg-yellow-100 text-yellow-800' :
+                product.condition === 'Fair' ? 'bg-orange-100 text-orange-800' :
                 'bg-gray-100 text-gray-800'
               }`}>
                 {translateCondition(product.condition)}
