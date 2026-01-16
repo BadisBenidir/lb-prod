@@ -60,11 +60,11 @@ const StoryPreviewDesktop: React.FC<StoryPreviewDesktopProps> = ({ onNavigateToA
               <img
                 src="/story-gucci-bag.webp"
                 alt="Expertise en maroquinerie de luxe"
-                className="w-full h-96 object-contain rounded-2xl shadow-2xl"
+                className="w-full h-96 object-cover rounded-2xl shadow-2xl"
               />
               
               {/* Overlay card */}
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg border border-gray-100 max-w-xs">
+              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg border border-gray-100 max-w-xs max-w-[285px]">
                 <div className="flex items-center mb-3">
                   <Eye className="h-5 w-5 text-gray-800 mr-2" />
                   <span className="text-sm font-medium text-gray-900">Authenticité Renforcée</span>
