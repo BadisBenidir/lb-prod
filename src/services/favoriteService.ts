@@ -59,7 +59,8 @@ class FavoriteService {
       const favoritesRaw = (data || []).map((item): FavoriteProduct | null => {
           const product = Array.isArray(item.product) ? item.product[0] : item.product;
           if (!product) return null;
-
+          
+          const rawCondition = product.condition?.toLowerCase().replace('', '-');
           const images = product.images || [];
           const mainImageIndex = product.main_image_index || 0;
           const mainImage = images[mainImageIndex] || (images.length > 0 ? images[0] : '');
@@ -101,8 +102,6 @@ class FavoriteService {
       const favorites: FavoriteProduct[] = favoritesRaw.filter(
         (x): x is FavoriteProduct => x !== null
       );
-
-      const rawCondition = product.condition?.toLowerCase().replace('', '-');
 
       return { success: true, favorites };
     } catch (error) {
