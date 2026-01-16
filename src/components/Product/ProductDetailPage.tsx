@@ -78,8 +78,8 @@ const ProductDetailPage: React.FC = () => {
       'excellent': 'Excellent',
       'very good': 'Très Bon',
       'good': 'Bon',
-      'fair': 'Correct'
-      'Fair': 'Correct'
+      'fair': 'Correct',
+      'Fair': 'Correct',
     };
     return translations[condition] || condition;
   };
