@@ -76,10 +76,13 @@ class FavoriteService {
             'good': 'Good',
             'fair': 'Fair',
           };
+
+          console.log('DB condition =', product.condition);
+          console.log('rawCondition =', rawCondition);
         
           return {
 
-            condition: conditionMap[rawCondition ?? ''] || 'good',
+            condition: conditionMap[rawCondition ?? ''] ?? 'Good',
             id: product.id,
             name: product.name,
             brand: 
