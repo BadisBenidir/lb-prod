@@ -60,6 +60,10 @@ class FavoriteService {
           const product = Array.isArray(item.product) ? item.product[0] : item.product;
           if (!product) return null;
           
+          console.log('product keys:', Object.keys(product));
+          console.log('product.condition:', product.condition);
+          console.log('raw product:', product);
+
           const rawCondition = product.condition?.toLowerCase().replace('', '-');
           const images = product.images || [];
           const mainImageIndex = product.main_image_index || 0;
@@ -79,6 +83,15 @@ class FavoriteService {
 
           console.log('DB condition =', product.condition);
           console.log('rawCondition =', rawCondition);
+
+          const normalize = (s?: string) =>
+            (s ?? '')
+              .toLowerCase()
+              .trim()
+              .replace(/_/g, '-')
+              .replace(/\s+/g, '-');
+
+          const rawCondition = normalize(product.condition);
         
           return {
 
