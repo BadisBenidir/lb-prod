@@ -64,7 +64,7 @@ const StoryPreviewDesktop: React.FC<StoryPreviewDesktopProps> = ({ onNavigateToA
               />
               
               {/* Overlay card */}
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg border border-gray-100 max-w-xs max-w-[281px]">
+              <div className="absolute -bottom-6 -left-6 max-w-[50%] bg-white p-6 rounded-xl shadow-lg border border-gray-100 max-w-xs">
                 <div className="flex items-center mb-3">
                   <Eye className="h-5 w-5 text-gray-800 mr-2" />
                   <span className="text-sm font-medium text-gray-900">Authenticité Renforcée</span>
