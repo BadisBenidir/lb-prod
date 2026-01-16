@@ -56,7 +56,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
       </div>
       
       <div className="space-y-2 px-1 flex flex-col h-full">
-        <div className="flex justify-between items-start">
+        <div className="flex justify-between items-start flex-1">
           <div>
             <h3 className="font-medium text-gray-900 text-sm md:text-base">{product.name}</h3>
             <p className="text-sm text-gray-600">{product.brand}</p>
@@ -69,7 +69,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
           </div>
         </div>
         
-        <div className="flex flex-col gap-2 flex-1">
+        <div className="flex flex-col gap-2 mt-auto">
           <button
             onClick={() => onAddToCart(product)}
             disabled={!product.inStock || product.isSoldDisplay}
