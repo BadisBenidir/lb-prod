@@ -90,7 +90,7 @@ class FavoriteService {
             price: product.sale_price,
             originalPrice: undefined, // Ne pas afficher le prix d'achat
             image: mainImage,
-            condition: conditionMap[product.condition] || 'Good',
+            condition: conditionMap[rawCondition] || 'Good',
             description: product.description,
             inStock: product.status === 'for-sale-online',
             favorite_id: item.id,
@@ -100,6 +100,8 @@ class FavoriteService {
 
       const favorites: FavoriteProduct[] = favoritesRaw.filter(
         (x): x is FavoriteProduct => x !== null
+
+      const rawCondition = product.condition?.toLowerCase().replace('', '-');
       );
 
 
