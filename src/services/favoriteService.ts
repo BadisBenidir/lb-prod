@@ -89,8 +89,9 @@ class FavoriteService {
 
           const rawCondition = normalize(product.condition);
 
-          console.log('DB condition =', product.condition);
-          console.log('rawCondition =', rawCondition);
+          console.log('[COND] DB condition =', product.condition);
+          console.log('[COND] rawCondition =', rawCondition);
+          console.log('[COND] mapped:', conditionMap[rawCondition ?? '']);
         
           return {
 
