@@ -64,7 +64,6 @@ class FavoriteService {
           console.log('product.condition:', product.condition);
           console.log('raw product:', product);
 
-          const rawCondition = product.condition?.toLowerCase().replace('', '-');
           const images = product.images || [];
           const mainImageIndex = product.main_image_index || 0;
           const mainImage = images[mainImageIndex] || (images.length > 0 ? images[0] : '');
@@ -81,9 +80,6 @@ class FavoriteService {
             'fair': 'Fair',
           };
 
-          console.log('DB condition =', product.condition);
-          console.log('rawCondition =', rawCondition);
-
           const normalize = (s?: string) =>
             (s ?? '')
               .toLowerCase()
@@ -92,6 +88,9 @@ class FavoriteService {
               .replace(/\s+/g, '-');
 
           const rawCondition = normalize(product.condition);
+
+          console.log('DB condition =', product.condition);
+          console.log('rawCondition =', rawCondition);
         
           return {
 
