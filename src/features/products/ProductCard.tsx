@@ -44,7 +44,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
             -{discountPercentage}%
           </div>
         )}
-        <div className="absolute top-2 md:top-4 right-2 md:right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="absolute top-2 md:top-4 right-2 md:right-4">
           <span className={`px-2 py-1 text-xs font-medium ${
             product.condition === 'Excellent' ? 'bg-green-100 text-green-800' :
             product.condition === 'Very Good' ? 'bg-yellow-100 text-yellow-800' :
