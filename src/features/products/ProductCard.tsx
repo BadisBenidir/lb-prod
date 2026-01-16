@@ -80,7 +80,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
           </div>
         </div>
         
-        <div className="flex flex-col gap-2 mt-auto">
+        <div className="flex flex-col gap-5 mt-auto">
           <button
             onClick={() => onAddToCart(product)}
             disabled={!product.inStock || product.isSoldDisplay}
