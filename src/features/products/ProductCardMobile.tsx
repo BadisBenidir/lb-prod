@@ -55,9 +55,11 @@ const ProductCardMobile: React.FC<ProductCardMobileProps> = ({ product, onAddToC
         {/* Condition Badge */}
         <div className="absolute top-3 right-3">
           <span className={`px-2 py-1 text-xs font-semibold rounded-lg shadow-md ${
-            product.condition === 'Excellent' ? 'bg-green-500 text-white' :
-            product.condition === 'Very Good' ? 'bg-gray-600 text-white' :
-            product.condition === 'New' ? 'bg-blue-500 text-white' :
+              product.condition === 'New' ? 'bg-purple-100 text-purple-800' :
+              product.condition === 'Excellent' ? 'bg-blue-100 text-blue-800' :
+              product.condition === 'Very Good' ? 'bg-green-100 text-geen-800' :
+              product.condition === 'Good' ? 'bg-yellow-100 text-yellow-800' :
+              product.condition === 'Fair' ? 'bg-orange-100 text-orange-800' :
             'bg-orange-500 text-white'
           }`}>
             {product.condition === 'New' ? 'New' : 
