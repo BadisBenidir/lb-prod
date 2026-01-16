@@ -27,7 +27,7 @@ export const mapConditionToClient = (dbCondition: string): Product['condition'] 
     'tres bonne': 'Very Good',
     'very-good': 'Very Good',
     'very_good': 'Very Good',
-    'verygood': 'Very Good',
+    'd': 'Very Good',
     'brand very good': 'Very Good',
 
     'good': 'Good',
