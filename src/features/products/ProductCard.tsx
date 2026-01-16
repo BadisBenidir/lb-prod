@@ -12,8 +12,8 @@ interface ProductCardProps {
 const conditionLabelFR: Record<string, string> = {
   New: 'Neuf',
   Excellent: 'Excellent',
-  'Very Good': 'Très Bon Etat',
-  Good: 'Bon Etat',
+  'Very Good': 'Très Bon État',
+  Good: 'Bon État',
   Fair: 'Correct',
 };
 
