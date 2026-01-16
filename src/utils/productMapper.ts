@@ -4,6 +4,15 @@ import { DbProductWithRelations, Product } from '../types';
  * Convertit les conditions de la DB vers le format client
  */
 export const mapConditionToClient = (dbCondition: string): Product['condition'] => {
+  const normalize = (s?: string) =>
+    (s ?? '')
+      .toLowerCase()
+      .trim()
+      .replace(/_/g, ' ')
+      .replace(/\s+/g, ' ');
+  
+  const key = normalize(dbCondition);
+  
   const conditionMap: Record<string, Product['condition']> = {
     'new': 'New',
     'excellent': 'Excellent',
