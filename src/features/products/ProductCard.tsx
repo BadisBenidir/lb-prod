@@ -61,7 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
             product.condition === 'Very Good' ? 'bg-orange-100 text-orange-800' :
             'bg-orange-100 text-orange-800'
           }`}>
-            {product.condition}
+            {conditionLabelFR[product.condition] ?? product.condition}
           </span>
         </div>
       </div>
