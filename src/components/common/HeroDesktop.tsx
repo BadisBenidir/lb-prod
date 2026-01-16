@@ -65,7 +65,7 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
           {/* Image dans un cadre à droite */}
           <div className="relative">
             <div className="relative bg-white p-4 shadow-2xl">
-              <div className="relative overflow-hidden" style={{ aspectRatio: '4/5' }}>
+              <div className="relative overflow-cover" style={{ aspectRatio: '4/5' }}>
                 <img
                   src="/hero-main.webp"
                   alt="Expertise en maroquinerie de luxe"
