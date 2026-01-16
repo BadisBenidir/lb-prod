@@ -79,7 +79,6 @@ const ProductDetailPage: React.FC = () => {
       'very good': 'Très Bon',
       'good': 'Bon',
       'fair': 'Correct',
-      'Fair': 'Correct',
     };
     return translations[condition] || condition;
   };
