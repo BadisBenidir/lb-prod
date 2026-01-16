@@ -16,6 +16,8 @@ interface BoutiqueProps {
 const Boutique: React.FC<BoutiqueProps> = ({ onAddToCart, onProductClick }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const { userId } = useAuth();
+
+  window.scrollTo(0, 0);
   
   const {
     filters,
@@ -45,6 +47,8 @@ const Boutique: React.FC<BoutiqueProps> = ({ onAddToCart, onProductClick }) => {
     loading,
     error
   } = useBoutique();
+
+  
 
   return (
     <div className="min-h-screen bg-white">
@@ -121,9 +125,9 @@ const Boutique: React.FC<BoutiqueProps> = ({ onAddToCart, onProductClick }) => {
                     <ProductListView
                       key={product.id}
                       product={product}
-                      onAddToCart={onAddToCart}
                       onProductClick={() => onProductClick(product.id)}
                       userId={userId}
+                      onAddToCart={onAddToCart}
                     />
                   ))}
                 </div>
