@@ -55,10 +55,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
         <div className="absolute top-2 md:top-4 right-2 md:right-4">
           <span className={`px-2 py-1 text-xs font-medium ${
             product.condition === 'Excellent' ? 'bg-blue-100 text-blue-800 rounded-s' :
-            product.condition === 'Very Good' ? 'bg-green-100 text-green-800' :
-            product.condition === 'New' ? 'bg-purple-100 text-purple-800' :
-            product.condition === 'Good' ? 'bg-yellow-100 text-yellow-800' :
-            product.condition === 'Very Good' ? 'bg-orange-100 text-orange-800' :
+            product.condition === 'Very Good' ? 'bg-green-100 text-green-800 rounded-s' :
+            product.condition === 'New' ? 'bg-purple-100 text-purple-800 rounded-s' :
+            product.condition === 'Good' ? 'bg-yellow-100 text-yellow-800 rounded-s' :
+            product.condition === 'Very Good' ? 'bg-orange-100 text-orange-800 rounded-s' :
             'bg-orange-100 text-orange-800'
           }`}>
             {conditionLabelFR[product.condition] ?? product.condition}
