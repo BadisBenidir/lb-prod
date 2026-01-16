@@ -23,6 +23,8 @@ const Pagination: React.FC<PaginationProps> = ({
     const range = [];
     const rangeWithDots = [];
 
+    window.scrollTo(0, 0);
+
     for (let i = Math.max(2, currentPage - delta); i <= Math.min(totalPages - 1, currentPage + delta); i++) {
       range.push(i);
     }
@@ -44,6 +46,7 @@ const Pagination: React.FC<PaginationProps> = ({
     }
 
     return rangeWithDots;
+    
   };
 
   const startItem = (currentPage - 1) * itemsPerPage + 1;
