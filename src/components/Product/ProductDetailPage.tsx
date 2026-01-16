@@ -382,7 +382,7 @@ const ProductDetailPage: React.FC = () => {
                   <p className="text-gray-500 text-sm">Découvrez nos autres pièces disponibles</p>
                 </div>
               )}
-              <div className="flex gap-3">
+              <div className="flex gap-3 flex-1">
                 <button
                   onClick={handleAddToCart}
                   disabled={!product.inStock || product.isSoldDisplay}
