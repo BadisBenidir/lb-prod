@@ -61,10 +61,10 @@ const ProductListView: React.FC<ProductListViewProps> = ({ product, onProductCli
           
           <div className="flex flex-wrap items-center gap-2 md:gap-4 mb-4">
             <span className={`px-2 py-1 text-xs font-medium rounded ${
-              product.condition === 'New' ? 'bg-blue-100 text-blue-800' :
-              product.condition === 'Excellent' ? 'bg-green-100 text-green-800' :
-              product.condition === 'Very Good' ? 'bg-yellow-100 text-yellow-800' :
-              product.condition === 'Good' ? 'bg-orange-100 text-orange-800' :
+              product.condition === 'New' ? 'bg-purple-100 text-purple-800' :
+              product.condition === 'Excellent' ? 'bg-blue-100 text-blue-800' :
+              product.condition === 'Very Good' ? 'bg-green-100 text-green-800' :
+              product.condition === 'Good' ? 'bg-yellow-100 text-yellow-800' :
               'bg-red-100 text-red-800'
             }`}>
               {translateCondition(product.condition)}
