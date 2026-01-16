@@ -100,10 +100,9 @@ class FavoriteService {
 
       const favorites: FavoriteProduct[] = favoritesRaw.filter(
         (x): x is FavoriteProduct => x !== null
-
-      const rawCondition = product.condition?.toLowerCase().replace('', '-');
       );
 
+      const rawCondition = product.condition?.toLowerCase().replace('', '-');
 
       return { success: true, favorites };
     } catch (error) {
