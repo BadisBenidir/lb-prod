@@ -26,7 +26,7 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
             </h1>
 
             <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
-              Découvrez une sélection exclusive de pièces de luxe de seconde main choisies avec exigence et certifiées authentiques.
+              Découvrez une sélection exclusive de pièces de luxe de seconde main choisies aveeeeec exigence et certifiées authentiques.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
