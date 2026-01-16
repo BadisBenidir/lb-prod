@@ -78,6 +78,8 @@ class FavoriteService {
           };
         
           return {
+
+            condition: conditionMap[rawCondition ?? ''] || 'good',
             id: product.id,
             name: product.name,
             brand: 
@@ -91,7 +93,6 @@ class FavoriteService {
             price: product.sale_price,
             originalPrice: undefined, // Ne pas afficher le prix d'achat
             image: mainImage,
-            condition: conditionMap[rawCondition] || 'Good',
             description: product.description,
             inStock: product.status === 'for-sale-online',
             favorite_id: item.id,
