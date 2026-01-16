@@ -9,6 +9,14 @@ interface ProductCardMobileProps {
   userId?: string | null;
 }
 
+const conditionLabelFR: Record<string, string> = {
+  New: 'Neuf',
+  Excellent: 'Excellent',
+  'Very Good': 'Très Bon État',
+  Good: 'Bon État',
+  Fair: 'Correct',
+};
+
 const ProductCardMobile: React.FC<ProductCardMobileProps> = ({ product, onAddToCart, onProductClick, userId }) => {
   const discountPercentage = product.originalPrice 
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
