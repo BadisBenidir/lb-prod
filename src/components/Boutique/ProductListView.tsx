@@ -67,7 +67,7 @@ const ProductListView: React.FC<ProductListViewProps> = ({ product, onProductCli
               product.condition === 'Good' ? 'bg-orange-100 text-orange-800' :
               'bg-red-100 text-red-800'
             }`}>
-              {translateCondition(product.condition)}
+              {String(product.condition)}
             </span>
             <span className="text-xs md:text-sm text-gray-600">{product.category}</span>
           </div>
