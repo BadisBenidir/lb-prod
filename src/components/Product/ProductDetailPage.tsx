@@ -372,18 +372,16 @@ const ProductDetailPage: React.FC = () => {
                 </summary>
 
                 <div className='px-4 pb-4'>
-                  <div className='grid grid-cols-4 gap-2'>
-                    {defectImages.map((img: string, i:number) => (
+                  <div className='flex gap-3 overflow-x-auto pb-2'>
+                    {defectImages.map((img) => (
                       <button 
-                        key={i}
-                        type='button'
-                        className='overflow-hidden rounded-lg border border-gray-200'
+                        key={img}
+                        className='shrink-0 w-28 h-28 md:h-32 overflow-hidden rounded-xl'
                         onClick={() => setSelectedDefectImageIndex(img)} 
                       >
                         <img
                           src={img}
-                          alt={`Défaut ${i + 1}`}
-                          className='h-16 w-full object-cover'
+                          className='w-full h-full object-cover'
                         />
                       </button>
                     ))}
