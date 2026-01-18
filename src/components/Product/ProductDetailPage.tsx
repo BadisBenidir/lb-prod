@@ -363,18 +363,6 @@ const ProductDetailPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Défauts texte (si présent) */}
-            {product.defects && (
-              <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-orange-800">Points d'attention</h3>
-                <div className="bg-orange-50 border border-orange-200 p-4 rounded-lg">
-                  <p className="text-orange-800 text-sm leading-relaxed">
-                    {product.defects}
-                  </p>
-                </div>
-              </div>
-            )}
-
             {/* Photos des defauts accordéon */}
             {defectImages?.length > 0 && (
               <details className='mb-4 rounded-xl border border-gray-200 bg-white'>
