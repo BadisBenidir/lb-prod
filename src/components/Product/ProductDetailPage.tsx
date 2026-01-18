@@ -363,36 +363,17 @@ const ProductDetailPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Photos des defauts accordéon */}
-            {defectImages?.length > 0 && (
-              <details className='mb-4 rounded-xl border border-gray-200 bg-white'>
-                <summary className='cursor-pointed select-none px-4 py-3 text-sm font-medium text-gray-900 fkex items-center justify-between'>
-                  Photos des défauts 
-                  <span className='text-xs text-gray-500'>{defectImages.length}</span>
-                </summary>
-
-                <div className='px-4 pb-4'>
-                  <div className='flex gap-3 overflow-x-auto pb-2'>
-                    {defectImages.map((img) => (
-                      <button 
-                        key={img}
-                        className='shrink-0 w-28 h-28 md:h-32 overflow-hidden rounded-xl'
-                        onClick={() => setSelectedDefectImageIndex(img)} 
-                      >
-                        <img
-                          src={img}
-                          className='w-full h-full object-cover'
-                        />
-                      </button>
-                    ))}
-                  </div>
+            {/* Défauts texte (si présent) */}
+            {product.defects && (
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold text-orange-800">Points d'attention</h3>
+                <div className="bg-orange-50 border border-orange-200 p-4 rounded-lg">
+                  <p className="text-orange-800 text-sm leading-relaxed">
+                    {product.defects}
+                  </p>
                 </div>
-              </details>
+              </div>
             )}
-          
-
-
-
 
             {/* Actions */}
             <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4 -mx-4 mt-8">
