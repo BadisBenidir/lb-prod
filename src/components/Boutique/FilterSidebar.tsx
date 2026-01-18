@@ -17,6 +17,14 @@ interface FilterSidebarProps {
   onClose: () => void;
 }
 
+const CONDITION_ORDER = [
+  'New',
+  'Excellent',
+  'Very Good',
+  'Good',
+  'Fair',
+];
+
 const FilterSidebar: React.FC<FilterSidebarProps> = ({
   filters,
   availableCategories,
@@ -350,7 +358,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </button>
             {expandedSections.condition && (
               <div className="space-y-2">
-                {sortedConditions.map(condition => (
+                {CONDITION_ORDER.map(condition => (
                   <label key={condition} className="flex items-center">
                     <input
                       type="checkbox"
