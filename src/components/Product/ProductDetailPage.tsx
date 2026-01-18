@@ -184,6 +184,33 @@ const ProductDetailPage: React.FC = () => {
               )}
             </div>
 
+            {/* Carrousel photos défauts (si présentes) */}
+            {hasDefectImages && (
+              <div className="space-y-4">
+                <h3 className="text-sm font-semibold text-orange-800">Photos des défauts</h3>
+                {/* Image principale défaut */}
+                <div className="relative aspect-square bg-orange-50 rounded-lg overflow-hidden border-2 border-orange-200">
+                  <img
+                    src={defectImages[selectedDefectImageIndex]}
+                    alt={`Défaut ${selectedDefectImageIndex + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                  {defectImages.length > 1 && (
+                    <>
+                      <button
+                        onClick={previousDefectImage}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-colors"
+                      >
+                        <ChevronLeft className="h-5 w-5 text-orange-800" />
+                      </button>
+                      <button
+                        onClick={nextDefectImage}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-colors"
+                      >
+                        <ChevronRight className="h-5 w-5 text-orange-800" />
+                      </button>
+                    </>
+                  )}
                   {/* Indicateur d'images défauts */}
                   {defectImages.length > 1 && (
                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
