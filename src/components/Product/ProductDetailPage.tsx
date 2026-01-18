@@ -375,6 +375,39 @@ const ProductDetailPage: React.FC = () => {
               </div>
             )}
 
+            {/* Photos des defauts accordéon */}
+            {defectImages?.length > 0 && (
+              <details className='mb-4 rounded-xl border border-gray-200 bg-white'>
+                <summary className='cursor-pointed select-none px-4 py-3 text-sm font-medium text-gray-900 fkex items-center justify-between'>
+                  Photos des défauts 
+                  <span className='text-xs text-gray-500'>{defectImages.length}</span>
+                </summary>
+
+                <div className='px-4 pb-4'>
+                  <div className='grid grid-cols-4 gap-2'>
+                    {defectImages.map((img: string, i:number) => (
+                      <button 
+                        key={i}
+                        type='button'
+                        className='overflow-hidden rounded-lg border border-gray-200'
+                        onClick={() => setSelectedDefectImageIndex(img)} 
+                      >
+                        <img
+                          src={img}
+                          alt={`Défaut ${i + 1}`}
+                          className='h-16 w-full object-cover'
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </details>
+            )}
+          
+
+
+
+
             {/* Actions */}
             <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4 -mx-4 mt-8">
               {/* Message pour produit vendu affiché */}
