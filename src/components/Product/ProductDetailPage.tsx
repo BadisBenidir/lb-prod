@@ -445,6 +445,7 @@ const ProductDetailPage: React.FC = () => {
                         </div>
                       )}
                     </div>
+                  )}
                 </summary>
               </details>
 
