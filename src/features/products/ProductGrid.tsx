@@ -12,20 +12,10 @@ interface ProductGridProps {
   homeToutIds?: string[];
 }
 
-  const homeToutIds = [
-    'ID_1',
-    'ID_2',
-    'ID_3',
-    'ID_4',
-    'ID_5',
-    'ID_6',
+  const HOME_TOUT_IDS = [
+    "5c6b94e1-33c2-4b98-8a58-d2192ce2312a"
   ];
 
-const homeToutProducts = homeToutIds.length
-  ? homeToutIds
-      .map((id) => products.find((p) => p.id === id))
-      .filter(Boolean)
-  : products.slice(0, 6);
 
 const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, categories, userId, homeToutIds = [] }) => {
   const [selectedCategory, setSelectedCategory] = useState('Tout');
@@ -52,12 +42,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
 
   const filteredProducts = 
     selectedCategory === 'Tout' 
-    ? sortedProducts.filter(p =>
-      homeToutIds.includes(p.id)
-    )
-    : sortedProducts
-      .filter((p) => p.category === selectedCategory)
-      .slice(0, 6);
+      ? products.filter(p => HOME_TOUT_IDS.includes(p.id))
+      : products
+        .filter(p => p.category === selectedCategory)
+        .slice(0, 6);
   
   const categoryLabelMap: Record<string, string> = {
     Tout: 'Tout',
