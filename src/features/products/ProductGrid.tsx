@@ -13,7 +13,7 @@ interface ProductGridProps {
 }
 
   const homeToutIds = [
-    '5c6b94e1-33c2-4b98-8a58-d2192ce2312a',
+    'ID_1',
     'ID_2',
     'ID_3',
     'ID_4',
@@ -52,8 +52,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
 
   const filteredProducts = 
     selectedCategory === 'Tout' 
-    ? (homeToutProducts as Product[])
-    : products
+    ? sortedProducts.filter(p =>
+      homeToutIds.includes(p.id)
+    )
+    : sortedProducts
       .filter((p) => p.category === selectedCategory)
       .slice(0, 6);
   
