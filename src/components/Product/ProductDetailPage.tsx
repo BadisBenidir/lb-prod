@@ -312,8 +312,9 @@ const ProductDetailPage: React.FC = () => {
             {/* Photos des defauts accordéon */}
             {defectImages?.length > 0 && (
               <details className='mb-4 rounded-xl border border-gray-200 bg-white'>
-                <summary className='relative z-10 cursor-pointed select-none'>
-                  Photo des defauts
+                <summary className='cursor-pointed flex items-center gap-2 text-lg font-medium'>
+                  <span className='text-2xl'>▶<</span>
+                  <span>Photos des défauts</span>
                 </summary>
                 <div className='mt-3 relative z-0'>
 
