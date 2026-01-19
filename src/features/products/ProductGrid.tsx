@@ -13,6 +13,10 @@ interface ProductGridProps {
 const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, categories, userId }) => {
   const [selectedCategory, setSelectedCategory] = useState('Tout');
 
+  console.log('[GRID] products lenght =', products?.length);
+  console.log('[GRID] categories prop =', categories);
+  console.log('[GRID] sample product.category =', products?.slice(0, 8).map(p => p.category));
+
   console.log('[CAT] selectCategory =', selectedCategory);
 
   const categoryCounts = products.reduce((acc: Record<string, number>, p: any) => {
@@ -32,7 +36,9 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
   const filteredProducts = 
     selectedCategory === 'Tout' 
     ? products 
-    : products.filter((product) => product.category === selectedCategory);
+    : products.filter(
+        (product) => product.category === selectedCategory
+      );
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
