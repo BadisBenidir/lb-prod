@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { DbProductWithRelations, Product } from '../types';
 import { mapDbProductToClient } from '../utils/productMapper';
+import { products } from '../data/products';
 
 export const useProduct = (productId: string | null) => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -40,6 +41,13 @@ export const useProduct = (productId: string | null) => {
 
         const typedData = data as DbProductWithRelations;
         const clientProduct = mapDbProductToClient(typedData);
+
+        console.log(
+          'CATEGORIES UNIQUES',
+          Array.from(
+            new Set(products.map(p => String(p.category)))
+          ).sort()
+        );
         
         setProduct(clientProduct);
 
