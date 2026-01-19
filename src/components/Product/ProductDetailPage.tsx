@@ -315,8 +315,8 @@ const ProductDetailPage: React.FC = () => {
                 <summary className='list-none cursor-pointed'>
                   <div className='flex items-center gap-3 px-5 py-3 rounded-xl bg-white shadow-md border border-gray-200 text-gray-900 text-lg font-medium hover:shadow-lg hover:bg-gray-50 transition w-fit'>
                   <span className='text-2xl'>▶</span>
-                  <span>Photos des défauts</span>
                   </div>
+                  <span>Photos des défauts</span>
                 </summary>
                 <div className='mt-3 relative z-0'>
 
