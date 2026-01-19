@@ -35,10 +35,20 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
 
   const filteredProducts = 
     selectedCategory === 'Tout' 
-    ? products 
-    : products.filter(
-        (product) => product.category === selectedCategory
-      );
+    ? products.slice(0, 6)
+    : products
+      .filter((p) => p.category === selectedCategory)
+      .slice(0, 6);
+  
+  const categoryLabelMap: Record<string, string> = {
+    Tout: 'Tout',
+    Chaussures: 'Chaussures',
+    Sacs: 'Sacs',
+    Accessoires: 'Accessoires',
+    Pochettes: 'Pochettes',
+    Vetements: 'Vetements',
+  }
+
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
