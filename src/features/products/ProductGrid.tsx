@@ -12,24 +12,10 @@ interface ProductGridProps {
 const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, categories, userId }) => {
   const [selectedCategory, setSelectedCategory] = useState('Tout');
 
-  // Mapping des catégories DB vers affichage UI
-  const categoryDisplayMap: { [key: string]: string } = {
-    'Sacs': 'Handbags',
-    'Vetements': 'Ready-to-Wear',
-    'Accessoires': 'Accessories',
-    'Pochettes': 'Handbags',
-    'Chaussures': 'Ready-to-Wear'
-  };
-
-  const filteredProducts = selectedCategory === 'Tout' 
+  const filteredProducts = 
+    selectedCategory === 'Tout' 
     ? products 
-    : products.filter(product => {
-        // Si la catégorie sélectionnée correspond directement à une catégorie DB
-        if (categories.includes(selectedCategory) && selectedCategory !== 'Tout') {
-          return product.category === categoryDisplayMap[selectedCategory] || product.category === selectedCategory;
-        }
-        return false;
-      });
+    : products.filter((product) => product.category === selectedCategory);
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
