@@ -321,7 +321,7 @@ const ProductDetailPage: React.FC = () => {
                   {/* Carrousel photos défauts (si présentes) */}
                   {hasDefectImages && (
                     <div className="space-y-4">
-                      <h3 className="text-sm font-semibold text-orange-800">Photos des défauts</h3>
+                      <h3 className="text-sm font-semibold text-orange-800"></h3>
                       {/* Image principale défaut */}
                       <div className="relative aspect-square bg-orange-50 rounded-lg overflow-hidden border-2 border-orange-200">
                         <img
