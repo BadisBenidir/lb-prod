@@ -13,7 +13,7 @@ interface ProductGridProps {
 }
 
   const homeToutIds = [
-    'ID_1',
+    '5c6b94e1-33c2-4b98-8a58-d2192ce2312a',
     'ID_2',
     'ID_3',
     'ID_4',
