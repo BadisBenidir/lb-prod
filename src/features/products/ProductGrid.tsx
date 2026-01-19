@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Product } from '../../types';
 import ProductCard from './ProductCard';
+import { Cpu } from 'lucide-react';
 
 interface ProductGridProps {
   products: Product[];
@@ -11,6 +12,22 @@ interface ProductGridProps {
 
 const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, categories, userId }) => {
   const [selectedCategory, setSelectedCategory] = useState('Tout');
+
+  console.log('[CAT] selectCategory =', selectedCategory);
+
+  const categoryCounts = products.reduce((acc: Record<string, number>, p: any) => {
+    const key = String(p.category);
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {});
+  console.log('[CAT] counts =', categoryCounts);
+
+  console.log('[CAT] sample categories =', products.slice(0, 10).map(p => ({
+    id: p.id,
+    name: p.name,
+    category: p.category,
+    type: typeof p.category
+  })));
 
   const filteredProducts = 
     selectedCategory === 'Tout' 
