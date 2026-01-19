@@ -2,15 +2,32 @@ import React, { useState } from 'react';
 import { Product } from '../../types';
 import ProductCard from './ProductCard';
 import { Cpu } from 'lucide-react';
+import { products } from '../../data/products';
 
 interface ProductGridProps {
   products: Product[];
   onAddToCart: (product: Product) => void;
   categories: string[];
   userId?: string | null;
+  homeToutIds?: string[];
 }
 
-const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, categories, userId }) => {
+  const homeToutIds = [
+    'ID_1',
+    'ID_2',
+    'ID_3',
+    'ID_4',
+    'ID_5',
+    'ID_6',
+  ];
+
+const homeToutProducts = homeToutIds.length
+  ? homeToutIds
+      .map((id) => products.find((p) => p.id === id))
+      .filter(Boolean)
+  : products.slice(0, 6);
+
+const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, categories, userId, homeToutIds = [] }) => {
   const [selectedCategory, setSelectedCategory] = useState('Tout');
 
   console.log('[GRID] products lenght =', products?.length);
@@ -33,13 +50,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
     type: typeof p.category
   })));
 
-  const sortedProducts = [...products].sort(
-    (a, b) => new Date(b.createdAt).getTime() – new Date(a.createdAt).getTime()
-  );
   const filteredProducts = 
     selectedCategory === 'Tout' 
-    ? sortedProducts.slice(0, 6)
-    : sortedProducts
+    ? (homeToutProducts as Product[])
+    : products
       .filter((p) => p.category === selectedCategory)
       .slice(0, 6);
   
