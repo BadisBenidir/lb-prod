@@ -63,3 +63,7 @@ h1, h2, h3, h4, h5, h6 {
 html, body {
   front-family: "Cormorant Garamond", serif;
 }
+
+details[open] summary span {
+  transform: rotate(90deg);
+}
