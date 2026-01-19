@@ -41,7 +41,7 @@ const HomePageDesktop: React.FC = () => {
         featuredProducts={products.slice(0, 4)}
       />
       <ProductGrid 
-        products={products.slice(0, 6)}
+        products={products}
         categories={['Tout', ...(availableCategories || [])]}
         onAddToCart={addToCart}
         userId={userId}
