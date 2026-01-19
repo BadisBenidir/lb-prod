@@ -314,7 +314,7 @@ const ProductDetailPage: React.FC = () => {
               <details className='mb-4 rounded-xl border border-gray-200 bg-white'>
                 <summary className='relative z-10 cursor-pointed select-none'>
                   Photo des defauts
-                <summary/>
+                </summary>
                 <div className='mt-3 relative z-0'>
 
                   {/* Carrousel photos défauts (si présentes) */}
