@@ -42,10 +42,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
   
   const categoryLabelMap: Record<string, string> = {
     Tout: 'Tout',
-    Chaussures: 'Chaussures',
     Sacs: 'Sacs',
-    Accessoires: 'Accessoires',
+    Chaussures: 'Chaussures',
     Pochettes: 'Pochettes',
+    Accessoires: 'Accessoires',
     Vetements: 'Vetements',
   }
 
