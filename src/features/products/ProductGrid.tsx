@@ -75,7 +75,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
 
       {/* Category Filter */}
       <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12 px-4">
-        {categories.map((category) => (
+        {orderCategories.map((category) => (
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
