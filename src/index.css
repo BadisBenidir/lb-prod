@@ -67,3 +67,12 @@ html, body {
 details[open] summary .chevron {
   transform: rotate(90deg);
 }
+
+summary {
+  list-style: none;
+  width: 100%;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
