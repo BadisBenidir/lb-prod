@@ -380,7 +380,6 @@ const ProductDetailPage: React.FC = () => {
               <details className='mb-4 rounded-xl border border-gray-200 bg-white'>
                 <summary className='cursor-pointed select-none px-4 py-3 text-sm font-medium text-gray-900 fkex items-center justify-between'>
 
-
                   {/* Carrousel photos défauts (si présentes) */}
                   {hasDefectImages && (
                     <div className="space-y-4">
@@ -448,6 +447,7 @@ const ProductDetailPage: React.FC = () => {
                   )}
                 </summary>
               </details>
+            )}
 
 
 
