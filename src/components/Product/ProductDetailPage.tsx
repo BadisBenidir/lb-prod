@@ -312,7 +312,10 @@ const ProductDetailPage: React.FC = () => {
             {/* Photos des defauts accordéon */}
             {defectImages?.length > 0 && (
               <details className='mb-4 rounded-xl border border-gray-200 bg-white'>
-                <summary className='cursor-pointed select-none px-4 py-3 text-sm font-medium text-gray-900 fkex items-center justify-between'>
+                <summary className='relative z-10 cursor-pointed select-none'>
+                  Photo des defauts
+                <summary/>
+                <div className='mt-3 relative z-0'>
 
                   {/* Carrousel photos défauts (si présentes) */}
                   {hasDefectImages && (
@@ -379,7 +382,7 @@ const ProductDetailPage: React.FC = () => {
                       )}
                     </div>
                   )}
-                </summary>
+                </div>
               </details>
             )}
 
