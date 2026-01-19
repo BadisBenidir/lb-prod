@@ -33,10 +33,13 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
     type: typeof p.category
   })));
 
+  const sortedProducts = [...products].sort(
+    (a, b) => new Date(b.createdAt).getTime() – new Date(a.createdAt).getTime()
+  );
   const filteredProducts = 
     selectedCategory === 'Tout' 
-    ? products.slice(0, 6)
-    : products
+    ? sortedProducts.slice(0, 6)
+    : sortedProducts
       .filter((p) => p.category === selectedCategory)
       .slice(0, 6);
   
