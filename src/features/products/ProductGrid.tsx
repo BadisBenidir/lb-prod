@@ -49,6 +49,18 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
     Vetements: 'Vetements',
   }
 
+  const CATEGORY_ORDER = [
+    'Tout',
+    'Sacs',
+    'Chaussures',
+    'Accessoires',
+    'Pochettes',
+    'Vetements',
+  ];
+
+  const orderCategories = CATEGORY_ORDER.filter(cat =>
+    cat === 'Tout' || categories.includes(cat)
+  );
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
