@@ -313,7 +313,7 @@ const ProductDetailPage: React.FC = () => {
             {defectImages?.length > 0 && (
               <details className='mb-4 rounded-xl border border-gray-200 bg-white'>
                 <summary className='cursor-pointed flex items-center gap-2 text-lg font-medium'>
-                  <span className='text-2xl'>▶<</span>
+                  <span className='text-2xl'>▶</span>
                   <span>Photos des défauts</span>
                 </summary>
                 <div className='mt-3 relative z-0'>
