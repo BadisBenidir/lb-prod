@@ -133,22 +133,6 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
           />
         </div>
       </div>
-
-      {/* Products Grid */}
-      <div className="grid grid-cols-3 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-3 md:gap-8">
-        {filteredProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            onAddToCart={onAddToCart}
-            onProductClick={(id) => {
-              navigate(`/produit/${id}`);
-              window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-            }}
-            userId={userId}
-          />
-        ))}
-      </div>
     </section>
   );
 };
