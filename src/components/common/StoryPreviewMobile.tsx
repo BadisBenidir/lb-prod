@@ -34,7 +34,7 @@ const StoryPreviewMobile: React.FC<StoryPreviewMobileProps> = ({ onNavigateToAbo
             <img
               src="/story-gucci-bag.webp"
               alt="Expertise en maroquinerie de luxe"
-              className="w-full h-64 object-contain"
+              className="w-full h-64 object-cover"
             />
             
             {/* Gradient overlay */}

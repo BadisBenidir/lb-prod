@@ -88,7 +88,7 @@ const BoutiqueHighlightMobile: React.FC<BoutiqueHighlightMobileProps> = ({
                     <img
                       src={product.images && product.images[0] ? product.images[0] : product.image || 'https://via.placeholder.com/200x200?text=No+Image'}
                       alt={product.name}
-                      className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     />
                   </div>
                   <div className="p-3">
