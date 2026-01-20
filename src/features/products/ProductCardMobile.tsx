@@ -91,7 +91,7 @@ const ProductCardMobile: React.FC<ProductCardMobileProps> = ({ product, onAddToC
       <div className="p-3 flex flex-col h-32"> {/* Fixed height container */}
         {/* Product Info - Fixed Height */}
         <div className="mb-2 text-center">
-          <h3 className="text-[11px] md:text-sm text-gray-900 line-clamp-2">
+          <h3 className="text-sm font-medium text-gray-900 mb-1 truncate">
             {product.name}
           </h3>
           <p className="text-[10px] md:text-xs text-gray-500 mt-1">
