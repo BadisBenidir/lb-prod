@@ -4,6 +4,7 @@ import ProductCard from './ProductCard';
 import { Cpu } from 'lucide-react';
 import { products } from '../../data/products';
 import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface ProductGridProps {
   products: Product[];
@@ -24,6 +25,7 @@ interface ProductGridProps {
 
 
 const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, categories, userId, homeToutIds = [] }) => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('Tout');
 
   console.log('[GRID] products lenght =', products?.length);
@@ -110,8 +112,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
             key={product.id}
             product={product}
             onAddToCart={onAddToCart}
+            onProductClick={(id) => navigate(`/produit/${id}`)}
             userId={userId}
-            onProductClick={(id) => Navigate(`/produit/${id}`)}
           />
         ))}
       </div>
