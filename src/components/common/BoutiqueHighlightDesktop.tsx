@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Star, Heart, ShoppingBag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { products } from '../../data/products';
 
 export const HOME_TOUT_IDS = [
   "5c6b94e1-33c2-4b98-8a58-d2192ce2312a",
@@ -20,8 +21,7 @@ export const boutiqueHighlightIds = [
 
 
 interface BoutiqueHighlightDesktopProps {
-  onNavigateToBoutique?: () => void;
-  featuredProducts?: Array<{
+  featuredProducts?: {
     id: string;
     name: string;
     price: number;
@@ -29,12 +29,15 @@ interface BoutiqueHighlightDesktopProps {
     image?: string;
     brand?: string;
     brand_name?: string;
-  }>;
-}
+  }[];
 
+  onNavigateToBoutique?: () => void;
+  onProductClick?: (id: string) => void;
+}
 
 const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({ 
   onNavigateToBoutique,
+  onProductClick,
   featuredProducts = []
 }) => {
 
@@ -98,7 +101,7 @@ const selectedFeatured = featuredProducts
                   <div 
                     key={product.id} 
                     className="bg-white/80 backdrop-blur-sm rounded-lg p-4 hover:bg-white transition-colors duration-300 cursor-pointer border border-gray-200 shadow-sm"
-                    onClick={() => onNavigateToBoutique?.()}
+                    onClick={() => onProductClick?.(product.id)}
                   >
                     <div className="aspect-[4/5] bg-gray-200 rounded-md mb-3 overflow-hidden">
                       <img
