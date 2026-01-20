@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, Star, Heart, ShoppingBag } from 'lucide-react';
+import { boutiqueHighlightIds } from './BoutiqueHighlightDesktop';
 
 export const HOME_TOUT_IDS = [
   "5c6b94e1-33c2-4b98-8a58-d2192ce2312a",
