@@ -15,7 +15,7 @@ interface ProductGridProps {
   homeToutIds?: string[];
 }
 
-const HOME_TOUT_IDS = [
+  const HOME_TOUT_IDS = [
   "5c6b94e1-33c2-4b98-8a58-d2192ce2312a",
   "4075dbf3-4abf-4f67-a480-a6d7bb9f74ea",
   "165f41a8-eb5e-41ba-9203-cd634d79446b",
