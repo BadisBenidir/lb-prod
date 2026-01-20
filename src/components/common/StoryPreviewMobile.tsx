@@ -30,7 +30,7 @@ const StoryPreviewMobile: React.FC<StoryPreviewMobileProps> = ({ onNavigateToAbo
 
         {/* Visual Section */}
         <div className="mb-8 relative">
-          <div className="relative aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-3xl shadow-2xl">
+          <div className="relative overflow-hidden rounded-3xl shadow-2xl">
             <img
               src="/story-gucci-bag.webp"
               alt="Expertise en maroquinerie de luxe"
