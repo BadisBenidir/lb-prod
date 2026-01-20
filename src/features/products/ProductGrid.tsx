@@ -114,7 +114,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
             onAddToCart={onAddToCart}
             onProductClick={(id) => {
               navigate(`/produit/${id}`)
-              window.scrollTo({ top: 0; left: 0, behavior: "auto"})};
+              window.scrollTo({ top: 0; left: 0, behavior: "auto" });
+            }}
             userId={userId}
           />
         ))}
