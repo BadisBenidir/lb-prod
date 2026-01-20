@@ -64,21 +64,14 @@ const StoryPreviewMobile: React.FC<StoryPreviewMobileProps> = ({ onNavigateToAbo
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 border border-gray-100 shadow-sm">
             <p className="text-sm font-medium">
               Ligne Blanche est née d'une conviction simple : le luxe mérite une seconde vie.
-
-              Nous sélectionnons des pièces authentiques et intemporelles pour les rendre
-              accessibles à une nouvelle génération, avec exigence et transparence.
             </p>
-                        <p className="text-sm text-gray-700">
-              Nous sélectionnons des pièces authentiques et intemporelles pour les rendre
-              accessibles à une nouvelle génération, avec exigence et transparence.
-            </p>
-          </div>
+            <p className="text-sm text-gray-700">
 
-          <div className="bg-gradient-to-r from-gray-50 to-white rounded-2xl p-5 border border-gray-200 shadow-sm">
+            </p>
             <p className="text-sm text-gray-700">
               Nous sélectionnons des pièces authentiques et intemporelles pour les rendre
               accessibles à une nouvelle génération, avec exigence et transparence.
-            </p>
+            </p>            
           </div>
         </div>
 
