@@ -94,7 +94,7 @@ const ProductCardMobile: React.FC<ProductCardMobileProps> = ({ product, onAddToC
           <h3 className="text-s font-medium text-gray-900 mb-1 truncate">
             {product.name}
           </h3>
-          <p className="text-[10px] md:text-xs text-gray-500 mt-1">
+          <p className="text-[10px] md:text-xs text-gray-500 mt-1 text-left">
             {product.brand}
           </p>
           
