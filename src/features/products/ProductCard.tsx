@@ -23,7 +23,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
     : 0;
 
   return (
-    <div className="group cursor-pointer h-full flex flex-col">
+    <div 
+      className="group cursor-pointer h-full flex flex-col">
       onClick={() => onProductClick?.(product.id)}
       role="button"
       tabIndex={0}
