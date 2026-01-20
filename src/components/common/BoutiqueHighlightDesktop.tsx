@@ -1,5 +1,23 @@
 import React from 'react';
 import { ArrowRight, Star, Heart, ShoppingBag } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
+export const HOME_TOUT_IDS = [
+  "5c6b94e1-33c2-4b98-8a58-d2192ce2312a",
+  "4075dbf3-4abf-4f67-a480-a6d7bb9f74ea",
+  "165f41a8-eb5e-41ba-9203-cd634d79446b",
+  "bea1601f-c573-4f83-9c17-09ae45a11437",
+  "719c8374-baea-4ed7-a556-9e1c6f05dd7a",
+  "8ce7f2b7-a537-4cf3-944f-3f5dfba61128",
+];
+
+export const boutiqueHighlightIds = [
+  "e2a0a467-21af-4747-8563-37a4a0fa7ba9",
+  "413c5c99-60d3-40e8-9fa8-4f8c47b0724c",
+  "4e4990d3-217f-40f5-942b-c2dfe6d417b5",
+  "d7c2d6b4-aa3b-429a-a4c2-6cbe85297d0b",
+];
+
 
 interface BoutiqueHighlightDesktopProps {
   onNavigateToBoutique?: () => void;
@@ -14,10 +32,17 @@ interface BoutiqueHighlightDesktopProps {
   }>;
 }
 
+const navigate = useNavigate();
+
 const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({ 
   onNavigateToBoutique,
   featuredProducts = []
 }) => {
+
+const selectedFeatured = featuredProducts
+  .filter(p => boutiqueHighlightIds.includes(p.id))
+  .slice(0, 4);
+
   return (
     <section className="py-16 md:py-20 bg-gradient-to-b from-white to-gray-50 text-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,11 +95,11 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
           <div className="relative">
             {featuredProducts.length > 0 ? (
               <div className="grid grid-cols-2 gap-4">
-                {featuredProducts.slice(0, 4).map((product) => (
+                {selectedFeatured.map((product) => (
                   <div 
                     key={product.id} 
                     className="bg-white/80 backdrop-blur-sm rounded-lg p-4 hover:bg-white transition-colors duration-300 cursor-pointer border border-gray-200 shadow-sm"
-                    onClick={onNavigateToBoutique}
+                    onClick={() => navigate(`/produit/${product.id}`)}
                   >
                     <div className="aspect-[4/5] bg-gray-200 rounded-md mb-3 overflow-hidden">
                       <img
