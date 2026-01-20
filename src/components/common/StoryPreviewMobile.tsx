@@ -29,7 +29,7 @@ const StoryPreviewMobile: React.FC<StoryPreviewMobileProps> = ({ onNavigateToAbo
         </div>
 
         {/* Visual Section */}
-        <div className="mb-8 relative">
+        <div className="mb-10 relative">
           <div className="relative overflow-hidden rounded-3xl shadow-2xl">
             <img
               src="/story-gucci-bag.webp"
@@ -42,14 +42,14 @@ const StoryPreviewMobile: React.FC<StoryPreviewMobileProps> = ({ onNavigateToAbo
             
             {/* Overlay card */}
             <div className="absolute top-4 left-4 right-4">
-              <div className="bg-white/95 backdrop-blur-sm rounded-l p-4 shadow-lg border border-white/20">
+              <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-white/20">
                 <div className="flex items-start">
                   <div className="bg-gray-100 rounded-full p-2 mr-3 flex-shrink-0">
                     <Eye className="h-4 w-4 text-gray-800" />
                   </div>
                   <div>
-                    <p className="text-xss font-semibold text-gray-900 mb-1">Authenticité Renforcée</p>
-                    <p className="text-xxs text-gray-700 leading-relaxed">
+                    <p className="text-xs font-semibold text-gray-900 mb-1">Authenticité Renforcée</p>
+                    <p className="text-xs text-gray-700 leading-relaxed">
                       Certaines pièces bénéficient d'un certificat externe !
                     </p>
                   </div>
