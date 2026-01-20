@@ -47,7 +47,7 @@ const HomePageMobile: React.FC = () => {
           }} 
         />
         <ProductGrid 
-          products={products.slice(0, 4)}
+          products={products}
           categories={['Tout', ...(availableCategories || [])]}
           onAddToCart={addToCart}
           userId={userId}
