@@ -50,7 +50,7 @@ const StoryPreviewMobile: React.FC<StoryPreviewMobileProps> = ({ onNavigateToAbo
                   <div>
                     <p className="text-xs font-semibold text-gray-900 mb-1">Authenticité Renforcée</p>
                     <p className="text-xs text-gray-700 leading-relaxed">
-                      Les pièces les plus prestigieuses bénéficient d'une expertise externe pour vous fournir un certificat !
+                      Les pièces les plus prestigieuses bénéficient d'un certificat externe !
                     </p>
                   </div>
                 </div>
