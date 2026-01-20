@@ -42,7 +42,7 @@ const StoryPreviewMobile: React.FC<StoryPreviewMobileProps> = ({ onNavigateToAbo
             
             {/* Overlay card */}
             <div className="absolute top-4 left-4 right-4">
-              <div className="bg-white/95 backdrop-blur-sm rounded-4xl p-4 shadow-lg border border-white/20">
+              <div className="bg-white/95 backdrop-blur-sm rounded-l p-4 shadow-lg border border-white/20">
                 <div className="flex items-start">
                   <div className="bg-gray-100 rounded-full p-2 mr-3 flex-shrink-0">
                     <Eye className="h-4 w-4 text-gray-800" />
