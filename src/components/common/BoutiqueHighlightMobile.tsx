@@ -27,6 +27,8 @@ const selectedFeatured = featuredProducts
   .filter(p => boutiqueHighlightIds.includes(p.id))
   .slice(0, 4);
 
+  
+
   return (
     <section className="py-8 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
       {/* Decorative background elements */}
