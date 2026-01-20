@@ -115,7 +115,6 @@ const ProductCardMobile: React.FC<ProductCardMobileProps> = ({ product, onAddToC
         
         {/* Action Button - Fixed Height */}
         <button
-          className='hidden md:block mt-3 w-full bg-black text-white py-2'
           onClick={(e) => {
             e.stopPropagation();
             onAddToCart(product);
