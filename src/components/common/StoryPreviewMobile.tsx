@@ -41,7 +41,7 @@ const StoryPreviewMobile: React.FC<StoryPreviewMobileProps> = ({ onNavigateToAbo
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
             
             {/* Overlay card */}
-            <div className="absolute bottom-4 left-4 right-4">
+            <div className="absolute bottom-2 left-4 right-4">
               <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-white/20">
                 <div className="flex items-start">
                   <div className="bg-gray-100 rounded-full p-2 mr-3 flex-shrink-0">
