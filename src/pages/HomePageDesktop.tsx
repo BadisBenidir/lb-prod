@@ -5,7 +5,6 @@ import { ProductGrid } from '../features/products';
 import { useProducts, useAvailableCategories } from '../hooks/useProducts';
 import { useCartContext } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext'
-import { heroIds } from '../components/common/HeroDesktop';
 
 
 const HomePageDesktop: React.FC = () => {
