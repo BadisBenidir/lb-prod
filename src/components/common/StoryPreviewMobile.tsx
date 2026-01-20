@@ -29,8 +29,8 @@ const StoryPreviewMobile: React.FC<StoryPreviewMobileProps> = ({ onNavigateToAbo
         </div>
 
         {/* Visual Section */}
-        <div className="mb-10 relative">
-          <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+        <div className="mb-8 relative">
+          <div className="relative aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-3xl shadow-2xl">
             <img
               src="/story-gucci-bag.webp"
               alt="Expertise en maroquinerie de luxe"
@@ -50,7 +50,7 @@ const StoryPreviewMobile: React.FC<StoryPreviewMobileProps> = ({ onNavigateToAbo
                   <div>
                     <p className="text-xs font-semibold text-gray-900 mb-1">Authenticité Renforcée</p>
                     <p className="text-xs text-gray-700 leading-relaxed">
-                      Certaines pièces bénéficient d'un certificat externe !
+                      Les pièces les plus prestigieuses bénéficient d'un certificat externe !
                     </p>
                   </div>
                 </div>
@@ -64,6 +64,9 @@ const StoryPreviewMobile: React.FC<StoryPreviewMobileProps> = ({ onNavigateToAbo
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 border border-gray-100 shadow-sm">
             <p className="text-sm font-medium">
               Ligne Blanche est née d'une conviction simple : le luxe mérite une seconde vie.
+
+              Nous sélectionnons des pièces authentiques et intemporelles pour les rendre
+              accessibles à une nouvelle génération, avec exigence et transparence.
             </p>
           </div>
 
