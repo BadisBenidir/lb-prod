@@ -5,6 +5,7 @@ import { ProductGrid } from '../features/products';
 import { useProducts, useAvailableCategories } from '../hooks/useProducts';
 import { useCartContext } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
+import BoutiqueHighlightMobile from '../components/common/BoutiqueHighlightMobile';
 
 const HomePageMobile: React.FC = () => {
   const navigate = useNavigate();
@@ -37,9 +38,13 @@ const HomePageMobile: React.FC = () => {
     <main className="bg-white">
       <Hero onNavigate={handleNavigation} />
       <div className="px-3">
-        <BoutiqueHighlight 
+        <BoutiqueHighlightMobile
+          featuredProducts={products}
           onNavigateToBoutique={() => navigate('/boutique')}
-          featuredProducts={products.slice(0, 3)}
+          onProductClick={(id) =>{
+            window.scrollTo(0, 0);
+            navigate(`/produit/${id}`);
+          }} 
         />
         <ProductGrid 
           products={products.slice(0, 4)}
