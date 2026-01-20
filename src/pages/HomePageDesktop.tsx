@@ -38,6 +38,7 @@ const HomePageDesktop: React.FC = () => {
     <main>
       <Hero onNavigate={handleNavigation} />
       <BoutiqueHighlight 
+        featuredProducts={products}
         onNavigateToBoutique={() => navigate('/boutique')}
       />
       <ProductGrid 
