@@ -106,36 +106,37 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
         ))}
       </div>
       
-      <div className='grid grid-cols-3 gap-4 md:grid-cols-3 lg:grid-cols-3'></div>
-      {filteredProducts.map((product) => (
-        <div key={product.id}>
-          {/* Mobile */}
-          <div className='md:hidden'>
-            <ProductCardMobile
-              product={product}
-              onAddToCart={onAddToCart}
-              userId={userId}
-              onProductClick={(id) => {
-                navigate(`/produit/${id}`);
-                window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-              }}
-            />
-          </div>
+      <div className='grid grid-cols-3 gap-4 md:grid-cols-3 lg:grid-cols-3'>
+        {filteredProducts.map((product) => (
+          <div key={product.id}>
+            {/* Mobile */}
+            <div className='md:hidden'>
+              <ProductCardMobile
+                product={product}
+                onAddToCart={onAddToCart}
+                userId={userId}
+                onProductClick={(id) => {
+                  navigate(`/produit/${id}`);
+                  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+                }}
+              />
+            </div>
 
-          {/* Desktop */}
-          <div className='hidden md:block'>
-            <ProductCard
-              product={product}
-              onAddToCart={onAddToCart}
-              userId={userId}
-              onProductClick={(id) => {
-                navigate(`/produit/${id}`);
-                window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-              }}
-            />
+            {/* Desktop */}
+            <div className='hidden md:block'>
+              <ProductCard
+                product={product}
+                onAddToCart={onAddToCart}
+                userId={userId}
+                onProductClick={(id) => {
+                  navigate(`/produit/${id}`);
+                  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+                }}
+              />
+            </div>
           </div>
-        </div>
-      </div>))}
+        ))}
+      </div>
     </section>
   );
 };
