@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Product } from '../../types';
 import ProductCard from './ProductCard';
-import { Cpu } from 'lucide-react';
+import { Cpu, MoveLeft } from 'lucide-react';
 import { products } from '../../data/products';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -112,7 +112,9 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
             key={product.id}
             product={product}
             onAddToCart={onAddToCart}
-            onProductClick={(id) => navigate(`/produit/${id}`)}
+            onProductClick={(id) => {
+              navigate(`/produit/${id}`)
+              window.scrollTo({ top: 0; left: 0, behavior: "auto"})};
             userId={userId}
           />
         ))}
