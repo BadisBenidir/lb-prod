@@ -78,6 +78,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
     cat === 'Tout' || categories.includes(cat)
   );
 
+  const productsToShow = window.innerWidth < 768
+    ? filteredProducts.slice(0, 4)
+    : filteredProducts;
+
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div className="text-center mb-12">
