@@ -7,7 +7,7 @@ interface HeroDesktopProps {
 
 const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
   return (
-    <section className="relative bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+    <section className="relative bg-gradient-to-br from-gray-50 to-white min-h-[80vh] md:min-h-[90vh] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 

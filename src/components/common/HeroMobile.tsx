@@ -13,7 +13,7 @@ const HeroMobile: React.FC<HeroMobileProps> = ({ onNavigate }) => {
         <img
           src="/hero-main.webp"
           alt="Expertise en maroquinerie de luxe"
-          className="w-full h-full object-contain opacity-75"
+          className="w-full h-full object-cover opacity-75"
         />
       </div>
 
