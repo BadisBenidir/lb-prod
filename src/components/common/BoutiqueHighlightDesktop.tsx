@@ -3,6 +3,7 @@ import { ArrowRight, Star, Heart, ShoppingBag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { products } from '../../data/products';
 
+
 export const HOME_TOUT_IDS = [
   "5c6b94e1-33c2-4b98-8a58-d2192ce2312a",
   "4075dbf3-4abf-4f67-a480-a6d7bb9f74ea",

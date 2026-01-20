@@ -5,10 +5,10 @@ import { ProductGrid } from '../features/products';
 import { useProducts, useAvailableCategories } from '../hooks/useProducts';
 import { useCartContext } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
-import BoutiqueHighlightDesktop from '../components/common/BoutiqueHighlightDesktop';
+import BoutiqueHighlightMobile from '../components/common/BoutiqueHighlightMobile';
 
 
-const HomePageDesktop: React.FC = () => {
+const HomePageMobile: React.FC = () => {
   const navigate = useNavigate();
   const { userId } = useAuth();
   const { addToCart } = useCartContext();
@@ -39,7 +39,7 @@ const HomePageDesktop: React.FC = () => {
     <main className="bg-white">
       <Hero onNavigate={handleNavigation} />
       <div className="px-3">
-        <BoutiqueHighlightDesktop
+        <BoutiqueHighlightMobile
           featuredProducts={products}
           onNavigateToBoutique={() => navigate('/boutique')}
           onProductClick={(id) =>{
@@ -63,4 +63,4 @@ const HomePageDesktop: React.FC = () => {
   );
 };
 
-export default HomePageDesktop;
+export default HomePageMobile;
