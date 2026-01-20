@@ -97,4 +97,5 @@ export const heroIds = [
   "4e4990d3-217f-40f5-942b-c2dfe6d417b5",
   "d7c2d6b4-aa3b-429a-a4c2-6cbe85297d0b",
 ];
+
 export default HeroDesktop;
