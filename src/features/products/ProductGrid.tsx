@@ -5,6 +5,7 @@ import { Cpu, MoveLeft } from 'lucide-react';
 import { products } from '../../data/products';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import ProductCardMobile from './ProductCardMobile';
 
 interface ProductGridProps {
   products: Product[];
@@ -103,6 +104,34 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
             {category}
           </button>
         ))}
+      </div>
+
+      <div key={product.id}>
+        {/* Mobile */}
+        <div className='md:hidden'>
+          <ProductCardMobile
+            product={product}
+            onAddToCart={onAddToCart}
+            userId={userId}
+            onProductClick={(id) => {
+              navigate(`/produit/${id}`);
+              window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+            }}
+          />
+        </div>
+
+        {/* Desktop */}
+        <div className='hidden md:block'>
+          <ProductCard
+            product={product}
+            onAddToCart={onAddToCart}
+            userId={userId}
+            onProductClick={(id) => {
+              navigate(`/produit/${id}`);
+              window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+            }}
+          />
+        </div>
       </div>
 
       {/* Products Grid */}
