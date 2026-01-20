@@ -23,10 +23,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
     : 0;
 
   return (
-    <div className="group cursor-pointer h-full flex flex-col">
+    <div 
+      className="group cursor-pointer h-full flex flex-col">
+      onClick={() => onProductClick?.(product.id)}
       <div 
         className="relative overflow-hidden bg-white mb-3 md:mb-4 shrink-0"
-        onClick={() => onProductClick?.(product.id)}
       >
         <img
           src={product.image}

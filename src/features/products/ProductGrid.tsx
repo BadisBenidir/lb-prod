@@ -3,6 +3,7 @@ import { Product } from '../../types';
 import ProductCard from './ProductCard';
 import { Cpu } from 'lucide-react';
 import { products } from '../../data/products';
+import { Navigate } from 'react-router-dom';
 
 interface ProductGridProps {
   products: Product[];
@@ -110,6 +111,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
             product={product}
             onAddToCart={onAddToCart}
             userId={userId}
+            onProductClick={(id) => Navigate(`/produit/${id}`)}
           />
         ))}
       </div>
