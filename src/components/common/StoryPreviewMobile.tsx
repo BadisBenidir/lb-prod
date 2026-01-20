@@ -62,7 +62,7 @@ const StoryPreviewMobile: React.FC<StoryPreviewMobileProps> = ({ onNavigateToAbo
         {/* Story Content */}
         <div className="space-y-4 text-gray-700 leading-relaxed mb-8">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 border border-gray-100 shadow-sm">
-            <p className="text-sm font-medium">
+            <p className="text-sm font-medium whitespace-pre-line">
               Ligne Blanche est née d'une conviction simple : le luxe mérite une seconde vie.\n\nNous sélectionnons des pièces authentiques et intemporelles pour les rendre
               accessibles à une nouvelle génération, avec exigence et transparence.
             </p>          
