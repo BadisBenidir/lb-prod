@@ -111,7 +111,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
       </div>
       
       <div className='grid grid-cols-2 gap-4 md:grid-cols-3'>
-        {filteredProducts.map((product) => (
+        {productsToShow.map((product) => (
           <div key={product.id}>
             {/* Mobile */}
             <div className='md:hidden'>
