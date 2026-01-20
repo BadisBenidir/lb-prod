@@ -32,7 +32,7 @@ const ProductCardMobile: React.FC<ProductCardMobileProps> = ({ product, onAddToC
         <img
           src={product.image}
           alt={product.name}
-          className="w-full aspect-[4/5] object-cover transition-transform duration-500 hover:scale-105"
+          className="max-w-full max-h-full object-contain transition-transform duration-500 hover:scale-105"
         />
         
         {/* Sold Display Overlay */}
