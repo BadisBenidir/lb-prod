@@ -62,8 +62,8 @@ const StoryPreviewMobile: React.FC<StoryPreviewMobileProps> = ({ onNavigateToAbo
         {/* Story Content */}
         <div className="space-y-4 text-gray-700 leading-relaxed mb-8">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 border border-gray-100 shadow-sm">
-            <p className="text-m font-medium mb-4">
-              Ligne Blanche est née d'une conviction simple : le luxe mérite une seconde vie.
+            <p className="text-m font-medium mb-6">
+              Ligne Blanche est née d'une conviction simple : Le luxe mérite une seconde vie.
             </p>
 
             <p className="text-m text-gray-700">

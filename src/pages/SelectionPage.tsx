@@ -175,7 +175,7 @@ export default function SelectionPage() {
               <img
                 src="/selection-method.webp"
                 alt="Expertise en maroquinerie transmise"
-                className="w-full h-96 object-contain rounded-2xl shadow-2xl"
+                className="w-full h-96 object-cover rounded-2xl shadow-2xl"
               />
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-black rounded-2xl flex items-center justify-center">
                 <div className="text-center text-white">
