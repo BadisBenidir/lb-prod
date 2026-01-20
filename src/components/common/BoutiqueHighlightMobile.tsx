@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, Star, Heart, ShoppingBag } from 'lucide-react';
-import { boutiqueHighlightIds } from './BoutiqueHighlightDesktop';
+import { boutiqueHighlightIds } from './highlighyIds';
 
 interface BoutiqueHighlightMobileProps {
   featuredProducts?: {

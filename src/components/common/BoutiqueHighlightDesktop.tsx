@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight, Star, Heart, ShoppingBag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
+import { boutiqueHighlightIds } from './highlighyIds';
 
 export const HOME_TOUT_IDS = [
   "5c6b94e1-33c2-4b98-8a58-d2192ce2312a",
@@ -11,14 +11,6 @@ export const HOME_TOUT_IDS = [
   "719c8374-baea-4ed7-a556-9e1c6f05dd7a",
   "8ce7f2b7-a537-4cf3-944f-3f5dfba61128",
 ];
-
-export const boutiqueHighlightIds = [
-  "413c5c99-60d3-40e8-9fa8-4f8c47b0724c",
-  "e2a0a467-21af-4747-8563-37a4a0fa7ba9",
-  "4e4990d3-217f-40f5-942b-c2dfe6d417b5",
-  "d7c2d6b4-aa3b-429a-a4c2-6cbe85297d0b",
-];
-
 
 interface BoutiqueHighlightDesktopProps {
   featuredProducts?: {
