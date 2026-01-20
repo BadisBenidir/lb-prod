@@ -41,7 +41,10 @@ const HomePageDesktop: React.FC = () => {
       <BoutiqueHighlightDesktop 
         featuredProducts={products}
         onNavigateToBoutique={() => navigate('/boutique')}
-        onProductClick={(id) => navigate(`/produit/${id}`)}
+        onProductClick={(id) => {
+          window.scrollTo(0, 0);
+          navigate(`/produit/${id}`);
+        }}
       />
       <ProductGrid 
         products={products}
