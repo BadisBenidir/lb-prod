@@ -23,9 +23,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, onProdu
     : 0;
 
   return (
-    <div 
-      className="group cursor-pointer h-full flex flex-col">
+    <div className="group cursor-pointer h-full flex flex-col">
       onClick={() => onProductClick?.(product.id)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") onProductClick?.(product.id);
+      }}
+
       <div 
         className="relative overflow-hidden bg-white mb-3 md:mb-4 shrink-0"
       >
