@@ -32,7 +32,7 @@ const ProductCardMobile: React.FC<ProductCardMobileProps> = ({ product, onAddToC
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          className="w-full aspect-[4/5] object-cover transition-transform duration-500 hover:scale-105"
         />
         
         {/* Sold Display Overlay */}
@@ -90,11 +90,11 @@ const ProductCardMobile: React.FC<ProductCardMobileProps> = ({ product, onAddToC
       {/* Content Container - Fixed Structure */}
       <div className="p-3 flex flex-col h-32"> {/* Fixed height container */}
         {/* Product Info - Fixed Height */}
-        <div className="flex-1 mb-3">
-          <h3 className="font-semibold text-gray-900 text-sm line-clamp-1 mb-1">
+        <div className="mb-2 text-center">
+          <h3 className="text-[11px] md:text-sm text-gray-900 line-clamp-2">
             {product.name}
           </h3>
-          <p className="text-xs text-gray-500 line-clamp-1 mb-2">
+          <p className="text-[10px] md:text-xs text-gray-500 mt-1">
             {product.brand}
           </p>
           
@@ -115,6 +115,7 @@ const ProductCardMobile: React.FC<ProductCardMobileProps> = ({ product, onAddToC
         
         {/* Action Button - Fixed Height */}
         <button
+          className='hidden md:block mt-3 w-full bg-black text-white py-2'
           onClick={(e) => {
             e.stopPropagation();
             onAddToCart(product);
