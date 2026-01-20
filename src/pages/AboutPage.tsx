@@ -218,10 +218,6 @@ export default function AboutPage() {
               Ce qui Nous Définit
             </h2>
 
-            <h2 className="block sm:hiden text-3xl font-light text-gray-1000 mb-6">
-              Ce qui Nous Définit
-            </h2>
-
             <p className="block sm:hidden text-s text-gray-600 max-w-3xs mx-auto">
               Pas de beaux discours marketing. Juste ce qui fait notre différence, au quotidien.
             </p>
