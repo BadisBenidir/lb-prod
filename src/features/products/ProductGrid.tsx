@@ -106,33 +106,35 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
         ))}
       </div>
 
-      <div key={product.id}>
-        {/* Mobile */}
-        <div className='md:hidden'>
-          <ProductCardMobile
-            product={product}
-            onAddToCart={onAddToCart}
-            userId={userId}
-            onProductClick={(id) => {
-              navigate(`/produit/${id}`);
-              window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-            }}
-          />
-        </div>
+      {filteredProducts.map((product) => (
+        <div key={product.id}>
+          {/* Mobile */}
+          <div className='md:hidden'>
+            <ProductCardMobile
+              product={product}
+              onAddToCart={onAddToCart}
+              userId={userId}
+              onProductClick={(id) => {
+                navigate(`/produit/${id}`);
+                window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+              }}
+            />
+          </div>
 
-        {/* Desktop */}
-        <div className='hidden md:block'>
-          <ProductCard
-            product={product}
-            onAddToCart={onAddToCart}
-            userId={userId}
-            onProductClick={(id) => {
-              navigate(`/produit/${id}`);
-              window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-            }}
-          />
+          {/* Desktop */}
+          <div className='hidden md:block'>
+            <ProductCard
+              product={product}
+              onAddToCart={onAddToCart}
+              userId={userId}
+              onProductClick={(id) => {
+                navigate(`/produit/${id}`);
+                window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+              }}
+            />
+          </div>
         </div>
-      </div>
+      ))}
     </section>
   );
 };
