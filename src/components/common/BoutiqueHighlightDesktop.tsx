@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowRight, Star, Heart, ShoppingBag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { products } from '../../data/products';
 
 
 export const HOME_TOUT_IDS = [
