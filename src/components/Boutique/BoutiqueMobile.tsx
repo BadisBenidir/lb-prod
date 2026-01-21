@@ -47,7 +47,7 @@ const BoutiqueMobile: React.FC<BoutiqueMobileProps> = ({ onAddToCart, onProductC
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
+    <div id='app-scroll' className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white relative overflow-y-auto">
       {/* Decorative background elements */}
       <div className="absolute top-12 right-4 w-20 h-20 bg-gray-300/5 rounded-full blur-2xl"></div>
       <div className="absolute bottom-32 left-4 w-16 h-16 bg-black/5 rounded-full blur-xl"></div>
