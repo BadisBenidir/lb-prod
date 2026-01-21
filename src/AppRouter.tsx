@@ -33,6 +33,7 @@ import { ProfileCompletionPage } from './pages/ProfileCompletionPage';
 import CheckoutPageWrapper from './components/Checkout/CheckoutPageWrapper';
 import CheckoutSuccessPage from './pages/CheckoutSuccessPage';
 import CheckoutCancelPage from './pages/CheckoutCancelPage';
+import ScrollToTop from './components/ScrollToTop';
 
 // Layout wrapper component
 interface LayoutProps {
@@ -210,6 +211,7 @@ function AppRouter() {
     <HelmetProvider>
       <BrowserRouter>
         <CartProvider>
+          <ScrollToTop />
           <Routes>
           {/* Public Routes */}
           <Route 
