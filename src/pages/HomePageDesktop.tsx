@@ -5,6 +5,7 @@ import { ProductGrid } from '../features/products';
 import { useProducts, useAvailableCategories } from '../hooks/useProducts';
 import { useCartContext } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext'
+import { BOUTIQUE_HIGHLIGHT_IDS } from '../components/common/highlight';
 import BoutiqueHighlightDesktop from '../components/common/BoutiqueHighlightDesktop';
 
 
@@ -35,11 +36,15 @@ const HomePageDesktop: React.FC = () => {
     window.scrollTo(0, 0);
   };
 
+  const highlightedProducts = products
+    .filter(p => BOUTIQUE_HIGHLIGHT_IDS.includes(p.id))
+    .slice(0, 4);
+
   return (
     <main>
       <Hero onNavigate={handleNavigation} />
       <BoutiqueHighlightDesktop 
-        featuredProducts={products}
+        featuredProducts={highlightedProducts}
         onNavigateToBoutique={() => navigate('/boutique')}
         onProductClick={(id) => {
           window.scrollTo(0, 0);

@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowRight, Star, Heart, ShoppingBag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { boutiqueHighlightIds } from './highlighyIds';
 
 export const HOME_TOUT_IDS = [
   "5c6b94e1-33c2-4b98-8a58-d2192ce2312a",
@@ -32,10 +31,6 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
   onProductClick,
   featuredProducts = []
 }) => {
-
-const selectedFeatured = featuredProducts
-  .filter(p => boutiqueHighlightIds.includes(p.id))
-  .slice(0, 4);
 
   return (
     <section className="py-16 md:py-20 bg-gradient-to-b from-white to-gray-50 text-gray-900">
@@ -89,7 +84,7 @@ const selectedFeatured = featuredProducts
           <div className="relative">
             {featuredProducts.length > 0 ? (
               <div className="grid grid-cols-2 gap-4">
-                {selectedFeatured.map((product) => (
+                {featuredProducts.map((product) => (
                   <div 
                     key={product.id} 
                     className="bg-white/80 backdrop-blur-sm rounded-lg p-4 hover:bg-white transition-colors duration-300 cursor-pointer border border-gray-200 shadow-sm"

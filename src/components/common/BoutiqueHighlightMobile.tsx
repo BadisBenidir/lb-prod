@@ -1,6 +1,5 @@
 import React from 'react';
 import { ArrowRight, Star, Heart, ShoppingBag } from 'lucide-react';
-import { boutiqueHighlightIds } from './highlighyIds';
 
 interface BoutiqueHighlightMobileProps {
   featuredProducts?: {
@@ -22,12 +21,6 @@ const BoutiqueHighlightMobile: React.FC<BoutiqueHighlightMobileProps> = ({
   onProductClick,
   featuredProducts = []
 }) => {
-
-const selectedFeatured = featuredProducts
-  .filter(p => boutiqueHighlightIds.includes(p.id))
-  .slice(0, 4);
-
-  
 
   return (
     <section className="py-8 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
