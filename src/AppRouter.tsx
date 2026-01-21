@@ -211,256 +211,257 @@ function AppRouter() {
     <HelmetProvider>
       <BrowserRouter>
         <CartProvider>
-          <ScrollToTop />
-          <Routes>
-          {/* Public Routes */}
-          <Route 
-            path="/" 
-            element={
-              <Layout currentPage="home">
-                <Helmet>
-                  <title>Ligne Blanche - Maison de Luxe de Seconde Main</title>
-                  <meta name="description" content="Découvrez ma collection de maroquinerie et prêt-à-porter de luxe de seconde main. Chaque pièce sélectionnée selon l'expertise familiale héritée." />
-                </Helmet>
-                <HomePage />
-              </Layout>
-            } 
-          />
-          
-          <Route 
-            path="/boutique" 
-            element={
-              <Layout currentPage="boutique">
-                <Helmet>
-                  <title>Boutique - Ligne Blanche</title>
-                  <meta name="description" content="Explorez notre collection de produits de luxe de seconde main." />
-                </Helmet>
-                <BoutiquePage />
-              </Layout>
-            } 
-          />
-          
-          <Route 
-            path="/produit/:id" 
-            element={
-              <Layout currentPage="product">
-                <ProductDetailPageWrapper />
-              </Layout>
-            } 
-          />
-          
-          <Route 
-            path="/about" 
-            element={
-              <Layout currentPage="about">
-                <Helmet>
-                  <title>Notre Histoire - Ligne Blanche</title>
-                  <meta name="description" content="Découvrez l'histoire de Ligne Blanche et l'expertise familiale transmise de génération en génération." />
-                </Helmet>
-                <AboutPage />
-              </Layout>
-            } 
-          />
-          
-          <Route 
-            path="/selection" 
-            element={
-              <Layout currentPage="selection">
-                <Helmet>
-                  <title>Notre Sélection - Ligne Blanche</title>
-                  <meta name="description" content="Découvrez notre processus de sélection rigoureux et les critères d'expertise hérités." />
-                </Helmet>
-                <SelectionPage />
-              </Layout>
-            } 
-          />
-          
-          <Route 
-            path="/vendre" 
-            element={
-              <Layout currentPage="sell">
-                <Helmet>
-                  <title>Vendre vos Pièces - Ligne Blanche</title>
-                  <meta name="description" content="Vendez vos pièces de luxe en toute confiance grâce à notre expertise d'authentification." />
-                </Helmet>
-                <SellPage />
-              </Layout>
-            } 
-          />
-          
-          {/* Legal Pages */}
-          <Route 
-            path="/confidentialite" 
-            element={
-              <Layout currentPage="privacy">
-                <Helmet>
-                  <title>Politique de Confidentialité - Ligne Blanche</title>
-                </Helmet>
-                <PrivacyPage />
-              </Layout>
-            } 
-          />
-          
-          <Route 
-            path="/conditions" 
-            element={
-              <Layout currentPage="terms">
-                <Helmet>
-                  <title>Conditions Générales - Ligne Blanche</title>
-                </Helmet>
-                <TermsPage />
-              </Layout>
-            } 
-          />
-          
-          <Route 
-            path="/mentions-legales" 
-            element={
-              <Layout currentPage="legal">
-                <Helmet>
-                  <title>Mentions Légales - Ligne Blanche</title>
-                </Helmet>
-                <LegalPage />
-              </Layout>
-            } 
-          />
-          
-          <Route 
-            path="/cookies" 
-            element={
-              <Layout currentPage="cookies">
-                <Helmet>
-                  <title>Politique des Cookies - Ligne Blanche</title>
-                </Helmet>
-                <CookiesPage />
-              </Layout>
-            } 
-          />
-          
-          {/* Auth Routes */}
-          <Route 
-            path="/login" 
-            element={
-              <Layout currentPage="login">
-                <Helmet>
-                  <title>Connexion - Ligne Blanche</title>
-                </Helmet>
-                <LoginPageWrapper />
-              </Layout>
-            } 
-          />
-          
-          <Route 
-            path="/register" 
-            element={
-              <Layout currentPage="register">
-                <Helmet>
-                  <title>Inscription - Ligne Blanche</title>
-                </Helmet>
-                <RegisterPageWrapper />
-              </Layout>
-            } 
-          />
-          
-          <Route 
-            path="/welcome" 
-            element={
-              <Layout currentPage="welcome">
-                <Helmet>
-                  <title>Bienvenue - Ligne Blanche</title>
-                </Helmet>
-                <WelcomePageWrapper />
-              </Layout>
-            } 
-          />
-          
-          {/* Protected Routes */}
-          <Route 
-            path="/profil" 
-            element={
-              <ProtectedRoute>
-                <Layout currentPage="profile">
+          <ScrollToTop>
+            <Routes>
+            {/* Public Routes */}
+            <Route 
+              path="/" 
+              element={
+                <Layout currentPage="home">
                   <Helmet>
-                    <title>Mon Profil - Ligne Blanche</title>
+                    <title>Ligne Blanche - Maison de Luxe de Seconde Main</title>
+                    <meta name="description" content="Découvrez ma collection de maroquinerie et prêt-à-porter de luxe de seconde main. Chaque pièce sélectionnée selon l'expertise familiale héritée." />
                   </Helmet>
-                  <ProfilePageWrapper />
+                  <HomePage />
                 </Layout>
-              </ProtectedRoute>
-            } 
-          />
+              } 
+            />
           
-          <Route 
-            path="/profil/completion" 
-            element={
-              <ProtectedRoute>
-                <Layout currentPage="profile-completion">
+            <Route 
+              path="/boutique" 
+              element={
+                <Layout currentPage="boutique">
                   <Helmet>
-                    <title>Compléter mon Profil - Ligne Blanche</title>
+                    <title>Boutique - Ligne Blanche</title>
+                    <meta name="description" content="Explorez notre collection de produits de luxe de seconde main." />
                   </Helmet>
-                  <ProfileCompletionPage />
+                  <BoutiquePage />
                 </Layout>
-              </ProtectedRoute>
-            } 
-          />
+              } 
+            />
           
-          <Route 
-            path="/checkout" 
-            element={
-              <Layout currentPage="checkout">
-                <Helmet>
-                  <title>Commande - Ligne Blanche</title>
-                </Helmet>
-                <CheckoutPageWrapper />
-              </Layout>
-            } 
-          />
+            <Route 
+              path="/produit/:id" 
+              element={
+                <Layout currentPage="product">
+                  <ProductDetailPageWrapper />
+                </Layout>
+              } 
+            />
           
-          {/* Checkout Result Pages */}
-          <Route 
-            path="/checkout/success" 
-            element={
-              <Layout currentPage="checkout-success">
-                <Helmet>
-                  <title>Commande Confirmée - Ligne Blanche</title>
-                </Helmet>
-                <CheckoutSuccessPageWrapper />
-              </Layout>
-            } 
-          />
+            <Route 
+              path="/about" 
+              element={
+                <Layout currentPage="about">
+                  <Helmet>
+                    <title>Notre Histoire - Ligne Blanche</title>
+                    <meta name="description" content="Découvrez l'histoire de Ligne Blanche et l'expertise familiale transmise de génération en génération." />
+                  </Helmet>
+                  <AboutPage />
+                </Layout>
+              } 
+            />
           
-          <Route 
-            path="/checkout/cancel" 
-            element={
-              <Layout currentPage="checkout-cancel">
-                <Helmet>
-                  <title>Commande Annulée - Ligne Blanche</title>
-                </Helmet>
-                <CheckoutCancelPageWrapper />
-              </Layout>
-            } 
-          />
+            <Route 
+              path="/selection" 
+              element={
+                <Layout currentPage="selection">
+                  <Helmet>
+                    <title>Notre Sélection - Ligne Blanche</title>
+                    <meta name="description" content="Découvrez notre processus de sélection rigoureux et les critères d'expertise hérités." />
+                  </Helmet>
+                  <SelectionPage />
+                </Layout>
+              } 
+            />
           
-          {/* 404 Route */}
-          <Route 
-            path="*" 
-            element={
-              <Layout currentPage="404">
-                <div className="min-h-screen flex items-center justify-center">
-                  <div className="text-center">
-                    <h1 className="text-4xl font-bold text-gray-900 mb-4">404</h1>
-                    <p className="text-gray-600 mb-8">Page non trouvée</p>
-                    <a 
-                      href="/" 
-                      className="bg-black text-white px-6 py-3 font-medium hover:bg-gray-800 transition-colors"
-                    >
-                      Retour à l'accueil
-                    </a>
+            <Route 
+              path="/vendre" 
+              element={
+                <Layout currentPage="sell">
+                  <Helmet>
+                    <title>Vendre vos Pièces - Ligne Blanche</title>
+                    <meta name="description" content="Vendez vos pièces de luxe en toute confiance grâce à notre expertise d'authentification." />
+                  </Helmet>
+                  <SellPage />
+                </Layout>
+              } 
+            />
+          
+            {/* Legal Pages */}
+            <Route 
+              path="/confidentialite" 
+              element={
+                <Layout currentPage="privacy">
+                  <Helmet>
+                    <title>Politique de Confidentialité - Ligne Blanche</title>
+                  </Helmet>
+                  <PrivacyPage />
+                </Layout>
+              } 
+            />
+          
+            <Route 
+              path="/conditions" 
+              element={
+                <Layout currentPage="terms">
+                  <Helmet>
+                    <title>Conditions Générales - Ligne Blanche</title>
+                  </Helmet>
+                  <TermsPage />
+                </Layout>
+              } 
+            />
+          
+            <Route 
+              path="/mentions-legales" 
+              element={
+                <Layout currentPage="legal">
+                  <Helmet>
+                    <title>Mentions Légales - Ligne Blanche</title>
+                  </Helmet>
+                  <LegalPage />
+                </Layout>
+              } 
+            />
+          
+            <Route 
+              path="/cookies" 
+              element={
+                <Layout currentPage="cookies">
+                  <Helmet>
+                    <title>Politique des Cookies - Ligne Blanche</title>
+                  </Helmet>
+                  <CookiesPage />
+                </Layout>
+              } 
+            />
+          
+            {/* Auth Routes */}
+            <Route 
+              path="/login" 
+              element={
+                <Layout currentPage="login">
+                  <Helmet>
+                    <title>Connexion - Ligne Blanche</title>
+                  </Helmet>
+                  <LoginPageWrapper />
+                </Layout>
+              } 
+            />
+          
+            <Route 
+              path="/register" 
+              element={
+                <Layout currentPage="register">
+                  <Helmet>
+                    <title>Inscription - Ligne Blanche</title>
+                  </Helmet>
+                  <RegisterPageWrapper />
+                </Layout>
+              } 
+            />
+          
+            <Route 
+              path="/welcome" 
+              element={
+                <Layout currentPage="welcome">
+                  <Helmet>
+                    <title>Bienvenue - Ligne Blanche</title>
+                  </Helmet>
+                  <WelcomePageWrapper />
+                </Layout>
+              } 
+            />
+          
+            {/* Protected Routes */}
+            <Route 
+              path="/profil" 
+              element={
+                <ProtectedRoute>
+                  <Layout currentPage="profile">
+                    <Helmet>
+                      <title>Mon Profil - Ligne Blanche</title>
+                    </Helmet>
+                    <ProfilePageWrapper />
+                  </Layout>
+                </ProtectedRoute>
+              } 
+            />
+          
+            <Route 
+              path="/profil/completion" 
+              element={
+                <ProtectedRoute>
+                  <Layout currentPage="profile-completion">
+                    <Helmet>
+                      <title>Compléter mon Profil - Ligne Blanche</title>
+                    </Helmet>
+                    <ProfileCompletionPage />
+                  </Layout>
+                </ProtectedRoute>
+              } 
+            />
+          
+            <Route 
+              path="/checkout" 
+              element={
+                <Layout currentPage="checkout">
+                  <Helmet>
+                    <title>Commande - Ligne Blanche</title>
+                  </Helmet>
+                  <CheckoutPageWrapper />
+                </Layout>
+              } 
+            />
+          
+            {/* Checkout Result Pages */}
+            <Route 
+              path="/checkout/success" 
+              element={
+                <Layout currentPage="checkout-success">
+                  <Helmet>
+                    <title>Commande Confirmée - Ligne Blanche</title>
+                  </Helmet>
+                  <CheckoutSuccessPageWrapper />
+                </Layout>
+              } 
+            />
+          
+            <Route 
+              path="/checkout/cancel" 
+              element={
+                <Layout currentPage="checkout-cancel">
+                  <Helmet>
+                    <title>Commande Annulée - Ligne Blanche</title>
+                  </Helmet>
+                  <CheckoutCancelPageWrapper />
+                </Layout>
+              } 
+            />
+          
+            {/* 404 Route */}
+            <Route 
+              path="*" 
+              element={
+                <Layout currentPage="404">
+                  <div className="min-h-screen flex items-center justify-center">
+                    <div className="text-center">
+                      <h1 className="text-4xl font-bold text-gray-900 mb-4">404</h1>
+                      <p className="text-gray-600 mb-8">Page non trouvée</p>
+                      <a 
+                        href="/" 
+                        className="bg-black text-white px-6 py-3 font-medium hover:bg-gray-800 transition-colors"
+                      >
+                        Retour à l'accueil
+                      </a>
+                    </div>
                   </div>
-                </div>
-              </Layout>
-            } 
-          />
-          </Routes>
+                </Layout>
+              } 
+            />
+            </Routes>
+          </ScrollToTop>
         </CartProvider>
       </BrowserRouter>
     </HelmetProvider>

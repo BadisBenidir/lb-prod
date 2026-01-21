@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Product } from '../../types';
 import ProductCard from './ProductCard';
 import { Cpu, MoveLeft } from 'lucide-react';
@@ -35,6 +35,10 @@ const boutiqueHighlightIds = [
 const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, categories, userId, homeToutIds = [] }) => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('Tout');
+
+  useEffect(() => {
+    window.scrollTo({ top:0, left:0, behavior: 'auto' });
+  }, [selectedCategory]);
 
   console.log('[GRID] products lenght =', products?.length);
   console.log('[GRID] categories prop =', categories);
