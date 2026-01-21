@@ -55,6 +55,14 @@ const BoutiqueMobile: React.FC<BoutiqueMobileProps> = ({ onAddToCart, onProductC
       {/* Header Section */}
       <div className="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-10">
         <div className="px-4 py-6">
+          {/* Title */}
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center bg-gray-100 backdrop-blur-sm border border-gray-300/30 rounded-full px-4 py-2 mb-3">
+              <Star className="h-4 w-4 text-gray-800 mr-2" />
+              <span className="text-gray-900 text-xs font-semibold tracking-wider uppercase">
+                La Collection
+              </span>
+            </div>
             <h1 className="text-2xl font-light text-gray-900 mb-2">
               Notre Boutique
             </h1>
