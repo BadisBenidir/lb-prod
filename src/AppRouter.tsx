@@ -118,15 +118,6 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage }) => {
     }
   }, [location.pathname]);
 
-  return (
-    <div 
-      id='app-scroll'
-      className='min-h-screen overflow-y-auto'
-    >
-      {children}
-    </div>
-  );
-
   const { logout } = useAuth();
   const { user, updateProfile, updateCustomerProfile } = useProfile();
   
@@ -168,8 +159,13 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage }) => {
         user={user}
         onLogout={user ? handleLogout : undefined}
       />
-      
+
+      <div 
+        id='app-scroll'
+        className='min-h-screen overflow-y-auto'
+      >
       {children}
+      </div>
       
       {currentPage !== 'login' && currentPage !== 'register' && currentPage !== 'checkout-success' && currentPage !== 'checkout-cancel' && (
         <Footer />
