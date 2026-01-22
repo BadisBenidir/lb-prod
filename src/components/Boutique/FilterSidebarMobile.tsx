@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, ChevronDown, ChevronRight, Trash2, Eye, Filter } from 'lucide-react';
 import { FilterState } from '../../hooks/useBoutique';
+import { useEffect } from 'react';
 
 interface FilterState {
   categories: string[];
@@ -39,6 +40,22 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
   isOpen,
   onClose
 }) => {
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    const originalTouchAction = document.body.style.touchAction;
+
+    document.body.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      document.body.style.touchAction = originalTouchAction;
+    };
+  }, [isOpen]);
+  
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['categories']));
 
   const toggleSection = (section: string) => {
