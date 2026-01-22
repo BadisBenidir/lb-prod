@@ -232,7 +232,8 @@ export default function AboutPage() {
               <div key={value.title} className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 group hover:shadow-xl transition-all duration-300">
                 <div className="flex items-center mb-6">
                   <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mr-6 group-hover:bg-gray-200 transition-colors duration-300">
-                    <value.icon className="h-8 w-8 text-gray-800" />
+                    <value.icon className="block md:hidden h-6 w-6 text-gray-800" />
+                    <value.icon className="hidden md:block h-8 w-8 text-gray-800" />
                   </div>
                   <h3 className="block md:hidden text-xl font-semibold text-gray-900">{value.title}</h3>
                   <h3 className="hidden md:block text-2xl font-semibold text-gray-900">{value.title}</h3>
