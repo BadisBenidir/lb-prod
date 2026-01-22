@@ -159,7 +159,18 @@ export default function SelectionPage() {
               <h2 className="text-4xl font-light text-gray-1000 mb-6">
                 Une Méthode Patiente
               </h2>
-              <div className="space-y-6 text-gray-800 leading-relaxed text-lg">
+              <div className="block sm:hidden space-y-6 text-gray-800 leading-relaxed text-sm">
+                <p>
+                  La sélection d'une pièce de luxe n'est jamais le fruit du hasard. Elle repose sur une méthode patiente où chaque détail compte : la souplesse d'un cuir, la précision d'une couture, la profondeur d'une patine...
+                </p>
+                <p>
+                  Observer, comparer, éliminer, recommencer — c'est ce processus qui forge une exigence sans concession.
+                </p>
+                <p>
+                  Aujourd'hui, cette rigueur guide chacune de nos décisions. <strong>Notre engagement est simple</strong> : moins de 3 % des articles rencontrés sont retenus, parce que nous refusons tout compromis sur l'authenticité et la qualité.
+                </p>
+              </div>
+              <div className="hidden sm:block space-y-6 text-gray-800 leading-relaxed text-lg">
                 <p>
                   La sélection d'une pièce de luxe n'est jamais le fruit du hasard. Elle repose sur une méthode patiente où chaque détail compte : la souplesse d'un cuir, la précision d'une couture, la profondeur d'une patine...
                 </p>
