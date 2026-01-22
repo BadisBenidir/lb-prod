@@ -429,9 +429,11 @@ export default function SelectionPage() {
                   <div className="mr-6">
                     {value.icon}
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900">{value.title}</h3>
+                  <h3 className="block sm:hidden text-xl font-bold text-gray-900">{value.title}</h3>
+                  <h3 className="hidden sm:block text-2xl font-bold text-gray-900">{value.title}</h3>
                 </div>
-                <p className="text-lg text-gray-700 leading-relaxed">{value.description}</p>
+                <p className="block sm:hidden text-m text-gray-700 leading-relaxed">{value.description}</p>
+                <p className="hidden sm:block text-lg text-gray-700 leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
