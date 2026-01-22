@@ -164,10 +164,17 @@ export default function SellPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-light text-gray-900 mb-4">
+            <h2 className="block sm:hidden text-3xl font-light text-gray-900 mb-4">
               Comment vendre avec Ligne Blanche ?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="hidden sm:block text-4xl font-light text-gray-900 mb-4">
+              Comment vendre avec Ligne Blanche ?
+            </h2>
+            <p className="block sm:hidden text-l text-gray-600 max-w-3xl mx-auto">
+              De l'envoi de vos photos au paiement final, découvrez un processus
+              pensé pour être simple, transparent et sécurisé à chaque étape.
+            </p>
+            <p className="hidden sm:block text-xl text-gray-600 max-w-3xl mx-auto">
               De l'envoi de vos photos au paiement final, découvrez un processus
               pensé pour être simple, transparent et sécurisé à chaque étape.
             </p>
