@@ -47,7 +47,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
     'fair',
   ];
 
-    const preferredCategoryOrder = ["Sacs", "Chaussures", "Accessoires", "Vetements", "Pochettes"];
+  const preferredCategoryOrder = ["Sacs", "Chaussures", "Accessoires", "Vetements", "Pochettes"];
 
   const sortedCategories = [...availableCategories].sort((a, b) => {
     const ia = preferredCategoryOrder.indexOf(a);
