@@ -47,6 +47,19 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
     'fair',
   ];
 
+    const preferredCategoryOrder = ["Sacs", "Chaussures", "Accessoires", "Vetements", "Pochettes"];
+
+  const sortedCategories = [...availableCategories].sort((a, b) => {
+    const ia = preferredCategoryOrder.indexOf(a);
+    const ib = preferredCategoryOrder.indexOf(b);
+
+    if (ia === -1 && ib === -1) return a.localeCompare(b, "fr");
+    if (ia === -1) return 1;
+    if (ib === -1) return -1;
+
+    return ia - ib;
+  });
+
   const normalizeCondition = (c: string) =>
   (c || '')
     .trim()
