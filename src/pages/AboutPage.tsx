@@ -280,7 +280,10 @@ export default function AboutPage() {
                 <Smartphone className="w-8 h-8 text-gray-600 mr-4" />
                 <h3 className="text-2xl font-bold text-gray-900">L'Innovateur Digital</h3>
               </div>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="block sm:hidden text-s text-gray-700 leading-relaxed">
+                Une approche moderne qui met le luxe à la portée de tous, en s'appuyant sur les outils digitaux et une communauté engagée.
+              </p>
+              <p className="hidden sm:block text-lg text-gray-700 leading-relaxed">
                 Une approche moderne qui met le luxe à la portée de tous, en s'appuyant sur les outils digitaux et une communauté engagée.
               </p>
             </div>
