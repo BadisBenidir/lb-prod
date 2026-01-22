@@ -195,7 +195,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </button>
             {expandedSections.categories && (
               <div className="space-y-2">
-                {availableCategories.map(category => (
+                {sortedCategories.map(category => (
                   <label key={category} className="flex items-center">
                     <input
                       type="checkbox"
