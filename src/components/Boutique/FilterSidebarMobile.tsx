@@ -76,11 +76,11 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
     onUpdateFilter(filterKey, newValues);
   };
 
-  const prefferedCategoryOrder = ["Sacz", "Chaussures", "Accessoires", "Vetements", "Pochettes"];
+  const preferredCategoryOrder = ["Sacs", "Chaussures", "Accessoires", "Vetements", "Pochettes"];
 
   const sortedCategories = [...availableCategories].sort((a, b) => {
-    const ia = prefferedCategoryOrder.indexOf(a);
-    const ib = prefferedCategoryOrder.indexOf(b);
+    const ia = preferredCategoryOrder.indexOf(a);
+    const ib = preferredCategoryOrder.indexOf(b);
 
     if (ia === -1 && ib === -1) return a.localeCompare(b, "fr");
     if (ia === -1) return 1;
