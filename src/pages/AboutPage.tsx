@@ -255,7 +255,7 @@ export default function AboutPage() {
               L'Héritage Continue
             </h2>
 
-            <p className="block sm:hidden text-s text-gray-600 max-w-3xl mx-auto">
+            <p className="block sm:hidden text-m text-gray-600 max-w-3xl mx-auto">
               Aujourd'hui, Ligne Blanche conjugue exigence traditionnelle et innovation digitale. Une vision commune réinventée pour l'époque moderne.
             </p>
 
@@ -270,7 +270,10 @@ export default function AboutPage() {
                 <Eye className="w-8 h-8 text-gray-800 mr-4" />
                 <h3 className="text-2xl font-bold text-gray-900">L'Expert Authentique</h3>
               </div>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="block sm:hidden text-s text-gray-700 leading-relaxed">
+                Un savoir-faire affûté, capable de distinguer l'authenticité dans chaque détail. L'assurance d'une sélection sans compromis.
+              </p>
+              <p className="hidden sm:block text-lg text-gray-700 leading-relaxed">
                 Un savoir-faire affûté, capable de distinguer l'authenticité dans chaque détail. L'assurance d'une sélection sans compromis.
               </p>
             </div>
