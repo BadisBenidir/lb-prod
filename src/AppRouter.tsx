@@ -35,6 +35,9 @@ import CheckoutSuccessPage from './pages/CheckoutSuccessPage';
 import CheckoutCancelPage from './pages/CheckoutCancelPage';
 import ScrollToTop from './components/ScrollToTop';
 
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+
 // Layout wrapper component
 interface LayoutProps {
   children: React.ReactNode;
@@ -106,6 +109,24 @@ const WelcomePageWrapper: React.FC = () => {
 
 const Layout: React.FC<LayoutProps> = ({ children, currentPage }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const el = document.getElementById('app-scroll');
+    if (el) {
+      el.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }
+  }, [location.pathname]);
+
+  return (
+    <div 
+      id='app-scroll'
+      className='min-h-screen overflow-y-auto'
+    >
+      {children}
+    </div>
+  );
+
   const { logout } = useAuth();
   const { user, updateProfile, updateCustomerProfile } = useProfile();
   
