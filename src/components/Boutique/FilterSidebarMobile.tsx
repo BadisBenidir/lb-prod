@@ -55,7 +55,7 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
       document.body.style.touchAction = originalTouchAction;
     };
   }, [isOpen]);
-  
+
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['categories']));
 
   const toggleSection = (section: string) => {
@@ -242,7 +242,7 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
         </div>
 
         {/* Content */}
-        <div className="h-full overflow-y-auto pb-20">
+        <div className="h-full overflow-y-auto pb-28">
           {renderCheckboxSection('Catégories', 'categories', 'categories', availableCategories)}
           {renderCheckboxSection('Marques', 'brands', 'brands', availableBrands)}
           {renderCheckboxSection('Couleurs', 'colors', 'colors', availableColors)}
