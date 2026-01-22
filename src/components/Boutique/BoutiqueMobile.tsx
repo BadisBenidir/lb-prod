@@ -6,7 +6,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { ProductCard } from '../../features/products';
 import ProductCardMobile from '../../features/products/ProductCardMobile';
 import FilterSidebarMobile from './FilterSidebarMobile';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 interface BoutiqueMobileProps {
   onAddToCart: (product: Product) => void;
@@ -16,6 +16,15 @@ interface BoutiqueMobileProps {
 const BoutiqueMobile: React.FC<BoutiqueMobileProps> = ({ onAddToCart, onProductClick }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const { userId } = useAuth();
+
+  useEffect(() => {
+    const el = document.getElementById('app-scroll');
+    if (el) {
+      el.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }
+  }, [currentPage]);
 
   const {
     filters,
@@ -48,7 +57,7 @@ const BoutiqueMobile: React.FC<BoutiqueMobileProps> = ({ onAddToCart, onProductC
 
 
   return (
-    <div id='app-scroll' className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white relative overflow-y-auto">
+    <div id='app-scroll' className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white overflow-y-auto">
       {/* Decorative background elements */}
       <div className="absolute top-12 right-4 w-20 h-20 bg-gray-300/5 rounded-full blur-2xl"></div>
       <div className="absolute bottom-32 left-4 w-16 h-16 bg-black/5 rounded-full blur-xl"></div>
@@ -261,15 +270,6 @@ const BoutiqueMobile: React.FC<BoutiqueMobileProps> = ({ onAddToCart, onProductC
                       <ChevronLeft className="h-4 w-4 mr-1" />
                       Préc.
                     </button>
-
-                    useEffect(() => {
-                      const el = document.getElementById('app-scroll');
-                      if (el) {
-                        el.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-                      } else {
-                        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-                      }
-                    }, [currentPage]);
 
                     <span className="px-4 py-2 bg-gray-100 rounded-xl text-sm font-medium text-gray-700">
                       {currentPage} / {totalPages}
