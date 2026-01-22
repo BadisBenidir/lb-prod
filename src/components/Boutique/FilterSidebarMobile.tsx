@@ -245,11 +245,11 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
         <div className="h-full overflow-y-auto pb-[150px]">
           {renderCheckboxSection('Catégories', 'categories', 'categories', availableCategories)}
           {renderCheckboxSection('Marques', 'brands', 'brands', availableBrands)}
+          {renderCheckboxSection('Genre', 'genres', 'genres', availableGenres)}
+          {renderCheckboxSection('État', 'conditions', 'conditions', availableConditions)}
+          {renderPriceSection()}
           {renderCheckboxSection('Couleurs', 'colors', 'colors', availableColors)}
           {renderCheckboxSection('Matières', 'materials', 'materials', availableMaterials)}
-          {renderCheckboxSection('Genre', 'genres', 'genres', availableGenres)}
-          {renderPriceSection()}
-          {renderCheckboxSection('État', 'conditions', 'conditions', availableConditions)}
         </div>
 
         {/* Bottom Actions */}
