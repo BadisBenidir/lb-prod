@@ -227,8 +227,8 @@ function AppRouter() {
   return (
     <HelmetProvider>
       <BrowserRouter>
-        <CartProvider>
-          <ScrollToTop>
+        <ScrollToTop>
+          <CartProvider>
             <Routes>
             {/* Public Routes */}
             <Route 
@@ -478,8 +478,8 @@ function AppRouter() {
               } 
             />
             </Routes>
-          </ScrollToTop>
-        </CartProvider>
+          </CartProvider>
+        </ScrollToTop>
       </BrowserRouter>
     </HelmetProvider>
   );
