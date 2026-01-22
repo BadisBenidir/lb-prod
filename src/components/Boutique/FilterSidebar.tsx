@@ -77,11 +77,11 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
   const [expandedSections, setExpandedSections] = React.useState({
     categories: true,
     brands: true,
+    condition: true,
+    price: true,
+    genres: false,
     colors: false,
     materials: false,
-    genres: false,
-    price: true,
-    condition: true
   });
 
   const toggleSection = (section: keyof typeof expandedSections) => {
