@@ -47,12 +47,12 @@ const BoutiqueMobile: React.FC<BoutiqueMobileProps> = ({ onAddToCart, onProductC
   } = useBoutique();
   
   useEffect(() => {
-    const el = document.getElementById('app-scroll');
-    if (el) {
-      el.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    } else {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+
+    requestAnimationFrame(() => {
+      const el = document.getElementById('app-scroll');
+      if (el) el.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    });
   }, [currentPage]);
 
 
