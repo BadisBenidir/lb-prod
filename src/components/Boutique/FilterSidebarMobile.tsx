@@ -203,7 +203,7 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
       <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl z-50 transform transition-transform duration-300 pt-16">
         {/* Header */}
         <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white p-4 flex items-center justify-between">
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
             <Filter className="h-4 w-4" />
             <h2 className="text-lg font-semibold">Filtres</h2>
           </div>
