@@ -6,7 +6,7 @@ import { translateCategory } from '../../utils/translations';
 interface FilterSidebarProps {
   filters: FilterOptions;
   availableCategories: string[];
-  availableBrands: string[];
+  brandsList: string[];
   availableGenres: string[];
   availableConditions: string[];
   availableColors: string[];
@@ -28,7 +28,7 @@ const CONDITION_ORDER = [
 const FilterSidebar: React.FC<FilterSidebarProps> = ({
   filters,
   availableCategories,
-  availableBrands,
+  brandsList,
   availableGenres,
   availableConditions,
   availableColors,
@@ -154,6 +154,18 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
     return translations[condition] || condition;
   };
 
+  const featuredBrands = [
+    'Louis Vuitton',
+    'Saint Laurent',
+    'Chanel',
+    'Hermès',
+    'Gucci',
+    'Christian Dior',
+  ];
+
+  const mainBrands = brandsList.filter((brand: string) => featuredBrands.includes(brand));
+  const otherBrands = brandsList.filter((brand: string) => !featuredBrands.includes(brand));
+
   return (
     <>
       {/* Mobile backdrop */}
@@ -221,7 +233,21 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </button>
             {expandedSections.brands && (
               <div className="space-y-2 max-h-40 md:max-h-48 overflow-y-auto">
-                {availableBrands.map(brand => (
+                {mainBrands.map((brand: string) => (
+                  <label key={brand} className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={filters.brands.includes(brand)}
+                      onChange={() => handleBrandChange(brand)}
+                      className="mr-2"
+                    />
+                    <span className="text-sm">{brand}</span>
+                  </label>
+                ))}
+
+                <div className='my-3 border-t border-gray-200' />
+
+                {otherBrands.map((brand: string) => (
                   <label key={brand} className="flex items-center">
                     <input
                       type="checkbox"
@@ -236,7 +262,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             )}
           </div>
 
-                    {/* Condition */}
+          {/* Condition */}
           <div className="mb-4 md:mb-6">
             <button
               onClick={() => toggleSection('condition')}
