@@ -7,10 +7,10 @@ interface FilterSidebarProps {
   filters: FilterOptions;
   availableCategories: string[];
   availableBrands: string[];
+  availableGenres: string[];
   availableConditions: string[];
   availableColors: string[];
   availableMaterials: string[];
-  availableGenres: string[];
   onUpdateFilter: (key: keyof FilterOptions, value: any) => void;
   onClearFilters: () => void;
   isOpen: boolean;
