@@ -260,7 +260,7 @@ export default function AboutPage() {
             </p>
 
             <p className="hidden sm:block text-xl text-gray-600 max-w-3xl mx-auto">
-              Aujourd'hui, Ligne Blanche conjugue exigence traditionnelle et innovation digitale. Une vision commune réinventée pour l'époque moderne.
+              Aujourd'hui, Ligne Blanche conjugue exigence traditionnelle et innovation digitale. Une vision commune réinventée.
             </p>
           </div>
 
