@@ -154,9 +154,9 @@ export default function SelectionPage() {
       {/* Philosophy Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="block sm:hidden text-3xl font-light text-gray-1000 mb-6">
+              <h2 className="block sm:hidden text-3xl font-light text-gray-1000 mb-3">
                 Une Méthode Patiente
               </h2>
               <h2 className="hidden sm:block text-4xl font-light text-gray-1000 mb-6">
