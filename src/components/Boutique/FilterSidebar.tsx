@@ -236,6 +236,32 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             )}
           </div>
 
+                    {/* Condition */}
+          <div className="mb-4 md:mb-6">
+            <button
+              onClick={() => toggleSection('condition')}
+              className="flex items-center justify-between w-full mb-2 md:mb-3 font-medium text-sm md:text-base"
+            >
+              État
+              {expandedSections.condition ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+            </button>
+            {expandedSections.condition && (
+              <div className="space-y-2">
+                {CONDITION_ORDER.map(condition => (
+                  <label key={condition} className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={filters.conditions.includes(condition)}
+                      onChange={() => handleConditionChange(condition)}
+                      className="mr-2"
+                    />
+                    <span className="text-sm">{translateCondition(condition)}</span>
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
+
           {/* Colors */}
           {availableColors.length > 0 && (
             <div className="mb-4 md:mb-6">
@@ -359,33 +385,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
               </div>
             )}
           </div>
-
-          {/* Condition */}
-          <div className="mb-4 md:mb-6">
-            <button
-              onClick={() => toggleSection('condition')}
-              className="flex items-center justify-between w-full mb-2 md:mb-3 font-medium text-sm md:text-base"
-            >
-              État
-              {expandedSections.condition ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-            </button>
-            {expandedSections.condition && (
-              <div className="space-y-2">
-                {CONDITION_ORDER.map(condition => (
-                  <label key={condition} className="flex items-center">
-                    <input
-                      type="checkbox"
-                      checked={filters.conditions.includes(condition)}
-                      onChange={() => handleConditionChange(condition)}
-                      className="mr-2"
-                    />
-                    <span className="text-sm">{translateCondition(condition)}</span>
-                  </label>
-                ))}
-              </div>
-            )}
-          </div>
-
         </div>
       </div>
     </>
