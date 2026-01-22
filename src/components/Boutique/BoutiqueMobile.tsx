@@ -17,15 +17,6 @@ const BoutiqueMobile: React.FC<BoutiqueMobileProps> = ({ onAddToCart, onProductC
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const { userId } = useAuth();
 
-  useEffect(() => {
-    const el = document.getElementById('app-scroll');
-    if (el) {
-      el.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    } else {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    }
-  }, [currentPage]);
-
   const {
     filters,
     sortBy,
@@ -54,6 +45,16 @@ const BoutiqueMobile: React.FC<BoutiqueMobileProps> = ({ onAddToCart, onProductC
     loading,
     error
   } = useBoutique();
+  
+  useEffect(() => {
+    const el = document.getElementById('app-scroll');
+    if (el) {
+      el.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }
+  }, [currentPage]);
+
 
 
   return (
