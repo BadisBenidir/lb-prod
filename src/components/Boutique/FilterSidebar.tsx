@@ -262,6 +262,46 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             )}
           </div>
 
+          {/* Price Range */}
+          <div className="mb-4 md:mb-6">
+            <button
+              onClick={() => toggleSection('price')}
+              className="flex items-center justify-between w-full mb-2 md:mb-3 font-medium text-sm md:text-base"
+            >
+              Prix
+              {expandedSections.price ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+            </button>
+            {expandedSections.price && (
+              <div className="space-y-3">
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    placeholder="Min"
+                    value={filters.priceRange[0]}
+                    onChange={(e) => onUpdateFilter('priceRange', [Number(e.target.value), filters.priceRange[1]])}
+                    className="w-full px-2 py-1 border border-gray-300 text-sm"
+                  />
+                  <input
+                    type="number"
+                    placeholder="Max"
+                    value={filters.priceRange[1]}
+                    onChange={(e) => onUpdateFilter('priceRange', [filters.priceRange[0], Number(e.target.value)])}
+                    className="w-full px-2 py-1 border border-gray-300 text-sm"
+                  />
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="1000"
+                  step="100"
+                  value={filters.priceRange[1]}
+                  onChange={(e) => onUpdateFilter('priceRange', [filters.priceRange[0], Number(e.target.value)])}
+                  className="w-full"
+                />
+              </div>
+            )}
+          </div>
+
           {/* Colors */}
           {availableColors.length > 0 && (
             <div className="mb-4 md:mb-6">
@@ -345,46 +385,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
               )}
             </div>
           )}
-
-          {/* Price Range */}
-          <div className="mb-4 md:mb-6">
-            <button
-              onClick={() => toggleSection('price')}
-              className="flex items-center justify-between w-full mb-2 md:mb-3 font-medium text-sm md:text-base"
-            >
-              Prix
-              {expandedSections.price ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-            </button>
-            {expandedSections.price && (
-              <div className="space-y-3">
-                <div className="flex gap-2">
-                  <input
-                    type="number"
-                    placeholder="Min"
-                    value={filters.priceRange[0]}
-                    onChange={(e) => onUpdateFilter('priceRange', [Number(e.target.value), filters.priceRange[1]])}
-                    className="w-full px-2 py-1 border border-gray-300 text-sm"
-                  />
-                  <input
-                    type="number"
-                    placeholder="Max"
-                    value={filters.priceRange[1]}
-                    onChange={(e) => onUpdateFilter('priceRange', [filters.priceRange[0], Number(e.target.value)])}
-                    className="w-full px-2 py-1 border border-gray-300 text-sm"
-                  />
-                </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="1000"
-                  step="100"
-                  value={filters.priceRange[1]}
-                  onChange={(e) => onUpdateFilter('priceRange', [filters.priceRange[0], Number(e.target.value)])}
-                  className="w-full"
-                />
-              </div>
-            )}
-          </div>
         </div>
       </div>
     </>
