@@ -232,7 +232,6 @@ function AppRouter() {
     <HelmetProvider>
       <BrowserRouter>
         <ScrollToTop>
-
           <CartProvider>
             <Routes>
             {/* Public Routes */}
