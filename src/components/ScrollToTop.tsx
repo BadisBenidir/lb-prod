@@ -1,9 +1,5 @@
-import React { useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
-type Props = {
-    children: React.ReactNode;
-};
 
 export default function ScrollToTop() {
     const { pathname, search } = useLocation();
@@ -15,7 +11,7 @@ export default function ScrollToTop() {
         } else {
             window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         }
-    }, [pathname]);
+    }, [pathname, search]);
 
     return null;
 }
