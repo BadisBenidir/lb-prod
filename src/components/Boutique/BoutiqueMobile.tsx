@@ -6,6 +6,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { ProductCard } from '../../features/products';
 import ProductCardMobile from '../../features/products/ProductCardMobile';
 import FilterSidebarMobile from './FilterSidebarMobile';
+import React, { useEffect } from 'react';
 
 interface BoutiqueMobileProps {
   onAddToCart: (product: Product) => void;
@@ -260,6 +261,15 @@ const BoutiqueMobile: React.FC<BoutiqueMobileProps> = ({ onAddToCart, onProductC
                       <ChevronLeft className="h-4 w-4 mr-1" />
                       Préc.
                     </button>
+
+                    useEffect(() => {
+                      const el = document.getElementById('app-scroll');
+                      if (el) {
+                        el.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+                      } else {
+                        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+                      }
+                    }, [currentPage]);
 
                     <span className="px-4 py-2 bg-gray-100 rounded-xl text-sm font-medium text-gray-700">
                       {currentPage} / {totalPages}
