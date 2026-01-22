@@ -10,7 +10,7 @@ export default function ScrollToTop({ children }: { children: React.ReactNode}) 
         window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 
         const el = document.getElementById('app-scroll');
-        if (el) el.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        el?.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     }, [pathname]);
 
     useEffect(() => {
