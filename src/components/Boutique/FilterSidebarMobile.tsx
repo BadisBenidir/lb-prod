@@ -76,6 +76,19 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
     onUpdateFilter(filterKey, newValues);
   };
 
+  const prefferedCategoryOrder = ["Sacz", "Chaussures", "Accessoires", "Vetements", "Pochettes"];
+
+  const sortedCategories = [...availableCategories].sort((a, b) => {
+    const ia = prefferedCategoryOrder.indexOf(a);
+    const ib = prefferedCategoryOrder.indexOf(b);
+
+    if (ia === -1 && ib === -1) return a.localeCompare(b, "fr");
+    if (ia === -1) return 1;
+    if (ib === -1) return -1;
+
+    return ia - ib;
+  });
+
   const renderCheckboxSection = (
     title: string,
     key: string,
