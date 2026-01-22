@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ChevronDown, ChevronRight, Trash2, Eye } from 'lucide-react';
+import { X, ChevronDown, ChevronRight, Trash2, Eye, Filter } from 'lucide-react';
 import { FilterState } from '../../hooks/useBoutique';
 
 interface FilterState {
@@ -204,7 +204,7 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
         {/* Header */}
         <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white p-4 flex items-center justify-between">
           <div className="flex items-center">
-            <Trash2 className="h-4 w-4" />
+            <Filter className="h-4 w-4" />
             <h2 className="text-lg font-semibold">Filtres</h2>
           </div>
           <div className="flex items-center space-x-2">
