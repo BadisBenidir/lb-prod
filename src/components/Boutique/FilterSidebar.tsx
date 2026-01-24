@@ -168,6 +168,9 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
   const mainBrands = safeBrandsList.filter((brand) => featuredBrands.includes(brand));
   const otherBrands = safeBrandsList.filter((brand) => !featuredBrands.includes(brand));
 
+  console.log("brandsList", brandsList);
+  console.log("safeBrandsList lenght", safeBrandsList.length);
+  
   return (
     <>
       {/* Mobile backdrop */}
