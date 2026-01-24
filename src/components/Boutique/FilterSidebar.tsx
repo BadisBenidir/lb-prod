@@ -261,8 +261,8 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
                 {otherBrands.length > 0 && (
                   <>
-                  <div className='my-6 flex justify-center'>
-                    <div className='w-1/3 border-t border-gray-500' />
+                  <div className='my-8 flex justify-center'>
+                    <div className='w-1/2 border-t border-gray-500' />
                   </div>
                   {otherBrands.map((brand: string) => (
                     <label key={brand} className="flex items-center">
