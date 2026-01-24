@@ -68,7 +68,7 @@ const Boutique: React.FC<BoutiqueProps> = ({ onAddToCart, onProductClick }) => {
         <FilterSidebar
           filters={filters}
           availableCategories={availableCategories}
-          availableBrands={availableBrands}
+          brandsList={availableBrands}
           availableConditions={availableConditions}
           availableColors={availableColors}
           availableMaterials={availableMaterials}

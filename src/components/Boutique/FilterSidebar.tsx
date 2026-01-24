@@ -165,12 +165,21 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
     'Dior',
   ];
 
-  const mainBrands = safeBrandsList.filter((brand) => featuredBrands.includes(brand));
-  const otherBrands = safeBrandsList.filter((brand) => !featuredBrands.includes(brand));
+  const normalize = (s: string) =>
+    s.normalize("NFC").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+  const featuredSet = new Set(featuredBrands.map(normalize));
+
+  const mainBrands = safeBrandsList.filter((brand) => 
+    featuredBrands.includes(brand)
+  );
+  const otherBrands = safeBrandsList.filter((brand) => 
+    !featuredBrands.includes(brand)
+  );
 
   console.log("brandsList", brandsList);
   console.log("safeBrandsList lenght", safeBrandsList.length);
-  
+
   return (
     <>
       {/* Mobile backdrop */}
@@ -233,8 +242,8 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
               onClick={() => toggleSection('brands')}
               className="flex items-center justify-between w-full mb-2 md:mb-3 font-medium text-sm md:text-base"
             >
-              Marques
-              {expandedSections.brands ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+            Marques
+            {expandedSections.brands ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
             </button>
             {expandedSections.brands && (
               <div className="space-y-2 max-h-40 md:max-h-48 overflow-y-auto">
@@ -250,20 +259,23 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   </label>
                 ))}
 
-                <div className='my-3 border-t border-gray-200' />
-
-                {otherBrands.map((brand: string) => (
-                  <label key={brand} className="flex items-center">
-                    <input
-                      type="checkbox"
-                      checked={filters.brands.includes(brand)}
-                      onChange={() => handleBrandChange(brand)}
-                      className="mr-2"
-                    />
-                    <span className="text-sm">{brand}</span>
-                  </label>
-                ))}
-              </div>
+                {otherBrands.length > 0 && (
+                  <>
+                  <div className='my-3 border-t border-gray-200' />
+                  {otherBrands.map((brand: string) => (
+                    <label key={brand} className="flex items-center">
+                      <input
+                        type="checkbox"
+                        checked={filters.brands.includes(brand)}
+                        onChange={() => handleBrandChange(brand)}
+                        className="mr-2"
+                      />
+                      <span className="text-sm">{brand}</span>
+                    </label>
+                  ))}
+                </>
+                )}
+            </div>
             )}
           </div>
 
