@@ -247,7 +247,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </button>
             {expandedSections.brands && (
               <div className="space-y-2 max-h-40 md:max-h-48 overflow-y-auto">
-                <div className='space-y-4'>
                   {mainBrands.map((brand: string) => (
                     <label key={brand} className="flex items-center">
                       <input
@@ -259,14 +258,12 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                       <span className="text-sm">{brand}</span>
                     </label>
                   ))}
-                </div>
 
                 {otherBrands.length > 0 && (
                   <>
-                  <div className='my-10 flex justify-center'>
+                  <div className='my-10 mb-10 flex justify-center'>
                     <div className='w-1/2 border-t border-gray-500' />
                   </div>
-                  <div className='space-y-4'>
                     {otherBrands.map((brand: string) => (
                       <label key={brand} className="flex items-center">
                         <input
@@ -278,7 +275,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                         <span className="text-sm">{brand}</span>
                         </label>
                     ))}
-                  </div>
                   </>
                 )}
               </div>
