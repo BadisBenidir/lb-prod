@@ -90,14 +90,12 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
                     className="bg-white/80 backdrop-blur-sm rounded-lg p-4 hover:bg-white transition-colors duration-300 cursor-pointer border border-gray-200 shadow-sm"
                     onClick={() => onProductClick?.(product.id)}
                   >
-                    <div className='rounded-md border'>
-                      <div className="aspect-[4/5] bg-gray-200 rounded-md mb-3 overflow-hidden">
-                        <img
-                          src={product.images && product.images[0] ? product.images[0] : product.image || 'https://via.placeholder.com/200x200?text=No+Image'}
-                          alt={product.name}
-                          className="w-full h-full object-cover object-top "
-                        />
-                      </div>
+                    <div className="aspect-[4/5] bg-gray-200 rounded-md mb-3 overflow-hidden">
+                      <img
+                        src={product.images && product.images[0] ? product.images[0] : product.image || 'https://via.placeholder.com/200x200?text=No+Image'}
+                        alt={product.name}
+                        className="block w-full h-full object-cover"
+                      />
                     </div>
                     <h4 className="text-sm font-medium text-gray-900 mb-1 line-clamp-2 min-h-[2.5rem]">
                       {product.name}
