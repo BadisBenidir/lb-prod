@@ -162,7 +162,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
     'Chanel',
     'Hermès',
     'Gucci',
-    'Christian Dior',
+    'Dior',
   ];
 
   const mainBrands = safeBrandsList.filter((brand) => featuredBrands.includes(brand));
