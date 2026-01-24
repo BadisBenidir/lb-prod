@@ -165,8 +165,8 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
     'Christian Dior',
   ];
 
-  const mainBrands = safeBrandsList.filter((brand: string) => featuredBrands.includes(brand));
-  const otherBrands = safeBrandsList.filter((brand: string) => !featuredBrands.includes(brand));
+  const mainBrands = safeBrandsList.filter((brand) => featuredBrands.includes(brand));
+  const otherBrands = safeBrandsList.filter((brand) => !featuredBrands.includes(brand));
 
   return (
     <>
