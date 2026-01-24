@@ -39,6 +39,8 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
   onClose
 }) => {
 
+  const safeBrandsList: string[] = Array.isArray(brandsList) ? brandsList : [];
+
   const CONDITION_ORDER = [
     'new',
     'excellent',
@@ -163,8 +165,8 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
     'Christian Dior',
   ];
 
-  const mainBrands = brandsList.filter((brand: string) => featuredBrands.includes(brand));
-  const otherBrands = brandsList.filter((brand: string) => !featuredBrands.includes(brand));
+  const mainBrands = safeBrandsList.filter((brand: string) => featuredBrands.includes(brand));
+  const otherBrands = safeBrandsList.filter((brand: string) => !featuredBrands.includes(brand));
 
   return (
     <>
