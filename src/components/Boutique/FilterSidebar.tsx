@@ -262,8 +262,8 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                 </div>
 
                 {otherBrands.length > 0 && (
-                  <div className='py-8 flex justify-center'>
-                    <div className='w-28 border-t border-gray-500' />
+                  <div className='py-6 flex justify-center'>
+                    <div className='w-28 border-t border-gray-300' />
                   </div>
                 )}
 
