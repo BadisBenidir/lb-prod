@@ -246,7 +246,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             {expandedSections.brands ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
             </button>
             {expandedSections.brands && (
-              <div className="space-y-2 max-h-40 md:max-h-48 overflow-y-auto">
+              <div className="space-y-2 max-h-40 md:max-h-48 overflow-y-auto pb-12">
                   {mainBrands.map((brand: string) => (
                     <label key={brand} className="flex items-center">
                       <input
