@@ -94,7 +94,7 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
                       <img
                         src={product.images && product.images[0] ? product.images[0] : product.image || 'https://via.placeholder.com/200x200?text=No+Image'}
                         alt={product.name}
-                        className="w-full h-full object-contain object-top "
+                        className="w-full h-full object-cover object-top "
                       />
                     </div>
                     <h4 className="text-sm font-medium text-gray-900 mb-1 line-clamp-2 min-h-[2.5rem]">
