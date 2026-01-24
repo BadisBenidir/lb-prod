@@ -246,25 +246,28 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             {expandedSections.brands ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
             </button>
             {expandedSections.brands && (
-              <div className="space-y-2 max-h-90 md:max-h-90 overflow-y-auto pb-12">
-                {mainBrands.map((brand: string) => (
-                  <label key={brand} className="flex items-center">
-                    <input
-                      type="checkbox"
-                      checked={filters.brands.includes(brand)}
-                      onChange={() => handleBrandChange(brand)}
-                      className="mr-2"
-                    />
-                    <span className="text-sm">{brand}</span>
-                  </label>
-                ))}
+              <div className="space-y-2 max-h-40 md:max-h-48 overflow-y-auto">
+                <div className='space-y-4'>
+                  {mainBrands.map((brand: string) => (
+                    <label key={brand} className="flex items-center">
+                      <input
+                        type="checkbox"
+                        checked={filters.brands.includes(brand)}
+                        onChange={() => handleBrandChange(brand)}
+                        className="mr-2"
+                      />
+                      <span className="text-sm">{brand}</span>
+                    </label>
+                  ))}
+                </div>
 
                 {otherBrands.length > 0 && (
-                  <>
-                  <div className='flex justify-center my-12'>
-                    <div className='w-1/2 border-t border-gray-500' />
+                  <div className='py-8 flex justify-center'>
+                    <div className='w-28 border-t border-gray-500' />
                   </div>
+                )}
 
+                <div className='space-y-4'>
                   {otherBrands.map((brand: string) => (
                     <label key={brand} className="flex items-center">
                       <input
@@ -274,10 +277,9 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                         className="mr-2"
                       />
                       <span className="text-sm">{brand}</span>
-                      </label>
+                    </label>
                   ))}
-                </>
-                )}
+                </div>
               </div>
             )}
           </div>
