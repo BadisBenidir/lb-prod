@@ -56,7 +56,7 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
     };
   }, [isOpen]);
 
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['categories']));
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['categories', 'brands']));
 
   const toggleSection = (section: string) => {
     const newExpanded = new Set(expandedSections);
