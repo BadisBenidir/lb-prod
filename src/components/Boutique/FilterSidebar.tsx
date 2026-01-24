@@ -247,7 +247,25 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </button>
             {expandedSections.brands && (
               <div className="space-y-2 max-h-40 md:max-h-48 overflow-y-auto pb-12">
-                  {mainBrands.map((brand: string) => (
+                {mainBrands.map((brand: string) => (
+                  <label key={brand} className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={filters.brands.includes(brand)}
+                      onChange={() => handleBrandChange(brand)}
+                      className="mr-2"
+                    />
+                    <span className="text-sm">{brand}</span>
+                  </label>
+                ))}
+
+                {otherBrands.length > 0 && (
+                  <>
+                  <div className='flex justify-center'>
+                    <div className='w-1/2 border-t border-gray-500' />
+                  </div>
+
+                  {otherBrands.map((brand: string) => (
                     <label key={brand} className="flex items-center">
                       <input
                         type="checkbox"
@@ -256,26 +274,9 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                         className="mr-2"
                       />
                       <span className="text-sm">{brand}</span>
-                    </label>
+                      </label>
                   ))}
-
-                {otherBrands.length > 0 && (
-                  <>
-                  <div className='my-16 mb-16 flex justify-center'>
-                    <div className='w-1/2 border-t border-gray-500' />
-                  </div>
-                    {otherBrands.map((brand: string) => (
-                      <label key={brand} className="flex items-center">
-                        <input
-                          type="checkbox"
-                          checked={filters.brands.includes(brand)}
-                          onChange={() => handleBrandChange(brand)}
-                          className="mr-2"
-                        />
-                        <span className="text-sm">{brand}</span>
-                        </label>
-                    ))}
-                  </>
+                </>
                 )}
               </div>
             )}
