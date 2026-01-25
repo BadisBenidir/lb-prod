@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Calendar, MapPin } from 'lucide-react';
+import { Phone, Calendar, MapPin, User } from 'lucide-react';
 
 interface ProfileCompletionData {
   phone: string;
@@ -79,7 +79,7 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
             {/* Contact Information */}
             <div>
               <h2 className="text-xl font-medium text-black mb-6 flex items-center">
-                <Phone className="w-5 h-5 mr-3" />
+                <User className="w-5 h-5 mr-3" />
                 Informations supplémentaires
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
