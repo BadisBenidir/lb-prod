@@ -153,20 +153,6 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-2">
-                      Ville
-                    </label>
-                    <input
-                      type="text"
-                      id="city"
-                      name="city"
-                      value={formData.city}
-                      onChange={handleInputChange}
-                      placeholder="Paris"
-                      className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-black"
-                    />
-                  </div>
-                  <div>
                     <label htmlFor="postalCode" className="block text-sm font-medium text-gray-700 mb-2">
                       Code postal
                     </label>
@@ -177,6 +163,20 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
                       value={formData.postalCode}
                       onChange={handleInputChange}
                       placeholder="75001"
+                      className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-black"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-2">
+                      Ville
+                    </label>
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      placeholder="Paris"
                       className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-black"
                     />
                   </div>
