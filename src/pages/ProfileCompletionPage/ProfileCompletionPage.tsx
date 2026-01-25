@@ -80,23 +80,9 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
             <div>
               <h2 className="text-xl font-medium text-black mb-6 flex items-center">
                 <Phone className="w-5 h-5 mr-3" />
-                Informations de contact
+                Informations supplémentaires
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                    Téléphone
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    placeholder="+33 6 12 34 56 78"
-                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-black"
-                  />
-                </div>
                 <div>
                   <label htmlFor="birthDate" className="block text-sm font-medium text-gray-700 mb-2">
                     Date de naissance
