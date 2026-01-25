@@ -121,7 +121,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
         ))}
       </div>
       
-      <div className='mx-auto max-w-5xl grid grid-cols-2 gap-4'>
+      <div className='mx-auto max-w-5xl grid grid-cols-2 gap-4 justify-items-center'>
         {productsToShow.map((product) => (
           <div key={product.id}>
             {/* Mobile */}
