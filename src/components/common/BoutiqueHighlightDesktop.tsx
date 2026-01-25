@@ -96,7 +96,6 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
                     key={product.id} 
                     className="bg-white/80 backdrop-blur-sm rounded-lg p-4 hover:bg-white transition-colors duration-300 cursor-pointer border border-gray-200 shadow-sm"
                     onClick={() => onProductClick?.(product.id)}
-                    product={product}
                   >
                     <div className="aspect-[4/5] bg-gray-200 rounded-md mb-3 overflow-hidden">
                       <img
