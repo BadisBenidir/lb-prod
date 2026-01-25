@@ -40,10 +40,6 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
     .map((id: string) =>  featuredProducts.find((p) => p.id === id))
     .filter((p): p is (typeof featuredProducts)[number] => !!p);
 
-  const imgSrc = 
-    Highlight_Image_By_ID[product.id] ||
-    (products.image?.[0] ?? product.image ?? "");
-
   return (
     <section className="py-16 md:py-20 bg-gradient-to-b from-white to-gray-50 text-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -104,7 +100,11 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
                   >
                     <div className="aspect-[4/5] bg-gray-200 rounded-md mb-3 overflow-hidden">
                       <img
-                        src={product.images && product.images[0] ? product.images[0] : product.image || 'https://via.placeholder.com/200x200?text=No+Image'}
+                        src={
+                          Highlight_Image_By_ID[product.id] ||
+                          product.images?.[0] ||
+                          ""
+                        }
                         alt={product.name}
                         className="w-full h-full object-cover object-center"
                       />
