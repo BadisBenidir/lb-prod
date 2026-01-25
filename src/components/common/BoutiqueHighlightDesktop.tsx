@@ -80,7 +80,7 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
             
             <button
               onClick={onNavigateToBoutique}
-              className="bg-black text-white px-8 py-4 font-medium hover:bg-gray-800 transition-colors rounded-xl flex items-center text-base group"
+              className="bg-black text-white px-8 py-4 font-medium hover:bg-gray-800 transition-colors rounded-lg flex items-center text-base group"
             >
               EXPLORER LA BOUTIQUE
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
