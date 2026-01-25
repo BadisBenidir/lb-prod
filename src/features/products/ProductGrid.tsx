@@ -36,9 +36,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('Tout');
 
-  useEffect(() => {
-    window.scrollTo({ top:0, left:0, behavior: 'auto' });
-  }, [selectedCategory]);
+
 
   console.log('[GRID] products lenght =', products?.length);
   console.log('[GRID] categories prop =', categories);
