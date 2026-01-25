@@ -3,6 +3,8 @@ import { ArrowRight, Star, Heart, ShoppingBag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { products } from '../../data/products';
 import { BOUTIQUE_HIGHLIGHT_IDS } from './highlight';
+import { Highlight_Image_By_ID } from './highlight';
+import { ProductCard } from '../../features';
 
 export const HOME_TOUT_IDS = [
   "5c6b94e1-33c2-4b98-8a58-d2192ce2312a",
@@ -38,6 +40,9 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
     .map((id: string) =>  featuredProducts.find((p) => p.id === id))
     .filter((p): p is (typeof featuredProducts)[number] => !!p);
 
+  const imgSrc = 
+    Highlight_Image_By_ID[product.id] ||
+    (products.image?.[0] ?? product.image ?? "");
 
   return (
     <section className="py-16 md:py-20 bg-gradient-to-b from-white to-gray-50 text-gray-900">
