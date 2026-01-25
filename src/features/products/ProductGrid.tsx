@@ -93,6 +93,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
     ? filteredProducts.slice(0, 4)
     : filteredProducts;
 
+  const highlightProducts = boutiqueHighlightIds
+    .map((id) => products.find((p) => p.id === id))
+    .filter((p): p is Product => Boolean);
+  
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div className="text-center mb-12">
@@ -122,7 +126,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onAddToCart, catego
       </div>
       
       <div className='grid grid-cols-2 gap-4 md:grid-cols-3'>
-        {productsToShow.map((product) => (
+        {highlightProducts.map((product) => (
           <div key={product.id}>
             {/* Mobile */}
             <div className='md:hidden'>
