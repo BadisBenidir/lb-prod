@@ -52,12 +52,12 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
               </span>
             </div>
             
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight mb-6">
+            <h2 className="text-4xl md:text-4xl lg:text-5xl font-light leading-tight mb-6">
               Des pièces d'exceptions
               <span className="block font-bold text-black">soigneusement sélectionnées</span>
             </h2>
             
-            <p className="text-lg text-gray-600 leading-relaxed mb-6">
+            <p className="text-xl text-gray-600 leading-relaxed mb-6">
               Chaque article de notre boutique a été sélectionné avec exigence.
               Maroquinerie et prêt-à-porter de luxe de seconde main,
               authentifiés et classifiés selon nos standards de qualité.
