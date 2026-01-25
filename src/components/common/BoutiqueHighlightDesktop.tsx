@@ -52,7 +52,7 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
               </span>
             </div>
             
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight mb-9">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight mb-12">
               Des pièces d'exceptions
               <span className="block font-bold text-black">soigneusement sélectionnées</span>
             </h2>
@@ -63,7 +63,7 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
               authentifiés et classifiés selon nos standards de qualité.
             </p>
             
-            <div className="space-y-4 mb-9">
+            <div className="space-y-4 mb-7">
               <div className="flex items-center">
                 <Heart className="h-5 w-5 text-gray-800 mr-3" />
                 <span className="text-gray-700">État neuf, excellent, et très bon uniquement</span>
@@ -80,7 +80,7 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
             
             <button
               onClick={onNavigateToBoutique}
-              className="bg-black text-white px-8 py-4 font-medium hover:bg-gray-800 transition-colors rounded-m flex items-center text-base group"
+              className="bg-black text-white px-8 py-4 font-medium hover:bg-gray-800 transition-colors rounded-xl flex items-center text-base group"
             >
               EXPLORER LA BOUTIQUE
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
