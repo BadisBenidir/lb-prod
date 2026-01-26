@@ -82,8 +82,8 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
                 <User className="w-5 h-5 mr-3" />
                 Informations supplémentaires
               </h2>
-              <div className="grid grid-cols-2 gap-6 items-start">
-                <div>
+              <div className="flex flex-col sm:flex-row gap-6 items-start">
+                <div className='w-full sm:w-1/2'>
                   <label 
                     htmlFor="birthDate" 
                     className="block text-sm font-medium text-gray-700 mb-2"
@@ -101,7 +101,7 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
                       className="w-full pl-10 pr-4 py-3 border border-gray-300 focus:outline-none focus:border-black"
                     />
                   </div>
-                  <div>
+                  <div className='w-full sm:w-1/2'>
                     <label 
                       htmlFor='favoriteCategory' 
                       className='block text-sm font-medium text-gray-900 mb-2'
