@@ -108,7 +108,7 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
                       name="favoriteCategory"
                       value={formData.favoriteCategory}
                       onChange={handleInputChange}
-                      className='w-full px-4 py-3 border border-gray-300 focus:border-black outline-none bg-white'
+                      className='w-full px-4 py-3 border border-gray-300 focus:border-black outline-none bg-black'
                     >
                       <option value="">Sélectionner une catégorie</option>
                       <option value="Sacs"></option>
