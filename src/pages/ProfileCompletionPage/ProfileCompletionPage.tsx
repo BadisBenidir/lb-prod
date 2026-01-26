@@ -101,14 +101,14 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
                   <div>
                     <label
                       htmlFor='favoriteCategory'
-                      className='block text-sm font-medium text-gray-700 mb-2'
+                      className='block text-sm font-medium text-gray-900 mb-2'
                     >
                     <select 
                       id="favoriteCategory"
                       name="favoriteCategory"
                       value={formData.favoriteCategory}
                       onChange={handleInputChange}
-                      className='w-full px-4 py-3 border border-gray-300 focus:border-black outline-none bg-black'
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 focus:outline-none focus:border-black"
                     >
                       <option value="">Sélectionner une catégorie</option>
                       <option value="Sacs"></option>
