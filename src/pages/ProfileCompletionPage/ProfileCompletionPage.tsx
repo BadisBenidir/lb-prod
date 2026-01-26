@@ -82,9 +82,12 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
                 <User className="w-5 h-5 mr-3" />
                 Informations supplémentaires
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="birthDate" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label 
+                    htmlFor="birthDate" 
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Date de naissance
                   </label>
                   <div className="relative">
@@ -99,10 +102,13 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
                     />
                   </div>
                   <div>
-                    <label
-                      htmlFor='favoriteCategory'
+                    <label 
+                      htmlFor='favoriteCategory' 
                       className='block text-sm font-medium text-gray-900 mb-2'
                     >
+                      Catégorie Préferée
+                    </label>
+
                     <select 
                       id="favoriteCategory"
                       name="favoriteCategory"
@@ -117,7 +123,6 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
                       <option value="Accessoires"></option>
                       <option value="Pochettes"></option>
                     </select>
-                    </label>
                   </div>
                 </div>
               </div>
