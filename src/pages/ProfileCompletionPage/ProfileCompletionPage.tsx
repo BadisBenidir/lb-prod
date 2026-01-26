@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Phone, Calendar, MapPin, User } from 'lucide-react';
 
 interface ProfileCompletionData {
-  phone: string;
   birthDate: string;
+  favoriteCategory: string;
   addressLine1: string;
   addressLine2: string;
   city: string;
@@ -24,7 +24,7 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
 }) => {
 
   const [formData, setFormData] = useState<ProfileCompletionData>({
-    phone: '',
+    favoriteCategory: '',
     birthDate: '',
     addressLine1: '',
     addressLine2: '',
@@ -97,6 +97,27 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
                       onChange={handleInputChange}
                       className="w-full pl-10 pr-4 py-3 border border-gray-300 focus:outline-none focus:border-black"
                     />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor='favoriteCategory'
+                      className='block text-sm font-medium text-gray-700 mb-2'
+                    >
+                    <select 
+                      id="favoriteCategory"
+                      name="favoriteCategory"
+                      value={formData.favoriteCategory}
+                      onChange={handleInputChange}
+                      className='w-full px-4 py-3 border border-gray-300 focus:border-black outline-none bg-white'
+                    >
+                      <option value="">Sélectionner une catégorie</option>
+                      <option value="Sacs"></option>
+                      <option value="Vêtements"></option>
+                      <option value="Chaussures"></option>
+                      <option value="Accessoires"></option>
+                      <option value="Pochettes"></option>
+                    </select>
+                    </label>
                   </div>
                 </div>
               </div>
