@@ -82,7 +82,7 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
                 <User className="w-5 h-5 mr-3" />
                 Informations supplémentaires
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
                 <div>
                   <label 
                     htmlFor="birthDate" 
