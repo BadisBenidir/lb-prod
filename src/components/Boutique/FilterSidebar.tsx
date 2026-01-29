@@ -261,7 +261,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   ))}
                 </div>
 
-                <hr className="my-4 border-gray-0" />
+                <div className="mt-4" /> {/* espace blanc */}
 
                 <div className='space-y-2 mt-16'>
                   {otherBrands.map((brand: string) => (
