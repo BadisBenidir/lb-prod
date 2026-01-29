@@ -248,6 +248,9 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             {expandedSections.brands && (
               <div className="space-y-2 max-h-50 md:max-h-60 overflow-y-auto">
                 <div className='space-y-2'>
+                  <p className="text-xs uppercase tracking-wide text-gray-400 md:hidden">
+                    Marques principales
+                  </p>
                   {mainBrands.map((brand: string) => (
                     <label key={brand} className="flex items-center">
                       <input
@@ -261,6 +264,9 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   ))}
                 </div>
                 <div className='space-y-2 pt-6'>
+                  <p className="text-xs uppercase tracking-wide text-gray-400 md:hidden">
+                    Autres marques
+                  </p>
                   {otherBrands.map((brand: string) => (
                     <label key={brand} className="flex items-center">
                       <input
