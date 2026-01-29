@@ -260,6 +260,9 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     </label>
                   ))}
                 </div>
+
+                <hr className="my-4 border-gray-200" />
+                
                 <div className='space-y-2 mt-16'>
                   {otherBrands.map((brand: string) => (
                     <label key={brand} className="flex items-center">
