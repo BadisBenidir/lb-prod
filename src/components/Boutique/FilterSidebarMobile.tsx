@@ -177,9 +177,6 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
               <>
                 {/* espace blanc + label */}
                 <div className="pt-4">
-                  <p className="text-xs uppercase tracking-wide text-gray-400 mb-2">
-                    Autres marques
-                  </p>
                 </div>
 
                 {otherBrandItems.map((item) => (
