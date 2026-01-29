@@ -142,7 +142,7 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
         </button>
         
         {isExpanded && (
-          <div className="px-4 pb-4 space-y-3">
+          <div className="px-4 pb-4 space-y-3 max-h-60 overflow-y-auto">
             {(isBrands ? mainBrandItems : items).map((item) => (
               <label 
                 key={item} 
