@@ -260,7 +260,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     </label>
                   ))}
                 </div>
-                <div className='space-y-2 pt-10'>
+                <div className='space-y-2 pt-8'>
                   {otherBrands.map((brand: string) => (
                     <label key={brand} className="flex items-center">
                       <input
