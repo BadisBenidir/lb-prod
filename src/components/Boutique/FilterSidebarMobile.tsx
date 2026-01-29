@@ -3,6 +3,15 @@ import { X, ChevronDown, ChevronRight, Trash2, Eye, Filter } from 'lucide-react'
 import { FilterState } from '../../hooks/useBoutique';
 import { useEffect } from 'react';
 
+const mainBrands = [
+  'Louis Vuitton',
+  'Saint Laurent',
+  'Chanel',
+  'Hermès',
+  'Gucci',
+  'Dior',
+];
+
 interface FilterState {
   categories: string[];
   brands: string[];
@@ -40,6 +49,7 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
   isOpen,
   onClose
 }) => {
+
 
   useEffect(() => {
     if (!isOpen) return;
@@ -100,6 +110,16 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
 
     if (items.length === 0) return null;
 
+    const isBrands = key === 'brands';
+
+    const mainBrandItems = isBrands
+      ? items.filter((b) => mainBrands.includes(b))
+      : items;
+
+    const otherBrandItems = isBrands
+      ? items.filter((b) => !mainBrands.includes(b))
+      : [];
+
     return (
       <div className="border-b border-gray-100 last:border-b-0">
         <button
@@ -123,7 +143,7 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
         
         {isExpanded && (
           <div className="px-4 pb-4 space-y-3">
-            {items.map((item) => (
+            {(isBrands ? mainBrandItems : items).map((item) => (
               <label 
                 key={item} 
                 className="flex items-center cursor-pointer group"
@@ -152,6 +172,47 @@ const FilterSidebarMobile: React.FC<FilterSidebarMobileProps> = ({
                 </span>
               </label>
             ))}
+
+            {isBrands && otherBrandItems.length > 0 && (
+              <>
+                {/* espace blanc + label */}
+                <div className="pt-4">
+                  <p className="text-xs uppercase tracking-wide text-gray-400 mb-2">
+                    Autres marques
+                  </p>
+                </div>
+
+                {otherBrandItems.map((item) => (
+                  <label 
+                    key={item} 
+                    className="flex items-center cursor-pointer group"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={selectedItems.includes(item)}
+                      onChange={() => handleCheckboxChange(filterKey, item)}
+                      className="sr-only"
+                    />
+                    <div className={`
+                      w-5 h-5 rounded-lg border-2 flex items-center justify-center mr-3 transition-all duration-200
+                      ${selectedItems.includes(item) 
+                        ? 'bg-black border-black' 
+                        : 'border-gray-300 group-hover:border-black'
+                      }
+                    `}>
+                      {selectedItems.includes(item) && (
+                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      )}
+                    </div>
+                    <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
+                      {item}
+                    </span>
+                  </label>
+                ))}
+              </>
+            )}
           </div>
         )}
       </div>
