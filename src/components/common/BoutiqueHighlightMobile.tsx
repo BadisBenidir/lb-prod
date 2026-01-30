@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, Star, Heart, ShoppingBag } from 'lucide-react';
+import { Mobile_Highlight_Image_By_ID } from './highlight';
 
 interface BoutiqueHighlightMobileProps {
   featuredProducts?: {
@@ -21,6 +22,12 @@ const BoutiqueHighlightMobile: React.FC<BoutiqueHighlightMobileProps> = ({
   onProductClick,
   featuredProducts = []
 }) => {
+
+  const mobileHighlightIds = Object.keys(Mobile_Highlight_Image_By_ID);
+
+  const mobileHighlightProducts = featuredProducts
+    .filter((p) => mobileHighlightIds.includes(p.id))
+    .sort((a, b) => mobileHighlightIds.indexOf(a.id) - mobileHighlightIds.indexOf(b.id));
 
   return (
     <section className="py-8 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
@@ -82,30 +89,44 @@ const BoutiqueHighlightMobile: React.FC<BoutiqueHighlightMobileProps> = ({
         <div className="mb-8">
           {featuredProducts.length > 0 ? (
             <div className="grid grid-cols-3 gap-3">
-              {featuredProducts.slice(0, 3).map((product) => (
-                <div 
-                  key={product.id} 
-                  className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-[1.02] overflow-hidden"
-                  onClick={() => onProductClick?.(product.id)}
-                >
-                  <div className="aspect-[3/4] bg-gray-100 overflow-hidden">
-                    <img
-                      src={product.images && product.images[0] ? product.images[0] : product.image || 'https://via.placeholder.com/200x200?text=No+Image'}
-                      alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
+              {mobileHighlightProducts.map((product) => {
+                const imgSrc =
+                  Mobile_Highlight_Image_By_ID[product.id] ||
+                  product.images?.[0] ||
+                  product.image ||
+                  "/placeholder.png";
+
+                return (
+
+                  <div 
+                    key={product.id} 
+                    className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-[1.02] overflow-hidden"
+                    onClick={() => onProductClick?.(product.id)}
+                  >
+                    <div className="aspect-[3/4] bg-gray-100 overflow-hidden">
+                      <img
+                        src={imgSrc}
+                        alt={product.name}
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                        loading="lazy"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).src =
+                            (product.images && product.images[0]) || product.image || "/placeholder.png";
+                        }}
+                      />
+                    </div>
+                    <div className="p-3">
+                      <h4 className="text-xs font-semibold text-gray-900 mb-1 truncate">
+                        {product.name}
+                      </h4>
+                      <p className="text-xs text-gray-500 mb-2 truncate">{product.brand || product.brand_name || 'Marque'}</p>
+                      <p className="text-sm font-bold text-gray-900">
+                        €{product.price.toLocaleString()}
+                      </p>
+                    </div>
                   </div>
-                  <div className="p-3">
-                    <h4 className="text-xs font-semibold text-gray-900 mb-1 truncate">
-                      {product.name}
-                    </h4>
-                    <p className="text-xs text-gray-500 mb-2 truncate">{product.brand || product.brand_name || 'Marque'}</p>
-                    <p className="text-sm font-bold text-gray-900">
-                      €{product.price.toLocaleString()}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <div className="bg-gradient-to-br from-gray-100 to-white rounded-3xl p-8 text-center border border-gray-200 shadow-sm">
