@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Star, Heart, ShoppingBag } from 'lucide-react';
 import { Mobile_Highlight_Image_By_ID } from './highlight';
+import { Highlight_Image_By_ID } from "./highlight";
 
 interface BoutiqueHighlightMobileProps {
   featuredProducts?: {
