@@ -111,7 +111,13 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
                           className="w-full h-full object-cover object-center"
                           loading="lazy"
                           onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).src = "/placeholder.png";
+                            const target = e.currentTarget as HTMLImageElement;
+
+                            if (target.src !== (product.images?.[0] ?? "")) {
+                              target.src = product.images?.[0] || "/placeholder.png";
+                              return;
+                            }
+                            target.src = "/placeholder.png";
                           }}
                         />
                       </div>
