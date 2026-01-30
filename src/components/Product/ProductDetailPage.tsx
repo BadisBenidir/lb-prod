@@ -233,6 +233,38 @@ const ProductDetailPage: React.FC = () => {
               </span>
             </div>
 
+            {/* Actions */}
+            <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4 -mx-4 mt-8">
+              {/* Message pour produit vendu affiché */}
+              {product.isSoldDisplay && (
+                <div className="mb-4 bg-gray-100 border border-gray-300 p-3 rounded-lg text-center">
+                  <p className="text-gray-700 font-medium">Ce produit a été vendu</p>
+                  <p className="text-gray-500 text-sm">Découvrez nos autres pièces disponibles</p>
+                </div>
+              )}
+              <div className="flex gap-3">
+                <button
+                  onClick={handleAddToCart}
+                  disabled={!product.inStock || product.isSoldDisplay}
+                  className={`flex-1 flex items-center justify-center gap-2 py-3 px-6 font-medium transition-colors ${
+                    product.inStock && !product.isSoldDisplay
+                      ? 'bg-black text-white hover:bg-gray-800'
+                      : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                  }`}
+                >
+                  <ShoppingBag className="h-5 w-5" />
+                  {product.isSoldDisplay ? 'Vendu' : product.inStock ? 'Ajouter au panier' : 'Épuisé'}
+                </button>
+                {isAuthenticated && userId && (
+                  <FavoriteButton 
+                    productId={product?.id || ''} 
+                    userId={userId} 
+                    size="lg"
+                    className="border border-gray-300 hover:border-gray-400 rounded-lg px-4 py-3"
+                  />
+                )}
+              </div>
+            </div>
 
             {/* Description */}
             {product.description && (
@@ -388,41 +420,6 @@ const ProductDetailPage: React.FC = () => {
                 </div>
               </details>
             )}
-
-
-
-            {/* Actions */}
-            <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4 -mx-4 mt-8">
-              {/* Message pour produit vendu affiché */}
-              {product.isSoldDisplay && (
-                <div className="mb-4 bg-gray-100 border border-gray-300 p-3 rounded-lg text-center">
-                  <p className="text-gray-700 font-medium">Ce produit a été vendu</p>
-                  <p className="text-gray-500 text-sm">Découvrez nos autres pièces disponibles</p>
-                </div>
-              )}
-              <div className="flex gap-3">
-                <button
-                  onClick={handleAddToCart}
-                  disabled={!product.inStock || product.isSoldDisplay}
-                  className={`flex-1 flex items-center justify-center gap-2 py-3 px-6 font-medium transition-colors ${
-                    product.inStock && !product.isSoldDisplay
-                      ? 'bg-black text-white hover:bg-gray-800'
-                      : 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                  }`}
-                >
-                  <ShoppingBag className="h-5 w-5" />
-                  {product.isSoldDisplay ? 'Vendu' : product.inStock ? 'Ajouter au panier' : 'Épuisé'}
-                </button>
-                {isAuthenticated && userId && (
-                  <FavoriteButton 
-                    productId={product?.id || ''} 
-                    userId={userId} 
-                    size="lg"
-                    className="border border-gray-300 hover:border-gray-400 rounded-lg px-4 py-3"
-                  />
-                )}
-              </div>
-            </div>
           </div>
         </div>
       </div>
