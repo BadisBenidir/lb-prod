@@ -19,6 +19,11 @@ const ProductDetailPage: React.FC = () => {
   const [selectedDefectImageIndex, setSelectedDefectImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+
+  const minSwipeDistance = 50; // px
+
   
   const atcRef = useRef<HTMLDivElement | null>(null);
   const [showStickyATC, setShowStickyATC] = useState(false);
@@ -83,6 +88,29 @@ const ProductDetailPage: React.FC = () => {
     setSelectedImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEndX(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (touchStartX === null || touchEndX === null) return;
+
+    const distance = touchStartX - touchEndX;
+
+    if (Math.abs(distance) < minSwipeDistance) return;
+
+    if (distance > 0) {
+      nextImage();
+    } else {
+      previousImage();
+    }
+  };
+
   const nextDefectImage = () => {
     setSelectedDefectImageIndex((prev) => (prev + 1) % defectImages.length);
   };
@@ -137,7 +165,12 @@ const ProductDetailPage: React.FC = () => {
             {/* Carrousel photos produit */}
             <div className="space-y-4">
               {/* Image principale */}
-              <div className="relative aspect-square bg-gray-50 rounded-lg overflow-hidden">
+              <div
+                className="relative aspect-square bg-gray-50 rounded-lg overflow-hidden touch-pan-y"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
                 <img
                   src={images[selectedImageIndex]}
                   alt={product.name}
