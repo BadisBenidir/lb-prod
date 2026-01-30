@@ -292,7 +292,7 @@ const ProductDetailPage: React.FC = () => {
 
             {/* Description */}
             {product.description && (
-              <div className="space-y-2">
+              <div className="space-y-2 mt-6">
                 <h3 className="text-lg font-semibold">Description</h3>
                 <p className="text-gray-700 leading-relaxed whitespace-pre-line">
                   {product.description}
