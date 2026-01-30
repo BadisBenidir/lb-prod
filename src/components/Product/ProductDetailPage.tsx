@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Heart, ShoppingBag, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Product } from '../../types';
@@ -6,6 +6,24 @@ import { useProduct } from '../../hooks/useProduct';
 import { useCartContext } from '../../contexts/CartContext';
 import { useAuth } from '../../contexts/AuthContext';
 import FavoriteButton from '../common/FavoriteButton';
+
+const atcRef = useRef<HTMLDivElement | null>(null);
+const [showStickyATC, setShowStickyATC] = useState(false);
+
+useEffect(() => {
+  const el = atcRef.current;
+  if (!el) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      setShowStickyATC(!entry.isIntersecting);
+    },
+    { threshold: 0.1 }
+  );
+
+  observer.observe(el);
+  return () => observer.disconnect();
+}, []);
 
 const ProductDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -95,7 +113,7 @@ const ProductDetailPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pb-28 md:pb-0">
       {/* Header */}
       <div className="sticky top-0 z-10 bg-white border-b border-gray-200">
         <div className="flex items-center justify-between p-4">
@@ -233,7 +251,7 @@ const ProductDetailPage: React.FC = () => {
               </span>
             </div>
 
-            <div className='md:hidden'>
+            <div className='md:hidden mt-6'>
               {/* Actions */}
               <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4 -mx-4 mt-8">
                 {/* Message pour produit vendu affiché */}
@@ -461,6 +479,37 @@ const ProductDetailPage: React.FC = () => {
           </div>
         </div>
       </div>
+      {showStickyATC && (
+        <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-t border-gray-200 px-4 py-3">
+          <div className="flex gap-3">
+            <button
+              onClick={handleAddToCart}
+              disabled={!product.inStock || product.isSoldDisplay}
+              className={`flex-1 flex items-center justify-center gap-2 py-3 px-6 font-medium transition-colors ${
+                product.inStock && !product.isSoldDisplay
+                  ? 'bg-black text-white hover:bg-gray-800'
+                  : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+              }`}
+            >
+              <ShoppingBag className="h-5 w-5" />
+              {product.isSoldDisplay
+                ? 'Vendu'
+                : product.inStock
+                ? 'Ajouter au panier'
+                : 'Épuisé'}
+            </button>
+
+            {isAuthenticated && userId && (
+              <FavoriteButton
+                productId={product?.id || ''}
+                userId={userId}
+                size="lg"
+                className="border border-gray-300 hover:border-gray-400 rounded-lg px-4 py-3"
+              />
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
