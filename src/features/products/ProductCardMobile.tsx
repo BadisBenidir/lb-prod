@@ -122,8 +122,8 @@ const ProductCardMobile: React.FC<ProductCardMobileProps> = ({ product, onAddToC
           disabled={!product.inStock || product.isSoldDisplay}
           className={`w-full py-2 text-xs font-bold rounded-xl transition-all duration-300 shadow-sm ${
             product.inStock && !product.isSoldDisplay
-              ? 'bg-gradient-to-r from-black to-gray-800 text-white hover:from-gray-800 hover:to-gray-700 hover:shadow-md transform hover:scale-[1.02] active:scale-[0.98]'
-              : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+              ? 'bg-gradient-to-r from-black to-gray-800 text-white hover:from-gray-800 rounded-lg hover:to-gray-700 hover:shadow-md transform hover:scale-[1.02] active:scale-[0.98]'
+              : 'bg-gray-200 text-gray-400 rounded-lg cursor-not-allowed'
           }`}
         >
           {product.isSoldDisplay ? 'VENDU' : product.inStock ? 'AJOUTER AU PANIER' : 'ÉPUISÉ'}
