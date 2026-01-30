@@ -256,7 +256,7 @@ const ProductDetailPage: React.FC = () => {
 
             <div ref={atcRef} className='md:hidden mt-6 mb-6'>
               {/* Actions */}
-              <div className="bg-white p-4 -mx-4 mt-8">
+              <div className="bg-white p-4 -mx-4 mt-8 mb-6">
                 {/* Message pour produit vendu affiché */}
                 {product.isSoldDisplay && (
                   <div className="mb-4 bg-gray-100 border border-gray-300 p-3 rounded-lg text-center">
