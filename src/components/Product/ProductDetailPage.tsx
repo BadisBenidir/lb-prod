@@ -125,7 +125,7 @@ const ProductDetailPage: React.FC = () => {
             className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors"
           >
             <ArrowLeft className="h-5 w-5" />
-            <span className="hidden sm:inline">Retour</span>
+            <span>Retour</span>
           </button>
         </div>
       </div>
@@ -292,7 +292,7 @@ const ProductDetailPage: React.FC = () => {
 
             {/* Description */}
             {product.description && (
-              <div className="space-y-5">
+              <div className="space-y-2">
                 <h3 className="text-lg font-semibold">Description</h3>
                 <p className="text-gray-700 leading-relaxed whitespace-pre-line">
                   {product.description}
