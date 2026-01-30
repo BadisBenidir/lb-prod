@@ -253,7 +253,7 @@ const ProductDetailPage: React.FC = () => {
               </span>
             </div>
 
-            <div className='md:hidden mt-6'>
+            <div ref={atcRef} className='md:hidden mt-6'>
               {/* Actions */}
               <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4 -mx-4 mt-8">
                 {/* Message pour produit vendu affiché */}
