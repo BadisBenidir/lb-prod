@@ -92,32 +92,39 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
           <div className="relative">
             {featuredProducts.length > 0 ? (
               <div className="grid grid-cols-2 gap-4">
-                {highlightProducts.map((product) => (
-                  <div 
-                    key={product.id} 
-                    className="bg-white/80 backdrop-blur-sm rounded-lg p-4 hover:bg-white transition-colors duration-300 cursor-pointer border border-gray-200 shadow-sm"
-                    onClick={() => onProductClick?.(product.id)}
-                  >
-                    <div className="aspect-[4/5] bg-gray-200 rounded-md mb-3 overflow-hidden">
-                      <img
-                        src={
-                          Highlight_Image_By_ID[product.id] ||
-                          product.images?.[0] ||
-                          ""
-                        }
-                        alt={product.name}
-                        className="w-full h-full object-cover object-center"
-                      />
+                {highlightProducts.map((product) => {
+                  const imgSrc =
+                    Highlight_Image_By_ID[product.id] ||
+                    product.images?.[0] ||
+                    "/placeholder.png";
+
+                  return (
+                    <div 
+                      key={product.id} 
+                      className="bg-white/80 backdrop-blur-sm rounded-lg p-4 hover:bg-white transition-colors duration-300 cursor-pointer border border-gray-200 shadow-sm"
+                      onClick={() => onProductClick?.(product.id)}
+                    >
+                      <div className="aspect-[4/5] bg-gray-200 rounded-md mb-3 overflow-hidden">
+                        <img
+                          src={imgSrc}
+                          alt={product.name}
+                          className="w-full h-full object-cover object-center"
+                          loading="lazy"
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).src = "/placeholder.png";
+                          }}
+                        />
+                      </div>
+                      <h4 className="text-sm font-medium text-gray-900 mb-1 line-clamp-2 min-h-[2.5rem]">
+                        {product.name}
+                      </h4>
+                      <p className="text-xs text-gray-600 mb-2">{product.brand || product.brand_name || 'Marque'}</p>
+                      <p className="text-sm font-semibold text-black">
+                        €{product.price.toLocaleString()}
+                      </p>
                     </div>
-                    <h4 className="text-sm font-medium text-gray-900 mb-1 line-clamp-2 min-h-[2.5rem]">
-                      {product.name}
-                    </h4>
-                    <p className="text-xs text-gray-600 mb-2">{product.brand || product.brand_name || 'Marque'}</p>
-                    <p className="text-sm font-semibold text-black">
-                      €{product.price.toLocaleString()}
-                    </p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             ) : (
               // Placeholder if no products
