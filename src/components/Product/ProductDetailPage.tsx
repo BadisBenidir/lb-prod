@@ -19,6 +19,25 @@ const ProductDetailPage: React.FC = () => {
   const [selectedDefectImageIndex, setSelectedDefectImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
+  
+  const atcRef = useRef<HTMLDivElement | null>(null);
+  const [showStickyATC, setShowStickyATC] = useState(false);
+
+  useEffect(() => {
+    const el = atcRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowStickyATC(!entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   const handleBack = () => {
     navigate('/boutique');
   };
@@ -94,24 +113,6 @@ const ProductDetailPage: React.FC = () => {
     };
     return translations[genre] || genre;
   };
-
-  const atcRef = useRef<HTMLDivElement | null>(null);
-  const [showStickyATC, setShowStickyATC] = useState(false);
-
-  useEffect(() => {
-    const el = atcRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setShowStickyATC(!entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
 
   return (
@@ -255,7 +256,7 @@ const ProductDetailPage: React.FC = () => {
 
             <div ref={atcRef} className='md:hidden mt-6'>
               {/* Actions */}
-              <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4 -mx-4 mt-8">
+              <div className="bg-white border-t border-gray-200 p-4 -mx-4 mt-8">
                 {/* Message pour produit vendu affiché */}
                 {product.isSoldDisplay && (
                   <div className="mb-4 bg-gray-100 border border-gray-300 p-3 rounded-lg text-center">
