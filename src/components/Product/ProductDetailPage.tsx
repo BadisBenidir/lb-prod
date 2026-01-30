@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Heart, ShoppingBag, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Product } from '../../types';
@@ -6,6 +6,8 @@ import { useProduct } from '../../hooks/useProduct';
 import { useCartContext } from '../../contexts/CartContext';
 import { useAuth } from '../../contexts/AuthContext';
 import FavoriteButton from '../common/FavoriteButton';
+import { useEffect, useRef, useState } from "react";
+
 
 const atcRef = useRef<HTMLDivElement | null>(null);
 const [showStickyATC, setShowStickyATC] = useState(false);
