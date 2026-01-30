@@ -90,7 +90,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
                 className="h-10 w-10 lg:h-12 lg:w-12 mr-3 object-contain"
               />
               <span className="text-xl lg:text-2xl font-bold tracking-tight text-black">
-                LIGNE BLANCHE
+                ENDLESS
               </span>
             </button>
           </div>
