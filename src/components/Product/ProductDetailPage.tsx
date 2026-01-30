@@ -448,7 +448,7 @@ const ProductDetailPage: React.FC = () => {
 
 
             {/* Actions */}
-            <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4 -mx-4 mt-8">
+            <div className="md:block sticky bottom-0 bg-white border-t border-gray-200 p-4 -mx-4 mt-8">
               {/* Message pour produit vendu affiché */}
               {product.isSoldDisplay && (
                 <div className="mb-4 bg-gray-100 border border-gray-300 p-3 rounded-lg text-center">
