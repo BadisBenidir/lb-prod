@@ -233,9 +233,6 @@ const ProductDetailPage: React.FC = () => {
               </span>
             </div>
 
-            <div className="md:hidden">
-              <AddToCartButton />
-            </div>
 
             {/* Description */}
             {product.description && (
@@ -264,6 +261,18 @@ const ProductDetailPage: React.FC = () => {
                     <span className="text-gray-600">État</span>
                     <span className="font-medium">{translateCondition(product.condition)}</span>
                   </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">N° de série</span>
+                    <span className="font-medium">
+                      {product.serialNumber ? (
+                        <span className="font-mono text-xs">{product.serialNumber}</span>
+                      ) : (
+                        <em className="text-gray-400 font-normal">Non communiqué</em>
+                      )}
+                    </span>
+                  </div>
+                </div>
+                <div className="space-y-2">
                   {product.genre && (
                     <div className="flex justify-between">
                       <span className="text-gray-600">Genre</span>
