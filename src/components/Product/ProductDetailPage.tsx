@@ -7,23 +7,6 @@ import { useAuth } from '../../contexts/AuthContext';
 import FavoriteButton from '../common/FavoriteButton';
 import React, { useEffect, useRef, useState } from 'react';
 
-const atcRef = useRef<HTMLDivElement | null>(null);
-const [showStickyATC, setShowStickyATC] = useState(false);
-
-useEffect(() => {
-  const el = atcRef.current;
-  if (!el) return;
-
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      setShowStickyATC(!entry.isIntersecting);
-    },
-    { threshold: 0.1 }
-  );
-
-  observer.observe(el);
-  return () => observer.disconnect();
-}, []);
 
 const ProductDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -111,6 +94,25 @@ const ProductDetailPage: React.FC = () => {
     };
     return translations[genre] || genre;
   };
+
+  const atcRef = useRef<HTMLDivElement | null>(null);
+  const [showStickyATC, setShowStickyATC] = useState(false);
+
+  useEffect(() => {
+    const el = atcRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowStickyATC(!entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
 
   return (
     <div className="min-h-screen bg-white pb-28 md:pb-0">
