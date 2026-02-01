@@ -7,6 +7,36 @@ interface HeroDesktopProps {
 
 const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
   return (
+    <section className="relative h-[85vh] md:h-[90vh] w-full overflow-hidden">
+      {/* Animation (fond) */}
+      <div className="absolute inset-0">
+        {/* Ici tu mets Lottie OU video OU canvas */}
+      </div>
+
+      {/* Overlay léger pour lisibilité */}
+      <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
+
+      {/* Contenu par-dessus */}
+      <div className="relative z-10 h-full max-w-7xl mx-auto px-4 lg:px-8 flex flex-col justify-end pb-10">
+        <div className="space-y-3">
+          <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-black">
+            Ligne Blanche
+          </h1>
+          <p className="text-sm md:text-base text-gray-700 max-w-lg">
+            Pièces sélectionnées. Prix justes. Drops réguliers.
+          </p>
+          <button
+            onClick={() => document.getElementById("home-content")?.scrollIntoView({ behavior: "smooth" })}
+            className="inline-flex w-fit items-center rounded-xl bg-black text-white px-5 py-3 text-sm font-semibold"
+          >
+            Découvrir
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+  return (
+
     <section className="relative bg-gradient-to-br from-gray-50 to-white min-h-[80vh] md:min-h-[90vh] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
