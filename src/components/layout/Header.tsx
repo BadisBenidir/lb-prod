@@ -245,18 +245,18 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
                 </button>
               </nav>
               
-              <div className="mt-8 pt-8 border-t border-gray-200">
+              <div className="mt-8 pt-8 border-t border-gray-200 outline-none focus:outline-none focus:ring-0">
                 <div className="flex justify-center gap-4">
                   <button 
                     onClick={() => {
                       handleUserClick();
                       setIsMobileMenuOpen(false);
                     }}
-                    className="flex items-center justify-center w-12 h-12 border border-gray-300 hover:bg-gray-100 relative"
+                    className="flex items-center justify-center w-12 h-12 border border-gray-300 hover:bg-gray-100 relative outline-none focus:outline-none focus:ring-0"
                   >
                     <User className="h-5 w-5" />
                     {user && (
-                      <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs rounded-full h-3 w-3"></span>
+                      <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs rounded-full h-3 w-3 outline-none focus:outline-none focus:ring-0"></span>
                     )}
                   </button>
                   {/* Bouton déconnexion mobile - visible seulement si connecté */}
@@ -266,7 +266,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
                         onLogout();
                         setIsMobileMenuOpen(false);
                       }}
-                      className="flex items-center justify-center w-12 h-12 border border-gray-300 hover:bg-red-50 hover:border-red-300 transition-colors"
+                      className="flex items-center justify-center w-12 h-12 border border-gray-300 hover:bg-red-50 hover:border-red-300 transition-colors outline-none focus:outline-none focus:ring-0"
                       title="Se déconnecter"
                     >
                       <LogOut className="h-5 w-5 text-red-600" />
