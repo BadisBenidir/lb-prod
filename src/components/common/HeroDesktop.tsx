@@ -25,23 +25,56 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
       {/* Overlay léger pour lisibilité */}
       <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
 
-      {/* Contenu par-dessus */}
-      <div className="relative z-10 h-full max-w-7xl mx-auto px-4 lg:px-8 flex flex-col justify-end pb-10">
-        <div className="space-y-3">
-          <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-black">
-            Ligne Blanche
-          </h1>
-          <p className="text-sm md:text-base text-gray-700 max-w-lg">
-            Pièces sélectionnées. Prix justes. Drops réguliers.
-          </p>
-          <button
-            onClick={() => document.getElementById("home-content")?.scrollIntoView({ behavior: "smooth" })}
-            className="inline-flex w-fit items-center rounded-xl bg-black text-white px-5 py-3 text-sm font-semibold"
-          >
-            Découvrir
-          </button>
-        </div>
-      </div>
+      {/* Contenu texte à gauche */}
+          <div className="max-w-2xl">
+            <div className="flex items-center mb-6">
+              <span className="text-gray-600 text-sm font-medium tracking-wider uppercase">
+                Ligne Blanche
+              </span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight mb-6 text-gray-900">
+              Acheter moins,
+              <span className="block">choisir mieux,</span>
+              <span className="block font-bold text-black">porter l'exception.</span>
+            </h1>
+
+            <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
+              Découvrez une sélection exclusive de pièces de luxe de seconde main choisies avec exigence et certifiées authentiques.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              <button
+                onClick={() => onNavigate?.('boutique')}
+                className="bg-black text-white px-8 py-4 font-medium hover:bg-gray-900 transition-colors flex items-center justify-center text-base"
+              >
+                <ShoppingBag className="h-5 w-5 mr-2" />
+                Découvrir la Boutique
+              </button>
+              <button
+                onClick={() => onNavigate?.('about')}
+                className="border-2 border-black text-black px-8 py-4 font-medium hover:bg-black hover:text-white transition-colors flex items-center justify-center text-base"
+              >
+                <Sparkles className="h-5 w-5 mr-2" />
+                Notre Histoire
+              </button>
+            </div>
+
+            <div className="grid grid-cols-3 gap-6 text-center">
+              <div className="border-l-2 border-gray-300 pl-4 text-left">
+                <div className="text-2xl font-light text-gray-900 mb-1">&lt;3%</div>
+                <p className="text-sm text-gray-600">de sélection rigoureuse</p>
+              </div>
+              <div className="border-l-2 border-gray-300 pl-4 text-left">
+                <div className="text-2xl font-light text-gray-900 mb-1">2-3x</div>
+                <p className="text-sm text-gray-600">moins cher que la concurrence</p>
+              </div>
+              <div className="border-l-2 border-gray-300 pl-4 text-left">
+                <div className="text-2xl font-light text-gray-900 mb-1">100%</div>
+                <p className="text-sm text-gray-600">authenticité garantie</p>
+              </div>
+            </div>
+          </div>
     </section>
   );
   return (
