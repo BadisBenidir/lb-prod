@@ -19,33 +19,31 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
   const [scrolled, setScrolled] = React.useState(false);
 
   React.useEffect(() => {
-  // seulement sur la home
+  // Sur les autres pages : pas transparent
     if (location.pathname !== "/") {
       setHeroVisible(false);
       return;
     }
 
-    const target = document.getElementById("hero-end");
-    if (!target) {
-      setHeroVisible(true); // si pas trouvé, on garde transparent sur home
+    const hero = document.getElementById("hero");
+    if (!hero) {
+      setHeroVisible(false);
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => setHeroVisible(entry.isIntersecting),
-      { threshold: 0 }
+      {
+        threshold: 0,
+        // on considère "hero visible" tant qu'on n'a pas dépassé ~80px
+        rootMargin: "-80px 0px 0px 0px",
+      }
     );
 
-    observer.observe(target);
+    observer.observe(hero);
+
     return () => observer.disconnect();
   }, [location.pathname]);
-
-  React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const isHome = location.pathname === "/";
 
@@ -102,8 +100,15 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
   const [heroVisible, setHeroVisible] = React.useState(false);
 
   return (
-    <header className={[ "fixed top-0 left-0 right-0 z-[55] transition-colors duration-300", location.pathname === "/" && heroVisible ? "bg-transparent border-transparent" : "bg-white border-b border-gray-200" ].join(" ")}
->
+    <header
+      className={[
+        "fixed top-0 left-0 right-0 z-[55] transition-colors duration-300",
+        location.pathname === "/" && heroVisible
+          ? "bg-transparent border-transparent"
+          : "bg-white border-b border-gray-200",
+      ].join(" ")}
+    >
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-16 lg:h-20">
           {/* Mobile menu button */}
