@@ -154,7 +154,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
           <div className="flex items-center space-x-2 lg:space-x-4">
             <button 
               onClick={handleUserClick}
-              className="hidden sm:block hover:text-gray-600 transition-colors p-2 relative"
+              className="hidden sm:block hover:text-gray-600 transition-colors p-2 relative outline-none focus:outline-none focus:ring-0"
             >
               <User className="h-5 w-5" />
               {user && (
@@ -165,7 +165,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
             {user && onLogout && (
               <button 
                 onClick={onLogout}
-                className="hidden sm:block hover:text-red-600 transition-colors p-2"
+                className="hidden sm:block hover:text-red-600 transition-colors p-2 outline-none focus:outline-none focus:ring-0"
                 title="Se déconnecter"
               >
                 <LogOut className="h-5 w-5" />
@@ -173,7 +173,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
             )}
             <button 
               onClick={onCartClick}
-              className="relative hover:text-gray-600 transition-colors p-2"
+              className="relative hover:text-gray-600 transition-colors p-2 outline-none focus:outline-none focus:ring-0"
             >
               <ShoppingBag className="h-5 w-5" />
               {cartItemsCount > 0 && (
