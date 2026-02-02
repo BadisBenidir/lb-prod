@@ -22,6 +22,11 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
           </video>
         </div>
 
+        {/* Overlay léger pour lisibilité */}
+        <div className="absolute inset-x-0 bottom-0 top-16 bg-white/10 backdrop-blur-[1px]"/>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
           {/* Contenu texte à gauche */}
           <div className="max-w-2xl">
             <div className="flex items-center mb-6">
@@ -75,6 +80,8 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
             <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-black-900 -z-10"></div>
             <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-black-900 -z-10"></div>
           </div>
+        </div>
+      </div>
     </section>
   );
 };
