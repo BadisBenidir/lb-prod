@@ -78,14 +78,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
   };
 
   return (
-    <header
-      className={[
-        "sticky top-0 z-[55] transition-colors duration-300",
-        isHome && !scrolled
-          ? "bg-transparent border-transparent"
-          : "bg-white border-b border-gray-200",
-      ].join(" ")}
-    >
+    <header className="bg-transparent border-transparent sticky top-0 z-[55]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-16 lg:h-20">
           {/* Mobile menu button */}
