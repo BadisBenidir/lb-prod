@@ -10,7 +10,16 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
     <section className="relative h-[85vh] md:h-[90vh] w-full overflow-hidden">
       {/* Animation (fond) */}
       <div className="absolute inset-0">
-        {/* Ici tu mets Lottie OU video OU canvas */}
+        <video
+          className="h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        >
+          <source src="/0202.mp4" type="video/mp4" />
+        </video>
       </div>
 
       {/* Overlay léger pour lisibilité */}
