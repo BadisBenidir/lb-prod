@@ -63,22 +63,22 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
             </div>
 
             <div className="grid grid-cols-3 gap-6 text-center">
-              <div className="border-l-2 border-black-900 pl-4 text-left">
+              <div className="border-l-2 border-gray-300 pl-4 text-left">
                 <div className="text-2xl font-light text-gray-900 mb-1">&lt;3%</div>
                 <p className="text-sm text-gray-600">de sélection rigoureuse</p>
               </div>
-              <div className="border-l-2 border-black-900 pl-4 text-left">
+              <div className="border-l-2 border-gray-300 pl-4 text-left">
                 <div className="text-2xl font-light text-gray-900 mb-1">2-3x</div>
                 <p className="text-sm text-gray-600">moins cher que la concurrence</p>
               </div>
-              <div className="border-l-2 border-black-900 pl-4 text-left">
+              <div className="border-l-2 border-gray-300 pl-4 text-left">
                 <div className="text-2xl font-light text-gray-900 mb-1">100%</div>
                 <p className="text-sm text-gray-600">authenticité garantie</p>
               </div>
             </div>
             {/* Éléments décoratifs */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-gray-200 -z-10"></div>
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gray-100 -z-10"></div>
+            <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-black-900 -z-10"></div>
+            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-black-900 -z-10"></div>
           </div>
         </div>
       </div>
