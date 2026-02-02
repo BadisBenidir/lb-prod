@@ -98,7 +98,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
               <img
                 src="logolb.png"
                 alt="Ligne Blanche Logo" 
-                className="h-10 w-10 lg:h-12 lg:w-12 mr-3 object-contain"
+                className="h-12 w-12 lg:h-14 lg:w-14 mr-5 object-contain"
               />
               <span className="text-xl lg:text-2xl font-bold tracking-tight text-black">
                 LIGNE BLANCHE
