@@ -76,27 +76,6 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
                 <p className="text-sm text-gray-600">authenticité garantie</p>
               </div>
             </div>
-          </div>
-
-          {/* Image dans un cadre à droite */}
-          <div className="relative">
-            <div className="relative bg-white p-4 shadow-2xl">
-              <div className="relative overflow-cover" style={{ aspectRatio: '4/5' }}>
-                <img
-                  src="/hero-main.webp"
-                  alt="Expertise en maroquinerie de luxe"
-                  className="w-full h-full object-cover"
-                />
-                {/* Overlay subtil optionnel */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-50"></div>
-              </div>
-              {/* Légende sous l'image */}
-              <div className="mt-4 text-center">
-                <p className="text-sm text-gray-600 uppercase tracking-wider">Collection Exclusive</p>
-                <p className="text-xs text-gray-500 mt-1">Sélection Ligne Blanche</p>
-              </div>
-            </div>
-
             {/* Éléments décoratifs */}
             <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-gray-200 -z-10"></div>
             <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gray-100 -z-10"></div>
