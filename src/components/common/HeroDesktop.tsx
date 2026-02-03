@@ -12,7 +12,7 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
       className="relative bg-gradient-to-br from-gray-50 to-white min-h-[80vh] md:min-h-[90vh] overflow-hidden"
     >
       {/* Animation (fond) */}
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0">
           <video
             className="h-full w-full object-cover"
             autoPlay
