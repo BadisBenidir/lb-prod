@@ -67,11 +67,36 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
     }
   };
 
+  const [overHero, setOverHero] = React.useState(true);
+
+  React.useEffect(() => {
+    const hero = document.getElementById("hero");
+
+    if (!hero) return;
+
+    const heroHeight = hero.offsetHeight;
+
+    const onScroll = () => {
+      setOverHero(window.scrollY < heroHeight);
+    };
+
+    onScroll(); // état initial
+    window.addEventListener("scroll", onScroll);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[55] transition-colors ${
-        isHome ? "bg-transparent" : "bg-white border-b border-gray-200"
-      }`}
+      className={`
+        fixed top-0 left-0 right-0 z-[55]
+        transition-colors duration-300
+        ${
+          isHome && overHero
+            ? "bg-transparent"
+            : "bg-white"
+        }
+      `}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-16 lg:h-20">
