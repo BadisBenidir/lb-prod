@@ -40,10 +40,12 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
             </h1>
 
             <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
-              Découvrez une sélection exclusive de pièces de luxe de seconde main
-            </p>
-            <p className='block'>
-            choisies avec exigence et certifiées authentiques.
+              <span className="block whitespace-nowrap">
+                Découvrez une sélection exclusive de pièces de luxe de seconde main
+              </span>
+              <span className="block whitespace-nowrap">
+                choisies avec exigence et certifiées authentiques.
+              </span>
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
