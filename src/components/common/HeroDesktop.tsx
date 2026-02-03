@@ -7,7 +7,10 @@ interface HeroDesktopProps {
 
 const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
   return (
-    <section id="hero" className="relative bg-gradient-to-br from-gray-50 to-white min-h-[80vh] md:min-h-[90vh] overflow-hidden pt-16 lg:pt-20">
+    <section
+      id="hero"
+      className="relative bg-gradient-to-br from-gray-50 to-white min-h-[80vh] md:min-h-[90vh] overflow-hidden"
+    >
       {/* Animation (fond) */}
         <div className="absolute inset-0 -z-10">
           <video
