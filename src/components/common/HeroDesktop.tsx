@@ -8,7 +8,6 @@ interface HeroDesktopProps {
 const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
   return (
     <section
-      id="hero"
       className="relative bg-gradient-to-br from-gray-50 to-white min-h-[80vh] md:min-h-[90vh] overflow-hidden"
     >
       {/* Animation (fond) */}
@@ -27,7 +26,7 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
 
         {/* Overlay léger pour lisibilité */}
         <div className="absolute inset-x-0 bottom-0 top-16 bg-gradient-to-t from-white/30 via-white/10 to-transparent" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 pt-16 lg:pt-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
           {/* Contenu texte à gauche */}
