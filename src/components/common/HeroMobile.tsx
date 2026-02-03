@@ -11,7 +11,7 @@ const HeroMobile: React.FC<HeroMobileProps> = ({ onNavigate }) => {
       {/* Animation (fond) */}
         <div className="absolute inset-0">
           <video
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover object-right"
             autoPlay
             muted
             loop
