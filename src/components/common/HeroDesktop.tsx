@@ -79,9 +79,6 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
                 <p className="text-sm text-gray-600">authenticité garantie</p>
               </div>
             </div>
-            {/* Éléments décoratifs */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-black-900 -z-10"></div>
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-black-900 -z-10"></div>
           </div>
         </div>
       </div>
