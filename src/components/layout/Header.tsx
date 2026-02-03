@@ -16,6 +16,8 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
   const navigate = useNavigate();
   const location = useLocation();
 
+  const isHome = location.pathname === "/";
+
   const handleNavigation = (page: string) => {
     switch (page) {
       case 'home':
@@ -67,7 +69,12 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
   };
 
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-[55]">
+    <header
+      className={[
+        "sticky top-0 z-[55] transition-colors",
+        isHome ? "bg-transparent border-transparent" : "bg-white border-b border-gray-200"
+      ].join(" ")}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-16 lg:h-20">
           {/* Mobile menu button */}
