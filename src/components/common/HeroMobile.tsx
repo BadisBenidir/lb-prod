@@ -28,7 +28,7 @@ const HeroMobile: React.FC<HeroMobileProps> = ({ onNavigate }) => {
 
 
       {/* Content */}
-      <div className="relative h-full flex flex-col justify-center px-6 py-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-32 sm:pt-36 md:pt-44 lg:pt-52">
         {/* Main title - Optimized for mobile */}
         <div className="text-center mb-6">
           <h1 className="text-3xl font-light leading-tight mb-6 animate-slide-up">
