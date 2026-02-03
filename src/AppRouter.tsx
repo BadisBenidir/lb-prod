@@ -38,6 +38,7 @@ import ScrollToTop from './components/ScrollToTop';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
+
 // Layout wrapper component
 interface LayoutProps {
   children: React.ReactNode;
@@ -110,6 +111,7 @@ const WelcomePageWrapper: React.FC = () => {
 const Layout: React.FC<LayoutProps> = ({ children, currentPage }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const el = document.getElementById('app-scroll');
@@ -160,11 +162,13 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage }) => {
         onLogout={user ? handleLogout : undefined}
       />
 
-      <div 
-        id='app-scroll'
-        className='min-h-screen overflow-y-auto'
+      <div
+        id="app-scroll"
+        className={`min-h-screen overflow-y-auto ${
+          isHome ? "" : "pt-16 lg:pt-20"
+        }`}
       >
-      {children}
+        {children}
       </div>
       
       {currentPage !== 'login' && currentPage !== 'register' && currentPage !== 'checkout-success' && currentPage !== 'checkout-cancel' && (
