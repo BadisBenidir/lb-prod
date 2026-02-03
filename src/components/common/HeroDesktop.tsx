@@ -26,12 +26,12 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
 
         {/* Overlay léger pour lisibilité */}
         <div className="absolute inset-x-0 bottom-0 top-16 bg-gradient-to-t from-white/30 via-white/10 to-transparent" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 pt-16 lg:pt-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 pt-[80px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
           {/* Contenu texte à gauche */}
-          <div className="max-w-2xl">
-            <div className="flex items-center mb-12">
+          <div className="max-w-2xl mt-20 lg:mt-28">
+            <div className="flex items-center mb-6">
               <span className="text-gray-600 text-sm font-medium tracking-wider uppercase">
                 Ligne Blanche
               </span>
