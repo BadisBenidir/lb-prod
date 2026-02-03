@@ -48,12 +48,12 @@ const Cart: React.FC<CartProps> = ({
     <>
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black bg-opacity-50 z-50"
+        className="fixed inset-0 bg-black bg-opacity-50 z-60"
         onClick={onClose}
       />
       
       {/* Cart Sidebar */}
-      <div className="fixed top-0 right-0 h-full w-[420px] h-full w-full max-w-sm md:max-w-md bg-white z-50 transform transition-transform duration-300 ease-in-out">
+      <div className="fixed top-0 right-0 h-full w-[420px] h-full w-full max-w-sm md:max-w-md bg-white z-70 transform transition-transform duration-300 ease-in-out">
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-4 md:p-6 border-b">

@@ -16,37 +16,6 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [scrolled, setScrolled] = React.useState(false);
-
-  React.useEffect(() => {
-  // Sur les autres pages : pas transparent
-    if (location.pathname !== "/") {
-      setHeroVisible(false);
-      return;
-    }
-
-    const hero = document.getElementById("hero");
-    if (!hero) {
-      setHeroVisible(false);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setHeroVisible(entry.isIntersecting),
-      {
-        threshold: 0,
-        // on considère "hero visible" tant qu'on n'a pas dépassé ~80px
-        rootMargin: "-80px 0px 0px 0px",
-      }
-    );
-
-    observer.observe(hero);
-
-    return () => observer.disconnect();
-  }, [location.pathname]);
-
-  const isHome = location.pathname === "/";
-
   const handleNavigation = (page: string) => {
     switch (page) {
       case 'home':
@@ -97,18 +66,8 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
     }
   };
 
-  const [heroVisible, setHeroVisible] = React.useState(false);
-
   return (
-    <header
-      className={[
-        "fixed top-0 left-0 right-0 z-[55] transition-colors duration-300",
-        location.pathname === "/" && heroVisible
-          ? "bg-transparent border-transparent"
-          : "bg-white border-b border-gray-200",
-      ].join(" ")}
-    >
-
+    <header className="bg-white border-b border-gray-200 sticky top-0 z-[55]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-16 lg:h-20">
           {/* Mobile menu button */}
@@ -126,9 +85,9 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
               className="flex items-center hover:opacity-80 transition-opacity"
             >
               <img
-                src="logolb.png"
+                src="/Logo_v2.webp"
                 alt="Ligne Blanche Logo" 
-                className="h-12 w-12 lg:h-14 lg:w-14 mr-5 object-contain"
+                className="h-10 w-10 lg:h-12 lg:w-12 mr-3 object-contain"
               />
               <span className="text-xl lg:text-2xl font-bold tracking-tight text-black">
                 LIGNE BLANCHE
@@ -184,7 +143,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
           <div className="flex items-center space-x-2 lg:space-x-4">
             <button 
               onClick={handleUserClick}
-              className="hidden sm:block hover:text-gray-600 transition-colors p-2 relative outline-none focus:outline-none focus:ring-0"
+              className="hidden sm:block hover:text-gray-600 transition-colors p-2 relative"
             >
               <User className="h-5 w-5" />
               {user && (
@@ -195,7 +154,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
             {user && onLogout && (
               <button 
                 onClick={onLogout}
-                className="hidden sm:block hover:text-red-600 transition-colors p-2 outline-none focus:outline-none focus:ring-0"
+                className="hidden sm:block hover:text-red-600 transition-colors p-2"
                 title="Se déconnecter"
               >
                 <LogOut className="h-5 w-5" />
@@ -203,7 +162,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
             )}
             <button 
               onClick={onCartClick}
-              className="relative hover:text-gray-600 transition-colors p-2 outline-none focus:outline-none focus:ring-0"
+              className="relative hover:text-gray-600 transition-colors p-2"
             >
               <ShoppingBag className="h-5 w-5" />
               {cartItemsCount > 0 && (
@@ -275,18 +234,18 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
                 </button>
               </nav>
               
-              <div className="mt-8 pt-8 border-t border-gray-200 outline-none focus:outline-none focus:ring-0">
+              <div className="mt-8 pt-8 border-t border-gray-200">
                 <div className="flex justify-center gap-4">
                   <button 
                     onClick={() => {
                       handleUserClick();
                       setIsMobileMenuOpen(false);
                     }}
-                    className="flex items-center justify-center w-12 h-12 border border-gray-300 hover:bg-gray-100 relative outline-none focus:outline-none focus:ring-0"
+                    className="flex items-center justify-center w-12 h-12 border border-gray-300 hover:bg-gray-100 relative"
                   >
                     <User className="h-5 w-5" />
                     {user && (
-                      <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs rounded-full h-3 w-3 outline-none focus:outline-none focus:ring-0"></span>
+                      <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs rounded-full h-3 w-3"></span>
                     )}
                   </button>
                   {/* Bouton déconnexion mobile - visible seulement si connecté */}
@@ -296,7 +255,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
                         onLogout();
                         setIsMobileMenuOpen(false);
                       }}
-                      className="flex items-center justify-center w-12 h-12 border border-gray-300 hover:bg-red-50 hover:border-red-300 transition-colors outline-none focus:outline-none focus:ring-0"
+                      className="flex items-center justify-center w-12 h-12 border border-gray-300 hover:bg-red-50 hover:border-red-300 transition-colors"
                       title="Se déconnecter"
                     >
                       <LogOut className="h-5 w-5 text-red-600" />
