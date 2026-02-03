@@ -8,14 +8,19 @@ interface HeroMobileProps {
 const HeroMobile: React.FC<HeroMobileProps> = ({ onNavigate }) => {
   return (
     <section className="relative bg-gradient-to-b from-gray-900 to-black text-white h-screen overflow-hidden">
-      {/* Background image with parallax effect */}
-      <div className="absolute inset-0">
-        <img
-          src="/hero-main.webp"
-          alt="Expertise en maroquinerie de luxe"
-          className="w-full h-full object-cover opacity-75"
-        />
-      </div>
+      {/* Animation (fond) */}
+        <div className="absolute inset-0">
+          <video
+            className="h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          >
+            <source src="0202.mp4" type="video/mp4" />
+          </video>
+        </div>
 
       {/* Gradient overlay - More dramatic for mobile */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80"></div>
