@@ -29,15 +29,6 @@ const HeroMobile: React.FC<HeroMobileProps> = ({ onNavigate }) => {
 
       {/* Content */}
       <div className="relative h-full flex flex-col justify-center px-6 py-8">
-        {/* Logo and Brand section - Centered */}
-        <div className="flex flex-col items-center justify-center mb-8 animate-fade-in">
-          <div className="bg-white/10 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 flex items-center">
-            <span className="text-gray-100 text-xs font-medium tracking-wider uppercase">
-              Ligne Blanche
-            </span>
-          </div>
-        </div>
-
         {/* Main title - Optimized for mobile */}
         <div className="text-center mb-6">
           <h1 className="text-3xl font-light leading-tight mb-6 animate-slide-up">
