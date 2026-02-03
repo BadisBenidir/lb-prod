@@ -25,9 +25,7 @@ const HeroMobile: React.FC<HeroMobileProps> = ({ onNavigate }) => {
       {/* Gradient overlay - More dramatic for mobile */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80"></div>
 
-      {/* Decorative elements */}
-      <div className="absolute top-16 right-8 w-16 h-16 border border-white/20 rotate-45 animate-pulse"></div>
-      <div className="absolute bottom-32 left-6 w-8 h-8 border border-gray-200/30 rotate-12"></div>
+
 
       {/* Content */}
       <div className="relative h-full flex flex-col justify-center px-6 py-8">
