@@ -31,7 +31,7 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
 
           {/* Contenu texte à gauche */}
           <div className="max-w-2xl">
-            <div className="flex items-center mb-6">
+            <div className="flex items-center mb-12">
               <span className="text-gray-600 text-sm font-medium tracking-wider uppercase">
                 Ligne Blanche
               </span>
