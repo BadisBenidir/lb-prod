@@ -31,7 +31,7 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
           {/* Contenu texte à gauche */}
-          <div className="max-w-2xl mt-20 lg:mt-28">
+          <div className="max-w-2xl mt-16 lg:mt-20">
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight mb-6 text-gray-900">
               Acheter moins,
