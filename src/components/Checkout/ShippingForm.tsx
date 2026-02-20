@@ -59,6 +59,8 @@ const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnecte
     }
   };
 
+  console.log("GMAPS KEY =", import.meta.env.VITE_GOOGLE_MAPS_KEY);
+
   return (
     <div className="bg-white border border-gray-200 p-6">
       <h2 className="text-xl font-semibold mb-6">Adresse de livraison</h2>
