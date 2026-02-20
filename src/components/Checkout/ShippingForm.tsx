@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { User, Mail, Phone, MapPin, Package, Home } from 'lucide-react';
 import { ShippingAddress } from '../../types';
+import Autocomplete from "react-google-autocomplete";
 
 export type DeliveryType = 'point_relais' | 'domicile';
 
@@ -14,6 +15,10 @@ interface ShippingFormProps {
   isUserConnected?: boolean;
   onSubmit: (result: ShippingFormResult) => void;
 }
+
+const extractComponent = (components: any[], type: string) => {
+  return components.find(c => c.types.includes(type))?.long_name || '';
+};>
 
 const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnected = false, onSubmit }) => {
   const [formData, setFormData] = useState<ShippingAddress>(initialData);
@@ -179,15 +184,26 @@ const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnecte
           </label>
           <div className="relative">
             <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <input
-              type="text"
-              name="address"
-              value={formData.address}
-              onChange={handleInputChange}
+            <Autocomplete
+              apiKey="AIza..." // Ta vraie clé ici
+              onPlaceSelected={(place) => {
+                const components = place.address_components || [];
+                setFormData({
+                  ...formData,
+                  address: place.formatted_address || '',
+                  city: extractComponent(components, "locality"),
+                  postalCode: extractComponent(components, "postal_code")
+                });
+              }}
+              options={{
+                types: ["address"],
+                componentRestrictions: { country: "fr" },
+              }}
               className={`w-full pl-10 pr-4 py-3 border focus:outline-none focus:border-black ${
                 errors.address ? 'border-red-500' : 'border-gray-300'
               }`}
               placeholder="123 Rue de la Paix"
+              defaultValue={formData.address}
             />
           </div>
           {errors.address && <p className="text-red-500 text-sm mt-1">{errors.address}</p>}
