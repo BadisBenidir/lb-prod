@@ -60,89 +60,6 @@ const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnecte
       <h2 className="text-xl font-semibold mb-6">Adresse de livraison</h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Choix du type de livraison */}
-        <div className="space-y-3">
-          <label className="block text-sm font-medium text-gray-700 mb-3">
-            Mode de livraison <span className="text-red-500">*</span>
-          </label>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Option Point Relais */}
-            <button
-              type="button"
-              onClick={() => setDeliveryType('point_relais')}
-              className={`relative flex flex-col p-4 border-2 rounded-lg transition-all ${
-                deliveryType === 'point_relais'
-                  ? 'border-black bg-gray-50'
-                  : 'border-gray-200 hover:border-gray-300'
-              }`}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center">
-                  <Package className={`h-5 w-5 mr-2 ${deliveryType === 'point_relais' ? 'text-black' : 'text-gray-400'}`} />
-                  <span className={`font-medium ${deliveryType === 'point_relais' ? 'text-black' : 'text-gray-700'}`}>
-                    Point Relais
-                  </span>
-                </div>
-                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                  deliveryType === 'point_relais' ? 'border-black' : 'border-gray-300'
-                }`}>
-                  {deliveryType === 'point_relais' && (
-                    <div className="w-3 h-3 rounded-full bg-black" />
-                  )}
-                </div>
-              </div>
-              <p className="text-sm text-gray-500 text-left">
-                Livraison au point relais le plus proche de votre adresse
-              </p>
-              <div className="mt-2 text-lg font-bold text-black">
-                19,99 €
-              </div>
-            </button>
-
-            {/* Option Adresse spécifique */}
-            <button
-              type="button"
-              onClick={() => setDeliveryType('domicile')}
-              className={`relative flex flex-col p-4 border-2 rounded-lg transition-all ${
-                deliveryType === 'domicile'
-                  ? 'border-black bg-gray-50'
-                  : 'border-gray-200 hover:border-gray-300'
-              }`}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center">
-                  <Home className={`h-5 w-5 mr-2 ${deliveryType === 'domicile' ? 'text-black' : 'text-gray-400'}`} />
-                  <span className={`font-medium ${deliveryType === 'domicile' ? 'text-black' : 'text-gray-700'}`}>
-                    À une adresse
-                  </span>
-                </div>
-                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                  deliveryType === 'domicile' ? 'border-black' : 'border-gray-300'
-                }`}>
-                  {deliveryType === 'domicile' && (
-                    <div className="w-3 h-3 rounded-full bg-black" />
-                  )}
-                </div>
-              </div>
-              <p className="text-sm text-gray-500 text-left">
-                Livraison à l'adresse indiquée (domicile, bureau, etc.)
-              </p>
-              <div className="mt-2 text-lg font-bold text-black">
-                29,99 €
-              </div>
-            </button>
-          </div>
-
-          {deliveryType === 'point_relais' && (
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-3">
-              <p className="text-sm text-blue-700">
-                <strong>Note :</strong> Le point relais Chronopost le plus proche de votre adresse sera automatiquement sélectionné. Vous recevrez les détails par email.
-              </p>
-            </div>
-          )}
-        </div>
-
         {/* Name Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -327,6 +244,89 @@ const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnecte
             <option value="Luxembourg">Luxembourg</option>
             <option value="Monaco">Monaco</option>
           </select>
+        </div>
+
+        {/* Choix du type de livraison */}
+        <div className="space-y-3">
+          <label className="block text-sm font-medium text-gray-700 mb-3">
+            Mode de livraison <span className="text-red-500">*</span>
+          </label>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Option Point Relais */}
+            <button
+              type="button"
+              onClick={() => setDeliveryType('point_relais')}
+              className={`relative flex flex-col p-4 border-2 rounded-lg transition-all ${
+                deliveryType === 'point_relais'
+                  ? 'border-black bg-gray-50'
+                  : 'border-gray-200 hover:border-gray-300'
+              }`}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center">
+                  <Package className={`h-5 w-5 mr-2 ${deliveryType === 'point_relais' ? 'text-black' : 'text-gray-400'}`} />
+                  <span className={`font-medium ${deliveryType === 'point_relais' ? 'text-black' : 'text-gray-700'}`}>
+                    Point Relais
+                  </span>
+                </div>
+                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                  deliveryType === 'point_relais' ? 'border-black' : 'border-gray-300'
+                }`}>
+                  {deliveryType === 'point_relais' && (
+                    <div className="w-3 h-3 rounded-full bg-black" />
+                  )}
+                </div>
+              </div>
+              <p className="text-sm text-gray-500 text-left">
+                Livraison au point relais le plus proche de votre adresse
+              </p>
+              <div className="mt-2 text-lg font-bold text-black">
+                19,99 €
+              </div>
+            </button>
+
+            {/* Option Adresse spécifique */}
+            <button
+              type="button"
+              onClick={() => setDeliveryType('domicile')}
+              className={`relative flex flex-col p-4 border-2 rounded-lg transition-all ${
+                deliveryType === 'domicile'
+                  ? 'border-black bg-gray-50'
+                  : 'border-gray-200 hover:border-gray-300'
+              }`}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center">
+                  <Home className={`h-5 w-5 mr-2 ${deliveryType === 'domicile' ? 'text-black' : 'text-gray-400'}`} />
+                  <span className={`font-medium ${deliveryType === 'domicile' ? 'text-black' : 'text-gray-700'}`}>
+                    À une adresse
+                  </span>
+                </div>
+                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                  deliveryType === 'domicile' ? 'border-black' : 'border-gray-300'
+                }`}>
+                  {deliveryType === 'domicile' && (
+                    <div className="w-3 h-3 rounded-full bg-black" />
+                  )}
+                </div>
+              </div>
+              <p className="text-sm text-gray-500 text-left">
+                Livraison à l'adresse indiquée (domicile, bureau, etc.)
+              </p>
+              <div className="mt-2 text-lg font-bold text-black">
+                29,99 €
+              </div>
+            </button>
+          </div>
+
+          {deliveryType === 'point_relais' && (
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-3">
+              <p className="text-sm text-blue-700">
+                <strong>Note :</strong> Le point relais Chronopost le plus proche de votre adresse sera automatiquement sélectionné. Vous recevrez les détails par email.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Submit Button */}
