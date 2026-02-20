@@ -185,7 +185,7 @@ const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnecte
           <div className="relative">
             <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <Autocomplete
-              apiKey="AIza..." // Ta vraie clé ici
+              apiKey="AIzaSyAXmBW8FoVC2RuDqSYmecdbyDAUqWKdXn4" // Ta vraie clé ici
               onPlaceSelected={(place) => {
                 const components = place.address_components || [];
                 setFormData({
