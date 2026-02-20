@@ -184,7 +184,7 @@ const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnecte
           <div className="relative">
             <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <Autocomplete
-              apiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY} // ou process.env... selon ton build
+              apiKey={import.meta.env.local.VITE_GOOGLE_MAPS_KEY} // ou process.env... selon ton build
               defaultValue={formData.address}
               onChange={(e: any) => {
                 const value = e.target.value;
