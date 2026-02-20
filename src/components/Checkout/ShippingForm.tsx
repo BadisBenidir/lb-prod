@@ -16,9 +16,8 @@ interface ShippingFormProps {
   onSubmit: (result: ShippingFormResult) => void;
 }
 
-const extractComponent = (components: any[], type: string) => {
-  return components.find(c => c.types.includes(type))?.long_name || '';
-};
+const extractComponent = (components: any[], type: string) => 
+  components.find((c) => c.types.includes(type))?.long_name || '';
 
 const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnected = false, onSubmit }) => {
   const [formData, setFormData] = useState<ShippingAddress>(initialData);
