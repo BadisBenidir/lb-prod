@@ -185,25 +185,34 @@ const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnecte
           <div className="relative">
             <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <Autocomplete
-              apiKey="AIzaSyAXmBW8FoVC2RuDqSYmecdbyDAUqWKdXn4" // Ta vraie clé ici
-              onPlaceSelected={(place) => {
+              apiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY} // ou process.env... selon ton build
+              defaultValue={formData.address}
+              onChange={(e: any) => {
+                const value = e.target.value;
+                setFormData((prev) => ({ ...prev, address: value }));
+              }}
+              onPlaceSelected={(place: any) => {
                 const components = place.address_components || [];
-                setFormData({
-                  ...formData,
-                  address: place.formatted_address || '',
-                  city: extractComponent(components, "locality"),
-                  postalCode: extractComponent(components, "postal_code")
-                });
+
+                const city =
+                  extractComponent(components, "locality") ||
+                  extractComponent(components, "postal_town") ||
+                  extractComponent(components, "administrative_area_level_2");
+
+                setFormData((prev) => ({
+                  ...prev,
+                  address: place.formatted_address || "",
+                  city,
+                  postalCode: extractComponent(components, "postal_code"),
+                }));
               }}
               options={{
                 types: ["address"],
                 componentRestrictions: { country: "fr" },
               }}
               className={`w-full pl-10 pr-4 py-3 border focus:outline-none focus:border-black ${
-                errors.address ? 'border-red-500' : 'border-gray-300'
+                errors.address ? "border-red-500" : "border-gray-300"
               }`}
-              placeholder="123 Rue de la Paix"
-              defaultValue={formData.address}
             />
           </div>
           {errors.address && <p className="text-red-500 text-sm mt-1">{errors.address}</p>}
