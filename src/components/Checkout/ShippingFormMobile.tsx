@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { User, Mail, Phone, MapPin, Lock, CheckCircle, Package, Home } from 'lucide-react';
 import { ShippingAddress } from '../../types';
 import { DeliveryType, ShippingFormResult } from './ShippingForm';
+import Autocomplete from "react-google-autocomplete";
 
 interface ShippingFormMobileProps {
   initialData: ShippingAddress;
   isUserConnected?: boolean;
   onSubmit: (result: ShippingFormResult) => void;
 }
+
+const extractComponent = (components: any[], type: string) => 
+  components.find((c) => c.types.includes(type))?.long_name || '';
 
 const ShippingFormMobile: React.FC<ShippingFormMobileProps> = ({
   initialData,
@@ -72,70 +76,6 @@ const ShippingFormMobile: React.FC<ShippingFormMobileProps> = ({
         <label className="block text-xs font-medium text-gray-700">
           Mode de livraison <span className="text-red-500">*</span>
         </label>
-
-        <div className="space-y-3">
-          {/* Option Point Relais */}
-          <button
-            type="button"
-            onClick={() => setDeliveryType('point_relais')}
-            className={`w-full flex items-center justify-between p-3 border-2 rounded-xl transition-all ${
-              deliveryType === 'point_relais'
-                ? 'border-black bg-gray-50'
-                : 'border-gray-200'
-            }`}
-          >
-            <div className="flex items-center">
-              <Package className={`h-5 w-5 mr-3 ${deliveryType === 'point_relais' ? 'text-black' : 'text-gray-400'}`} />
-              <div className="text-left">
-                <span className={`font-medium text-sm ${deliveryType === 'point_relais' ? 'text-black' : 'text-gray-700'}`}>
-                  Point Relais
-                </span>
-                <p className="text-xs text-gray-500">Le plus proche de votre adresse</p>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <span className="font-bold text-sm mr-2">19,99 €</span>
-              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                deliveryType === 'point_relais' ? 'border-black' : 'border-gray-300'
-              }`}>
-                {deliveryType === 'point_relais' && (
-                  <div className="w-3 h-3 rounded-full bg-black" />
-                )}
-              </div>
-            </div>
-          </button>
-
-          {/* Option Adresse spécifique */}
-          <button
-            type="button"
-            onClick={() => setDeliveryType('domicile')}
-            className={`w-full flex items-center justify-between p-3 border-2 rounded-xl transition-all ${
-              deliveryType === 'domicile'
-                ? 'border-black bg-gray-50'
-                : 'border-gray-200'
-            }`}
-          >
-            <div className="flex items-center">
-              <Home className={`h-5 w-5 mr-3 ${deliveryType === 'domicile' ? 'text-black' : 'text-gray-400'}`} />
-              <div className="text-left">
-                <span className={`font-medium text-sm ${deliveryType === 'domicile' ? 'text-black' : 'text-gray-700'}`}>
-                  À une adresse
-                </span>
-                <p className="text-xs text-gray-500">Domicile, bureau, etc.</p>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <span className="font-bold text-sm mr-2">29,99 €</span>
-              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                deliveryType === 'domicile' ? 'border-black' : 'border-gray-300'
-              }`}>
-                {deliveryType === 'domicile' && (
-                  <div className="w-3 h-3 rounded-full bg-black" />
-                )}
-              </div>
-            </div>
-          </button>
-        </div>
 
         {deliveryType === 'point_relais' && (
           <div className="bg-blue-50 border border-blue-200 rounded-xl p-3">
@@ -254,16 +194,36 @@ const ShippingFormMobile: React.FC<ShippingFormMobileProps> = ({
         </label>
         <div className="relative">
           <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-          <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleInputChange}
-            className={`w-full pl-10 pr-3 py-3 text-sm border rounded-xl focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black ${
-              errors.address ? 'border-red-500' : 'border-gray-300'
-            }`}
-            placeholder="123 Rue de la Paix"
-          />
+            <Autocomplete
+              apiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY} // ou process.env... selon ton build
+              defaultValue={formData.address}
+              onChange={(e: any) => {
+                const value = e.target.value;
+                setFormData((prev) => ({ ...prev, address: value }));
+              }}
+              onPlaceSelected={(place: any) => {
+                const components = place.address_components || [];
+
+                const city =
+                  extractComponent(components, "locality") ||
+                  extractComponent(components, "postal_town") ||
+                  extractComponent(components, "administrative_area_level_2");
+
+                setFormData((prev) => ({
+                  ...prev,
+                  address: place.formatted_address || "",
+                  city,
+                  postalCode: extractComponent(components, "postal_code"),
+                }));
+              }}
+              options={{
+                types: ["address"],
+                componentRestrictions: { country: "fr" },
+              }}
+              className={`w-full pl-10 pr-4 py-3 border focus:outline-none focus:border-black ${
+                errors.address ? "border-red-500" : "border-gray-300"
+              }`}
+            />
         </div>
         {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address}</p>}
       </div>
@@ -323,6 +283,70 @@ const ShippingFormMobile: React.FC<ShippingFormMobileProps> = ({
           <option value="Monaco">Monaco</option>
         </select>
       </div>
+
+          <div className="space-y-3">
+          {/* Option Point Relais */}
+          <button
+            type="button"
+            onClick={() => setDeliveryType('point_relais')}
+            className={`w-full flex items-center justify-between p-3 border-2 rounded-xl transition-all ${
+              deliveryType === 'point_relais'
+                ? 'border-black bg-gray-50'
+                : 'border-gray-200'
+            }`}
+          >
+            <div className="flex items-center">
+              <Package className={`h-5 w-5 mr-3 ${deliveryType === 'point_relais' ? 'text-black' : 'text-gray-400'}`} />
+              <div className="text-left">
+                <span className={`font-medium text-sm ${deliveryType === 'point_relais' ? 'text-black' : 'text-gray-700'}`}>
+                  Point Relais
+                </span>
+                <p className="text-xs text-gray-500">Le plus proche de votre adresse</p>
+              </div>
+            </div>
+            <div className="flex items-center">
+              <span className="font-bold text-sm mr-2">19,99 €</span>
+              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                deliveryType === 'point_relais' ? 'border-black' : 'border-gray-300'
+              }`}>
+                {deliveryType === 'point_relais' && (
+                  <div className="w-3 h-3 rounded-full bg-black" />
+                )}
+              </div>
+            </div>
+          </button>
+
+          {/* Option Adresse spécifique */}
+          <button
+            type="button"
+            onClick={() => setDeliveryType('domicile')}
+            className={`w-full flex items-center justify-between p-3 border-2 rounded-xl transition-all ${
+              deliveryType === 'domicile'
+                ? 'border-black bg-gray-50'
+                : 'border-gray-200'
+            }`}
+          >
+            <div className="flex items-center">
+              <Home className={`h-5 w-5 mr-3 ${deliveryType === 'domicile' ? 'text-black' : 'text-gray-400'}`} />
+              <div className="text-left">
+                <span className={`font-medium text-sm ${deliveryType === 'domicile' ? 'text-black' : 'text-gray-700'}`}>
+                  À une adresse
+                </span>
+                <p className="text-xs text-gray-500">Domicile, bureau, etc.</p>
+              </div>
+            </div>
+            <div className="flex items-center">
+              <span className="font-bold text-sm mr-2">29,99 €</span>
+              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                deliveryType === 'domicile' ? 'border-black' : 'border-gray-300'
+              }`}>
+                {deliveryType === 'domicile' && (
+                  <div className="w-3 h-3 rounded-full bg-black" />
+                )}
+              </div>
+            </div>
+          </button>
+        </div>
 
       {/* Submit Button */}
       <button
