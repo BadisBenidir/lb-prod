@@ -266,6 +266,9 @@ const ShippingFormMobile: React.FC<ShippingFormMobileProps> = ({
           <option value="Suisse">Suisse</option>
           <option value="Luxembourg">Luxembourg</option>
           <option value="Monaco">Monaco</option>
+          <option value="Monaco">Espagne</option>
+          <option value="Monaco">Italie</option>
+          <option value="Monaco">Allemagne</option>
         </select>
       </div>
 
