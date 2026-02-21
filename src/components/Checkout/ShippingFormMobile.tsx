@@ -71,21 +71,6 @@ const ShippingFormMobile: React.FC<ShippingFormMobileProps> = ({
         </div>
       )}
 
-      {/* Choix du type de livraison */}
-      <div className="space-y-3 mb-4">
-        <label className="block text-xs font-medium text-gray-700">
-          Mode de livraison <span className="text-red-500">*</span>
-        </label>
-
-        {deliveryType === 'point_relais' && (
-          <div className="bg-blue-50 border border-blue-200 rounded-xl p-3">
-            <p className="text-xs text-blue-700">
-              <strong>Note :</strong> Le point relais Chronopost le plus proche sera automatiquement sélectionné.
-            </p>
-          </div>
-        )}
-      </div>
-
       {/* Nom et Prénom */}
       <div className="grid grid-cols-2 gap-3">
         <div>
@@ -284,6 +269,12 @@ const ShippingFormMobile: React.FC<ShippingFormMobileProps> = ({
         </select>
       </div>
 
+      {/* Choix du type de livraison */}
+      <div className="space-y-3 mb-4">
+        <label className="block text-xs font-medium text-gray-700">
+          Mode de livraison <span className="text-red-500">*</span>
+        </label>
+
           <div className="space-y-3">
           {/* Option Point Relais */}
           <button
@@ -347,6 +338,7 @@ const ShippingFormMobile: React.FC<ShippingFormMobileProps> = ({
             </div>
           </button>
         </div>
+      </div>
 
       {/* Submit Button */}
       <button
