@@ -269,6 +269,8 @@ const ShippingFormMobile: React.FC<ShippingFormMobileProps> = ({
         </select>
       </div>
 
+      <div className='h-6' />
+
       {/* Choix du type de livraison */}
       <div className="space-y-3 mb-4 mt-6">
         <label className="block text-xs font-medium text-gray-700">
