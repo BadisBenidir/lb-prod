@@ -301,7 +301,7 @@ const ShippingFormMobile: React.FC<ShippingFormMobileProps> = ({
               </div>
             </div>
             <div className="flex items-center">
-              <span className="font-bold text-sm mr-2">19,99 €</span>
+              <span className="font-bold text-sm mr-2">9,99 €</span>
               <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
                 deliveryType === 'point_relais' ? 'border-black' : 'border-gray-300'
               }`}>
@@ -332,7 +332,7 @@ const ShippingFormMobile: React.FC<ShippingFormMobileProps> = ({
               </div>
             </div>
             <div className="flex items-center">
-              <span className="font-bold text-sm mr-2">29,99 €</span>
+              <span className="font-bold text-sm mr-2">19,99 €</span>
               <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
                 deliveryType === 'domicile' ? 'border-black' : 'border-gray-300'
               }`}>
