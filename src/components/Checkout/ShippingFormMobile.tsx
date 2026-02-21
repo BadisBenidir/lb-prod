@@ -270,7 +270,7 @@ const ShippingFormMobile: React.FC<ShippingFormMobileProps> = ({
       </div>
 
       {/* Choix du type de livraison */}
-      <div className="space-y-3 mb-4">
+      <div className="space-y-3 mb-10">
         <label className="block text-xs font-medium text-gray-700">
           Mode de livraison <span className="text-red-500">*</span>
         </label>
