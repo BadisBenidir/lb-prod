@@ -115,7 +115,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
               className="flex items-center hover:opacity-80 transition-opacity"
             >
               <img
-                src="oze_logo2.png"
+                src="oze_logo3.png"
                 alt="Ligne Blanche Logo" 
                 className="h-16 w-16 lg:h-20 lg:w-20 mr-5 object-contain"
               />
