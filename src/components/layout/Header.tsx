@@ -117,10 +117,10 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
               <img
                 src="oze_logo.PNG"
                 alt="Ligne Blanche Logo" 
-                className="h-12 w-12 lg:h-14 lg:w-14 mr-5 object-contain"
+                className="h-20 w-20 lg:h-22 lg:w-22 mr-10 object-contain"
               />
               <span className="text-xl lg:text-2xl font-bold tracking-tight text-black">
-                
+
               </span>
             </button>
           </div>
