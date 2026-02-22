@@ -117,7 +117,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
               <img
                 src="oze_logo.PNG"
                 alt="Ligne Blanche Logo" 
-                className="h-16 w-16 lg:h-20 lg:w-20 mr-5 object-contain"
+                className="h-15 w-15 lg:h-18 lg:w-18 mr-5 object-contain"
               />
               <span className="text-xl lg:text-2xl font-bold tracking-tight text-black">
 
