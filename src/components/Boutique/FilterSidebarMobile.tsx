@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, ChevronDown, ChevronRight, Trash2, Eye, Filter } from 'lucide-react';
-import { State } from '../../hooks/useBoutique';
+import { FilterState } from '../../hooks/useBoutique';
 import { useEffect } from 'react';
 
 const mainBrands = [
