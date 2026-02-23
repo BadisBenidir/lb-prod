@@ -75,7 +75,7 @@ const BoutiqueHighlightDesktop: React.FC<BoutiqueHighlightDesktopProps> = ({
               </div>
               <div className="flex items-center">
                 <ShoppingBag className="h-5 w-5 text-gray-900 mr-3" />
-                <span className="text-gray-700">Collection renouvelé régulièrement</span>
+                <span className="text-gray-700">Collection renouvelée régulièrement</span>
               </div>
             </div>
             
