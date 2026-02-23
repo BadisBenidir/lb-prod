@@ -190,7 +190,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
         />
       )}
       
-      <div className={`fixed lg:relative top-16 lg:top-0 left-0 h-[calc(100vh-4rem)] lg:h-full w-80 bg-white border-r border-gray-200 z-[40] transform transition-transform duration-300 ${
+      <div className={`fixed lg:relative top-16 lg:top-0 left-0 h-[calc(100vh-4rem)] lg:h-full w-80 bg-white border-r border-gray-200 z-[50] transform transition-transform duration-300 ${
         isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       }`}>
         <div className="p-4 md:p-6 h-full overflow-y-auto">
