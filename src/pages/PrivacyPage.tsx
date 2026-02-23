@@ -3,7 +3,7 @@ import { Shield, Eye, Lock, Database, Cookie, UserCheck } from 'lucide-react';
 
 export default function PrivacyPage() {
   useEffect(() => {
-    document.title = 'Politique de Confidentialité | Ligne Blanche';
+    document.title = 'Politique de Confidentialité | Ozë Paris';
   }, []);
 
   return (
@@ -38,7 +38,7 @@ export default function PrivacyPage() {
                 Introduction
               </h2>
               <p className="text-gray-600 mb-4">
-                Benidir Badis – Entreprise Individuelle, nom commercial Ligne Blanche,
+                Benidir Badis – Entreprise Individuelle, nom commercial Ozë Paris,
                 dont le siège social est situé 61 Rue de Lyon, 75012 Paris, France (SIREN : 932 255 557),
                 accorde une grande importance à la protection de vos données personnelles.
               </p>
@@ -229,7 +229,7 @@ export default function PrivacyPage() {
                 </p>
                 <div className="space-y-2 text-gray-600">
                   <p><strong>Email :</strong> sav@ligne-blanche.fr</p>
-                  <p><strong>Adresse :</strong> Ligne Blanche, 61 Rue de Lyon, 75012 Paris, France</p>
+                  <p><strong>Adresse :</strong> Ozë Paris, 61 Rue de Lyon, 75012 Paris, France</p>
                 </div>
                 <p className="text-gray-600 mt-4">
                   Vous avez également le droit de déposer une plainte auprès de la CNIL 

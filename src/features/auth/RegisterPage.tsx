@@ -63,7 +63,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onRegister, onNavigateToLog
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-light text-black mb-2">Créer un compte</h1>
-          <p className="text-gray-600 text-sm">Rejoignez la communauté Ligne Blanche</p>
+          <p className="text-gray-600 text-sm">Rejoignez la communauté Ozë Paris</p>
         </div>
 
         {/* Error Message */}

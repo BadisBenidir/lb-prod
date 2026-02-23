@@ -26,7 +26,7 @@ const StoryPreviewDesktop: React.FC<StoryPreviewDesktopProps> = ({ onNavigateToA
             
             <div className="space-y-6 text-gray-700 leading-relaxed">
               <p className="text-lg">
-                OZË est née d'une conviction simple : le luxe mérite une seconde vie.
+                OZË Paris est née d'une conviction simple : le luxe mérite une seconde vie.
               </p>
 
               <p>

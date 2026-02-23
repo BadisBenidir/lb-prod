@@ -3,7 +3,7 @@ import { FileText, ShoppingCart, Truck, CreditCard, Scale, AlertTriangle, Shield
 
 export default function TermsPage() {
   useEffect(() => {
-    document.title = 'Conditions Générales de Vente | Ligne Blanche';
+    document.title = 'Conditions Générales de Vente | Ozë Paris';
     window.scrollTo(0, 0);
   }, []);
 
@@ -40,7 +40,7 @@ export default function TermsPage() {
               <div className="bg-gray-50 p-6 rounded-lg">
                 <p className="text-gray-600 mb-4">
                   Les présentes Conditions Générales de Vente (ci-après les « CGV ») régissent les ventes
-                  conclues entre Benidir Badis – Entreprise Individuelle, nom commercial Ligne Blanche,
+                  conclues entre Benidir Badis – Entreprise Individuelle, nom commercial Ozë Paris,
                   et toute personne effectuant un achat sur le site www.ligne-blanche.fr.
                 </p>
                 <p className="text-gray-600">
@@ -57,7 +57,7 @@ export default function TermsPage() {
               <div className="bg-gray-50 p-6 rounded-lg">
                 <div className="space-y-2 text-gray-600">
                   <p><strong>Raison sociale :</strong> Benidir Badis – Entreprise Individuelle</p>
-                  <p><strong>Nom commercial :</strong> Ligne Blanche</p>
+                  <p><strong>Nom commercial :</strong> Ozë Paris</p>
                   <p><strong>Siège social :</strong> 61 Rue de Lyon, 75012 Paris, France</p>
                   <p><strong>SIREN :</strong> 932 255 557</p>
                   <p><strong>Email :</strong> sav@ligne-blanche.fr</p>
@@ -92,7 +92,7 @@ export default function TermsPage() {
               </h2>
               <div className="bg-yellow-50 border border-yellow-200 p-6 rounded-lg mb-6">
                 <p className="text-gray-700 font-medium">
-                  Chez Ligne Blanche, l'authenticité des pièces proposées est une priorité absolue.
+                  Chez Ozë Paris, l'authenticité des pièces proposées est une priorité absolue.
                   Chaque article mis en vente fait l'objet d'un processus de vérification minutieux,
                   réalisé selon des critères stricts appliqués par les professionnels du secteur du luxe.
                 </p>
@@ -117,7 +117,7 @@ export default function TermsPage() {
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <h3 className="text-xl font-medium mb-4 text-gray-800">4.2. Traçabilité et origine</h3>
                   <p className="text-gray-600 mb-4">
-                    Ligne Blanche sélectionne ses pièces auprès de :
+                    Ozë Paris sélectionne ses pièces auprès de :
                   </p>
                   <ul className="space-y-2 text-gray-600">
                     <li>• Collections privées</li>
@@ -134,7 +134,7 @@ export default function TermsPage() {
                     ou les modèles particulièrement demandés — font l'objet d'une expertise complémentaire.
                   </p>
                   <p className="text-gray-600">
-                    Pour ces pièces, Ligne Blanche peut faire appel à une entreprise spécialisée indépendante, notamment :
+                    Pour ces pièces, Ozë Paris peut faire appel à une entreprise spécialisée indépendante, notamment :
                   </p>
                   <p className="text-gray-700 font-medium mt-3">
                     Le Petit Fermoir — Entreprise spécialisée dans la vérification approfondie de sacs et accessoires de luxe.
@@ -148,14 +148,14 @@ export default function TermsPage() {
                     Malgré la rigueur du processus interne et externe, aucune méthode ne peut garantir une certitude absolue.
                   </p>
                   <p className="text-gray-600">
-                    Ligne Blanche ne saurait être tenue responsable d'une erreur matérielle d'évaluation.
+                    Ozë Paris ne saurait être tenue responsable d'une erreur matérielle d'évaluation.
                   </p>
                 </div>
 
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <h3 className="text-xl font-medium mb-4 text-gray-800">4.5. Engagement qualité</h3>
                   <p className="text-gray-600 mb-4">
-                    Ligne Blanche s'engage à fournir :
+                    Ozë Paris s'engage à fournir :
                   </p>
                   <ul className="space-y-2 text-gray-600">
                     <li>• Des descriptions précises</li>
@@ -274,7 +274,7 @@ export default function TermsPage() {
                   Le produit doit être retourné dans le même état que reçu, <strong>non porté, non lavé, non utilisé</strong>.
                 </p>
                 <p className="text-gray-600 mb-4">
-                  Ligne Blanche peut refuser un retour si l'article revient endommagé, taché, ou dans un état différent.
+                  Ozë Paris peut refuser un retour si l'article revient endommagé, taché, ou dans un état différent.
                 </p>
                 <p className="text-gray-600">
                   Les frais de renvoi au client en cas de refus de retour sont à la charge du client.
@@ -368,7 +368,7 @@ export default function TermsPage() {
                 </p>
                 <div className="space-y-2 text-gray-600">
                   <p><strong>Email :</strong> sav@ligne-blanche.fr</p>
-                  <p><strong>Adresse :</strong> Ligne Blanche, 61 Rue de Lyon, 75012 Paris, France</p>
+                  <p><strong>Adresse :</strong> Ozë Paris, 61 Rue de Lyon, 75012 Paris, France</p>
                 </div>
               </div>
             </div>

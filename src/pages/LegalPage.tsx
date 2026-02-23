@@ -3,7 +3,7 @@ import { Building, User, Mail, MapPin, FileText, Globe } from 'lucide-react';
 
 export default function LegalPage() {
   useEffect(() => {
-    document.title = 'Mentions Légales | Ligne Blanche';
+    document.title = 'Mentions Légales | Ozë Paris';
     window.scrollTo(0, 0);
   }, []);
 
@@ -22,7 +22,7 @@ export default function LegalPage() {
             Mentions Légales
           </h1>
           <p className="font-sans text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Informations légales concernant Ligne Blanche et son site web.
+            Informations légales concernant Ozë Paris et son site web.
           </p>
         </div>
       </section>
@@ -41,7 +41,7 @@ export default function LegalPage() {
               <div className="bg-gray-50 p-6 rounded-lg">
                 <div className="space-y-3 text-gray-600">
                   <p><strong>Raison sociale :</strong> Benidir Badis – Entreprise Individuelle</p>
-                  <p><strong>Nom commercial :</strong> Ligne Blanche</p>
+                  <p><strong>Nom commercial :</strong> Ozë Paris</p>
                   <p><strong>SIREN :</strong> 932 255 557</p>
                   <p><strong>Siège social :</strong> 61 Rue de Lyon, 75012 Paris, France</p>
                   <p><strong>Email :</strong> sav@ligne-blanche.fr</p>
@@ -122,7 +122,7 @@ export default function LegalPage() {
                 </p>
                 <p>
                   Tout contenu téléchargé se fait aux risques et périls de l'utilisateur
-                  et sous sa seule responsabilité. En conséquence, Ligne Blanche ne saurait
+                  et sous sa seule responsabilité. En conséquence, Ozë Paris ne saurait
                   être tenu responsable d'un quelconque dommage subi par l'ordinateur
                   de l'utilisateur ou d'une quelconque perte de données consécutive au téléchargement.
                 </p>
@@ -138,10 +138,10 @@ export default function LegalPage() {
                 <p>
                   Les liens hypertextes mis en place dans le cadre du présent site web
                   en direction d'autres ressources présentes sur le réseau Internet
-                  ne sauraient engager la responsabilité de Ligne Blanche.
+                  ne sauraient engager la responsabilité de Ozë Paris.
                 </p>
                 <p>
-                  Ligne Blanche ne peut être tenu responsable du contenu des sites
+                  Ozë Paris ne peut être tenu responsable du contenu des sites
                   vers lesquels des liens sont établis.
                 </p>
               </div>

@@ -57,7 +57,7 @@ const FooterDesktop: React.FC = () => {
           <div className="md:col-span-1">
             <div className="mb-6">
               <h3 className="text-2xl font-light tracking-wider">
-                <span className="font-bold text-white ml-1">LIGNE BLANCHE</span>
+                <span className="font-bold text-white ml-1">OZË PARIS</span>
               </h3>
             </div>
             
@@ -186,7 +186,7 @@ const FooterDesktop: React.FC = () => {
         {/* Bottom section */}
         <div className="border-t border-gray-800 pt-8 flex flex-col lg:flex-row justify-between items-center gap-6">
           <div className="font-sans text-gray-400 text-sm">
-            © 2024 LIGNE BLANCHE. Tous droits réservés.
+            © 2024 OZË PARIS. Tous droits réservés.
           </div>
           
           <div className="flex flex-wrap justify-center lg:justify-end gap-6">

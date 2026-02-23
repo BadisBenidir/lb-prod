@@ -1,6 +1,6 @@
 # 📚 Documentation Ligne Blanche v2.0.0
 
-Ce dossier contient toute la documentation technique et fonctionnelle du projet Ligne Blanche.
+Ce dossier contient toute la documentation technique et fonctionnelle du projet Ozë Paris.
 
 ## 📋 Documents Disponibles
 

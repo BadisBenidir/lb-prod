@@ -55,7 +55,7 @@ const FeaturesDesktop: React.FC<FeaturesDesktopProps> = ({ onNavigate }) => {
               Notre Approche
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Chaque pièce est choisie selon trois principes qui guident Ligne Blanche : exigence, rareté et transparence.
+              Chaque pièce est choisie selon trois principes qui guident Ozë Paris : exigence, rareté et transparence.
             </p>
           </div>
 

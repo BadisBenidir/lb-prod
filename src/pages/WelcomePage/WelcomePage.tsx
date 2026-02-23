@@ -17,7 +17,7 @@ const WelcomePage: React.FC<WelcomePageProps> = ({ onCompleteProfile, onSkip }) 
           </div>
           
           <h1 className="text-3xl font-light text-black mb-4">
-            Bienvenue chez Ligne Blanche
+            Bienvenue chez Ozë Paris
           </h1>
           
           <p className="text-gray-600 text-lg leading-relaxed mb-6">

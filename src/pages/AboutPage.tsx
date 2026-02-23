@@ -38,7 +38,7 @@ export default function AboutPage() {
     },
     {
       year: '2024',
-      title: 'Ligne Blanche Naît',
+      title: 'Ozë Paris Naît',
       description: 'L\'héritage réinventé : l\'expertise familiale rencontre l\'innovation digitale.',
       icon: Award
     }
@@ -118,16 +118,16 @@ export default function AboutPage() {
                   Le luxe a toujours eu cette capacité rare : traverser le temps. Mais trop souvent, des pièces d'exception dorment dans des placards, oubliées, alors qu'elles portent encore l'élégance et le savoir-faire des grandes maisons.
                 </p>
                 <p className="hidden sm:block sm:text-base">
-                  Ligne Blanche est née de cette conviction : offrir une nouvelle vie à ces icônes, et les rendre accessibles à une nouvelle génération de passionnés. Chaque pièce que nous sélectionnons est choisie pour son authenticité, sa qualité et son intemporalité, afin qu'elle retrouve la place qu'elle mérite : la vôtre.
+                  Ozë Paris est née de cette conviction : offrir une nouvelle vie à ces icônes, et les rendre accessibles à une nouvelle génération de passionnés. Chaque pièce que nous sélectionnons est choisie pour son authenticité, sa qualité et son intemporalité, afin qu'elle retrouve la place qu'elle mérite : la vôtre.
                 </p>
                 <p className="block sm:hidden text-sm">
-                 Le luxe traverse le temps, mais trop souvent, des pièces d'exception restent à l'écart, oubliées. Ligne Blanche est née de la volonté de leur offir une seconde vie, en les rendant accessibles à une nouvelle génération, tout en préservant leur histoire, leur valeur et leur authenticité.
+                 Le luxe traverse le temps, mais trop souvent, des pièces d'exception restent à l'écart, oubliées. Ozë Paris est née de la volonté de leur offir une seconde vie, en les rendant accessibles à une nouvelle génération, tout en préservant leur histoire, leur valeur et leur authenticité.
                 </p>
                 <p className="hidden sm:block sm:text-base">
                   Nous croyons que le luxe ne doit pas être un monde fermé, réservé à quelques initiés. Il peut être transparent, exigeant, et surtout accessible. En proposant des articles vérifiés et certifiés, à des prix bien en dessous du marché, nous démocratisons l'accès aux grandes maisons sans jamais en trahir l'esprit.
                 </p>
                 <p className="text-sm sm:text-base">
-                  Ligne Blanche, c'est une vision : faire de la mode de seconde main une expérience de confiance, où chaque pièce raconte une histoire et écrit la suite avec vous.
+                  Ozë Pari s, c'est une vision : faire de la mode de seconde main une expérience de confiance, où chaque pièce raconte une histoire et écrit la suite avec vous.
                 </p>
               </div>
             </div>
@@ -259,11 +259,11 @@ export default function AboutPage() {
             </h2>
 
             <p className="block sm:hidden text-m text-gray-600 max-w-3xl mx-auto">
-              Aujourd'hui, Ligne Blanche conjugue exigence traditionnelle et innovation digitale. Une vision commune réinventée pour l'époque moderne.
+              Aujourd'hui, Ozê Paris conjugue exigence traditionnelle et innovation digitale. Une vision commune réinventée pour l'époque moderne.
             </p>
 
             <p className="hidden sm:block text-xl text-gray-600 max-w-3xl mx-auto">
-              Aujourd'hui, Ligne Blanche conjugue exigence traditionnelle et innovation digitale. Une vision commune réinventée.
+              Aujourd'hui, Ozë Paris conjugue exigence traditionnelle et innovation digitale. Une vision commune réinventée.
             </p>
           </div>
 

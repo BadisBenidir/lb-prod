@@ -240,7 +240,7 @@ function AppRouter() {
               element={
                 <Layout currentPage="home">
                   <Helmet>
-                    <title>Ligne Blanche - Maison de Luxe de Seconde Main</title>
+                    <title>Ozë Paris - Maison de Luxe de Seconde Main</title>
                     <meta name="description" content="Découvrez ma collection de maroquinerie et prêt-à-porter de luxe de seconde main. Chaque pièce sélectionnée selon l'expertise familiale héritée." />
                   </Helmet>
                   <HomePage />
@@ -253,7 +253,7 @@ function AppRouter() {
               element={
                 <Layout currentPage="boutique">
                   <Helmet>
-                    <title>Boutique - Ligne Blanche</title>
+                    <title>Boutique - Ozë Paris</title>
                     <meta name="description" content="Explorez notre collection de produits de luxe de seconde main." />
                   </Helmet>
                   <BoutiquePage />
@@ -275,8 +275,8 @@ function AppRouter() {
               element={
                 <Layout currentPage="about">
                   <Helmet>
-                    <title>Notre Histoire - Ligne Blanche</title>
-                    <meta name="description" content="Découvrez l'histoire de Ligne Blanche et l'expertise familiale transmise de génération en génération." />
+                    <title>Notre Histoire - Ozë Paris</title>
+                    <meta name="description" content="Découvrez l'histoire de Ozë Paris et l'expertise familiale transmise de génération en génération." />
                   </Helmet>
                   <AboutPage />
                 </Layout>
@@ -288,7 +288,7 @@ function AppRouter() {
               element={
                 <Layout currentPage="selection">
                   <Helmet>
-                    <title>Notre Sélection - Ligne Blanche</title>
+                    <title>Notre Sélection - Ozë Paris</title>
                     <meta name="description" content="Découvrez notre processus de sélection rigoureux et les critères d'expertise hérités." />
                   </Helmet>
                   <SelectionPage />
@@ -301,7 +301,7 @@ function AppRouter() {
               element={
                 <Layout currentPage="sell">
                   <Helmet>
-                    <title>Vendre vos Pièces - Ligne Blanche</title>
+                    <title>Vendre vos Pièces - Ozë Paris</title>
                     <meta name="description" content="Vendez vos pièces de luxe en toute confiance grâce à notre expertise d'authentification." />
                   </Helmet>
                   <SellPage />
@@ -315,7 +315,7 @@ function AppRouter() {
               element={
                 <Layout currentPage="privacy">
                   <Helmet>
-                    <title>Politique de Confidentialité - Ligne Blanche</title>
+                    <title>Politique de Confidentialité - Ozë Paris</title>
                   </Helmet>
                   <PrivacyPage />
                 </Layout>
@@ -327,7 +327,7 @@ function AppRouter() {
               element={
                 <Layout currentPage="terms">
                   <Helmet>
-                    <title>Conditions Générales - Ligne Blanche</title>
+                    <title>Conditions Générales - Ozë Paris</title>
                   </Helmet>
                   <TermsPage />
                 </Layout>
@@ -339,7 +339,7 @@ function AppRouter() {
               element={
                 <Layout currentPage="legal">
                   <Helmet>
-                    <title>Mentions Légales - Ligne Blanche</title>
+                    <title>Mentions Légales - Ozë Paris</title>
                   </Helmet>
                   <LegalPage />
                 </Layout>
@@ -351,7 +351,7 @@ function AppRouter() {
               element={
                 <Layout currentPage="cookies">
                   <Helmet>
-                    <title>Politique des Cookies - Ligne Blanche</title>
+                    <title>Politique des Cookies - Ozë Paris</title>
                   </Helmet>
                   <CookiesPage />
                 </Layout>
@@ -364,7 +364,7 @@ function AppRouter() {
               element={
                 <Layout currentPage="login">
                   <Helmet>
-                    <title>Connexion - Ligne Blanche</title>
+                    <title>Connexion - Ozë Paris</title>
                   </Helmet>
                   <LoginPageWrapper />
                 </Layout>
@@ -376,7 +376,7 @@ function AppRouter() {
               element={
                 <Layout currentPage="register">
                   <Helmet>
-                    <title>Inscription - Ligne Blanche</title>
+                    <title>Inscription - Ozë Paris</title>
                   </Helmet>
                   <RegisterPageWrapper />
                 </Layout>
@@ -388,7 +388,7 @@ function AppRouter() {
               element={
                 <Layout currentPage="welcome">
                   <Helmet>
-                    <title>Bienvenue - Ligne Blanche</title>
+                    <title>Bienvenue - Ozë Paris</title>
                   </Helmet>
                   <WelcomePageWrapper />
                 </Layout>
@@ -402,7 +402,7 @@ function AppRouter() {
                 <ProtectedRoute>
                   <Layout currentPage="profile">
                     <Helmet>
-                      <title>Mon Profil - Ligne Blanche</title>
+                      <title>Mon Profil - Ozë Paris</title>
                     </Helmet>
                     <ProfilePageWrapper />
                   </Layout>
@@ -416,7 +416,7 @@ function AppRouter() {
                 <ProtectedRoute>
                   <Layout currentPage="profile-completion">
                     <Helmet>
-                      <title>Compléter mon Profil - Ligne Blanche</title>
+                      <title>Compléter mon Profil - Ozë Paris</title>
                     </Helmet>
                     <ProfileCompletionPage />
                   </Layout>
@@ -429,7 +429,7 @@ function AppRouter() {
               element={
                 <Layout currentPage="checkout">
                   <Helmet>
-                    <title>Commande - Ligne Blanche</title>
+                    <title>Commande - Ozë Paris</title>
                   </Helmet>
                   <CheckoutPageWrapper />
                 </Layout>
@@ -442,7 +442,7 @@ function AppRouter() {
               element={
                 <Layout currentPage="checkout-success">
                   <Helmet>
-                    <title>Commande Confirmée - Ligne Blanche</title>
+                    <title>Commande Confirmée - Ozë Paris</title>
                   </Helmet>
                   <CheckoutSuccessPageWrapper />
                 </Layout>
@@ -454,7 +454,7 @@ function AppRouter() {
               element={
                 <Layout currentPage="checkout-cancel">
                   <Helmet>
-                    <title>Commande Annulée - Ligne Blanche</title>
+                    <title>Commande Annulée - Ozë Paris</title>
                   </Helmet>
                   <CheckoutCancelPageWrapper />
                 </Layout>

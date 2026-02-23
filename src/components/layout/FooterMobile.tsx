@@ -45,7 +45,7 @@ const FooterMobile: React.FC = () => {
         <div className="text-center mb-6">
           <div className="mb-3">
             <h3 className="text-lg font-light tracking-wider">
-              <span className="font-bold text-white ml-1">LIGNE BLANCHE</span>
+              <span className="font-bold text-white ml-1">Ozë Paris</span>
             </h3>
           </div>
           
@@ -130,7 +130,7 @@ const FooterMobile: React.FC = () => {
         {/* Bottom section - Mobile */}
         <div className="border-t border-gray-800 pt-4 space-y-3">
           <div className="font-sans text-center text-gray-400 text-xs">
-            © 2024 LIGNE BLANCHE. Tous droits réservés.
+            © 2024 OZË PARIS. Tous droits réservés.
           </div>
           
           <div className="flex flex-wrap justify-center gap-3">

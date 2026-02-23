@@ -36,8 +36,8 @@ function App() {
 
   // SEO Content State
   const [seoProps, setSeoProps] = useState({
-    title: 'Ligne Blanche - L\'Œil Hérité',
-    metaDescription: 'Découvrez ma collection de maroquinerie et prêt-à-porter de luxe de seconde main. Chaque pièce sélectionnée selon l\'expertise familiale héritée.'
+    title: 'Ozë Paris - Maison de Luxe de Seconde Main',
+    metaDescription: 'Découvrez notre collection de maroquinerie et prêt-à-porter de luxe de seconde main. Chaque pièce sélectionnée selon l\'expertise familiale héritée.'
   });
   
   const {
@@ -80,7 +80,7 @@ function App() {
   useEffect(() => {
     if (selectedProduct) {
       setSeoProps({
-        title: `${selectedProduct.name} - Ligne Blanche`,
+        title: `${selectedProduct.name} - Ozë Paris`,
         metaDescription: selectedProduct.description.substring(0, 160) // Truncate for meta description
       });
     }
@@ -111,12 +111,12 @@ function App() {
     setCurrentPage(page);
     if (page === 'boutique') {
       setSeoProps({
-        title: 'Boutique - Ligne Blanche',
+        title: 'Boutique - Ozë Paris',
         metaDescription: 'Explorez notre collection de produits de luxe de seconde main.'
       });
     } else {
       setSeoProps({
-        title: 'Ligne Blanche - L\'Œil Hérité',
+        title: 'Ozë Paris - L\'Œil Hérité',
         metaDescription: 'Découvrez ma collection de maroquinerie et prêt-à-porter de luxe de seconde main. Chaque pièce sélectionnée selon l\'expertise familiale héritée.'
       });
     }
@@ -136,7 +136,7 @@ function App() {
     setCurrentPage('boutique');
     setSelectedProductId(null);
     setSeoProps({
-      title: 'Boutique - Ligne Blanche',
+      title: 'Boutique - Ozë Paris',
       metaDescription: 'Explorez notre collection de produits de luxe de seconde main.'
     });
     window.scrollTo(0, 0);

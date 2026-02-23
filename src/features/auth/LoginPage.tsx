@@ -52,7 +52,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin, onNavigateToRegister, on
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-light text-black mb-2">Connexion</h1>
-          <p className="text-gray-600 text-sm">Accédez à votre espace personnel Ligne Blanche</p>
+          <p className="text-gray-600 text-sm">Accédez à votre espace personnel Ozë Paris</p>
         </div>
 
         {/* Error Message */}

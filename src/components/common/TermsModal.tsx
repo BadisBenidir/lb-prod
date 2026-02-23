@@ -28,7 +28,7 @@ const TermsModal: React.FC<TermsModalProps> = ({ isOpen, onClose }) => {
             <div className="prose max-w-none">
               <h3 className="text-lg font-semibold mb-4">1. Objet</h3>
               <p className="mb-6 text-gray-700">
-                Les présentes conditions générales de vente (CGV) régissent les relations contractuelles entre Ligne Blanche et ses clients dans le cadre de la vente en ligne de produits de maroquinerie et prêt-à-porter de luxe de seconde main.
+                Les présentes conditions générales de vente (CGV) régissent les relations contractuelles entre Ozë Paris et ses clients dans le cadre de la vente en ligne de produits de maroquinerie et prêt-à-porter de luxe de seconde main.
               </p>
 
               <h3 className="text-lg font-semibold mb-4">2. Acceptation des conditions</h3>
@@ -78,7 +78,7 @@ const TermsModal: React.FC<TermsModalProps> = ({ isOpen, onClose }) => {
 
               <h3 className="text-lg font-semibold mb-4">11. Propriété intellectuelle</h3>
               <p className="mb-6 text-gray-700">
-                Tous les éléments du site (textes, photos, logos) sont protégés par le droit d'auteur et sont la propriété exclusive de Ligne Blanche. Toute reproduction est interdite sans autorisation préalable.
+                Tous les éléments du site (textes, photos, logos) sont protégés par le droit d'auteur et sont la propriété exclusive de Ozë Paris. Toute reproduction est interdite sans autorisation préalable.
               </p>
 
               <h3 className="text-lg font-semibold mb-4">12. Données personnelles</h3>

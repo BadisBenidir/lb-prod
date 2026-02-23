@@ -25,7 +25,7 @@ export default function SelectionPage() {
   }, []);
 
   useEffect(() => {
-    document.title = 'L\'Œil hérité : Une sélection absolue | Ligne Blanche';
+    document.title = 'L\'Œil hérité : Une sélection absolue | Ozë Paris';
   }, []);
 
   const steps = [
@@ -131,7 +131,7 @@ export default function SelectionPage() {
         <div className="relative z-10 text-left text-white max-w-5xl mx-auto px-4">
           <div className="mb-6">
             <span className="text-gray-100 text-sm font-medium tracking-wider uppercase">
-              Ligne Blanche
+              Ozë Paris
             </span>
           </div>
 
@@ -418,7 +418,7 @@ export default function SelectionPage() {
               Notre Approche Héritée
             </h2>
             <p className="text-l text-gray-600 max-w-3xl mx-auto">
-              Une méthode fondée sur l'exigence traditionnelle et adaptée aux codes modernes. Entre rigueur et innovation, c'est l'équilibre qui définit Ligne Blanche.
+              Une méthode fondée sur l'exigence traditionnelle et adaptée aux codes modernes. Entre rigueur et innovation, c'est l'équilibre qui définit Ozë Paris.
             </p>
           </div>
 

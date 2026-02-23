@@ -85,7 +85,7 @@ const PrivacyModal: React.FC<PrivacyModalProps> = ({ isOpen, onClose }) => {
 
               <h3 className="text-lg font-semibold mb-4">11. Responsable du traitement</h3>
               <p className="mb-6 text-gray-700">
-                Le responsable du traitement de vos données personnelles est Ligne Blanche. Pour toute question relative à cette politique de confidentialité ou pour exercer vos droits, vous pouvez nous contacter via notre formulaire de contact.
+                Le responsable du traitement de vos données personnelles est Ozë Paris. Pour toute question relative à cette politique de confidentialité ou pour exercer vos droits, vous pouvez nous contacter via notre formulaire de contact.
               </p>
 
               <h3 className="text-lg font-semibold mb-4">12. Modification de la politique</h3>

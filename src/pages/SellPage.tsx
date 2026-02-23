@@ -14,7 +14,7 @@ import {
 export default function SellPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'Vendez à L\'Œil Hérité | Ligne Blanche';
+    document.title = 'Vendez à L\'Œil Hérité | Ozë Paris';
   }, []);
 
   const process = [
@@ -32,7 +32,7 @@ export default function SellPage() {
     {
       icon: <Eye size={40} />,
       title: 'Étape 2 : Évaluation selon nos standards',
-      description: 'Chaque pièce est ensuite évaluée selon nos standards : authenticité, état, rareté et potentiel de valorisation. Seules les pièces répondant à nos critères les plus exigeants intègrent la sélection Ligne Blanche.',
+      description: 'Chaque pièce est ensuite évaluée selon nos standards : authenticité, état, rareté et potentiel de valorisation. Seules les pièces répondant à nos critères les plus exigeants intègrent la sélection Ozë Paris.',
       details: [
         'Vérification de l\'authenticité',
         'Classification selon nos critères internes',
@@ -165,10 +165,10 @@ export default function SellPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="block sm:hidden text-3xl font-light text-gray-900 mb-6">
-              Comment vendre avec Ligne Blanche ?
+              Comment vendre avec Ozë Paris ?
             </h2>
             <h2 className="hidden sm:block text-4xl font-light text-gray-900 mb-4">
-              Comment vendre avec Ligne Blanche ?
+              Comment vendre avec Ozë Paris ?
             </h2>
             <p className="block sm:hidden text-l text-gray-600 max-w-3xl mx-auto">
               De l'envoi de vos photos au paiement final, découvrez un processus
@@ -222,7 +222,7 @@ export default function SellPage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-light text-center mb-16 text-gray-900">
-            Pourquoi vendre avec Ligne Blanche ?
+            Pourquoi vendre avec Ozë Paris ?
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

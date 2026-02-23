@@ -3,7 +3,7 @@ import { Cookie, Settings, Shield, Info, CheckCircle } from 'lucide-react';
 
 export default function CookiesPage() {
   useEffect(() => {
-    document.title = 'Politique des Cookies | Ligne Blanche';
+    document.title = 'Politique des Cookies | Ozë Paris';
   }, []);
 
   const cookieTypes = [
@@ -263,7 +263,7 @@ export default function CookiesPage() {
                 </p>
                 <div className="space-y-2 text-gray-600">
                   <p><strong>Email :</strong> sav@ligne-blanche.fr</p>
-                  <p><strong>Adresse :</strong> Ligne Blanche, 61 Rue de Lyon, 75012 Paris, France</p>
+                  <p><strong>Adresse :</strong> Ozë Paris, 61 Rue de Lyon, 75012 Paris, France</p>
                 </div>
               </div>
             </div>
