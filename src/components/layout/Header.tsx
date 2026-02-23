@@ -77,7 +77,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
     const heroHeight = hero.offsetHeight;
 
     const onScroll = () => {
-      if (window.scrollY > 200) {
+      if (window.scrollY > 500) {
         setOverHero(false);
       } else {
         setOverHero(true);
