@@ -19,7 +19,7 @@ const HeroMobile: React.FC<HeroMobileProps> = ({ onNavigate }) => {
             playsInline
             preload="auto"
           >
-            <source src="0202.mp4" type="video/mp4" />
+            <source src="animv1.mp4" type="video/mp4" />
           </video>
         </div>
 
