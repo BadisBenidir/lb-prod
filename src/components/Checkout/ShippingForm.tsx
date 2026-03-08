@@ -285,8 +285,9 @@ const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnecte
             {/* Option Point Relais */}
             <button
               type="button"
+              disabled
               onClick={() => setDeliveryType('point_relais')}
-              className={`relative flex flex-col p-4 border-2 rounded-lg transition-all ${
+              className={`relative flex flex-col opacity-50 cursor-not-allowed p-4 border-2 rounded-lg transition-all ${
                 deliveryType === 'point_relais'
                   ? 'border-black bg-gray-50'
                   : 'border-gray-200 hover:border-gray-300'
