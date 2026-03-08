@@ -147,7 +147,7 @@ export const processOrder = async (
       setTimeout(() => reject(new Error('Timeout: La fonction swift-endpoint ne répond pas après 30 secondes')), 30000)
     );
     
-    const functionCall = supabase.functions.invoke('swift-endpoint', {
+    const functionCall = supabase.functions.invoke('bright-processor', {
       body: { 
         sessionId,
         userId,
