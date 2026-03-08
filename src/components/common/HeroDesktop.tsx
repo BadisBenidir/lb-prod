@@ -21,7 +21,7 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ onNavigate }) => {
             playsInline
             preload="auto"
           >
-            <source src="animv4.mp4" type="video/mp4" />
+            <source src="animv5.mp4" type="video/mp4" />
           </video>
         </div>
 
