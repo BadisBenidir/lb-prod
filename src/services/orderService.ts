@@ -84,7 +84,7 @@ const processOrderManually = async (
       console.error('❌ Erreur appel direct:', response.status, errorText);
       
       if (response.status === 404) {
-        throw new Error('La fonction swift-endpoint n\'existe pas sur Supabase');
+        throw new Error('La fonction bright-processor n\'existe pas sur Supabase');
       }
       
       throw new Error(`Erreur ${response.status}: ${errorText}`);
@@ -140,11 +140,11 @@ export const processOrder = async (
     console.log('🔑 Using anon key:', import.meta.env.VITE_SUPABASE_ANON_KEY?.substring(0, 20) + '...');
 
     // Utiliser le client Supabase officiel qui gère automatiquement les CORS
-    console.log('⏳ Appel de la fonction swift-endpoint...');
+    console.log('⏳ Appel de la fonction bright-processor...');
     
     // Utiliser Promise.race pour ajouter un timeout
     const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Timeout: La fonction swift-endpoint ne répond pas après 30 secondes')), 30000)
+      setTimeout(() => reject(new Error('Timeout: La fonction bright-processor ne répond pas après 30 secondes')), 30000)
     );
     
     const functionCall = supabase.functions.invoke('bright-processor', {
@@ -157,14 +157,14 @@ export const processOrder = async (
 
     const { data, error } = await Promise.race([functionCall, timeoutPromise]) as any;
     
-    console.log('📡 Réponse fonction swift-endpoint:', { data, error });
+    console.log('📡 Réponse fonction bright-processor:', { data, error });
     console.log('🕒 Temps de réponse de la fonction:', Date.now());
 
     if (error) {
       console.error('❌ Erreur invocation fonction:', error);
       // Si la fonction n'existe pas, essayons une approche différente
       if (error.message?.includes('Function not found') || error.message?.includes('404')) {
-        console.log('🔄 Fonction swift-endpoint non trouvée, tentative avec processus manuel...');
+        console.log('🔄 Fonction bright-processor non trouvée, tentative avec processus manuel...');
         return await processOrderManually(sessionId, userId, customerId);
       }
       throw new Error(error.message || 'Erreur lors de l\'invocation de la fonction');
