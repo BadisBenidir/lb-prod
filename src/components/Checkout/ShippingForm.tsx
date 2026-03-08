@@ -22,7 +22,7 @@ const extractComponent = (components: any[], type: string) =>
 const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnected = false, onSubmit }) => {
   const [formData, setFormData] = useState<ShippingAddress>(initialData);
   const [errors, setErrors] = useState<Partial<ShippingAddress>>({});
-  const [deliveryType, setDeliveryType] = useState<DeliveryType>('point_relais');
+  const [deliveryType, setDeliveryType] = useState<DeliveryType>('domicile');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
