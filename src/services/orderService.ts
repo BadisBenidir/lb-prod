@@ -66,7 +66,7 @@ const processOrderManually = async (
     // Appel direct à la fonction Edge via fetch (contournement)
     console.log('🔄 Tentative d\'appel direct à la fonction Edge...');
     
-    const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/swift-endpoint`, {
+    const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/bright-processor`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
