@@ -2,7 +2,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { CartItem, ShippingAddress } from '../types';
 
 // Initialiser Stripe avec la clé publique
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+const stripePromise = loadStripe(import.meta.env.local.VITE_STRIPE_PUBLIC_KEY);
 
 export interface CheckoutSessionData {
   cartItems: CartItem[];
