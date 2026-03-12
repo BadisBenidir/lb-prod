@@ -30,13 +30,13 @@ const ProfileCompletionPageWrapper: React.FC = () => {
 
       // 2. On envoie les données à la table 'profiles' (PAS 'customers')
       const { error } = await supabase
-        .from('profiles') 
+        .from('customers') 
         .update({
           first_name: data.firstName,
           last_name: data.lastName,
-          address: data.addressLine1, // <-- Vérifie si c'est 'address' dans ta table
+          address: data.address_line1, // <-- Vérifie si c'est 'address' dans ta table
           city: data.city,
-          zip_code: data.postalCode,  // <-- Vérifie si c'est 'zip_code' ou 'postal_code'
+          zip_code: data.postal_code,  // <-- Vérifie si c'est 'zip_code' ou 'postal_code'
           phone: data.phone
         })
         .eq('id', user.id); // On utilise l'ID de l'utilisateur
