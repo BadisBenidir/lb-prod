@@ -418,7 +418,7 @@ function AppRouter() {
                     <Helmet>
                       <title>Compléter mon Profil - Ozë Paris</title>
                     </Helmet>
-                    <ProfileCompletionPage />
+                    <ProfileCompletionPage onComplete={async () => navigate('/')} />
                   </Layout>
                 </ProtectedRoute>
               } 
