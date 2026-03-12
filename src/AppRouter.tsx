@@ -38,6 +38,8 @@ import ScrollToTop from './components/ScrollToTop';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
+import ProfileCompletionPageWrapper from './pages/ProfileCompletionPageWrapper';
+
 
 // Layout wrapper component
 interface LayoutProps {
