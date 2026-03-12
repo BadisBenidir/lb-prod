@@ -51,36 +51,18 @@ const ProfileCompletionPageWrapper: React.FC<{}> = () => {
     
     setIsLoading(false);
   };
-
-  const handleSkip = () => {
-    // Rediriger vers la page d'accueil si l'utilisateur passe l'étape
+  
+  const handleskip = () => {
     navigate('/');
   };
 
-  // Attendre que l'auth soit initialisée
-  if (!isAuthInitialized) {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-pulse text-gray-600 mb-4">Initialisation...</div>
-        </div>
-      </div>
-    );
-  }
-
-  // Rediriger si non authentifié
-  if (!isAuthenticated) {
-    navigate('/login');
-    return null;
-  }
-
   return (
-    <ProfileCompletionPage
+    <ProfileCompletionPage 
       onComplete={handleComplete}
-      onSkip={handleSkip}
+      onSkip={handleskip}
       isLoading={isLoading}
     />
   );
-};
+}; // <--- C'EST LA FIN DU WRAPPER
 
 export default ProfileCompletionPageWrapper;
