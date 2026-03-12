@@ -36,6 +36,7 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    alert("Le bouton Enregistrer fonctionne !");
     setError('');
     
     const result = await onComplete(formData);
