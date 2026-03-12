@@ -103,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
       `}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative flex items-center h-16 lg:h-20">
+        <div className="ml-auto flex items-center h-16 lg:h-20">
           {/* Mobile menu button */}
           <button 
             className="lg:hidden p-2 -ml-2"
