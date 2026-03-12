@@ -4,6 +4,7 @@ import { useProducts, useAvailableCategories, useAvailableBrands } from './usePr
 import { useAvailableFilters } from './useAvailableFilters';
 
 const sortOptions: SortOption[] = [
+  { value: 'created_at', label: 'Pertinence'}
   { value: 'name', label: 'Nom A-Z' },
   { value: 'price-low', label: 'Prix croissant' },
   { value: 'price-high', label: 'Prix décroissant' },
@@ -32,7 +33,7 @@ export const useBoutique = () => {
 
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState('name');
+  const [sortBy, setSortBy] = useState('created_at');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(12);
