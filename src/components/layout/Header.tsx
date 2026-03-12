@@ -103,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
       `}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center h-16 lg:h-20">
+        <div className="relative flex items-center h-16 lg:h-20">
           {/* Mobile menu button */}
           <button 
             className="lg:hidden p-2 -ml-2"
@@ -113,7 +113,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
           </button>
 
           {/* Logo */}
-          <div className="flex items-center shrink-0 mr-10">
+          <div className="absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 lg:flex lg:items-center lg:shrink-0 lg:mr-10">
             <button 
               onClick={() => handleNavigation('home')}
               className="flex items-center hover:opacity-80 transition-opacity"
