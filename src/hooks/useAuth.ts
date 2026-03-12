@@ -72,7 +72,8 @@ export const useAuth = () => {
           data: {
             first_name: userData.firstName,
             last_name: userData.lastName,
-            newsletter: userData.newsletter
+            newsletter: userData.newsletter,
+            address: userData.address,
           }
         }
       });

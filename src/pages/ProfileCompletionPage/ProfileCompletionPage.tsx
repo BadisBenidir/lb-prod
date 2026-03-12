@@ -217,15 +217,15 @@ const ProfileCompletionPage: React.FC<ProfileCompletionPageProps> = ({
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
               <button
                 type="submit"
-                disabled={isLoading}
+                disabled={false}
                 className="flex-1 bg-black hover:bg-gray-800 text-white font-medium py-3 px-6 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isLoading ? 'Enregistrement...' : 'Enregistrer mon profil'}
+                Enregistrer mon profil
               </button>
               <button
                 type="button"
                 onClick={onSkip}
-                disabled={isLoading}
+                disabled={false}
                 className="flex-1 bg-white hover:bg-gray-50 text-black border border-gray-300 font-medium py-3 px-6 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Passer cette étape
