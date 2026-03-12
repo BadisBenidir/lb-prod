@@ -148,6 +148,9 @@ export const useProducts = (options: UseProductsOptions = {}) => {
 
       // Tri
       switch (sortBy) {
+        case 'created_at': // <-- ON AJOUTE CE CAS
+          query = query.order('created_at', { ascending: false });
+          break;
         case 'name':
           query = query.order('name', { ascending: true });
           break;
