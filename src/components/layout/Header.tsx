@@ -103,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
       `}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="ml-auto flex items-center h-16 lg:h-20">
+        <div className="relative flex items-center h-16 lg:h-20">
           {/* Mobile menu button */}
           <button 
             className="lg:hidden p-2 -ml-2"
@@ -269,7 +269,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
               </nav>
               
               <div className="mt-8 pt-8 border-t border-gray-200">
-                <div className="flex justify-center gap-4">
+                <div className="ml-auto flex justify-center gap-4">
                   <button 
                     onClick={() => {
                       handleUserClick();
