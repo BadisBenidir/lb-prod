@@ -29,20 +29,36 @@ const ProfileCompletionPageWrapper: React.FC = () => {
       if (!user) throw new Error("Utilisateur non trouvé");
 
       // 2. On envoie les données à la table 'profiles' (PAS 'customers')
-      const { error } = await supabase
-        .from('customers')
-        .update({
-          // On envoie 'null' si la case est vide pour éviter les erreurs
+      const handleComplete = async (data: ProfileCompletionData) => {
+        setIsLoading(true);
+        
+        // 1. On nettoie les données (on transforme les "" en null)
+        const cleanData = {
+          profile_id: user.id,
           address_line1: data.addressLine1 || null,
           address_line2: data.addressLine2 || null,
           city: data.city || null,
-          postal_code: data.postalCode || null, // Bien utiliser postal_code comme sur ta photo
+          postal_code: data.postalCode || null,
           phone: data.phone || null,
-          
-          // LA CORRECTION MAGIQUE :
+          // FIX CRITIQUE : Si la date est vide, on envoie null, pas ""
           birth_date: data.birthDate === "" ? null : data.birthDate
-        })
-        .eq('profile_id', user.id); // On utilise bien profile_id pour cibler ton compte
+        };
+
+        // 2. On utilise UPSERT (pour Créer OU Modifier)
+        const { error } = await supabase
+          .from('customers')
+          .upsert(cleanData, { onConflict: 'profile_id' });
+
+        if (error) {
+          console.error("Erreur de sauvegarde :", error.message);
+          alert("Erreur Supabase : " + error.message);
+        } else {
+          // 3. On ne redirige que SI ça a marché !
+          navigate('/');
+        }
+        
+        setIsLoading(false);
+      };
 
       if (error) throw error;
 
