@@ -48,6 +48,7 @@ export const useAuth = () => {
     confirmPassword: string;
     acceptTerms: boolean;
     newsletter: boolean;
+    address: string;
   }) => {
     setIsLoading(true);
     try {
