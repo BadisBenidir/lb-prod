@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
-import { supabase } from '../../lib/supabase';
-import ProfileCompletionPage from './ProfileCompletionPage';
-import { ProfileCompletionData } from '../../types/profile';
+import { useAuth } from '../hooks/useAuth';
+import { supabase } from '../lib/supabase';
+import { ProfileCompletionPage } from './ProfileCompletionPage'; // Ajoute les { } ici
+import { ProfileCompletionData } from '../types/profile';
 
 const ProfileCompletionPageWrapper: React.FC<{}> = () => {
   const navigate = useNavigate();
