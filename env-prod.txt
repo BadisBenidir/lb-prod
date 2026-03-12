@@ -1,0 +1,4 @@
+VITE_SUPABASE_URL=https://mtowphwqfcxcmymctrtb.supabase.co
+VITE_SUPABASE_ANON_KEY=
+VITE_STRIPE_PUBLIC_KEY=
+STRIPE_SECRET_KEY=
