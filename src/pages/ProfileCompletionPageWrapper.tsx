@@ -20,33 +20,35 @@ const ProfileCompletionPageWrapper: React.FC = () => {
   const { updateCustomerProfile } = useProfile();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleComplete = async (data: ProfileCompletionData): Promise<{ success: boolean; error?: string }> => {
+  const handleComplete = async (data: ProfileCompletionData) => {
     setIsLoading(true);
-
     try {
-      // Appeler updateCustomerProfile avec les données du formulaire
-      const result = await updateCustomerProfile({
-        phone: data.phone,
-        birth_date: data.birthDate,
-        address_line1: data.addressLine1,
-        address_line2: data.addressLine2,
-        city: data.city,
-        postal_code: data.postalCode,
-        country: data.country
-      });
+      // 1. On récupère l'ID de l'utilisateur connecté
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error("Utilisateur non trouvé");
 
-      if (result.success) {
-        // Rediriger vers la page de profil après succès
-        navigate('/profil');
-      }
+      // 2. On envoie les données à la table 'profiles' (PAS 'customers')
+      const { error } = await supabase
+        .from('profiles') 
+        .update({
+          first_name: data.firstName,
+          last_name: data.lastName,
+          address: data.addressLine1, // <-- Vérifie si c'est 'address' dans ta table
+          city: data.city,
+          zip_code: data.postalCode,  // <-- Vérifie si c'est 'zip_code' ou 'postal_code'
+          phone: data.phone
+        })
+        .eq('id', user.id); // On utilise l'ID de l'utilisateur
 
-      return result;
-    } catch (error) {
-      console.error('Error completing profile:', error);
-      return {
-        success: false,
-        error: 'Une erreur est survenue lors de la sauvegarde'
-      };
+      if (error) throw error;
+
+      // 3. Si ça a marché, on redirige comme pour le bouton "Passer"
+      navigate('/'); 
+      return { success: true };
+    } catch (err: any) {
+      console.error("Erreur de sauvegarde:", err.message);
+      alert("Erreur : " + err.message);
+      return { success: false, error: err.message };
     } finally {
       setIsLoading(false);
     }

@@ -175,7 +175,7 @@ export const ProfileProvider = ({ children }: PropsWithChildren) => {
       const mappedUpdates = mapCustomerUpdatesToDb(updates)
 
       const { error } = await supabase
-        .from('customers')
+        .from('profiles')
         .update(mappedUpdates)
         .eq('profile_id', userId)
 
