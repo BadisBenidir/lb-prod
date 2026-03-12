@@ -75,7 +75,9 @@ const processOrderManually = async (
       body: JSON.stringify({
         sessionId,
         userId,
-        customerId
+        customerId,
+        success_url: `${window.location.origin}/success`,
+        cancel_url: `${window.location.origin}/cart`
       }),
     });
 
