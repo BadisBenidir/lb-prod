@@ -30,17 +30,19 @@ const ProfileCompletionPageWrapper: React.FC = () => {
 
       // 2. On envoie les données à la table 'profiles' (PAS 'customers')
       const { error } = await supabase
-        .from('customers') // Ta table s'appelle bien customers sur la photo !
+        .from('customers')
         .update({
-          // A GAUCHE : le nom exact dans Supabase | A DROITE : la donnée du formulaire
-          address_line1: data.addressLine1, 
-          address_line2: data.addressLine2,
-          city: data.city,
-          postal_code: data.postalCode, // Sur ta photo c'est postal_code, pas zip_code !
-          birth_date: data.birthDate,   // Sur ta photo c'est birth_date !
-          phone: data.phone
+          // On envoie 'null' si la case est vide pour éviter les erreurs
+          address_line1: data.addressLine1 || null,
+          address_line2: data.addressLine2 || null,
+          city: data.city || null,
+          postal_code: data.postalCode || null, // Bien utiliser postal_code comme sur ta photo
+          phone: data.phone || null,
+          
+          // LA CORRECTION MAGIQUE :
+          birth_date: data.birthDate === "" ? null : data.birthDate
         })
-        .eq('profile_id', user.id);
+        .eq('profile_id', user.id); // On utilise bien profile_id pour cibler ton compte
 
       if (error) throw error;
 
