@@ -418,7 +418,7 @@ function AppRouter() {
                     <Helmet>
                       <title>Compléter mon Profil - Ozë Paris</title>
                     </Helmet>
-                    <ProfileCompletionPage />
+                    <ProfileCompletionPageWrapper /> {/* <--- ON APPELLE LE WRAPPER ICI */}
                   </Layout>
                 </ProtectedRoute>
               } 
