@@ -121,7 +121,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
               <img
                 src="logov4.PNG"
                 alt="Ozë Paris Logo" 
-                className="h-16 w-auto object-contain"
+                className="h-12 w-auto object-contain"
               />
               <span className="text-xl lg:text-2xl font-bold tracking-tight text-black">
 
