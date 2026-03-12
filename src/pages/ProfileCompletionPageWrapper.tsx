@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ProfileCompletionPage } from './ProfileCompletionPage';
 import { useAuth } from '../contexts/AuthContext';
 import { useProfile } from '../contexts/ProfileContext';
+import { supabase } from '../lib/supabase';
 
 interface ProfileCompletionData {
   phone: string;
