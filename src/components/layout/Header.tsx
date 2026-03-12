@@ -219,7 +219,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
           <div className="fixed top-0 left-0 w-80 h-full bg-white z-[60] lg:hidden transform transition-transform duration-300">
             <div className="p-6">
               <div className="flex items-center justify-between mb-8">
-                <h2 className="text-xl font-bold">Ozë Paris</h2>
+                <h2 className="text-xl font-bold">OZË PARIS</h2>
                 <button onClick={() => setIsMobileMenuOpen(false)}>
                   <X className="h-6 w-6" />
                 </button>
