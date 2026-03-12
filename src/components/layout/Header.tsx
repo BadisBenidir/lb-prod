@@ -174,7 +174,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
           </nav>
 
           {/* Actions */}
-          <div className="flex items-center space-x-2 lg:space-x-4">
+          <div className="ml-auto flex items-center space-x-2 lg:space-x-4">
             <button 
               onClick={handleUserClick}
               className="hidden sm:block hover:text-gray-600 transition-colors p-2 relative"
