@@ -113,7 +113,7 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, user, onLo
           </button>
 
           {/* Logo */}
-          <div className="flex-1 lg:flex-none flex justify-center flex items-center lg:justify-start">
+          <div className="flex flex-1 justify-center items-center">
             <button 
               onClick={() => handleNavigation('home')}
               className="flex items-center hover:opacity-80 transition-opacity"
