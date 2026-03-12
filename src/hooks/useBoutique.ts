@@ -4,7 +4,7 @@ import { useProducts, useAvailableCategories, useAvailableBrands } from './usePr
 import { useAvailableFilters } from './useAvailableFilters';
 
 const sortOptions: SortOption[] = [
-  { value: 'created_at', label: 'Pertinence'}
+  { value: 'created_at', label: 'Pertinence'},
   { value: 'name', label: 'Nom A-Z' },
   { value: 'price-low', label: 'Prix croissant' },
   { value: 'price-high', label: 'Prix décroissant' },
