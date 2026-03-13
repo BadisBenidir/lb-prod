@@ -74,8 +74,8 @@ export const createCheckoutSession = async (data: CheckoutSessionData) => {
         success_url: `${window.location.origin}/success`,
         cancel_url: `${window.location.origin}/cart`,
         customer_email: data.customerEmail,
-
         shipping_options: [
+          
           {
             shipping_rate_data: {
               type: 'fixed_amount',
