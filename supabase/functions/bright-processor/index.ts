@@ -7,6 +7,7 @@ const corsHeaders = {
 }
 
 serve(async (req) => {
+  // Gestion du CORS (pour que le navigateur accepte la réponse)
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
 
   try {
@@ -16,17 +17,23 @@ serve(async (req) => {
     })
 
     const body = await req.json()
+    console.log("Requête reçue :", body)
 
-    // CAS 1 : On vérifie une session existante (Page Success)
+    // --- CAS 1 : VÉRIFICATION APRÈS PAIEMENT (Page Success) ---
     if (body.sessionId) {
       const session = await stripe.checkout.sessions.retrieve(body.sessionId)
-      return new Response(JSON.stringify({ status: session.status, payment_status: session.payment_status }), {
+      
+      return new Response(JSON.stringify({ 
+        success: true,           // ✅ C'est sûrement cette ligne qui manquait !
+        status: session.status, 
+        payment_status: session.payment_status 
+      }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 200,
       })
     }
 
-    // CAS 2 : On crée une nouvelle session (Bouton Payer)
+    // --- CAS 2 : CRÉATION DU PAIEMENT (Bouton Payer) ---
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: body.items,
@@ -36,13 +43,20 @@ serve(async (req) => {
       customer_email: body.customer_email,
     })
 
-    return new Response(JSON.stringify({ id: session.id }), {
+    return new Response(JSON.stringify({ 
+      success: true, 
+      id: session.id 
+    }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
     })
 
   } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), {
+    console.error("Erreur détectée :", error.message)
+    return new Response(JSON.stringify({ 
+      success: false, 
+      error: error.message 
+    }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 400,
     })
