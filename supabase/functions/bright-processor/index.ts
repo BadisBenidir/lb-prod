@@ -7,9 +7,7 @@ const corsHeaders = {
 }
 
 serve(async (req) => {
-  if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders })
-  }
+  if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
 
   try {
     const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY') || '', {
@@ -18,8 +16,17 @@ serve(async (req) => {
     })
 
     const body = await req.json()
-    
-    // Création de la session
+
+    // CAS 1 : On vérifie une session existante (Page Success)
+    if (body.sessionId) {
+      const session = await stripe.checkout.sessions.retrieve(body.sessionId)
+      return new Response(JSON.stringify({ status: session.status, payment_status: session.payment_status }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 200,
+      })
+    }
+
+    // CAS 2 : On crée une nouvelle session (Bouton Payer)
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: body.items,
@@ -33,6 +40,7 @@ serve(async (req) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
     })
+
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
