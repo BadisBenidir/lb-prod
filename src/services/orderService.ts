@@ -150,12 +150,13 @@ export const processOrder = async (
     );
     
     const functionCall = supabase.functions.invoke('bright-processor', {
-          body: { 
-            sessionId, 
-            userId, 
-            customerId 
-          }
-        });
+      body: { 
+        sessionId, 
+        userId, 
+        customerId 
+      }
+    });
+
 
     const { data, error } = await Promise.race([functionCall, timeoutPromise]) as any;
     
