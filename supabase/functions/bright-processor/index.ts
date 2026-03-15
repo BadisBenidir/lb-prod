@@ -32,7 +32,7 @@ serve(async (req) => {
         status: 200,
       })
     }
-
+    
     // --- CAS 2 : CRÉATION DU PAIEMENT (Bouton Payer) ---
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -41,6 +41,17 @@ serve(async (req) => {
       success_url: body.success_url,
       cancel_url: body.cancel_url,
       customer_email: body.customer_email,
+      // ⬇️ ON AJOUTE ÇA POUR NE PLUS RIEN PERDRE ⬇️
+      metadata: {
+        customer_name: body.customer_name || "Non renseigné",
+        address: body.address || "Non renseignée",
+        phone: body.phone || "Non renseigné",
+        details: body.extra_info || "" // Si tu as d'autres champs
+      },
+      // Optionnel : Force Stripe à demander l'adresse de livraison lui-même
+      shipping_address_collection: {
+        allowed_countries: ['FR', 'BE', 'CH'], 
+      },
     })
 
     return new Response(JSON.stringify({ 
