@@ -150,10 +150,15 @@ export const processOrder = async (
     );
     
     const functionCall = supabase.functions.invoke('bright-processor', {
-      body: { 
+      body: {
         sessionId,
         userId,
-        customerId
+        customerId,
+        // ⬇️ IL FAUT RAJOUTER ÇA ⬇️
+        customer_name: formData.fullName, // ou la variable qui contient le nom
+        address: formData.fullAddress,    // ou la variable qui contient l'adresse
+        phone: formData.phoneNumber,     // ou la variable qui contient le tel
+        items: cartItems,                // pour que les produits s'affichent aussi
       }
     });
 
