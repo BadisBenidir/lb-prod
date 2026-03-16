@@ -32,13 +32,11 @@ serve(async (req) => {
     
     const orderNumber = `OZ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
-    // --- CALCULS DES MONTANTS ---
-    // On calcule le sous-total à partir des articles du panier
+    // Calcul des montants
     const subtotal = body.items.reduce((acc: number, item: any) => {
       return acc + (item.price_data.unit_amount * item.quantity);
     }, 0) / 100;
 
-    // On récupère les frais de port (si ton site les envoie, sinon on met 0 par défaut)
     const shippingCost = body.shipping_cost || 0;
     const totalAmount = subtotal + shippingCost;
 
@@ -48,12 +46,12 @@ serve(async (req) => {
       .insert([{
         order_number: orderNumber,
         email: body.customer_email,
-        subtotal: subtotal,          // ✅ AJOUTÉ (Répare l'erreur)
-        shipping_cost: shippingCost,  // ✅ AJOUTÉ
+        subtotal: subtotal,
+        shipping_cost: shippingCost,
         total_amount: totalAmount,
         currency: 'EUR',
         status: 'pending',
-        payment_status: 'unpaid',
+        payment_status: 'pending', // ✅ Changé de 'unpaid' à 'pending' pour passer la sécurité
         shipping_address: {
           name: `${body.customer_name}`,
           line1: body.address,
@@ -66,7 +64,7 @@ serve(async (req) => {
 
     if (dbError) throw new Error(`Erreur Admin: ${dbError.message}`);
 
-    // --- STRIPE ---
+    // --- CRÉATION SESSION STRIPE ---
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: body.items,
@@ -82,7 +80,7 @@ serve(async (req) => {
     })
 
   } catch (error) {
-    console.error("Erreur:", error.message);
+    console.error("Erreur détectée:", error.message);
     return new Response(JSON.stringify({ error: error.message }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 400,
