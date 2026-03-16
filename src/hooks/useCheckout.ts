@@ -9,7 +9,7 @@ export const useCheckout = () => {
     shippingAddress: any,
     shippingMethod: string,
     userId: string,
-    userEmail: string, // ✅ Nouvel argument
+    userEmail: string,
     subtotal: number,
     shippingCost: number,
     totalAmount: number
@@ -18,28 +18,32 @@ export const useCheckout = () => {
     setError(null);
 
     try {
-      const response = await fetch('https://bmsasmqkmnlijpvoisep.supabase.co/functions/v1/bright-processor', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      // ✅ On utilise "supabase.functions.invoke" au lieu de "fetch"
+      // Ça ajoute automatiquement les clés de sécurité (Headers)
+      const { data, error: funcError } = await supabase.functions.invoke('bright-processor', {
+        body: {
           cartItems,
           shippingAddress,
-          customerEmail: userEmail, // ✅ Email forcé
+          customerEmail: userEmail, 
           customer_name: `${shippingAddress?.firstName || ''} ${shippingAddress?.lastName || ''}`,
           delivery_method: shippingMethod,
           userId,
-          subtotal,
-          shipping: shippingCost,
-          total: totalAmount
-        }),
+          subtotal: Number(subtotal),
+          shipping: Number(shippingCost),
+          total: Number(totalAmount)
+        },
       });
 
-      const data = await response.json();
-      if (data.error) throw new Error(data.error);
-      if (data.id) window.location.href = `https://checkout.stripe.com/pay/${data.id}`;
-
+      if (funcError) throw new Error(funcError.message);
+      
+      if (data?.id) {
+        window.location.href = `https://checkout.stripe.com/pay/${data.id}`;
+      }
+      return { success: true };
     } catch (err: any) {
+      console.error("Erreur Checkout:", err.message);
       setError(err.message);
+      return { success: false, error: err.message };
     } finally {
       setIsProcessing(false);
     }
