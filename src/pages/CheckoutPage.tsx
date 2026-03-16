@@ -13,37 +13,31 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBackToCart, onOrderComple
   const { user } = useAuth();
   const { cartItems, clearCart, getTotalPrice } = useCartContext();
   
-  // ✅ On récupère "processStripeCheckout" au lieu de "createOrder"
+  // ✅ MODIF : On utilise processStripeCheckout au lieu de createOrder
   const { processStripeCheckout, isProcessing, error } = useCheckout();
   
   const subtotal = getTotalPrice();
 
+  // ✅ C'EST CETTE PARTIE QUE TU REMPLACES
   const handleCheckoutComplete = async (orderData: any) => {
     if (!user) {
       throw new Error('Utilisateur non connecté');
     }
 
-    // ✅ On prépare les montants en EUROS (ex: 101.00) pour éviter le bug des 10100€
-    const amounts = {
-      subtotal: orderData.subtotal,
-      shippingCost: orderData.shippingCost,
-      totalAmount: orderData.totalAmount
-    };
-
-    // 🚀 C'EST ICI QUE TOUT SE JOUE
+    // 🚀 On appelle la fonction qui gère tout : Admin + Stripe
     const result = await processStripeCheckout(
       cartItems,
       orderData.shippingAddress,
-      orderData.shippingMethod, // ✅ ON AJOUTE LE MODE DE LIVRAISON ICI
+      orderData.shippingMethod || "Livraison à domicile",
       user.id,
-      amounts.subtotal,
-      amounts.shippingCost,
-      amounts.totalAmount
+      orderData.subtotal,
+      orderData.shippingCost,
+      orderData.totalAmount
     );
 
     if (result.success) {
+      // Vider le panier local seulement si le lancement Stripe est OK
       clearCart();
-      // Le redirect vers Stripe se fait automatiquement dans processStripeCheckout
     }
 
     return result;

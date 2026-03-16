@@ -15,12 +15,11 @@ serve(async (req) => {
       apiVersion: '2023-10-16',
       httpClient: Stripe.createFetchHttpClient(),
     })
-
     const supabase = createClient(Deno.env.get('SUPABASE_URL') || '', Deno.env.get('SERVICE_ROLE_KEY') || '')
 
     const body = await req.json()
     
-    // --- GESTION DES MONTANTS (En Euros pour la DB) ---
+    // --- SECURITÉ DES MONTANTS (On travaille en EUROS ici) ---
     const subtotal = Number(body.subtotal) || 0;
     const shippingCost = Number(body.shipping) || 0;
     const totalAmount = subtotal + shippingCost;
@@ -34,25 +33,24 @@ serve(async (req) => {
         order_number: orderNumber,
         customer_id: body.userId || null,
         email: body.customerEmail,
-        total_amount: totalAmount, // ✅ Enregistre ex: 101.00
+        total_amount: totalAmount, 
         subtotal: subtotal,
         shipping_cost: shippingCost,
         currency: 'EUR',
         status: 'pending',
         payment_status: 'pending',
         shipping_address: {
-          name: body.customer_name,
-          full_name: body.customer_name,
-          address: body.shippingAddress.address,
-          city: body.shippingAddress.city,
-          postcode: body.shippingAddress.zipCode || body.shippingAddress.postalCode,
-          phone: body.shippingAddress.phone,
-          shipping_method: body.delivery_method // ✅ "Point Relais" ou "Domicile"
+          full_name: body.customer_name, // ✅ Pour enlever "Client inconnu"
+          address: body.shippingAddress?.address || "",
+          city: body.shippingAddress?.city || "",
+          postcode: body.shippingAddress?.zipCode || body.shippingAddress?.postalCode || "",
+          phone: body.shippingAddress?.phone || "",
+          shipping_method: body.delivery_method // ✅ Pour le Point Relais
         }
       }])
       .select().single()
 
-    if (dbError) throw new Error(`Erreur Orders: ${dbError.message}`);
+    if (dbError) throw new Error(`DB Order Error: ${dbError.message}`);
 
     // 2. ENREGISTREMENT DES ARTICLES (Table order_items)
     const orderItems = body.cartItems.map((item: any) => ({
@@ -60,7 +58,7 @@ serve(async (req) => {
       product_id: item.id,
       quantity: item.quantity,
       unit_price: Number(item.price),
-      total_price: Number(item.price) * item.quantity,
+      line_total: Number(item.price) * item.quantity, // ✅ Nom de ta colonne (Image 133601)
       product_snapshot: {
         name: item.name,
         image: item.image,
@@ -69,14 +67,14 @@ serve(async (req) => {
     }));
 
     const { error: itemsError } = await supabase.from('order_items').insert(orderItems);
-    if (itemsError) throw new Error(`Erreur Items: ${itemsError.message}`);
+    if (itemsError) throw new Error(`DB Items Error: ${itemsError.message}`);
 
-    // 3. SESSION STRIPE (Conversion en centimes UNIQUEMENT ici)
+    // 3. STRIPE (On multiplie par 100 UNIQUEMENT ici)
     const lineItems = body.cartItems.map((item: any) => ({
       price_data: {
         currency: 'eur',
         unit_amount: Math.round(Number(item.price) * 100),
-        product_data: { name: item.name, images: [item.image] },
+        product_data: { name: item.name, images: item.image ? [item.image] : [] },
       },
       quantity: item.quantity,
     }));
@@ -86,7 +84,7 @@ serve(async (req) => {
         price_data: {
           currency: 'eur',
           unit_amount: Math.round(shippingCost * 100),
-          product_data: { name: 'Frais de livraison' },
+          product_data: { name: `Livraison (${body.delivery_method})` },
         },
         quantity: 1,
       });
