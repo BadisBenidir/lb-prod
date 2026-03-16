@@ -25,20 +25,17 @@ serve(async (req) => {
     const details = body.customerDetails || body;
     const orderNumber = `OZ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
-    // 1. CALCUL DES MONTANTS
     const subtotal = body.items.reduce((acc: number, item: any) => acc + (item.price_data.unit_amount * item.quantity), 0) / 100;
     const shippingCost = body.shipping_cost || 0;
     const totalAmount = subtotal + shippingCost;
 
-    // 2. CRÉATION DE LA COMMANDE (Table orders)
+    // 1. CRÉATION DE LA COMMANDE
+    // On ne met QUE les colonnes qui existent vraiment sur tes images 3, 4 et 5
     const { data: order, error: dbError } = await supabase
       .from('orders')
       .insert([{
         order_number: orderNumber,
         email: details.email,
-        first_name: details.firstName || details.customer_name?.split(' ')[0] || "Client",
-        last_name: details.lastName || details.customer_name?.split(' ')[1] || "Oze",
-        phone: details.phone,
         subtotal: subtotal,
         shipping_cost: shippingCost,
         total_amount: totalAmount,
@@ -46,9 +43,15 @@ serve(async (req) => {
         status: 'pending',
         payment_status: 'pending',
         shipping_address: {
+          // On met toutes les clés possibles pour que l'Admin trouve le nom
+          name: details.customer_name || `${details.firstName} ${details.lastName}`,
           full_name: details.customer_name || `${details.firstName} ${details.lastName}`,
+          first_name: details.firstName || "",
+          last_name: details.lastName || "",
           address: details.address,
+          line1: details.address,
           city: details.city,
+          zip: details.zip_code || details.zipCode,
           postcode: details.zip_code || details.zipCode,
           phone: details.phone
         }
@@ -58,10 +61,10 @@ serve(async (req) => {
 
     if (dbError) throw new Error(`Erreur Commande: ${dbError.message}`);
 
-    // 3. ENREGISTREMENT DES ARTICLES (Table order_items)
+    // 2. ENREGISTREMENT DES ARTICLES (Table order_items)
     const orderItems = body.items.map((item: any) => ({
       order_id: order.id,
-      product_id: item.price_data.product_data.metadata?.id || null, // On lie au produit si possible
+      product_id: item.price_data.product_data.metadata?.id || null,
       quantity: item.quantity,
       unit_price: item.price_data.unit_amount / 100,
       line_total: (item.price_data.unit_amount * item.quantity) / 100,
@@ -77,7 +80,7 @@ serve(async (req) => {
 
     if (itemsError) console.error("Erreur Articles:", itemsError.message);
 
-    // 4. SESSION STRIPE
+    // 3. SESSION STRIPE
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: body.items,
