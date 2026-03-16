@@ -12,7 +12,9 @@ interface CheckoutPageProps {
 const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBackToCart, onOrderComplete }) => {
   const { user } = useAuth();
   const { cartItems, clearCart, getTotalPrice } = useCartContext();
-  const { createOrder, isProcessing, error } = useCheckout();
+  
+  // ✅ On récupère "processStripeCheckout" au lieu de "createOrder"
+  const { processStripeCheckout, isProcessing, error } = useCheckout();
   
   const subtotal = getTotalPrice();
 
@@ -21,27 +23,27 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBackToCart, onOrderComple
       throw new Error('Utilisateur non connecté');
     }
 
+    // ✅ On prépare les montants en EUROS (ex: 101.00) pour éviter le bug des 10100€
     const amounts = {
       subtotal: orderData.subtotal,
       shippingCost: orderData.shippingCost,
-      taxAmount: orderData.taxAmount,
       totalAmount: orderData.totalAmount
     };
 
-    const result = await createOrder(
+    // 🚀 C'EST ICI QUE TOUT SE JOUE
+    const result = await processStripeCheckout(
       cartItems,
       orderData.shippingAddress,
-      orderData.billingAddress,
-      orderData.paymentMethod,
-      amounts,
-      user.id
+      orderData.shippingMethod, // ✅ ON AJOUTE LE MODE DE LIVRAISON ICI
+      user.id,
+      amounts.subtotal,
+      amounts.shippingCost,
+      amounts.totalAmount
     );
 
     if (result.success) {
-      // Vider le panier local
       clearCart();
-      // Appeler le callback pour indiquer que la commande est complète
-      onOrderComplete(result.orderId);
+      // Le redirect vers Stripe se fait automatiquement dans processStripeCheckout
     }
 
     return result;
@@ -72,7 +74,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBackToCart, onOrderComple
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-8 text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
-            <p className="text-gray-700">Validation de votre commande en cours...</p>
+            <p className="text-gray-700">Préparation de votre paiement...</p>
           </div>
         </div>
       )}
