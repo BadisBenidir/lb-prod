@@ -15,77 +15,66 @@ serve(async (req) => {
       apiVersion: '2023-10-16',
       httpClient: Stripe.createFetchHttpClient(),
     })
-    const supabase = createClient(Deno.env.get('SUPABASE_URL') || '', Deno.env.get('SERVICE_ROLE_KEY') || '')
+
+    // On utilise SERVICE_ROLE_KEY (celui que tu viens de réussir à set !)
+    const supabase = createClient(
+      Deno.env.get('SUPABASE_URL') || '',
+      Deno.env.get('SERVICE_ROLE_KEY') || '' 
+    )
 
     const body = await req.json()
-    
-    const email = body.customerEmail;
-    const subtotal = Number(body.subtotal) || 0;
-    const shippingCost = Number(body.shipping) || 0;
-    const totalAmount = subtotal + shippingCost;
 
-    // 1. CRÉATION DE LA COMMANDE (Table orders)
+    // --- CAS 1 : VÉRIFICATION SESSION ---
+    if (body.sessionId) {
+      const session = await stripe.checkout.sessions.retrieve(body.sessionId)
+      return new Response(JSON.stringify({ status: session.status }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+    
+    // --- CAS 2 : CRÉATION COMMANDE + STRIPE ---
+    const orderNumber = `OZ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+
+    // A. SAUVEGARDE DANS L'ADMIN (Table orders)
     const { data: order, error: dbError } = await supabase
       .from('orders')
       .insert([{
-        order_number: `OZ-${Date.now().toString().slice(-6)}`,
-        customer_id: body.userId,
-        email: email,
-        total_amount: totalAmount, // ✅ Enregistre ex: 101.00 (Pas 10100)
-        subtotal: subtotal,
-        shipping_cost: shippingCost,
-        shipping_method: body.delivery_method, // ✅ Pour l'admin
+        order_number: orderNumber,
+        email: body.customer_email,
+        total_amount: body.total_amount, // Assure-toi que ton site envoie ce chiffre
         status: 'pending',
-        payment_status: 'pending',
+        payment_status: 'unpaid',
         shipping_address: {
-          full_name: body.customer_name,
-          address: body.shippingAddress.address,
-          city: body.shippingAddress.city,
-          postcode: body.shippingAddress.postalCode || body.shippingAddress.zipCode,
-          phone: body.shippingAddress.phone
+          name: body.customer_name,
+          line1: body.address,
+          city: body.city,
+          postal_code: body.zip_code,
+          phone: body.phone
         }
       }])
-      .select().single()
+      .select()
 
-    if (dbError) throw dbError;
+    if (dbError) throw new Error(`Erreur Admin: ${dbError.message}`);
 
-    // 2. CRÉATION DES ARTICLES (C'est ça qui remplit ta liste Admin)
-    const orderItems = body.cartItems.map((item: any) => ({
-      order_id: order.id,
-      product_id: item.id,
-      quantity: item.quantity,
-      unit_price: item.price,
-      line_total: item.price * item.quantity, // ✅ Ta colonne line_total
-      product_snapshot: { // ✅ Ce que l'admin affiche (Image + Nom)
-        name: item.name,
-        image: item.image,
-        brand: item.brand
-      }
-    }));
-
-    await supabase.from('order_items').insert(orderItems);
-
-    // 3. SESSION STRIPE
+    // B. CRÉATION SESSION STRIPE
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      line_items: body.cartItems.map((item: any) => ({
-        price_data: {
-          currency: 'eur',
-          unit_amount: Math.round(item.price * 100), // Uniquement ici pour Stripe
-          product_data: { name: item.name, images: [item.image] },
-        },
-        quantity: item.quantity,
-      })),
+      line_items: body.items,
       mode: 'payment',
-      success_url: `${req.headers.get('origin')}/success`,
-      cancel_url: `${req.headers.get('origin')}/cart`,
-      customer_email: email,
-      metadata: { order_id: order.id }
+      success_url: body.success_url,
+      cancel_url: body.cancel_url,
+      customer_email: body.customer_email,
+      metadata: { order_id: order[0].id }
     })
 
-    return new Response(JSON.stringify({ id: session.id }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
+    return new Response(JSON.stringify({ id: session.id }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
 
   } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 400 })
+    return new Response(JSON.stringify({ error: error.message }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 400,
+    })
   }
 })
