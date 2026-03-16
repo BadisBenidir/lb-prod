@@ -32,7 +32,7 @@ serve(async (req) => {
 
     // CALCULS
     const subtotal = body.items.reduce((acc: number, item: any) => acc + (item.price_data.unit_amount * item.quantity), 0) / 100;
-    const shippingCost = body.shipping_cost || 0;
+    const shippingCost = (body.shipping_cost || 0) / 100;
     const totalAmount = subtotal + shippingCost;
 
     // 1. CRÉATION DE LA COMMANDE
