@@ -20,27 +20,28 @@ serve(async (req) => {
 
     const body = await req.json()
     
-    // 1. GESTION DES MONTANTS (On repasse tout en EUROS pour la base de données)
-    const subtotal = body.subtotal || 0;
-    const shippingCost = body.shipping || 0;
+    // --- GESTION DES MONTANTS (En Euros pour la DB) ---
+    const subtotal = Number(body.subtotal) || 0;
+    const shippingCost = Number(body.shipping) || 0;
     const totalAmount = subtotal + shippingCost;
 
     const orderNumber = `OZ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
-    // 2. CRÉATION DE LA COMMANDE (Table orders)
+    // 1. CRÉATION DE LA COMMANDE
     const { data: order, error: dbError } = await supabase
       .from('orders')
       .insert([{
         order_number: orderNumber,
         customer_id: body.userId || null,
         email: body.customerEmail,
-        total_amount: totalAmount, // ✅ Ici on enregistre 101.00, PAS 10100
+        total_amount: totalAmount, // ✅ Enregistre ex: 101.00
         subtotal: subtotal,
         shipping_cost: shippingCost,
         currency: 'EUR',
         status: 'pending',
         payment_status: 'pending',
         shipping_address: {
+          name: body.customer_name,
           full_name: body.customer_name,
           address: body.shippingAddress.address,
           city: body.shippingAddress.city,
@@ -51,15 +52,15 @@ serve(async (req) => {
       }])
       .select().single()
 
-    if (dbError) throw dbError;
+    if (dbError) throw new Error(`Erreur Orders: ${dbError.message}`);
 
-    // 3. ENREGISTREMENT DES ARTICLES (Table order_items)
+    // 2. ENREGISTREMENT DES ARTICLES (Table order_items)
     const orderItems = body.cartItems.map((item: any) => ({
       order_id: order.id,
       product_id: item.id,
       quantity: item.quantity,
-      unit_price: item.price,
-      total_price: item.price * item.quantity, // ✅ Nom exact de ta colonne
+      unit_price: Number(item.price),
+      total_price: Number(item.price) * item.quantity,
       product_snapshot: {
         name: item.name,
         image: item.image,
@@ -68,19 +69,18 @@ serve(async (req) => {
     }));
 
     const { error: itemsError } = await supabase.from('order_items').insert(orderItems);
-    if (itemsError) throw itemsError;
+    if (itemsError) throw new Error(`Erreur Items: ${itemsError.message}`);
 
-    // 4. CRÉATION STRIPE (On multiplie par 100 UNIQUEMENT ICI pour Stripe)
+    // 3. SESSION STRIPE (Conversion en centimes UNIQUEMENT ici)
     const lineItems = body.cartItems.map((item: any) => ({
       price_data: {
         currency: 'eur',
-        unit_amount: Math.round(item.price * 100),
+        unit_amount: Math.round(Number(item.price) * 100),
         product_data: { name: item.name, images: [item.image] },
       },
       quantity: item.quantity,
     }));
 
-    // Ajout des frais de port dans Stripe
     if (shippingCost > 0) {
       lineItems.push({
         price_data: {
@@ -96,15 +96,20 @@ serve(async (req) => {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: body.success_url || `${req.headers.get('origin')}/success`,
-      cancel_url: body.cancel_url || `${req.headers.get('origin')}/cart`,
+      success_url: `${req.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${req.headers.get('origin')}/cart`,
       customer_email: body.customerEmail,
       metadata: { order_id: order.id }
     })
 
-    return new Response(JSON.stringify({ id: session.id }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
+    return new Response(JSON.stringify({ id: session.id }), { 
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+    })
 
   } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 400 })
+    return new Response(JSON.stringify({ error: error.message }), { 
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }, 
+      status: 400 
+    })
   }
 })
