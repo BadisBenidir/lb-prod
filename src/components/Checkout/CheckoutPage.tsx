@@ -362,6 +362,7 @@ const CheckoutPage: React.FC = () => {
                       initialData={shippingAddress}
                       isUserConnected={isAuthenticated}
                       onSubmit={handleShippingSubmit}
+                      onDeliveryTypeChange={(type) => setDeliveryType(type)}
                     />
                   </div>
                 </div>
