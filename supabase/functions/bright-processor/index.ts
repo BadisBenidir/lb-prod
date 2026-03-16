@@ -16,29 +16,31 @@ serve(async (req) => {
       httpClient: Stripe.createFetchHttpClient(),
     })
 
-    const supabase = createClient(
-      Deno.env.get('SUPABASE_URL') || '',
-      Deno.env.get('SERVICE_ROLE_KEY') || '' 
-    )
+    const supabase = createClient(Deno.env.get('SUPABASE_URL') || '', Deno.env.get('SERVICE_ROLE_KEY') || '')
 
     const body = await req.json()
+    
+    // 🛡️ SÉCURITÉ EMAIL : On cherche partout où il pourrait être caché
+    const customerEmail = body.customer_email || body.email || (body.customerDetails && body.customerDetails.email);
+    
+    if (!customerEmail) {
+      throw new Error("L'email du client est manquant dans la requête.");
+    }
+
     const details = body.customerDetails || body;
     const orderNumber = `OZ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
-    // 1. CALCUL DES MONTANTS
+    // CALCULS
     const subtotal = body.items.reduce((acc: number, item: any) => acc + (item.price_data.unit_amount * item.quantity), 0) / 100;
     const shippingCost = body.shipping_cost || 0;
     const totalAmount = subtotal + shippingCost;
 
-    // 2. CRÉATION DE LA COMMANDE (Table orders)
+    // 1. CRÉATION DE LA COMMANDE
     const { data: order, error: dbError } = await supabase
       .from('orders')
       .insert([{
         order_number: orderNumber,
-        email: details.email,
-        first_name: details.firstName || details.customer_name?.split(' ')[0] || "Client",
-        last_name: details.lastName || details.customer_name?.split(' ')[1] || "Oze",
-        phone: details.phone,
+        email: customerEmail, // ✅ Corrigé !
         subtotal: subtotal,
         shipping_cost: shippingCost,
         total_amount: totalAmount,
@@ -46,8 +48,11 @@ serve(async (req) => {
         status: 'pending',
         payment_status: 'pending',
         shipping_address: {
-          full_name: details.customer_name || `${details.firstName} ${details.lastName}`,
-          address: details.address,
+          // On met TOUT ici pour que l'Admin (Image 133334) trouve le nom
+          name: details.customer_name || `${details.firstName} ${details.lastName}`,
+          first_name: details.firstName || details.customer_name?.split(' ')[0] || "",
+          last_name: details.lastName || details.customer_name?.split(' ')[1] || "",
+          address: details.address || details.line1,
           city: details.city,
           postcode: details.zip_code || details.zipCode,
           phone: details.phone
@@ -58,10 +63,9 @@ serve(async (req) => {
 
     if (dbError) throw new Error(`Erreur Commande: ${dbError.message}`);
 
-    // 3. ENREGISTREMENT DES ARTICLES (Table order_items)
+    // 2. ENREGISTREMENT DES ARTICLES (Pour la zone "Articles commandés")
     const orderItems = body.items.map((item: any) => ({
       order_id: order.id,
-      product_id: item.price_data.product_data.metadata?.id || null, // On lie au produit si possible
       quantity: item.quantity,
       unit_price: item.price_data.unit_amount / 100,
       line_total: (item.price_data.unit_amount * item.quantity) / 100,
@@ -71,26 +75,23 @@ serve(async (req) => {
       }
     }));
 
-    const { error: itemsError } = await supabase
-      .from('order_items')
-      .insert(orderItems);
+    await supabase.from('order_items').insert(orderItems);
 
-    if (itemsError) console.error("Erreur Articles:", itemsError.message);
-
-    // 4. SESSION STRIPE
+    // 3. SESSION STRIPE
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: body.items,
       mode: 'payment',
       success_url: body.success_url,
       cancel_url: body.cancel_url,
-      customer_email: details.email,
+      customer_email: customerEmail,
       metadata: { order_id: order.id }
     })
 
     return new Response(JSON.stringify({ id: session.id }), { headers: corsHeaders })
 
   } catch (error) {
+    console.error("Erreur détectée:", error.message);
     return new Response(JSON.stringify({ error: error.message }), { headers: corsHeaders, status: 400 })
   }
 })
