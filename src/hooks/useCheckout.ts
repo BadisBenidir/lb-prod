@@ -9,11 +9,13 @@ export const useCheckout = () => {
   const [error, setError] = useState<string | null>(null);
   const [availabilityResult, setAvailabilityResult] = useState<ProductAvailabilityResult | null>(null);
 
+  // --- FONCTION 1 : CRÉATION DIRECTE (Optionnelle si tu passes par Stripe) ---
   const createOrder = async (
     cartItems: CartItem[],
     shippingAddress: ShippingAddress,
     billingAddress: ShippingAddress,
     paymentMethod: PaymentMethod,
+    shippingMethod: string,
     amounts: {
       subtotal: number;
       shippingCost: number;
@@ -25,7 +27,6 @@ export const useCheckout = () => {
     setError(null);
     
     try {
-      // 1. Créer la commande
       const { data: order, error: orderError } = await supabase
         .from('orders')
         .insert({
@@ -53,7 +54,6 @@ export const useCheckout = () => {
 
       if (orderError) throw new Error(orderError.message);
 
-      // 2. Créer les lignes de commande
       const orderItems = cartItems.map(item => ({
         order_id: order.id,
         product_id: item.id,
@@ -72,7 +72,6 @@ export const useCheckout = () => {
 
       if (itemsError) throw new Error(itemsError.message);
 
-      // 3. Vider le panier
       const { error: cartError } = await supabase
         .from('cart_items')
         .delete()
@@ -80,18 +79,15 @@ export const useCheckout = () => {
 
       if (cartError) throw new Error(cartError.message);
 
-      // 4. Mettre à jour le statut des produits (passer de 'for-sale-online' à 'sold-online')
       const productIds = cartItems.map(item => item.id);
-      const { error: productsError } = await supabase
+      await supabase
         .from('products')
         .update({ status: 'sold-online' })
         .in('id', productIds);
 
-      if (productsError) throw new Error(productsError.message);
-
       return { success: true, orderId: order.id };
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Une erreur est survenue lors de la validation de la commande';
+      const message = err instanceof Error ? err.message : 'Erreur commande';
       setError(message);
       return { success: false, error: message };
     } finally {
@@ -100,14 +96,14 @@ export const useCheckout = () => {
   };
 
   const calculateShippingCost = (address: ShippingAddress, items: CartItem[]): number => {
-    // Logique de calcul des frais de livraison
-    // Pour l'instant, retourne un montant fixe
     return 5.99;
   };
 
+  // --- FONCTION 2 : LE PASSAGE PAR STRIPE (C'est elle qui appelle bright-processor) ---
   const processStripeCheckout = async (
     cartItems: CartItem[],
     shippingAddress: ShippingAddress,
+    shippingMethod: string, // ✅ AJOUTÉ : Le mode de livraison (Relais/Domicile)
     userId?: string,
     subtotal: number = 0,
     shipping: number = 0,
@@ -120,61 +116,45 @@ export const useCheckout = () => {
   ) => {
     setIsProcessing(true);
     setError(null);
-    setAvailabilityResult(null);
 
     try {
-      console.log('🚀 Démarrage du processus Stripe Checkout...');
-
-      // 🛡️ NIVEAU 1 : Vérification pré-Stripe
-      console.log('🔍 Vérification disponibilité des produits...');
+      // 1. Vérification disponibilité
       const availability = await checkCartProductsAvailability(cartItems);
-      setAvailabilityResult(availability);
-
       if (!availability.allAvailable) {
-        const unavailableNames = availability.unavailableProducts.map(p => `${p.name} (${p.reason})`).join(', ');
-        throw new Error(`Produits plus disponibles: ${unavailableNames}`);
+        throw new Error(`Produits plus disponibles`);
       }
 
-      console.log('✅ Tous les produits sont disponibles');
-
-      // Préparer les données pour Stripe
-      const checkoutData: CheckoutSessionData = {
+      // 2. Préparer les données pour la fonction Edge (bright-processor)
+      const checkoutData: any = { // On utilise any pour être sûr de passer nos nouveaux champs
         cartItems,
         shippingAddress,
         customerEmail: shippingAddress.email,
+        customer_name: `${shippingAddress.firstName} ${shippingAddress.lastName}`, // ✅ Pour l'Admin
+        delivery_method: shippingMethod, // ✅ Pour l'Admin (Point Relais ou Domicile)
         userId,
         subtotal,
         shipping,
         total,
-        // Données coupon si présentes
         discountAmount: couponData?.discountAmount,
         couponCode: couponData?.couponCode,
         couponId: couponData?.couponId
       };
 
-      console.log('📦 Données checkout:', checkoutData);
-
-      // Créer la session Stripe
+      // 3. Créer la session Stripe via ton service
       const sessionResult = await createCheckoutSession(checkoutData);
       
       if (!sessionResult.success || !sessionResult.sessionId) {
-        throw new Error(sessionResult.error || 'Erreur lors de la création de la session');
+        throw new Error(sessionResult.error || 'Erreur session');
       }
 
-      console.log('✅ Session Stripe créée:', sessionResult.sessionId);
-
-      // Rediriger vers Stripe Checkout
+      // 4. Redirection vers Stripe
       const redirectResult = await redirectToCheckout(sessionResult.sessionId);
-      
-      if (!redirectResult.success) {
-        throw new Error(redirectResult.error || 'Erreur de redirection');
-      }
+      if (!redirectResult.success) throw new Error(redirectResult.error);
 
       return { success: true, sessionId: sessionResult.sessionId };
 
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Erreur lors du paiement';
-      console.error('❌ Erreur Stripe checkout:', err);
+      const errorMessage = err instanceof Error ? err.message : 'Erreur paiement';
       setError(errorMessage);
       return { success: false, error: errorMessage };
     } finally {
