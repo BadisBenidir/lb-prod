@@ -11,24 +11,17 @@ interface CheckoutPageProps {
 
 const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBackToCart, onOrderComplete }) => {
   const { user } = useAuth();
-  const { cartItems, clearCart, getTotalPrice } = useCartContext();
-  
-  // ✅ MODIF : On utilise processStripeCheckout au lieu de createOrder
+  const { cartItems, getTotalPrice, clearCart } = useCartContext();
   const { processStripeCheckout, isProcessing, error } = useCheckout();
-  
-  const subtotal = getTotalPrice();
 
-  // ✅ C'EST CETTE PARTIE QUE TU REMPLACES
   const handleCheckoutComplete = async (orderData: any) => {
-    if (!user) {
-      throw new Error('Utilisateur non connecté');
-    }
+    if (!user) throw new Error('Utilisateur non connecté');
 
-    // 🚀 On appelle la fonction qui gère tout : Admin + Stripe
+    // 🚀 Lancement de la procédure
     const result = await processStripeCheckout(
       cartItems,
       orderData.shippingAddress,
-      orderData.shippingMethod || "Livraison à domicile",
+      orderData.shippingMethod || "Standard",
       user.id,
       orderData.subtotal,
       orderData.shippingCost,
@@ -36,52 +29,27 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBackToCart, onOrderComple
     );
 
     if (result.success) {
-      // Vider le panier local seulement si le lancement Stripe est OK
       clearCart();
     }
-
     return result;
   };
 
-  if (!user) {
-    return (
-      <div className="min-h-screen bg-white">
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="text-center">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">Connexion requise</h2>
-            <p className="text-gray-600 mb-6">Vous devez être connecté pour passer une commande.</p>
-            <button
-              onClick={() => window.location.hash = '#login'}
-              className="bg-black text-white px-6 py-2 font-medium hover:bg-gray-800 transition-colors"
-            >
-              Se connecter
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  if (!user) return <p>Connexion requise...</p>;
 
   return (
     <div className="min-h-screen bg-white">
       {isProcessing && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-8 text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
-            <p className="text-gray-700">Préparation de votre paiement...</p>
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-lg text-center">
+            <div className="animate-spin h-10 w-10 border-b-2 border-black mx-auto mb-4"></div>
+            <p>Redirection vers le paiement...</p>
           </div>
         </div>
       )}
-      
-      {error && (
-        <div className="fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50">
-          <p>{error}</p>
-        </div>
-      )}
-      
+      {error && <div className="bg-red-100 text-red-700 p-4">{error}</div>}
       <Checkout
         cartItems={cartItems}
-        subtotal={subtotal}
+        subtotal={getTotalPrice()}
         onCheckoutComplete={handleCheckoutComplete}
         onBackToCart={onBackToCart}
       />

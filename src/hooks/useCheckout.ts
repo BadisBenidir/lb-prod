@@ -7,12 +7,12 @@ export const useCheckout = () => {
 
   const processStripeCheckout = async (
     cartItems: CartItem[],
-    shippingAddress: ShippingAddress,
+    shippingAddress: any,
     shippingMethod: string,
     userId?: string,
     subtotal: number = 0,
-    shipping: number = 0,
-    total: number = 0,
+    shippingCost: number = 0,
+    totalAmount: number = 0
   ) => {
     setIsProcessing(true);
     setError(null);
@@ -24,27 +24,27 @@ export const useCheckout = () => {
         body: JSON.stringify({
           cartItems,
           shippingAddress,
-          customerEmail: shippingAddress.email,
-          customer_name: `${shippingAddress.firstName} ${shippingAddress.lastName}`,
+          customerEmail: shippingAddress?.email || "",
+          customer_name: `${shippingAddress?.firstName || ''} ${shippingAddress?.lastName || ''}`,
           delivery_method: shippingMethod,
           userId,
-          subtotal: Number(subtotal), // ✅ En euros
-          shipping: Number(shipping), // ✅ En euros
-          total: Number(total)
+          subtotal: Number(subtotal),
+          shipping: Number(shippingCost),
+          total: Number(totalAmount)
         }),
       });
 
       const data = await response.json();
       if (data.error) throw new Error(data.error);
 
-      // Redirection vers Stripe
+      // Redirection Stripe
       if (data.id) {
-        const stripeUrl = `https://checkout.stripe.com/pay/${data.id}`;
-        window.location.href = stripeUrl;
+        window.location.href = `https://checkout.stripe.com/pay/${data.id}`;
       }
       
       return { success: true };
     } catch (err: any) {
+      console.error("Erreur Checkout:", err.message);
       setError(err.message);
       return { success: false, error: err.message };
     } finally {
