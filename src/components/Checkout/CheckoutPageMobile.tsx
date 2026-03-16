@@ -93,8 +93,8 @@ const CheckoutPageMobile: React.FC = () => {
 
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   // Frais de livraison Chronopost selon le type choisi
-  // Point relais : 9,99€ | Adresse spécifique : 19,99€
-  const shipping = deliveryType === 'point_relais' ? 9.99 : 1.00;
+  // Point relais : 4,99€ | Adresse spécifique : 14,99€
+  const shipping = deliveryType === 'point_relais' ? 4.99 : 14.99;
   // Calculer la réduction du coupon
   const discountAmount = appliedCoupon?.calculatedDiscount || 0;
   const total = subtotal - discountAmount + shipping;
