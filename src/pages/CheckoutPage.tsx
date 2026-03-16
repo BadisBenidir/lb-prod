@@ -1,54 +1,83 @@
-import { useState } from 'react';
-import { CartItem } from '../types';
+import React from 'react';
+import { Checkout } from '../features/checkout';
+import { useAuth } from '../contexts/AuthContext';
+import { useCartContext } from '../contexts/CartContext';
+import { useCheckout } from '../hooks/useCheckout';
 
-export const useCheckout = () => {
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+interface CheckoutPageProps {
+  onBackToCart: () => void;
+  onOrderComplete: (orderId: string) => void;
+}
 
-  const processStripeCheckout = async (
-    cartItems: CartItem[],
-    shippingAddress: any,
-    shippingMethod: string,
-    userId: string,
-    subtotal: number,
-    shippingCost: number,
-    totalAmount: number
-  ) => {
-    setIsProcessing(true);
-    setError(null);
+const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBackToCart, onOrderComplete }) => {
+  const { user } = useAuth();
+  const { cartItems, clearCart, getTotalPrice } = useCartContext();
+  const { createOrder, isProcessing, error } = useCheckout();
+  
+  const subtotal = getTotalPrice();
 
-    try {
-      // 🕵️ LOG POUR TOI : Vérifie dans ta console F12 si l'email s'affiche ici
-      console.log("Données envoyées :", { email: shippingAddress?.email, shippingAddress });
+  const handleCheckoutComplete = async (orderData: any) => {
+    if (!user || !user.email) throw new Error('Utilisateur non connecté');
 
-      const response = await fetch('https://bmsasmqkmnlijpvoisep.supabase.co/functions/v1/bright-processor', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          cartItems,
-          shippingAddress,
-          customerEmail: shippingAddress?.email, // ✅ On force l'email ici
-          customer_name: `${shippingAddress?.firstName || ''} ${shippingAddress?.lastName || ''}`,
-          delivery_method: shippingMethod,
-          userId,
-          subtotal,
-          shipping: shippingCost,
-          total: totalAmount
-        }),
-      });
+    const result = await processStripeCheckout(
+      cartItems,
+      orderData.shippingAddress,
+      orderData.shippingMethod || "Standard",
+      user.id,
+      user.email, // ✅ On passe l'email de l'auth ici
+      orderData.subtotal,
+      orderData.shippingCost,
+      orderData.totalAmount
+    );
 
-      const data = await response.json();
-      if (data.error) throw new Error(data.error);
-
-      if (data.id) {
-        window.location.href = `https://checkout.stripe.com/pay/${data.id}`;
-      }
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setIsProcessing(false);
-    }
+    if (result?.success) clearCart();
+    return result;
   };
 
-  return { processStripeCheckout, isProcessing, error };
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-white">
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">Connexion requise</h2>
+            <p className="text-gray-600 mb-6">Vous devez être connecté pour passer une commande.</p>
+            <button
+              onClick={() => window.location.hash = '#login'}
+              className="bg-black text-white px-6 py-2 font-medium hover:bg-gray-800 transition-colors"
+            >
+              Se connecter
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-white">
+      {isProcessing && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-8 text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
+            <p className="text-gray-700">Validation de votre commande en cours...</p>
+          </div>
+        </div>
+      )}
+      
+      {error && (
+        <div className="fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50">
+          <p>{error}</p>
+        </div>
+      )}
+      
+      <Checkout
+        cartItems={cartItems}
+        subtotal={subtotal}
+        onCheckoutComplete={handleCheckoutComplete}
+        onBackToCart={onBackToCart}
+      />
+    </div>
+  );
 };
+
+export default CheckoutPage;

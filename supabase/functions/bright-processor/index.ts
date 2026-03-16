@@ -19,21 +19,22 @@ serve(async (req) => {
 
     const body = await req.json()
     
-    // 🛡️ RECHERCHE DE L'EMAIL (On fouille partout)
-    const email = body.customerEmail || body.email || body.shippingAddress?.email;
-    if (!email) throw new Error("Email manquant dans la requête");
+    // 🛡️ SÉCURITÉ : On prend l'email forcé ou celui du formulaire
+    const email = body.customerEmail || body.shippingAddress?.email;
+    if (!email) throw new Error("Email manquant");
 
     const subtotal = Number(body.subtotal) || 0;
     const shippingCost = Number(body.shipping) || 0;
     const totalAmount = subtotal + shippingCost;
 
-    // 1. COMMANDE
+    // 1. CRÉATION COMMANDE (Admin)
     const { data: order, error: dbError } = await supabase
       .from('orders')
       .insert([{
         order_number: `OZ-${Date.now().toString().slice(-6)}`,
+        customer_id: body.userId || null,
         email: email,
-        total_amount: totalAmount, 
+        total_amount: totalAmount, // ✅ Enregistre ex: 101.00
         subtotal: subtotal,
         shipping_cost: shippingCost,
         status: 'pending',
@@ -51,19 +52,17 @@ serve(async (req) => {
     if (dbError) throw dbError;
 
     // 2. ARTICLES (Utilise line_total de ton image 133601)
-    if (body.cartItems) {
-      const orderItems = body.cartItems.map((item: any) => ({
-        order_id: order.id,
-        product_id: item.id,
-        quantity: item.quantity,
-        unit_price: Number(item.price),
-        line_total: Number(item.price) * item.quantity,
-        product_snapshot: { name: item.name, image: item.image }
-      }));
-      await supabase.from('order_items').insert(orderItems);
-    }
+    const orderItems = body.cartItems.map((item: any) => ({
+      order_id: order.id,
+      product_id: item.id,
+      quantity: item.quantity,
+      unit_price: Number(item.price),
+      line_total: Number(item.price) * item.quantity,
+      product_snapshot: { name: item.name, image: item.image }
+    }));
+    await supabase.from('order_items').insert(orderItems);
 
-    // 3. STRIPE
+    // 3. STRIPE (Conversion centimes ici seulement)
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: body.cartItems.map((item: any) => ({
