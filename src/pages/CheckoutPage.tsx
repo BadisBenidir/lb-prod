@@ -33,6 +33,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBackToCart, onOrderComple
       orderData.shippingAddress,
       orderData.billingAddress,
       orderData.paymentMethod,
+      orderData.shippingMethod,
       amounts,
       user.id
     );
