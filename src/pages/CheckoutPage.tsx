@@ -1,60 +1,54 @@
-import React from 'react';
-import { Checkout } from '../features/checkout';
-import { useAuth } from '../contexts/AuthContext';
-import { useCartContext } from '../contexts/CartContext';
-import { useCheckout } from '../hooks/useCheckout';
+import { useState } from 'react';
+import { CartItem } from '../types';
 
-interface CheckoutPageProps {
-  onBackToCart: () => void;
-  onOrderComplete: (orderId: string) => void;
-}
+export const useCheckout = () => {
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBackToCart, onOrderComplete }) => {
-  const { user } = useAuth();
-  const { cartItems, getTotalPrice, clearCart } = useCartContext();
-  const { processStripeCheckout, isProcessing, error } = useCheckout();
+  const processStripeCheckout = async (
+    cartItems: CartItem[],
+    shippingAddress: any,
+    shippingMethod: string,
+    userId: string,
+    subtotal: number,
+    shippingCost: number,
+    totalAmount: number
+  ) => {
+    setIsProcessing(true);
+    setError(null);
 
-  const handleCheckoutComplete = async (orderData: any) => {
-    if (!user) throw new Error('Utilisateur non connecté');
+    try {
+      // 🕵️ LOG POUR TOI : Vérifie dans ta console F12 si l'email s'affiche ici
+      console.log("Données envoyées :", { email: shippingAddress?.email, shippingAddress });
 
-    // 🚀 Lancement de la procédure
-    const result = await processStripeCheckout(
-      cartItems,
-      orderData.shippingAddress,
-      orderData.shippingMethod || "Standard",
-      user.id,
-      orderData.subtotal,
-      orderData.shippingCost,
-      orderData.totalAmount
-    );
+      const response = await fetch('https://bmsasmqkmnlijpvoisep.supabase.co/functions/v1/bright-processor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          cartItems,
+          shippingAddress,
+          customerEmail: shippingAddress?.email, // ✅ On force l'email ici
+          customer_name: `${shippingAddress?.firstName || ''} ${shippingAddress?.lastName || ''}`,
+          delivery_method: shippingMethod,
+          userId,
+          subtotal,
+          shipping: shippingCost,
+          total: totalAmount
+        }),
+      });
 
-    if (result.success) {
-      clearCart();
+      const data = await response.json();
+      if (data.error) throw new Error(data.error);
+
+      if (data.id) {
+        window.location.href = `https://checkout.stripe.com/pay/${data.id}`;
+      }
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsProcessing(false);
     }
-    return result;
   };
 
-  if (!user) return <p>Connexion requise...</p>;
-
-  return (
-    <div className="min-h-screen bg-white">
-      {isProcessing && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-lg text-center">
-            <div className="animate-spin h-10 w-10 border-b-2 border-black mx-auto mb-4"></div>
-            <p>Redirection vers le paiement...</p>
-          </div>
-        </div>
-      )}
-      {error && <div className="bg-red-100 text-red-700 p-4">{error}</div>}
-      <Checkout
-        cartItems={cartItems}
-        subtotal={getTotalPrice()}
-        onCheckoutComplete={handleCheckoutComplete}
-        onBackToCart={onBackToCart}
-      />
-    </div>
-  );
+  return { processStripeCheckout, isProcessing, error };
 };
-
-export default CheckoutPage;

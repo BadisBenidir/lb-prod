@@ -19,27 +19,23 @@ serve(async (req) => {
 
     const body = await req.json()
     
-    // 🛡️ SÉCURITÉ EMAIL (Pour éviter l'erreur "null value in column email")
+    // 🛡️ RECHERCHE DE L'EMAIL (On fouille partout)
     const email = body.customerEmail || body.email || body.shippingAddress?.email;
     if (!email) throw new Error("Email manquant dans la requête");
 
-    // MONTANTS EN EUROS (Correction du bug des 10 100 €)
     const subtotal = Number(body.subtotal) || 0;
     const shippingCost = Number(body.shipping) || 0;
     const totalAmount = subtotal + shippingCost;
-    const orderNumber = `OZ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
-    // 1. CRÉATION DE LA COMMANDE
+    // 1. COMMANDE
     const { data: order, error: dbError } = await supabase
       .from('orders')
       .insert([{
-        order_number: orderNumber,
-        customer_id: body.userId || null,
+        order_number: `OZ-${Date.now().toString().slice(-6)}`,
         email: email,
         total_amount: totalAmount, 
         subtotal: subtotal,
         shipping_cost: shippingCost,
-        currency: 'EUR',
         status: 'pending',
         payment_status: 'pending',
         shipping_address: {
@@ -47,7 +43,6 @@ serve(async (req) => {
           address: body.shippingAddress?.address || "",
           city: body.shippingAddress?.city || "",
           postcode: body.shippingAddress?.zipCode || body.shippingAddress?.postalCode || "",
-          phone: body.shippingAddress?.phone || "",
           shipping_method: body.delivery_method || "Standard"
         }
       }])
@@ -55,19 +50,20 @@ serve(async (req) => {
 
     if (dbError) throw dbError;
 
-    // 2. ENREGISTREMENT DES ARTICLES (Table order_items)
-    const orderItems = body.cartItems.map((item: any) => ({
-      order_id: order.id,
-      product_id: item.id,
-      quantity: item.quantity,
-      unit_price: Number(item.price),
-      line_total: Number(item.price) * item.quantity, // ✅ Nom exact Image 133601
-      product_snapshot: { name: item.name, image: item.image }
-    }));
+    // 2. ARTICLES (Utilise line_total de ton image 133601)
+    if (body.cartItems) {
+      const orderItems = body.cartItems.map((item: any) => ({
+        order_id: order.id,
+        product_id: item.id,
+        quantity: item.quantity,
+        unit_price: Number(item.price),
+        line_total: Number(item.price) * item.quantity,
+        product_snapshot: { name: item.name, image: item.image }
+      }));
+      await supabase.from('order_items').insert(orderItems);
+    }
 
-    await supabase.from('order_items').insert(orderItems);
-
-    // 3. SESSION STRIPE (On convertit en centimes ici UNIQUEMENT)
+    // 3. STRIPE
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: body.cartItems.map((item: any) => ({
