@@ -312,7 +312,7 @@ const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnecte
                 Livraison au point relais le plus proche de votre adresse
               </p>
               <div className="mt-2 text-lg font-bold text-black">
-                19,99 €
+                9,99 €
               </div>
             </button>
 
@@ -345,7 +345,7 @@ const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnecte
                 Livraison à l'adresse indiquée (domicile, bureau, etc.)
               </p>
               <div className="mt-2 text-lg font-bold text-black">
-                29,99 €
+                14,99 €
               </div>
             </button>
           </div>
