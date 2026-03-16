@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { supabase } from '../lib/supabase'; 
-import { CartItem } from '../types';
+import { supabase } from '../lib/supabase';
 
 export const useCheckout = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -20,7 +19,8 @@ export const useCheckout = () => {
     setError(null);
 
     try {
-      // ✅ Appel officiel de la fonction Supabase avec authentification automatique
+      console.log("🚀 Lancement de l'appel Supabase...");
+
       const { data, error: funcError } = await supabase.functions.invoke('bright-processor', {
         body: {
           cartItems,
@@ -35,18 +35,22 @@ export const useCheckout = () => {
         },
       });
 
-      if (funcError) throw new Error(funcError.message);
+      if (funcError) {
+        // ✅ On essaye de lire le message d'erreur caché dans la réponse
+        const errorDetail = await funcError.context?.json();
+        throw new Error(errorDetail?.error || funcError.message);
+      }
       
-      // ✅ Redirection vers Stripe
       if (data?.id) {
+        console.log("✅ Session Stripe créée, redirection...");
         window.location.href = `https://checkout.stripe.com/pay/${data.id}`;
       } else {
-        throw new Error("La session de paiement n'a pas pu être créée.");
+        throw new Error("Réponse de session Stripe vide.");
       }
       
       return { success: true };
     } catch (err: any) {
-      console.error("Erreur détectée :", err.message);
+      console.error("❌ ERREUR :", err.message);
       setError(err.message);
       return { success: false, error: err.message };
     } finally {
