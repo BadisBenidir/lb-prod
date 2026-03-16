@@ -16,7 +16,6 @@ serve(async (req) => {
       httpClient: Stripe.createFetchHttpClient(),
     })
 
-    // On utilise SERVICE_ROLE_KEY (celui que tu viens de réussir à set !)
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL') || '',
       Deno.env.get('SERVICE_ROLE_KEY') || '' 
@@ -24,7 +23,6 @@ serve(async (req) => {
 
     const body = await req.json()
 
-    // --- CAS 1 : VÉRIFICATION SESSION ---
     if (body.sessionId) {
       const session = await stripe.checkout.sessions.retrieve(body.sessionId)
       return new Response(JSON.stringify({ status: session.status }), {
@@ -32,20 +30,32 @@ serve(async (req) => {
       })
     }
     
-    // --- CAS 2 : CRÉATION COMMANDE + STRIPE ---
     const orderNumber = `OZ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
-    // A. SAUVEGARDE DANS L'ADMIN (Table orders)
+    // --- CALCULS DES MONTANTS ---
+    // On calcule le sous-total à partir des articles du panier
+    const subtotal = body.items.reduce((acc: number, item: any) => {
+      return acc + (item.price_data.unit_amount * item.quantity);
+    }, 0) / 100;
+
+    // On récupère les frais de port (si ton site les envoie, sinon on met 0 par défaut)
+    const shippingCost = body.shipping_cost || 0;
+    const totalAmount = subtotal + shippingCost;
+
+    // --- SAUVEGARDE DANS L'ADMIN ---
     const { data: order, error: dbError } = await supabase
       .from('orders')
       .insert([{
         order_number: orderNumber,
         email: body.customer_email,
-        total_amount: body.total_amount, // Assure-toi que ton site envoie ce chiffre
+        subtotal: subtotal,          // ✅ AJOUTÉ (Répare l'erreur)
+        shipping_cost: shippingCost,  // ✅ AJOUTÉ
+        total_amount: totalAmount,
+        currency: 'EUR',
         status: 'pending',
         payment_status: 'unpaid',
         shipping_address: {
-          name: body.customer_name,
+          name: `${body.customer_name}`,
           line1: body.address,
           city: body.city,
           postal_code: body.zip_code,
@@ -56,7 +66,7 @@ serve(async (req) => {
 
     if (dbError) throw new Error(`Erreur Admin: ${dbError.message}`);
 
-    // B. CRÉATION SESSION STRIPE
+    // --- STRIPE ---
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: body.items,
@@ -72,6 +82,7 @@ serve(async (req) => {
     })
 
   } catch (error) {
+    console.error("Erreur:", error.message);
     return new Response(JSON.stringify({ error: error.message }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 400,
