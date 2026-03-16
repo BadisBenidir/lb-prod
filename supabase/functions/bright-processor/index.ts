@@ -19,11 +19,14 @@ serve(async (req) => {
 
     const body = await req.json()
     
-    // --- SECURITÉ DES MONTANTS (On travaille en EUROS ici) ---
+    // 🛡️ SÉCURITÉ EMAIL (Pour éviter l'erreur "null value in column email")
+    const email = body.customerEmail || body.email || body.shippingAddress?.email;
+    if (!email) throw new Error("Email manquant dans la requête");
+
+    // MONTANTS EN EUROS (Correction du bug des 10 100 €)
     const subtotal = Number(body.subtotal) || 0;
     const shippingCost = Number(body.shipping) || 0;
     const totalAmount = subtotal + shippingCost;
-
     const orderNumber = `OZ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
     // 1. CRÉATION DE LA COMMANDE
@@ -32,7 +35,7 @@ serve(async (req) => {
       .insert([{
         order_number: orderNumber,
         customer_id: body.userId || null,
-        email: body.customerEmail,
+        email: email,
         total_amount: totalAmount, 
         subtotal: subtotal,
         shipping_cost: shippingCost,
@@ -40,17 +43,17 @@ serve(async (req) => {
         status: 'pending',
         payment_status: 'pending',
         shipping_address: {
-          full_name: body.customer_name, // ✅ Pour enlever "Client inconnu"
+          full_name: body.customer_name || "Client",
           address: body.shippingAddress?.address || "",
           city: body.shippingAddress?.city || "",
           postcode: body.shippingAddress?.zipCode || body.shippingAddress?.postalCode || "",
           phone: body.shippingAddress?.phone || "",
-          shipping_method: body.delivery_method // ✅ Pour le Point Relais
+          shipping_method: body.delivery_method || "Standard"
         }
       }])
       .select().single()
 
-    if (dbError) throw new Error(`DB Order Error: ${dbError.message}`);
+    if (dbError) throw dbError;
 
     // 2. ENREGISTREMENT DES ARTICLES (Table order_items)
     const orderItems = body.cartItems.map((item: any) => ({
@@ -58,56 +61,33 @@ serve(async (req) => {
       product_id: item.id,
       quantity: item.quantity,
       unit_price: Number(item.price),
-      line_total: Number(item.price) * item.quantity, // ✅ Nom de ta colonne (Image 133601)
-      product_snapshot: {
-        name: item.name,
-        image: item.image,
-        brand: item.brand
-      }
+      line_total: Number(item.price) * item.quantity, // ✅ Nom exact Image 133601
+      product_snapshot: { name: item.name, image: item.image }
     }));
 
-    const { error: itemsError } = await supabase.from('order_items').insert(orderItems);
-    if (itemsError) throw new Error(`DB Items Error: ${itemsError.message}`);
+    await supabase.from('order_items').insert(orderItems);
 
-    // 3. STRIPE (On multiplie par 100 UNIQUEMENT ici)
-    const lineItems = body.cartItems.map((item: any) => ({
-      price_data: {
-        currency: 'eur',
-        unit_amount: Math.round(Number(item.price) * 100),
-        product_data: { name: item.name, images: item.image ? [item.image] : [] },
-      },
-      quantity: item.quantity,
-    }));
-
-    if (shippingCost > 0) {
-      lineItems.push({
-        price_data: {
-          currency: 'eur',
-          unit_amount: Math.round(shippingCost * 100),
-          product_data: { name: `Livraison (${body.delivery_method})` },
-        },
-        quantity: 1,
-      });
-    }
-
+    // 3. SESSION STRIPE (On convertit en centimes ici UNIQUEMENT)
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      line_items: lineItems,
+      line_items: body.cartItems.map((item: any) => ({
+        price_data: {
+          currency: 'eur',
+          unit_amount: Math.round(Number(item.price) * 100),
+          product_data: { name: item.name, images: item.image ? [item.image] : [] },
+        },
+        quantity: item.quantity,
+      })),
       mode: 'payment',
-      success_url: `${req.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${req.headers.get('origin')}/success`,
       cancel_url: `${req.headers.get('origin')}/cart`,
-      customer_email: body.customerEmail,
+      customer_email: email,
       metadata: { order_id: order.id }
     })
 
-    return new Response(JSON.stringify({ id: session.id }), { 
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-    })
+    return new Response(JSON.stringify({ id: session.id }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
 
   } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), { 
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' }, 
-      status: 400 
-    })
+    return new Response(JSON.stringify({ error: error.message }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 400 })
   }
 })
