@@ -1,5 +1,6 @@
 import Stripe from 'https://esm.sh/stripe@14.23.0?target=deno&no-check'
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -7,7 +8,6 @@ const corsHeaders = {
 }
 
 serve(async (req) => {
-  // Gestion du CORS (pour que le navigateur accepte la réponse)
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
 
   try {
@@ -16,24 +16,47 @@ serve(async (req) => {
       httpClient: Stripe.createFetchHttpClient(),
     })
 
-    const body = await req.json()
-    console.log("Requête reçue :", body)
+    // On utilise SERVICE_ROLE_KEY (celui que tu viens de réussir à set !)
+    const supabase = createClient(
+      Deno.env.get('SUPABASE_URL') || '',
+      Deno.env.get('SERVICE_ROLE_KEY') || '' 
+    )
 
-    // --- CAS 1 : VÉRIFICATION APRÈS PAIEMENT (Page Success) ---
+    const body = await req.json()
+
+    // --- CAS 1 : VÉRIFICATION SESSION ---
     if (body.sessionId) {
       const session = await stripe.checkout.sessions.retrieve(body.sessionId)
-      
-      return new Response(JSON.stringify({ 
-        success: true,           // ✅ C'est sûrement cette ligne qui manquait !
-        status: session.status, 
-        payment_status: session.payment_status 
-      }), {
+      return new Response(JSON.stringify({ status: session.status }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 200,
       })
     }
     
-    // --- CAS 2 : CRÉATION DU PAIEMENT (Bouton Payer) ---
+    // --- CAS 2 : CRÉATION COMMANDE + STRIPE ---
+    const orderNumber = `OZ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+
+    // A. SAUVEGARDE DANS L'ADMIN (Table orders)
+    const { data: order, error: dbError } = await supabase
+      .from('orders')
+      .insert([{
+        order_number: orderNumber,
+        email: body.customer_email,
+        total_amount: body.total_amount, // Assure-toi que ton site envoie ce chiffre
+        status: 'pending',
+        payment_status: 'unpaid',
+        shipping_address: {
+          name: body.customer_name,
+          line1: body.address,
+          city: body.city,
+          postal_code: body.zip_code,
+          phone: body.phone
+        }
+      }])
+      .select()
+
+    if (dbError) throw new Error(`Erreur Admin: ${dbError.message}`);
+
+    // B. CRÉATION SESSION STRIPE
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: body.items,
@@ -41,33 +64,15 @@ serve(async (req) => {
       success_url: body.success_url,
       cancel_url: body.cancel_url,
       customer_email: body.customer_email,
-      // ⬇️ ON AJOUTE ÇA POUR NE PLUS RIEN PERDRE ⬇️
-      metadata: {
-        customer_name: body.customer_name || "Non renseigné",
-        address: body.address || "Non renseignée",
-        phone: body.phone || "Non renseigné",
-        details: body.extra_info || "" // Si tu as d'autres champs
-      },
-      // Optionnel : Force Stripe à demander l'adresse de livraison lui-même
-      shipping_address_collection: {
-        allowed_countries: ['FR', 'BE', 'CH'], 
-      },
+      metadata: { order_id: order[0].id }
     })
 
-    return new Response(JSON.stringify({ 
-      success: true, 
-      id: session.id 
-    }), {
+    return new Response(JSON.stringify({ id: session.id }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      status: 200,
     })
 
   } catch (error) {
-    console.error("Erreur détectée :", error.message)
-    return new Response(JSON.stringify({ 
-      success: false, 
-      error: error.message 
-    }), {
+    return new Response(JSON.stringify({ error: error.message }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 400,
     })
