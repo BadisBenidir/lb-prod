@@ -17,20 +17,33 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBackToCart, onOrderComple
   const subtotal = getTotalPrice();
 
   const handleCheckoutComplete = async (orderData: any) => {
-    if (!user || !user.email) throw new Error('Utilisateur non connecté');
+    if (!user) {
+      throw new Error('Utilisateur non connecté');
+    }
 
-    const result = await processStripeCheckout(
+    const amounts = {
+      subtotal: orderData.subtotal,
+      shippingCost: orderData.shippingCost,
+      taxAmount: orderData.taxAmount,
+      totalAmount: orderData.totalAmount
+    };
+
+    const result = await createOrder(
       cartItems,
       orderData.shippingAddress,
-      orderData.shippingMethod || "Standard",
-      user.id,
-      user.email, // ✅ On passe l'email de l'auth ici
-      orderData.subtotal,
-      orderData.shippingCost,
-      orderData.totalAmount
+      orderData.billingAddress,
+      orderData.paymentMethod,
+      amounts,
+      user.id
     );
 
-    if (result?.success) clearCart();
+    if (result.success) {
+      // Vider le panier local
+      clearCart();
+      // Appeler le callback pour indiquer que la commande est complète
+      onOrderComplete(result.orderId);
+    }
+
     return result;
   };
 
