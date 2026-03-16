@@ -1,5 +1,6 @@
 import Stripe from 'https://esm.sh/stripe@14.23.0?target=deno&no-check'
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -7,7 +8,6 @@ const corsHeaders = {
 }
 
 serve(async (req) => {
-  // Gestion du CORS (pour que le navigateur accepte la réponse)
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
 
   try {
@@ -15,61 +15,77 @@ serve(async (req) => {
       apiVersion: '2023-10-16',
       httpClient: Stripe.createFetchHttpClient(),
     })
+    const supabase = createClient(Deno.env.get('SUPABASE_URL') || '', Deno.env.get('SERVICE_ROLE_KEY') || '')
 
     const body = await req.json()
-    console.log("Requête reçue :", body)
-
-    // --- CAS 1 : VÉRIFICATION APRÈS PAIEMENT (Page Success) ---
-    if (body.sessionId) {
-      const session = await stripe.checkout.sessions.retrieve(body.sessionId)
-      
-      return new Response(JSON.stringify({ 
-        success: true,           // ✅ C'est sûrement cette ligne qui manquait !
-        status: session.status, 
-        payment_status: session.payment_status 
-      }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 200,
-      })
-    }
     
-    // --- CAS 2 : CRÉATION DU PAIEMENT (Bouton Payer) ---
+    const email = body.customerEmail;
+    const subtotal = Number(body.subtotal) || 0;
+    const shippingCost = Number(body.shipping) || 0;
+    const totalAmount = subtotal + shippingCost;
+
+    // 1. CRÉATION DE LA COMMANDE (Table orders)
+    const { data: order, error: dbError } = await supabase
+      .from('orders')
+      .insert([{
+        order_number: `OZ-${Date.now().toString().slice(-6)}`,
+        customer_id: body.userId,
+        email: email,
+        total_amount: totalAmount, // ✅ Enregistre ex: 101.00 (Pas 10100)
+        subtotal: subtotal,
+        shipping_cost: shippingCost,
+        shipping_method: body.delivery_method, // ✅ Pour l'admin
+        status: 'pending',
+        payment_status: 'pending',
+        shipping_address: {
+          full_name: body.customer_name,
+          address: body.shippingAddress.address,
+          city: body.shippingAddress.city,
+          postcode: body.shippingAddress.postalCode || body.shippingAddress.zipCode,
+          phone: body.shippingAddress.phone
+        }
+      }])
+      .select().single()
+
+    if (dbError) throw dbError;
+
+    // 2. CRÉATION DES ARTICLES (C'est ça qui remplit ta liste Admin)
+    const orderItems = body.cartItems.map((item: any) => ({
+      order_id: order.id,
+      product_id: item.id,
+      quantity: item.quantity,
+      unit_price: item.price,
+      line_total: item.price * item.quantity, // ✅ Ta colonne line_total
+      product_snapshot: { // ✅ Ce que l'admin affiche (Image + Nom)
+        name: item.name,
+        image: item.image,
+        brand: item.brand
+      }
+    }));
+
+    await supabase.from('order_items').insert(orderItems);
+
+    // 3. SESSION STRIPE
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      line_items: body.items,
+      line_items: body.cartItems.map((item: any) => ({
+        price_data: {
+          currency: 'eur',
+          unit_amount: Math.round(item.price * 100), // Uniquement ici pour Stripe
+          product_data: { name: item.name, images: [item.image] },
+        },
+        quantity: item.quantity,
+      })),
       mode: 'payment',
-      success_url: body.success_url,
-      cancel_url: body.cancel_url,
-      customer_email: body.customer_email,
-      // ⬇️ ON AJOUTE ÇA POUR NE PLUS RIEN PERDRE ⬇️
-      metadata: {
-        customer_name: body.customer_name || "Non renseigné",
-        address: body.address || "Non renseignée",
-        phone: body.phone || "Non renseigné",
-        details: body.extra_info || "" // Si tu as d'autres champs
-      },
-      // Optionnel : Force Stripe à demander l'adresse de livraison lui-même
-      shipping_address_collection: {
-        allowed_countries: ['FR', 'BE', 'CH'], 
-      },
+      success_url: `${req.headers.get('origin')}/success`,
+      cancel_url: `${req.headers.get('origin')}/cart`,
+      customer_email: email,
+      metadata: { order_id: order.id }
     })
 
-    return new Response(JSON.stringify({ 
-      success: true, 
-      id: session.id 
-    }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      status: 200,
-    })
+    return new Response(JSON.stringify({ id: session.id }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
 
   } catch (error) {
-    console.error("Erreur détectée :", error.message)
-    return new Response(JSON.stringify({ 
-      success: false, 
-      error: error.message 
-    }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      status: 400,
-    })
+    return new Response(JSON.stringify({ error: error.message }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 400 })
   }
 })
