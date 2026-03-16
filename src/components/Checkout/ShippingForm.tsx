@@ -14,15 +14,22 @@ interface ShippingFormProps {
   initialData: ShippingAddress;
   isUserConnected?: boolean;
   onSubmit: (result: ShippingFormResult) => void;
+  onDeliveryTypeChange?: (type: DeliveryType) => void;
 }
 
 const extractComponent = (components: any[], type: string) => 
   components.find((c) => c.types.includes(type))?.long_name || '';
 
-const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnected = false, onSubmit }) => {
+const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnected = false, onSubmit, onDeliveryTypeChange }) => {
   const [formData, setFormData] = useState<ShippingAddress>(initialData);
   const [errors, setErrors] = useState<Partial<ShippingAddress>>({});
   const [deliveryType, setDeliveryType] = useState<DeliveryType>('domicile');
+
+  React.useEffect(() => {
+    if (onDeliveryTypeChange) {
+      onDeliveryTypeChange(deliveryType);
+    }
+  }, [deliveryType, onDeliveryTypeChange]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
