@@ -22,68 +22,75 @@ serve(async (req) => {
     )
 
     const body = await req.json()
-
-    if (body.sessionId) {
-      const session = await stripe.checkout.sessions.retrieve(body.sessionId)
-      return new Response(JSON.stringify({ status: session.status }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      })
-    }
-    
+    const details = body.customerDetails || body;
     const orderNumber = `OZ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
-    // Calcul des montants
-    const subtotal = body.items.reduce((acc: number, item: any) => {
-      return acc + (item.price_data.unit_amount * item.quantity);
-    }, 0) / 100;
-
+    // 1. CALCUL DES MONTANTS
+    const subtotal = body.items.reduce((acc: number, item: any) => acc + (item.price_data.unit_amount * item.quantity), 0) / 100;
     const shippingCost = body.shipping_cost || 0;
     const totalAmount = subtotal + shippingCost;
 
-    // --- SAUVEGARDE DANS L'ADMIN ---
+    // 2. CRÉATION DE LA COMMANDE (Table orders)
     const { data: order, error: dbError } = await supabase
       .from('orders')
       .insert([{
         order_number: orderNumber,
-        email: body.customer_email,
+        email: details.email,
+        first_name: details.firstName || details.customer_name?.split(' ')[0] || "Client",
+        last_name: details.lastName || details.customer_name?.split(' ')[1] || "Oze",
+        phone: details.phone,
         subtotal: subtotal,
         shipping_cost: shippingCost,
         total_amount: totalAmount,
         currency: 'EUR',
         status: 'pending',
-        payment_status: 'pending', // ✅ Changé de 'unpaid' à 'pending' pour passer la sécurité
+        payment_status: 'pending',
         shipping_address: {
-          name: `${body.customer_name}`,
-          line1: body.address,
-          city: body.city,
-          postal_code: body.zip_code,
-          phone: body.phone
+          full_name: details.customer_name || `${details.firstName} ${details.lastName}`,
+          address: details.address,
+          city: details.city,
+          postcode: details.zip_code || details.zipCode,
+          phone: details.phone
         }
       }])
       .select()
+      .single()
 
-    if (dbError) throw new Error(`Erreur Admin: ${dbError.message}`);
+    if (dbError) throw new Error(`Erreur Commande: ${dbError.message}`);
 
-    // --- CRÉATION SESSION STRIPE ---
+    // 3. ENREGISTREMENT DES ARTICLES (Table order_items)
+    const orderItems = body.items.map((item: any) => ({
+      order_id: order.id,
+      product_id: item.price_data.product_data.metadata?.id || null, // On lie au produit si possible
+      quantity: item.quantity,
+      unit_price: item.price_data.unit_amount / 100,
+      line_total: (item.price_data.unit_amount * item.quantity) / 100,
+      product_snapshot: {
+        name: item.price_data.product_data.name,
+        image: item.price_data.product_data.images?.[0] || null
+      }
+    }));
+
+    const { error: itemsError } = await supabase
+      .from('order_items')
+      .insert(orderItems);
+
+    if (itemsError) console.error("Erreur Articles:", itemsError.message);
+
+    // 4. SESSION STRIPE
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: body.items,
       mode: 'payment',
       success_url: body.success_url,
       cancel_url: body.cancel_url,
-      customer_email: body.customer_email,
-      metadata: { order_id: order[0].id }
+      customer_email: details.email,
+      metadata: { order_id: order.id }
     })
 
-    return new Response(JSON.stringify({ id: session.id }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    })
+    return new Response(JSON.stringify({ id: session.id }), { headers: corsHeaders })
 
   } catch (error) {
-    console.error("Erreur détectée:", error.message);
-    return new Response(JSON.stringify({ error: error.message }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      status: 400,
-    })
+    return new Response(JSON.stringify({ error: error.message }), { headers: corsHeaders, status: 400 })
   }
 })
