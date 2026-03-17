@@ -21,11 +21,20 @@ serve(async (req) => {
     const body = await req.json()
     
     // 🛡️ SÉCURITÉ EMAIL : On cherche partout où il pourrait être caché
-    const customerEmail = body.customer_email || body.email || (body.customerDetails && body.customerDetails.email);
-    
-    if (!customerEmail) {
-      throw new Error("L'email du client est manquant dans la requête.");
+    if (body.session_id) {
+      const session = await stripe.checkout.sessions.retrieve(body.session_id);
+      if (session.payment_status === 'paid') {
+        await supabase.from('orders')
+          .update({ payment_status: 'paid', status: 'processing' })
+          .eq('id', session.metadata?.order_id);
+        return new Response(JSON.stringify({ success: true }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
+      return new Response(JSON.stringify({ error: "Paiement échoué" }), { status: 400, headers: corsHeaders });
     }
+
+    // --- BLOC CRÉATION (Remets l'email ici) ---
+    const customerEmail = body.customer_email || body.email || (body.customerDetails?.email);
+    if (!customerEmail) throw new Error("L'email est requis pour créer une commande.");
 
     const details = body.customerDetails || body;
     const orderNumber = `OZ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
