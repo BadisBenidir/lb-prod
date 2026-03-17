@@ -80,7 +80,20 @@ serve(async (req) => {
     // 3. SESSION STRIPE
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      line_items: body.items,
+      line_items: [
+        ...body.items, // On garde tes articles
+        {
+          // ✅ ON AJOUTE LES FRAIS DE PORT ICI
+          price_data: {
+            currency: 'eur',
+            unit_amount: Math.round(shippingCost * 100), // shippingCost est déjà défini en Euros plus haut dans ton code
+            product_data: { 
+              name: `Frais de livraison (${body.delivery_method === 'home' ? 'À domicile' : 'Point Relais'})`,
+            },
+          },
+          quantity: 1,
+        },
+      ],
       mode: 'payment',
       success_url: body.success_url,
       cancel_url: body.cancel_url,
