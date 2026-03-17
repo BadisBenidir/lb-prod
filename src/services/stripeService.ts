@@ -56,7 +56,7 @@ export const createCheckoutSession = async (data: CheckoutSessionData) => {
               name: item.name,
               description: `${item.brand} - ${item.category}`,
               images: [item.image],
-              metadata: { productId: item.id }
+              metadata: { id: item.id }
             },
             unit_amount: Math.round(item.adjustedPrice * 100),
           },
