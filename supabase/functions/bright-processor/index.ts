@@ -88,7 +88,7 @@ serve(async (req) => {
             currency: 'eur',
             unit_amount: Math.round(shippingCost * 100), // shippingCost est déjà défini en Euros plus haut dans ton code
             product_data: { 
-              name: `Frais de livraison (${body.delivery_method === 'home' ? 'À domicile' : 'Point Relais'})`,
+              name: `Frais de livraison (${body.delivery_method === 'domicile' ? 'À domicile' : 'Point Relais'})`,
             },
           },
           quantity: 1,
