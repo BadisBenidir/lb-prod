@@ -109,7 +109,12 @@ serve(async (req) => {
       }
     }));
 
-    await supabase.from('order_items').insert(orderItems);
+    const { error: itemsError } = await supabase.from('order_items').insert(orderItems);
+
+    if (itemsError) {
+      console.error("Erreur insertion order_items:", itemsError.message);
+      throw new Error(`Erreur technique (items): ${itemsError.message}`);
+    }
 
     // 3. SESSION STRIPE
     const session = await stripe.checkout.sessions.create({
@@ -135,10 +140,16 @@ serve(async (req) => {
       metadata: { order_id: order.id }
     })
 
-    return new Response(JSON.stringify({ id: session.id }), { headers: corsHeaders })
+    await supabase.from('orders')
+      .update({ stripe_session_id: session.id })
+      .eq('id', order.id);
+
+    return new Response(JSON.stringify({ id: session.id }), { 
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+    });
 
   } catch (error) {
     console.error("Erreur détectée:", error.message);
     return new Response(JSON.stringify({ error: error.message }), { headers: corsHeaders, status: 400 })
   }
-})
+});
