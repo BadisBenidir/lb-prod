@@ -53,7 +53,7 @@ const CheckoutPageMobile: React.FC = () => {
   const [showUnavailableModal, setShowUnavailableModal] = useState(false);
   const [orderId, setOrderId] = useState<string>('');
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>(getInitialShippingAddress());
-  const [deliveryType, setDeliveryType] = useState<DeliveryType>('point_relais');
+  const [deliveryType, setDeliveryType] = useState<DeliveryType>('domicile');
   const { processStripeCheckout, isProcessing, error, availabilityResult } = useCheckout();
 
   // État pour le coupon
