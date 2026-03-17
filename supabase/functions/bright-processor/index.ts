@@ -20,14 +20,38 @@ serve(async (req) => {
 
     const body = await req.json()
     
-    // 🛡️ SÉCURITÉ EMAIL : On cherche partout où il pourrait être caché
+    // --- 🟢 BLOC SUCCÈS (Mise à jour commande + articles vendus) ---
     if (body.session_id || body.sessionId) {
       const session = await stripe.checkout.sessions.retrieve(body.session_id || body.sessionId);
+      
       if (session.payment_status === 'paid') {
+        // ✅ 1. ON DÉFINIT L'ID DE LA COMMANDE (C'est ce qui manquait !)
+        const orderId = session.metadata?.order_id;
+
+        // 2. On valide la commande
         await supabase.from('orders')
           .update({ payment_status: 'paid', status: 'processing' })
-          .eq('id', session.metadata?.order_id);
-        return new Response(JSON.stringify({ success: true }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+          .eq('id', orderId);
+
+        // 3. On récupère les IDs des produits de cette commande
+        const { data: items } = await supabase
+          .from('order_items')
+          .select('product_id')
+          .eq('order_id', orderId);
+
+        if (items && items.length > 0) {
+          const productIds = items.map(i => i.product_id).filter(id => id);
+          
+          // 4. On les passe en "vendu" dans la table products
+          await supabase
+            .from('products')
+            .update({ status: 'vendu' })
+            .in('id', productIds);
+        }
+
+        return new Response(JSON.stringify({ success: true }), { 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        });
       }
       return new Response(JSON.stringify({ error: "Paiement échoué" }), { status: 400, headers: corsHeaders });
     }
@@ -75,6 +99,7 @@ serve(async (req) => {
     // 2. ENREGISTREMENT DES ARTICLES (Pour la zone "Articles commandés")
     const orderItems = body.items.map((item: any) => ({
       order_id: order.id,
+      product_id: item.id || item.product_id,
       quantity: item.quantity,
       unit_price: item.price_data.unit_amount / 100,
       line_total: (item.price_data.unit_amount * item.quantity) / 100,
