@@ -49,6 +49,7 @@ export const createCheckoutSession = async (data: CheckoutSessionData) => {
       body: JSON.stringify({
         // Infos pour Stripe
         items: itemsWithDiscount.map(item => ({
+          id: item.id,
           price_data: {
             currency: 'eur',
             product_data: {

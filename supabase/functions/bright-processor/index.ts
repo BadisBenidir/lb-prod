@@ -98,19 +98,17 @@ serve(async (req) => {
 
     // 2. ENREGISTREMENT DES ARTICLES (Pour la zone "Articles commandés")
     const orderItems = body.items.map((item: any) => {
-      // On cherche l'ID partout : item.id, item.product_id, ou même dans price_data
+      // Sécurité : on cherche l'ID partout où il peut être
       const productId = item.id || item.product_id || item.price_data?.product_data?.metadata?.product_id;
-      
+
       return {
         order_id: order.id,
-        product_id: productId, // 👈 C'est lui qui est NULL actuellement
+        product_id: productId, // 👈 C'est lui qui posait problème
+        product_name: item.name || item.price_data?.product_data?.name,
         quantity: item.quantity,
-        unit_price: item.price_data.unit_amount / 100,
-        line_total: (item.price_data.unit_amount * item.quantity) / 100,
-        product_snapshot: {
-          name: item.price_data.product_data.name,
-          image: item.price_data.product_data.images?.[0] || null
-        }
+        unit_price: (item.price || item.price_data?.unit_amount / 100),
+        line_total: (item.price || item.price_data?.unit_amount / 100) * item.quantity,
+        // Si tu as gardé product_snapshot, laisse-le, sinon enlève
       };
     });
 
