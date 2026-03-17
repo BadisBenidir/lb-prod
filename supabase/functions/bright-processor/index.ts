@@ -1,4 +1,4 @@
-import Stripe from 'https://esm.sh/stripe@14.23.0?target=deno&no-check'
+import Stripe from 'https://esm.sh/stripe@13.10.0?target=deno&no-check'
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
@@ -21,8 +21,8 @@ serve(async (req) => {
     const body = await req.json()
     
     // 🛡️ SÉCURITÉ EMAIL : On cherche partout où il pourrait être caché
-    if (body.session_id) {
-      const session = await stripe.checkout.sessions.retrieve(body.session_id);
+    if (body.session_id || body.sessionId) {
+      const session = await stripe.checkout.sessions.retrieve(body.session_id || body.sessionId);
       if (session.payment_status === 'paid') {
         await supabase.from('orders')
           .update({ payment_status: 'paid', status: 'processing' })
