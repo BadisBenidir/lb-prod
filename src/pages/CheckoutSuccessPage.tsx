@@ -31,27 +31,32 @@ const CheckoutSuccessPage: React.FC<CheckoutSuccessPageProps> = ({ onContinueSho
       setHasProcessed(true);
       
       try {
+        // Utiliser le sessionId passé en props
         const id = sessionId || propSessionId;
         setSessionId(id);
 
-        if (!id) throw new Error('Aucun ID de session trouvé');
+        console.log('🔍 Session ID reçu en props:', propSessionId);
+        console.log('🔍 Session ID utilisé:', id);
 
-        console.log('🔄 Envoi du signal à bright-processor pour la session:', id);
+        if (!id) {
+          throw new Error('Aucun ID de session trouvé');
+        }
 
-        // --- 🔴 C'EST ICI QU'ON RAJOUTE L'APPEL ---
-        const { data: result, error: funcError } = await supabase.functions.invoke('bright-processor', {
-          body: { session_id: id } // On envoie l'ID à ta fonction Edge
-        });
+        console.log('🔄 Traitement de la commande pour session:', id);
 
-        if (funcError) throw funcError; 
-        // ----------------------------------------
+        // Traiter la commande via la fonction Edge
+        const result = await processOrder(id, userId, customer?.id);
 
-        if (result) {
-          console.log('✅ Commande validée en base et Admin mis à jour');
+        if (result.success) {
+          console.log('✅ Commande traitée:', result.orderNumber);
           setOrderData(result);
           
-          console.log('🛒 Vidage du panier...');
+          // Vider le panier après succès de la commande
+          console.log('🛒 Vidage du panier après commande réussie');
           await clearCart();
+          console.log('✅ Panier vidé');
+        } else {
+          throw new Error(result.error || 'Erreur lors du traitement de la commande');
         }
 
       } catch (err) {
