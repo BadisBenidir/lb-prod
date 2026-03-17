@@ -120,13 +120,17 @@ serve(async (req) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
-        ...body.items, // On garde tes articles
+        // On "nettoie" les articles pour Stripe (on enlève l'id)
+        ...body.items.map((item: any) => ({
+          price_data: item.price_data,
+          quantity: item.quantity,
+        })),
         {
-          // ✅ ON AJOUTE LES FRAIS DE PORT ICI
+          // ✅ GARDE TON BLOC DE FRAIS DE PORT TEL QUEL CI-DESSOUS
           price_data: {
             currency: 'eur',
-            unit_amount: Math.round(shippingCost * 100), // shippingCost est déjà défini en Euros plus haut dans ton code
-            product_data: { 
+            unit_amount: Math.round(shippingCost * 100),
+            product_data: {
               name: `Frais de livraison (${body.delivery_method === 'domicile' ? 'À domicile' : 'Point Relais'})`,
             },
           },
