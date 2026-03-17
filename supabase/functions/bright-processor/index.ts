@@ -17,35 +17,12 @@ serve(async (req) => {
     })
 
     const supabase = createClient(Deno.env.get('SUPABASE_URL') || '', Deno.env.get('SERVICE_ROLE_KEY') || '')
+
     const body = await req.json()
-
-    // --- 🟢 NOUVEAU : MODE VÉRIFICATION (Page Succès) ---
-    // Si la requête contient un session_id, on traite uniquement le succès
-    if (body.session_id) {
-      const session = await stripe.checkout.sessions.retrieve(body.session_id)
-      
-      if (session.payment_status === 'paid') {
-        const orderId = session.metadata?.order_id
-        
-        // On met à jour la commande dans ta base
-        const { error: updateError } = await supabase
-          .from('orders')
-          .update({ payment_status: 'paid', status: 'processing' })
-          .eq('id', orderId)
-
-        if (updateError) throw updateError
-
-        return new Response(JSON.stringify({ success: true }), { 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-        })
-      }
-      throw new Error("Paiement non confirmé par Stripe")
-    }
-
-    // --- 🔵 MODE CRÉATION (Ton code actuel, déplacé ici) ---
+    
+    // 🛡️ SÉCURITÉ EMAIL : On cherche partout où il pourrait être caché
     const customerEmail = body.customer_email || body.email || (body.customerDetails && body.customerDetails.email);
     
-    // On ne vérifie l'email QUE si on n'est pas en mode succès
     if (!customerEmail) {
       throw new Error("L'email du client est manquant dans la requête.");
     }
@@ -53,15 +30,17 @@ serve(async (req) => {
     const details = body.customerDetails || body;
     const orderNumber = `OZ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
+    // CALCULS
     const subtotal = body.items.reduce((acc: number, item: any) => acc + (item.price_data.unit_amount * item.quantity), 0) / 100;
     const shippingCost = (body.shipping_cost || 0) / 100;
     const totalAmount = subtotal + shippingCost;
 
+    // 1. CRÉATION DE LA COMMANDE
     const { data: order, error: dbError } = await supabase
       .from('orders')
       .insert([{
         order_number: orderNumber,
-        email: customerEmail,
+        email: customerEmail, // ✅ Corrigé !
         subtotal: subtotal,
         shipping_cost: shippingCost,
         total_amount: totalAmount,
@@ -69,6 +48,7 @@ serve(async (req) => {
         status: 'pending',
         payment_status: 'pending',
         shipping_address: {
+          // On met TOUT ici pour que l'Admin (Image 133334) trouve le nom
           name: details.customer_name || `${details.firstName} ${details.lastName}`,
           first_name: details.firstName || details.customer_name?.split(' ')[0] || "",
           last_name: details.lastName || details.customer_name?.split(' ')[1] || "",
@@ -83,6 +63,7 @@ serve(async (req) => {
 
     if (dbError) throw new Error(`Erreur Commande: ${dbError.message}`);
 
+    // 2. ENREGISTREMENT DES ARTICLES (Pour la zone "Articles commandés")
     const orderItems = body.items.map((item: any) => ({
       order_id: order.id,
       quantity: item.quantity,
@@ -96,16 +77,18 @@ serve(async (req) => {
 
     await supabase.from('order_items').insert(orderItems);
 
+    // 3. SESSION STRIPE
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
-        ...body.items,
+        ...body.items, // On garde tes articles
         {
+          // ✅ ON AJOUTE LES FRAIS DE PORT ICI
           price_data: {
             currency: 'eur',
-            unit_amount: Math.round(shippingCost * 100),
+            unit_amount: Math.round(shippingCost * 100), // shippingCost est déjà défini en Euros plus haut dans ton code
             product_data: { 
-              name: `Frais de livraison (${body.delivery_method === 'point_relais' ? 'Point Relais' : 'À domicile'})`,
+              name: `Frais de livraison (${body.delivery_method === 'domicile' ? 'À domicile' : 'Point Relais'})`,
             },
           },
           quantity: 1,
@@ -118,15 +101,10 @@ serve(async (req) => {
       metadata: { order_id: order.id }
     })
 
-    return new Response(JSON.stringify({ id: session.id }), { 
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-    })
+    return new Response(JSON.stringify({ id: session.id }), { headers: corsHeaders })
 
   } catch (error) {
     console.error("Erreur détectée:", error.message);
-    return new Response(JSON.stringify({ error: error.message }), { 
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' }, 
-      status: 400 
-    })
+    return new Response(JSON.stringify({ error: error.message }), { headers: corsHeaders, status: 400 })
   }
 })
