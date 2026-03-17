@@ -286,7 +286,7 @@ const ShippingFormMobile: React.FC<ShippingFormMobileProps> = ({
             type="button"
             disabled
             onClick={() => setDeliveryType('point_relais')}
-            className={`w-full flex items-center justify-between p-3 border-2 rounded-xl transition-all ${
+            className={`w-full flex items-center opacity-50 justify-between p-3 border-2 rounded-xl transition-all ${
               deliveryType === 'point_relais'
                 ? 'border-black bg-gray-50'
                 : 'border-gray-200'
