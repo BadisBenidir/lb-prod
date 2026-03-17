@@ -352,7 +352,7 @@ const ShippingForm: React.FC<ShippingFormProps> = ({ initialData, isUserConnecte
                 Livraison à l'adresse indiquée (domicile, bureau, etc.)
               </p>
               <div className="mt-2 text-lg font-bold text-black">
-                14,99 €
+                0,50 €
               </div>
             </button>
           </div>
