@@ -108,6 +108,7 @@ export const useCheckout = () => {
   const processStripeCheckout = async (
     cartItems: CartItem[],
     shippingAddress: ShippingAddress,
+    deliveryMethod: string,
     userId?: string,
     subtotal: number = 0,
     shipping: number = 0,
@@ -142,6 +143,7 @@ export const useCheckout = () => {
         cartItems,
         shippingAddress,
         customerEmail: shippingAddress.email,
+        delivery_method: deliveryMethod,
         userId,
         subtotal,
         shipping,

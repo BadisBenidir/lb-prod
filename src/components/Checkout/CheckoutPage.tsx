@@ -171,6 +171,7 @@ const CheckoutPage: React.FC = () => {
       const result = await processStripeCheckout(
         cartItems,
         shippingAddress,
+        deliveryType,
         user?.id,
         subtotal,
         shipping,
