@@ -32,8 +32,8 @@ const StoryPreviewMobile: React.FC<StoryPreviewMobileProps> = ({ onNavigateToAbo
         <div className="mb-8 relative">
           <div className="relative overflow-hidden rounded-3xl shadow-2xl">
             <img
-              src="/story-gucci-bag.webp"
-              alt="Expertise en maroquinerie de luxe"
+              src="/story-lv-speedy.jpg"
+              alt="Sac Speedy Louis Vuitton - Expertise en maroquinerie de luxe"
               className="w-full h-64 object-cover"
             />
             

@@ -58,8 +58,8 @@ const StoryPreviewDesktop: React.FC<StoryPreviewDesktopProps> = ({ onNavigateToA
           <div className="order-1 lg:order-2 relative">
             <div className="relative">
               <img
-                src="/story-gucci-bag.webp"
-                alt="Expertise en maroquinerie de luxe"
+                src="/story-lv-speedy.jpg"
+                alt="Sac Speedy Louis Vuitton - Expertise en maroquinerie de luxe"
                 className="w-full h-96 object-cover rounded-2xl shadow-2xl"
               />
               
