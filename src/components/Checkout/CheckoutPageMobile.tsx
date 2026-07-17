@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, CreditCard, Truck, Check, Package, ChevronRight, Loader2, AlertCircle } from 'lucide-react';
+import { ArrowLeft, CreditCard, Truck, Check, Package, ChevronRight, ChevronDown, Loader2, AlertCircle, Ticket, X } from 'lucide-react';
 import { ShippingAddress } from '../../types';
 import CheckoutSummary from './CheckoutSummary';
 import ShippingFormMobile from './ShippingFormMobile';
@@ -60,6 +60,8 @@ const CheckoutPageMobile: React.FC = () => {
   const [appliedCoupon, setAppliedCoupon] = useState<AppliedCoupon | null>(null);
   const [isValidatingCoupon, setIsValidatingCoupon] = useState(false);
   const [couponError, setCouponError] = useState<string | null>(null);
+  const [showCouponField, setShowCouponField] = useState(false);
+  const [mobileCouponCode, setMobileCouponCode] = useState('');
   
   useEffect(() => {
     setShippingAddress(getInitialShippingAddress());
@@ -151,6 +153,17 @@ const CheckoutPageMobile: React.FC = () => {
   const handleRemoveCoupon = () => {
     setAppliedCoupon(null);
     setCouponError(null);
+  };
+
+  // Variante compacte utilisée par l'accordéon "Ajouter un code promo" de
+  // l'étape 1 (livraison) : réinitialise le champ local en cas de succès.
+  const handleApplyMobileCoupon = async () => {
+    if (!mobileCouponCode.trim()) return;
+    const result = await handleApplyCoupon(mobileCouponCode.trim());
+    if (result.success) {
+      setMobileCouponCode('');
+      setShowCouponField(false);
+    }
   };
 
   const handlePaymentSubmit = async (payment: { type: string }) => {
@@ -331,6 +344,72 @@ const CheckoutPageMobile: React.FC = () => {
                       +{cartItems.length - 2} autre{cartItems.length - 2 > 1 ? 's' : ''} article{cartItems.length - 2 > 1 ? 's' : ''}
                     </p>
                   </div>
+                )}
+              </div>
+
+              {/* Code promo — accordéon compact pour ne pas surcharger l'écran mobile */}
+              <div className="border-t border-gray-200 pt-4 mt-4">
+                {appliedCoupon ? (
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-center justify-between">
+                    <div className="flex items-center min-w-0">
+                      <Check className="h-4 w-4 text-green-600 mr-2 flex-shrink-0" />
+                      <span className="text-sm text-green-800 truncate">
+                        Code <code className="font-mono font-medium">{appliedCoupon.code}</code> appliqué
+                      </span>
+                    </div>
+                    <button
+                      onClick={handleRemoveCoupon}
+                      className="p-1 text-green-600 hover:text-green-800 hover:bg-green-100 rounded transition-colors flex-shrink-0"
+                      title="Supprimer le code promo"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => setShowCouponField((v) => !v)}
+                      className="flex items-center justify-between w-full text-sm font-medium text-gray-700"
+                    >
+                      <span className="flex items-center">
+                        <Ticket className="h-4 w-4 mr-2 text-gray-400" />
+                        Ajouter un code promo
+                      </span>
+                      <ChevronDown className={`h-4 w-4 text-gray-400 transition-transform ${showCouponField ? 'rotate-180' : ''}`} />
+                    </button>
+                    {showCouponField && (
+                      <div className="mt-3">
+                        <div className="flex gap-2">
+                          <div className="relative flex-1">
+                            <Ticket className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                            <input
+                              type="text"
+                              value={mobileCouponCode}
+                              onChange={(e) => setMobileCouponCode(e.target.value.toUpperCase())}
+                              onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleApplyMobileCoupon())}
+                              placeholder="BIENVENUE"
+                              className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg text-sm uppercase font-mono focus:ring-2 focus:ring-black focus:border-transparent"
+                              disabled={isValidatingCoupon}
+                            />
+                          </div>
+                          <button
+                            onClick={handleApplyMobileCoupon}
+                            disabled={!mobileCouponCode.trim() || isValidatingCoupon}
+                            className="px-4 py-2 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center"
+                          >
+                            {isValidatingCoupon ? <Loader2 className="h-4 w-4 animate-spin" /> : 'OK'}
+                          </button>
+                        </div>
+                        {couponError && (
+                          <div className="mt-2 flex items-center text-red-600 text-xs">
+                            <AlertCircle className="h-4 w-4 mr-1 flex-shrink-0" />
+                            <span>{couponError}</span>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
 
