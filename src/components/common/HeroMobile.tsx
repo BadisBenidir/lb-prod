@@ -8,33 +8,28 @@ interface HeroMobileProps {
 const HeroMobile: React.FC<HeroMobileProps> = ({ onNavigate }) => {
   return (
     <section className="relative bg-gradient-to-b from-gray-900 to-black text-white h-screen overflow-hidden">
-      {/* Background image with parallax effect */}
-      <div className="absolute inset-0">
-        <img
-          src="/hero-main.webp"
-          alt="Expertise en maroquinerie de luxe"
-          className="w-full h-full object-contain opacity-75"
-        />
-      </div>
+      {/* Animation (fond) */}
+        <div className="absolute inset-0">
+          <video
+            className="h-full w-full object-cover"
+            style={{ objectPosition: "80% center" }}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          >
+            <source src="/animv2.mp4" type="video/mp4" />
+          </video>
+        </div>
 
       {/* Gradient overlay - More dramatic for mobile */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80"></div>
 
-      {/* Decorative elements */}
-      <div className="absolute top-16 right-8 w-16 h-16 border border-white/20 rotate-45 animate-pulse"></div>
-      <div className="absolute bottom-32 left-6 w-8 h-8 border border-gray-200/30 rotate-12"></div>
+
 
       {/* Content */}
-      <div className="relative h-full flex flex-col justify-center px-6 py-8">
-        {/* Logo and Brand section - Centered */}
-        <div className="flex flex-col items-center justify-center mb-8 animate-fade-in">
-          <div className="bg-white/10 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 flex items-center">
-            <span className="text-gray-100 text-xs font-medium tracking-wider uppercase">
-              Ligne Blanche
-            </span>
-          </div>
-        </div>
-
+      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-32 sm:pt-36 md:pt-44 lg:pt-52">
         {/* Main title - Optimized for mobile */}
         <div className="text-center mb-6">
           <h1 className="text-3xl font-light leading-tight mb-6 animate-slide-up">
@@ -48,7 +43,9 @@ const HeroMobile: React.FC<HeroMobileProps> = ({ onNavigate }) => {
         <div className="text-center mb-8 animate-fade-in delay-400">
           <div className="bg-black/30 backdrop-blur-sm rounded-lg p-4 mx-2 border border-white/20">
             <p className="text-base text-gray-100 leading-relaxed">
-              Découvrez une sélection exclusive de pièces de luxe de seconde main.
+              Découvrez une sélection exclusive de pièces
+              <br className='block sm:hidden'/>
+              de luxe de seconde main.
             </p>
           </div>
         </div>
@@ -96,7 +93,7 @@ const HeroMobile: React.FC<HeroMobileProps> = ({ onNavigate }) => {
       </div>
 
       {/* Custom animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes fade-in {
           from { opacity: 0; }
           to { opacity: 1; }

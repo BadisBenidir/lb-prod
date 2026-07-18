@@ -1,5 +1,5 @@
-# Robots.txt pour Ligne Blanche
-# https://www.ligne-blanche.fr
+# Robots.txt pour OZË Paris
+# https://ozeparis.com
 
 # Autoriser tous les robots à indexer le site
 User-agent: *
@@ -12,4 +12,4 @@ Disallow: /profil
 Disallow: /welcome
 
 # Sitemap
-Sitemap: https://www.ligne-blanche.fr/sitemap.xml
+Sitemap: https://ozeparis.com/sitemap.xml
